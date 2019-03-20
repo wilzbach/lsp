@@ -1,0 +1,81 @@
+{
+  "name": "sls",
+  "description": "Storyscript Language Server",
+  "author": "Asyncy",
+  "license": "Apache-2.0",
+  "version": "1.0.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/storyscript/lsp"
+  },
+  "publisher": "Asyncy",
+  "categories": [],
+  "keywords": [
+    "multi-root ready"
+  ],
+  "engines": {
+    "vscode": "^1.32.0"
+  },
+  "activationEvents": [
+    "onLanguage:storyscript"
+  ],
+  "main": "./out/extension",
+  "contributes": {
+    "languages": [
+      {
+        "id": "storyscript",
+        "extensions": [
+          ".story"
+        ]
+      }
+    ],
+    "configuration": {
+      "type": "object",
+      "title": "Example configuration",
+      "properties": {
+        "sls.maxNumberOfProblems": {
+          "scope": "resource",
+          "type": "number",
+          "default": 100,
+          "description": "Controls the maximum number of problems produced by the server."
+        },
+        "sls.trace.server": {
+          "scope": "window",
+          "type": "string",
+          "enum": [
+            "off",
+            "messages",
+            "verbose"
+          ],
+          "default": "off",
+          "description": "Traces the communication between VS Code and the language server."
+        }
+      }
+    },
+    "commands": [
+      {
+        "command": "sls.restart",
+        "title": "Restart the SLS server"
+      }
+    ]
+  },
+  "scripts": {
+    "postinstall": "npm run vscode:prepublish",
+    "compile": "tsc -b",
+    "watch": "tsc -b -w",
+    "vscode:prepublish": "npm run vscode:update && npm run compile",
+    "vscode:update": "vscode-install",
+    "vscode:open": "VSCODE=$(which code-insiders || which code || echo echo ERROR: neither the code nor code-insiders vscode executable is installed); USER=dummy-dont-share-vscode-instance $VSCODE --user-data-dir=$PWD/.vscode-dev/user-data --extensionHomePath=$PWD/.vscode-dev/extensions --extensionDevelopmentPath=$PWD $*",
+    "vscode": "npm run vscode:prepublish && npm run vscode:open"
+  },
+  "dependencies": {
+    "vscode-languageclient": "^5.2.1"
+  },
+  "devDependencies": {
+    "@types/mocha": "^5.2.0",
+    "@types/node": "^8.0.0",
+    "tslint": "^5.11.0",
+    "typescript": "^3.1.3",
+    "vscode": "^1.1.32"
+  }
+}
