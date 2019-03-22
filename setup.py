@@ -36,6 +36,7 @@ classifiers = [
 
 requirements = [
     'python-jsonrpc-server==0.1.2',
+    'storyscript>=0.12.0',
 ]
 
 
@@ -57,5 +58,5 @@ setup(name=name,
       zip_safe=True,
       install_requires=requirements,
       entry_points={
-          'console_scripts': ['sls=sls.server:cli']
+          'console_scripts': ['sls=sls.main:cli']
       })

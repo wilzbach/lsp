@@ -6,7 +6,7 @@ import sys
 
 sys.path.insert(0, os.path.dirname(os.path.realpath(__file__)))
 
-from sls.server import main  # noqa: E402
+from sls.main import main  # noqa: E402
 
 logging.basicConfig(
     level=logging.DEBUG,
