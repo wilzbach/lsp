@@ -14,7 +14,7 @@ def read(file_name):
 
 
 name = 'sls'
-version = '0.0.1'
+version = '0.0.2'
 description = read('README.md')
 short_description = ('SLS is the Storyscript Language Server. It provides '
                      'common editor features like completion to its clients.')
@@ -25,12 +25,13 @@ classifiers = [
     'Environment :: Plugins',
     'Intended Audience :: Developers',
     'Intended Audience :: System Administrators',
-    'License :: OSI Approved :: MIT License',
+    'License :: OSI Approved :: Apache Software License',
     'Natural Language :: English',
-    'Programming Language :: Python :: 3.6',
+    'Programming Language :: Python :: 3',
+    'Programming Language :: Other Scripting Engines',
     'Topic :: Office/Business',
     'Topic :: Software Development :: Build Tools',
-    'Topic :: Software Development :: Compilers'
+    'Topic :: Software Development :: Code Generators',
 ]
 
 requirements = [
@@ -50,7 +51,7 @@ setup(name=name,
       author='Asyncy',
       author_email='support@asyncy.com',
       url='http://storyscript.org',
-      license='MIT',
+      license='Apache 2.0',
       packages=find_packages(),
       include_package_data=True,
       zip_safe=True,
