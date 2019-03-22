@@ -11,7 +11,7 @@ from sls.server import main  # noqa: E402
 logging.basicConfig(
     level=logging.DEBUG,
     handlers=[
-        logging.FileHandler("lsp.log"),
+        logging.FileHandler('lsp.log'),
         logging.StreamHandler()
     ])
 

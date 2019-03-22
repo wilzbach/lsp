@@ -8,14 +8,14 @@ class Document:
     Holds all relevant info about an opened text document
     """
 
-    def __init__(self, textDocument):
-        log.info("textDocument: %s", textDocument)
-        self.uri = textDocument['uri']
-        self.version = textDocument['version']
+    def __init__(self, text_document):
+        log.info('text_document: %s', text_document)
+        self.uri = text_document['uri']
+        self.version = text_document['version']
         self._lines = []
 
-        if 'text' in textDocument:
-            self.update(textDocument['text'])
+        if 'text' in text_document:
+            self.update(text_document['text'])
 
     def text(self):
         return self._text
@@ -34,7 +34,7 @@ class Document:
         if len(line) > cursor:
             cursor = len(line)
 
-        buf = ""
+        buf = ''
         for c in reversed(line[:cursor]):
             if c == ' ':
                 break
