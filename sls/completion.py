@@ -9,9 +9,9 @@ log = logging.getLogger(__name__)
 class Completion():
     def __init__(self):
         self.service_list = [
-            self.to_item("http", "A HTTP service", "Does HTTP"),
-            self.to_item("log", "A logging service", "Does logging"),
-            self.to_item("email", "A Email service", "Does emails"),
+            self.to_item('http', 'A HTTP service', 'Does HTTP'),
+            self.to_item('log', 'A logging service', 'Does logging'),
+            self.to_item('email', 'A Email service', 'Does emails'),
         ]
 
     """
@@ -23,7 +23,7 @@ class Completion():
         [1] https://microsoft.github.io/language-server-protocol/specification#textDocument_completion
         """  # noqa
         word = doc.word_on_cursor(position)
-        log.info("Word on cursor: %s", word)
+        log.info('Word on cursor: %s', word)
         # get last word
         items = self.service_list
         return {
@@ -48,4 +48,3 @@ class Completion():
             # with other items. When `falsy` the label is used.
             # 'sortText': 'a',
         }
-

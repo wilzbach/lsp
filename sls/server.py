@@ -9,14 +9,14 @@ log = logging.getLogger(__name__)
 
 
 def load_args(parser):
-    parser.description = "Storyscript Language Server (SLS)"
+    parser.description = 'Storyscript Language Server (SLS)'
     parser.add_argument(
-        "--host", default="127.0.0.1",
-        help="Address to bind to"
+        '--host', default='127.0.0.1',
+        help='Address to bind to'
     )
     parser.add_argument(
-        "--port", type=int, default=2042,
-        help="Port to bind to"
+        '--port', type=int, default=2042,
+        help='Port to bind to'
     )
 
 

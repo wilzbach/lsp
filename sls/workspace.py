@@ -24,11 +24,11 @@ class Workspace:
     def remove_document(self, uri):
         del self.documents[uri]
 
-    def update_document(self, uri, contentChanges):
+    def update_document(self, uri, content_changes):
         doc = self.get_document(uri)
         # TODO: only full text updates are implemented
-        for contentChange in contentChanges:
-            doc.update(contentChange['text'])
+        for content_change in content_changes:
+            doc.update(content_change['text'])
 
     def get_document(self, uri):
         # TODO: better error handling

@@ -1,6 +1,3 @@
-from .spec import CompletionItemKind
-
-
 class Hover():
     """
     Generate hover information

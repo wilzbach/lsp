@@ -2,8 +2,8 @@ import logging
 
 from pyls_jsonrpc import dispatchers, endpoint, streams
 
-from .spec import TextDocumentSyncKind
 from .document import Document
+from .spec import TextDocumentSyncKind
 from .workspace import Workspace
 
 log = logging.getLogger(__name__)
@@ -43,7 +43,7 @@ class LanguageServer(dispatchers.MethodDispatcher):
         }
         obj['hoverProvider'] = True
         obj['documentFormattingProvider'] = True
-        obj['textDocumentSync'] = {
+        obj['text_documentSync'] = {
             # Open and close notifications are sent to the server
             'openClose': True,
             # Change notifications are sent to the server
@@ -51,11 +51,11 @@ class LanguageServer(dispatchers.MethodDispatcher):
         }
         return obj
 
-    def m_initialize(self, processId=None, rootUri=None, rootPath=None,
-                     initializationOptions=None, **_kwargs):
-        log.debug(f'Initialized with pid={processId}% root_uri={rootUri} '
-                  f'rootPath={rootPath} options={initializationOptions}%')
-        self.workspace = Workspace(rootUri, self.endpoint)
+    def m_initialize(self, process_id=None, root_uri=None, root_path=None,
+                     init_options=None, **_kwargs):
+        log.debug(f'Initialized with pid={process_id}% root_uri={root_uri} '
+                  f'rootPath={root_path} options={init_options}%')
+        self.workspace = Workspace(root_uri, self.endpoint)
         # TODO: load user config here
         return {
             'capabilities': self.build_capabilties()
@@ -64,32 +64,32 @@ class LanguageServer(dispatchers.MethodDispatcher):
     def m_initialized(self, **_kwargs):
         pass
 
-    def m_text_document__completion(self, textDocument=None,
+    def m_text_document__completion(self, text_document=None,
                                     position=None, **_kwargs):
-        return self.workspace.complete(textDocument['uri'], position)
+        return self.workspace.complete(text_document['uri'], position)
 
-    def m_text_document__hover(self, textDocument=None,
+    def m_text_document__hover(self, text_document=None,
                                position=None, **_kwargs):
-        return self.workspace.hover(textDocument['uri'], position)
+        return self.workspace.hover(text_document['uri'], position)
 
-    def m_text_document__formatting(self, textDocument=None,
+    def m_text_document__formatting(self, text_document=None,
                                     _options=None, **_kwargs):
-        return self.workspace.format(textDocument['uri'])
+        return self.workspace.format(text_document['uri'])
 
-    def m_text_document__did_open(self, textDocument=None, **_kwargs):
-        self.workspace.add_document(Document(textDocument))
+    def m_text_document__did_open(self, text_document=None, **_kwargs):
+        self.workspace.add_document(Document(text_document))
         # TODO: run initial diagnostics here
 
-    def m_text_document__did_close(self, textDocument=None, **_kwargs):
-        self.workspace.remove_document(textDocument['uri'])
+    def m_text_document__did_close(self, text_document=None, **_kwargs):
+        self.workspace.remove_document(text_document['uri'])
 
-    def m_text_document__did_change(self, contentChanges=None,
-                                    textDocument=None, **_kwargs):
+    def m_text_document__did_change(self, content_changes=None,
+                                    text_document=None, **_kwargs):
         # TODO: use incremental changes
-        self.workspace.update_document(textDocument['uri'], contentChanges)
+        self.workspace.update_document(text_document['uri'], content_changes)
         # TODO: relint the document
 
-    def m_text_document__did_save(self, textDocument=None, **_kwargs):
+    def m_text_document__did_save(self, text_document=None, **_kwargs):
         # TODO: relint
         pass
 
