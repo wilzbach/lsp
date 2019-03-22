@@ -1,0 +1,18 @@
+#!/usr/bin/python3
+# Convenience CLI wrapper for the Storyscript Language Server
+# with a constant hub.
+# This is especially useful for test files.
+
+from os import path
+import sys
+
+sys.path.insert(0, path.dirname(path.realpath(__file__)))
+
+from sls.cli import Cli  # noqa: E402
+
+script_dir = path.dirname(path.realpath(__file__))
+fixture_dir = path.join(script_dir, 'tests', 'fixtures', 'hub')
+fixture_file = path.join(fixture_dir, 'hub.fixed.json')
+
+if __name__ == '__main__':
+    Cli.main(obj=fixture_file)

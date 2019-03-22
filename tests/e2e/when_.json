@@ -1,0 +1,90 @@
+[
+  {
+    "detail": "Crontab in Asyncy",
+    "documentation": {
+      "kind": "markdown",
+      "value": ""
+    },
+    "kind": 2,
+    "label": "crontab",
+    "textEdit": {
+      "newText": "crontab ",
+      "range": {
+        "end": {
+          "character": 5,
+          "line": 0
+        },
+        "start": {
+          "character": 5,
+          "line": 0
+        }
+      }
+    }
+  },
+  {
+    "detail": "The Asyncy API gateway server for executing Stories via HTTP.",
+    "documentation": {
+      "kind": "markdown",
+      "value": "# Asyncy HTTP Gateway\n\nAPI gateway server for executing Stories via HTTP.\n\n```coffee\nhttp server as server\n  when server listen method: 'get' path: '/' as req\n    log info msg: req.body\n    log info msg: req.headers\n    log info msg: req.headers['Host']\n    req write data: 'Hello World'\n    req status code: 200\n    req finish\n```\n\n```sh\ncurl https://foobar.asyncyapp.com\n>>> Hello World\n```\n\n\n## Development\n\nSetup virtual environment and install dependencies\n```\nvirtualenv -p python3.6 venv\nsource venv/bin/activate\npip install -r requirements.txt\n```\n\nRun locally by calling\n\n```\npython -m app.main --logging=debug --debug\n```\n\n### Register an endpoint\n\n```shell\ncurl --data '{\"endpoint\": \"http://localhost:9000/story/foo\", \"data\":{\"path\":\"/ping\", \"method\": \"post\", \"host\": \"a\"}}' \\\n     -H \"Content-Type: application/json\" \\\n     localhost:8889/register\n```\n\nNow access that endpoint\n\n```shell\ncurl -X POST -d 'foobar' -H \"Host: a.asyncyapp.com\" http://localhost:8888/ping\n```\n\n\n### Unregister an endpoint\n\n```shell\ncurl --data '{\"endpoint\": \"http://localhost:9000/story/foo\", \"data\":{\"path\":\"/ping\", \"method\": \"post\", \"host\": \"a\"}}' \\\n     -H \"Content-Type: application/json\" \\\n     localhost:8889/unregister\n```\n"
+    },
+    "kind": 2,
+    "label": "http",
+    "textEdit": {
+      "newText": "http ",
+      "range": {
+        "end": {
+          "character": 5,
+          "line": 0
+        },
+        "start": {
+          "character": 5,
+          "line": 0
+        }
+      }
+    }
+  },
+  {
+    "detail": "UUID generator",
+    "documentation": {
+      "kind": "markdown",
+      "value": "# UUID generator for Asyncy\n\nThis container should be used for creation of UUIDs.\nThe output is the created UUID.\n\n#### Example\n\n```storyscript\n# Storyscript\nid = uuid\n```\n\n```sh\n# OMG Cli\nomg exec\n```\n"
+    },
+    "kind": 2,
+    "label": "uuid",
+    "textEdit": {
+      "newText": "uuid ",
+      "range": {
+        "end": {
+          "character": 5,
+          "line": 0
+        },
+        "start": {
+          "character": 5,
+          "line": 0
+        }
+      }
+    }
+  },
+  {
+    "detail": "Slack bot microservice",
+    "documentation": {
+      "kind": "markdown",
+      "value": "# Slack as a microservice\n\n[![Open Microservice Guide](https://img.shields.io/badge/OMG-enabled-brightgreen.svg?style=for-the-badge)](https://microservice.guide)\n\nThis microservice's goal is to fully utilise the Slack API.\n\n## [OMG](hhttps://microservice.guide) CLI\n\n### Slack Bot\n```sh\nomg exec -e TOKEN=<secret> -c bot\n```\n\nSubscribe to an event.\n```sh\nomg subscribe bot hears -a \"pattern=/^hello/\"\n```\n\n\n## [Asyncy](https://asyncy.com) Example\n\nThe `slack` service is published in the [Asyncy Hub](https://hub.asyncy.com/service/slack)\n\n```storyscript\nslack bot as client\n    when client hears channel:'general' pattern:/^welcome/ as msg\n        msg emoji key:'thumbs_up'\n        msg reply message:'Nice to have you here'\n\n    when client responds pattern:/foo/ as msg\n        # respond to direct messages\n        msg reply message:'bar'\n\n    when client slash pattern:/deploy/ as msg\n        # when user does /deploy do something awesome\n\n# send a post\nslack send text:'Hello world!' to:'general'\n```\n"
+    },
+    "kind": 2,
+    "label": "slack",
+    "textEdit": {
+      "newText": "slack ",
+      "range": {
+        "end": {
+          "character": 5,
+          "line": 0
+        },
+        "start": {
+          "character": 5,
+          "line": 0
+        }
+      }
+    }
+  }
+]

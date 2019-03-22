@@ -1,0 +1,59 @@
+[
+  {
+    "detail": "Action: Make a HTTP request to the outside world.",
+    "documentation": "Make a HTTP request to the outside world.\nThis command is native to the platform for performance reasons.\n",
+    "kind": 11,
+    "label": "fetch",
+    "textEdit": {
+      "newText": "fetch ",
+      "range": {
+        "end": {
+          "character": 9,
+          "line": 0
+        },
+        "start": {
+          "character": 9,
+          "line": 0
+        }
+      }
+    }
+  },
+  {
+    "detail": "Action: Make http calls and listen for http connections through the Asyncy Gateway",
+    "documentation": "Make http calls and listen for http connections through the Asyncy Gateway\nresulting in serverless http endpoints.\n",
+    "kind": 11,
+    "label": "help",
+    "textEdit": {
+      "newText": "help ",
+      "range": {
+        "end": {
+          "character": 9,
+          "line": 0
+        },
+        "start": {
+          "character": 9,
+          "line": 0
+        }
+      }
+    }
+  },
+  {
+    "detail": "Action: No description available",
+    "documentation": "No description available",
+    "kind": 11,
+    "label": "server",
+    "textEdit": {
+      "newText": "server ",
+      "range": {
+        "end": {
+          "character": 9,
+          "line": 0
+        },
+        "start": {
+          "character": 9,
+          "line": 0
+        }
+      }
+    }
+  }
+]

@@ -6,7 +6,7 @@ import sys
 
 sys.path.insert(0, os.path.dirname(os.path.realpath(__file__)))
 
-from sls.main import cli  # noqa: E402
+from sls.cli import Cli  # noqa: E402
 
 if __name__ == '__main__':
-    cli()
+    Cli.main()

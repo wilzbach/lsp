@@ -1,0 +1,97 @@
+[
+  {
+    "detail": "Action: Start a Slack bot",
+    "documentation": "Start a Slack bot",
+    "kind": 11,
+    "label": "bot",
+    "textEdit": {
+      "newText": "bot ",
+      "range": {
+        "end": {
+          "character": 6,
+          "line": 0
+        },
+        "start": {
+          "character": 6,
+          "line": 0
+        }
+      }
+    }
+  },
+  {
+    "detail": "Action: Get a list of channels",
+    "documentation": "Get a list of channels",
+    "kind": 11,
+    "label": "channels",
+    "textEdit": {
+      "newText": "channels ",
+      "range": {
+        "end": {
+          "character": 6,
+          "line": 0
+        },
+        "start": {
+          "character": 6,
+          "line": 0
+        }
+      }
+    }
+  },
+  {
+    "detail": "Action: Lists direct message channels for the calling user.",
+    "documentation": "Lists direct message channels for the calling user.",
+    "kind": 11,
+    "label": "directChannels",
+    "textEdit": {
+      "newText": "directChannels ",
+      "range": {
+        "end": {
+          "character": 6,
+          "line": 0
+        },
+        "start": {
+          "character": 6,
+          "line": 0
+        }
+      }
+    }
+  },
+  {
+    "detail": "Action: Sends a message to a channel.",
+    "documentation": "Sends a message to a channel.\nhttps://api.slack.com/methods/chat.postMessage\n",
+    "kind": 11,
+    "label": "send",
+    "textEdit": {
+      "newText": "send ",
+      "range": {
+        "end": {
+          "character": 6,
+          "line": 0
+        },
+        "start": {
+          "character": 6,
+          "line": 0
+        }
+      }
+    }
+  },
+  {
+    "detail": "Action: No description available",
+    "documentation": "No description available",
+    "kind": 11,
+    "label": "users",
+    "textEdit": {
+      "newText": "users ",
+      "range": {
+        "end": {
+          "character": 6,
+          "line": 0
+        },
+        "start": {
+          "character": 6,
+          "line": 0
+        }
+      }
+    }
+  }
+]

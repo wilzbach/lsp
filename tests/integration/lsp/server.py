@@ -15,7 +15,7 @@ def server(magic, patch):
     patch.object(Endpoint, 'notify')
     patch.init(streams.JsonRpcStreamReader)
     patch.init(streams.JsonRpcStreamWriter)
-    server = LanguageServer(rx, tx)
+    server = LanguageServer(rx, tx, hub=None)
     server.rpc_initialize(root_uri='.root_uri.')
     return server
 

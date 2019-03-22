@@ -36,9 +36,11 @@ classifiers = [
 
 requirements = [
     'python-jsonrpc-server==0.1.2',
-    'storyscript>=0.14.0',
+    'storyscript==0.14.1',
+    'asyncy-hub==0.0.1',
+    'click==7.0',
+    'click-alias==0.1.1a2',
 ]
-
 
 setup(name=name,
       version=version,
@@ -58,5 +60,5 @@ setup(name=name,
       zip_safe=True,
       install_requires=requirements,
       entry_points={
-          'console_scripts': ['sls=sls.main:cli']
+          'console_scripts': ['sls=sls.cli:Cli.main']
       })

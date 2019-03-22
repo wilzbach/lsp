@@ -30,6 +30,10 @@ class Document:
         log.debug(f'ws.doc.from_file: {uri}')
         u = urlparse(uri)
         abs_path = path.abspath(path.join(u.netloc, u.path))
+        return cls.from_file_path(uri, abs_path)
+
+    @classmethod
+    def from_file_path(cls, uri, abs_path):
         text = io.open(abs_path).read()
         doc = cls(uri, text=text)
         return doc
@@ -42,17 +46,22 @@ class Document:
         self._lines = text.split('\n')
         self._text = text
 
+    def nr_lines(self):
+        return len(self._lines)
+
     def line(self, nr):
         return self._lines[nr]
 
-    def word_on_cursor(self, pos):
-        line = self.line(pos.line).rstrip()
+    def line_to_cursor(self, pos):
+        line = self.line(pos.line)
         cursor = pos.char
         if len(line) < cursor:
             cursor = len(line)
+        return line[:cursor]
 
+    def word_on_cursor(self, pos):
         buf = ''
-        for c in reversed(line[:cursor]):
+        for c in reversed(self.line_to_cursor(pos)):
             if c == ' ':
                 break
             buf += c
@@ -60,9 +69,24 @@ class Document:
         return buf[::-1]
 
 
+class Range:
+    """
+    Represents a range in a text document consisting of two positions.
+    """
+    def __init__(self, start, end):
+        self.start = start
+        self.end = end
+
+    def __str__(self):
+        return f'Range(start={self.start},end={self.end})'
+
+    def dump(self):
+        return {'start': self.start.dump(), 'end': self.end.dump()}
+
+
 class Position:
     """
-    Represents the position of a cursor
+    Represents the position of a cursor.
     """
 
     def __init__(self, line, character):
@@ -79,3 +103,19 @@ class Position:
 
     def __str__(self):
         return f'Pos(l={self.line},c={self.char})'
+
+    def dump(self):
+        return {'line': self.line, 'character': self.char}
+
+
+class TextEdit:
+
+    def __init__(self, range_, new_text):
+        self._range = range_
+        self._new_text = new_text
+
+    def dump(self):
+        return {
+            'range': self._range.dump(),
+            'newText': self._new_text,
+        }
