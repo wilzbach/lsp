@@ -135,32 +135,32 @@ export function deactivate(): Thenable<void> | undefined {
 // from https://github.com/Microsoft/vscode-languageserver-node/blob/04c4f6549d97487375aeb4ad0a43f060fb714c0c/client/src/client.ts
 class CustomErrorHandler implements ErrorHandler {
 
-	private restarts: number[];
+    private restarts: number[];
 
-	constructor(private name: string) {
-		this.restarts = [];
-	}
+    constructor(private name: string) {
+        this.restarts = [];
+    }
 
-	public error(_error: Error, _message: Message, count: number): ErrorAction {
-	    out.appendLine("error" + _error.toString());
-		if (count && count <= 3) {
-			return ErrorAction.Continue;
-		}
-		return ErrorAction.Shutdown;
-	}
-	public closed(): CloseAction {
-		this.restarts.push(Date.now());
-		if (this.restarts.length < 5) {
-			return CloseAction.Restart;
-		} else {
-			let diff = this.restarts[this.restarts.length - 1] - this.restarts[0];
-			if (diff <= 3 * 60 * 1000) {
-				Window.showErrorMessage(`The ${this.name} server crashed 5 times in the last 3 minutes. The server will not be restarted.`);
-				return CloseAction.DoNotRestart;
-			} else {
-				this.restarts.shift();
-				return CloseAction.Restart;
-			}
-		}
-	}
+    public error(_error: Error, _message: Message, count: number): ErrorAction {
+        out.appendLine("error" + _error.toString());
+        if (count && count <= 3) {
+            return ErrorAction.Continue;
+        }
+        return ErrorAction.Shutdown;
+    }
+    public closed(): CloseAction {
+        this.restarts.push(Date.now());
+        if (this.restarts.length < 20) {
+            return CloseAction.Restart;
+        } else {
+            let diff = this.restarts[this.restarts.length - 1] - this.restarts[0];
+            if (diff <= 60 * 1000) {
+                Window.showErrorMessage(`The ${this.name} server crashed 20 times in the last minute. The server will not be restarted.`);
+                return CloseAction.DoNotRestart;
+            } else {
+                this.restarts = [];
+                return CloseAction.Restart;
+            }
+        }
+    }
 }
