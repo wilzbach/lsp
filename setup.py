@@ -56,5 +56,5 @@ setup(name=name,
       zip_safe=True,
       install_requires=requirements,
       entry_points={
-          'console_scripts': ['sls=sls.server:main']
+          'console_scripts': ['sls=sls.server:cli']
       })

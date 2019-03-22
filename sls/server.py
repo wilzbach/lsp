@@ -40,6 +40,16 @@ def start_tcp_server(addr, port, language_server):
         server.server_close()
 
 
+def cli():
+    logging.basicConfig(
+        level=logging.DEBUG,
+        handlers=[
+            logging.FileHandler('lsp.log'),
+            logging.StreamHandler()
+        ])
+    main()
+
+
 def main():
     parser = argparse.ArgumentParser()
     load_args(parser)
