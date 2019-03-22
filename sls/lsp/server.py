@@ -1,13 +1,12 @@
-import logging
-
 from pyls_jsonrpc import endpoint, streams
 
+from .dispatcher import LSPDispatcher
 from ..document import Document, Position
+from ..logging import logger
 from ..spec import TextDocumentSyncKind
 from ..workspace import Workspace
-from .dispatcher import LSPDispatcher
 
-log = logging.getLogger(__name__)
+log = logger(__name__)
 
 MAX_WORKERS = 32
 

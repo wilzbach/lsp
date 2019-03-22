@@ -32,7 +32,7 @@ all_cap_re = re.compile('([a-z0-9])([A-Z])')
 
 def to_snake_case(name):
     """
-    Converts method names to snake_case
+    Converts camel case method names to snake_case
     """
     s1 = re.sub(first_cap_re, r'\1_\2', name)
     return re.sub(all_cap_re, r'\1_\2', s1).lower()

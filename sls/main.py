@@ -1,11 +1,11 @@
 import argparse
-import logging
 import socketserver
 
+from .logging import logger
 from .lsp import LanguageServer
 
 
-log = logging.getLogger(__name__)
+log = logger(__name__)
 
 
 def load_args(parser):
@@ -25,7 +25,7 @@ def start_tcp_server(addr, port, language_server):
     class SLSTCPServer(socketserver.StreamRequestHandler):
 
         def handle(self):
-            log.info(f'Handling client connection')
+            log.info(f'Client connection initiated')
             self._ls = language_server(self.rfile, self.wfile)
             self._ls.start()
 
@@ -41,12 +41,6 @@ def start_tcp_server(addr, port, language_server):
 
 
 def cli():
-    logging.basicConfig(
-        level=logging.DEBUG,
-        handlers=[
-            logging.FileHandler('lsp.log'),
-            logging.StreamHandler()
-        ])
     main()
 
 
