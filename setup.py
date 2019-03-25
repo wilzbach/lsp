@@ -14,7 +14,7 @@ def read(file_name):
 
 
 name = 'sls'
-version = read(path.join('sls', 'version.py')).split(' = ')[1].strip()
+version = read(path.join('sls', 'version.py')).split('\'')[1].strip()
 description = read('README.md')
 short_description = ('SLS is the Storyscript Language Server. It provides '
                      'common editor features like completion to its clients.')

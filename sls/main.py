@@ -2,7 +2,7 @@ import argparse
 import socketserver
 import sys
 
-from .logging import logger
+from .logging import configure_logging, logger
 from .lsp import LanguageServer
 from .version import version_
 
@@ -79,6 +79,7 @@ def main(args):
     """
     Main entrypoint for the program.
     """
+    configure_logging(with_stdio=not args.stdio)
     if args.version:
         print(version_)
     elif args.stdio:
