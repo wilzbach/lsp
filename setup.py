@@ -14,7 +14,7 @@ def read(file_name):
 
 
 name = 'sls'
-version = '0.0.2'
+version = read(path.join('sls', 'version.py')).split('\'')[1].strip()
 description = read('README.md')
 short_description = ('SLS is the Storyscript Language Server. It provides '
                      'common editor features like completion to its clients.')
@@ -48,7 +48,7 @@ setup(name=name,
       classifiers=classifiers,
       download_url=('https://github.com/asyncy/sls/archive/'
                     f'{version}.zip'),
-      keywords='',
+      keywords='storyscript language server vscode asyncy',
       author='Asyncy',
       author_email='support@asyncy.com',
       url='http://storyscript.org',
