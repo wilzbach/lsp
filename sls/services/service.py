@@ -18,7 +18,7 @@ class Service(CompletionItem):
         self._readme = readme
 
     @classmethod
-    def from_hub(cls, model):
+    def from_hub(cls, service_name, model):
         actions = {}
         if 'actions' in model.configuration:
             for name, action in model.configuration['actions'].items():
@@ -30,7 +30,7 @@ class Service(CompletionItem):
                 commands[name] = Command.from_hub(name, action)
 
         return cls(
-            name=model.name,
+            name=service_name,
             description=model.description,
             actions=actions,
             commands=commands,

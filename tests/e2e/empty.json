@@ -11,11 +11,11 @@
       "newText": "asyncy/crontab ",
       "range": {
         "end": {
-          "character": 5,
+          "character": 0,
           "line": 0
         },
         "start": {
-          "character": 5,
+          "character": 0,
           "line": 0
         }
       }
@@ -33,11 +33,11 @@
       "newText": "http ",
       "range": {
         "end": {
-          "character": 5,
+          "character": 0,
           "line": 0
         },
         "start": {
-          "character": 5,
+          "character": 0,
           "line": 0
         }
       }
@@ -55,11 +55,11 @@
       "newText": "microservice/uuid ",
       "range": {
         "end": {
-          "character": 5,
+          "character": 0,
           "line": 0
         },
         "start": {
-          "character": 5,
+          "character": 0,
           "line": 0
         }
       }
@@ -77,11 +77,11 @@
       "newText": "slack ",
       "range": {
         "end": {
-          "character": 5,
+          "character": 0,
           "line": 0
         },
         "start": {
-          "character": 5,
+          "character": 0,
           "line": 0
         }
       }

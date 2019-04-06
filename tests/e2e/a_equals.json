@@ -6,9 +6,9 @@
       "value": ""
     },
     "kind": 2,
-    "label": "crontab",
+    "label": "asyncy/crontab",
     "textEdit": {
-      "newText": "crontab ",
+      "newText": "asyncy/crontab ",
       "range": {
         "end": {
           "character": 4,
@@ -50,9 +50,9 @@
       "value": "# UUID generator for Asyncy\n\nThis container should be used for creation of UUIDs.\nThe output is the created UUID.\n\n#### Example\n\n```storyscript\n# Storyscript\nid = uuid\n```\n\n```sh\n# OMG Cli\nomg exec\n```\n"
     },
     "kind": 2,
-    "label": "uuid",
+    "label": "microservice/uuid",
     "textEdit": {
-      "newText": "uuid ",
+      "newText": "microservice/uuid ",
       "range": {
         "end": {
           "character": 4,

@@ -27,7 +27,4 @@ class ServiceHub():
             service = self.hub.get(owner=owner, name=name)
         else:
             service = self.hub.get(alias=service_name)
-        return self.from_hub(service)
-
-    def from_hub(self, service):
-        return Service.from_hub(service)
+        return Service.from_hub(service_name, service)
