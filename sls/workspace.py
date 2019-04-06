@@ -1,10 +1,10 @@
-from .completion import Completion
+from .completion.complete import Completion
 from .diagnostics import Diagnostics
 from .document import Document
 from .format import Formatter
 from .hover import Hover
 from .logging import logger
-from .services import ServiceRegistry
+from .services.hub import ServiceHub
 
 
 log = logger(__name__)
@@ -14,15 +14,15 @@ class Workspace:
     """
     Handles all open documents in the current workspace
     """
-    def __init__(self, root_uri, endpoint):
+    def __init__(self, root_uri, endpoint=None, hub=None):
         self._root_uri = root_uri
         self._endpoint = endpoint
         self._documents = {}
         self._diagnostics = Diagnostics(endpoint)
         self._hovering = Hover()
         self._formatter = Formatter()
-        self._service_registry = ServiceRegistry()
-        self._completion = Completion(self._service_registry)
+        self._service_registry = ServiceHub(hub=hub)
+        self._completion = Completion.full(self._service_registry)
 
     def add_document(self, doc):
         log.debug(f'ws.doc.add: {doc.uri}')
@@ -50,7 +50,8 @@ class Workspace:
         return self._documents[uri]
 
     def diagnostics(self, doc):
-        self._diagnostics.run(self, doc)
+        if self._endpoint is not None:
+            self._diagnostics.run(self, doc)
 
     def complete(self, uri, position):
         log.debug(f'ws.complete: {uri} pos={position}')

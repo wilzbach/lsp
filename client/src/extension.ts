@@ -81,7 +81,7 @@ function startLangServerStdio(rootDir: string, clientOptions: LanguageClientOpti
 
     let server:Executable = {
         command: lspPath,
-        args: ['--stdio'],
+        args: ['stdio'],
         options: {
             shell: true,
             cwd: rootDir,

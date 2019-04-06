@@ -66,3 +66,11 @@ class DiagnosticSeverity:
 
     # Reports a hint.
     Hint = 4
+
+
+class MarkupKind:
+    """
+    Markup format kind for content.
+    """
+    PlainText = 'plaintext'
+    Markdown = 'markdown'

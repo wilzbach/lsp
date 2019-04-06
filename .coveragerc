@@ -6,3 +6,6 @@ omit =
   setup.py
   venv/*
   .tox/*
+  tests/fixtures/*
+  sls.py
+  sls.fixed

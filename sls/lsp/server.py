@@ -18,7 +18,7 @@ class LanguageServer(LSPDispatcher):
     slashes with double underscores, and removing dollar signs.
     """
 
-    def __init__(self, rx, tx):
+    def __init__(self, rx, tx, hub):
         self._jsonrpc_stream_reader = streams.JsonRpcStreamReader(rx)
         self._jsonrpc_stream_writer = streams.JsonRpcStreamWriter(tx)
         self.endpoint = endpoint.Endpoint(
@@ -26,6 +26,7 @@ class LanguageServer(LSPDispatcher):
             self._jsonrpc_stream_writer.write,
             max_workers=MAX_WORKERS,
         )
+        self.hub = hub
 
     def start(self):
         """Entry point for the server."""
@@ -55,7 +56,8 @@ class LanguageServer(LSPDispatcher):
                        init_options=None, **_kwargs):
         log.debug(f'Initialized with pid={process_id} root_uri={root_uri} '
                   f'root_path={root_path} options={init_options}')
-        self.workspace = Workspace(root_uri, self.endpoint)
+        self.workspace = Workspace(root_uri, endpoint=self.endpoint,
+                                   hub=self.hub)
         # TODO: load user config here
         return {
             'capabilities': self.build_capabilties()
