@@ -23,7 +23,7 @@ class ASTAnalyzer:
         line = context.line
         if len(line.strip()) == 0:
             # start of a new line
-            return self.get_services('')
+            return self.complete_name()
         if ':' in line:
             return []
         try:
@@ -40,10 +40,13 @@ class ASTAnalyzer:
             pass
         except UnexpectedToken as e:
             if 'NAME' in e.expected:
-                # variables or services
-                return self.get_services('')
+                return self.complete_name()
             log.error(e)
         return []
+
+    def complete_name(self):
+        # variables or services
+        return self.get_services('')
 
     def try_ast(self, ast, word, is_space):
         if ast.block is not None:
