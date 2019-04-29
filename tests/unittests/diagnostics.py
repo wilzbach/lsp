@@ -46,6 +46,7 @@ def test_run_empty(magic, patch):
     endpoint = magic()
     patch.object(Diagnostics, 'to_error')
     patch.object(Api, 'loads')
+    Api.loads.errors.return_value = []
     d = Diagnostics(endpoint=endpoint)
     doc = Document(uri='.my.uri.', text='a = 0')
     d.run(ws=magic(), doc=doc)
@@ -60,7 +61,8 @@ def test_run_story_error(magic, patch):
     se = StoryError(None, None)
     patch.init(Story)
     patch.object(Diagnostics, 'to_error')
-    patch.object(Api, 'loads', side_effect=se)
+    patch.object(Api, 'loads')
+    Api.loads().errors.return_value = [se]
     d = Diagnostics(endpoint=endpoint)
     doc = Document(uri='.my.uri.', text='a = 0')
     d.run(ws=magic(), doc=doc)

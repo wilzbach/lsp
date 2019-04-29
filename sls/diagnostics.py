@@ -1,5 +1,4 @@
 from storyscript.Api import Api
-from storyscript.exceptions import StoryError
 
 from .logging import logger
 from .spec import DiagnosticSeverity
@@ -22,10 +21,8 @@ class Diagnostics():
         """
         log.info('Diagnostics for: %s', doc.uri)
         errors = []
-        try:
-            Api.loads(doc.text())
-        except StoryError as e:
-            errors = [self.to_error(e)]
+        compilation = Api.loads(doc.text())
+        errors = [self.to_error(e) for e in compilation.errors()]
 
         self.endpoint.notify('textDocument/publishDiagnostics', {
             'uri': doc.uri,
