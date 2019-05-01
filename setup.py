@@ -59,6 +59,7 @@ setup(name=name,
       include_package_data=True,
       zip_safe=True,
       install_requires=requirements,
+      python_requires='>=3.5',
       entry_points={
           'console_scripts': ['sls=sls.cli:Cli.main']
       })
