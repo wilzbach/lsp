@@ -9,3 +9,4 @@ omit =
   tests/fixtures/*
   sls.py
   sls.fixed
+  sls/__main__.py
