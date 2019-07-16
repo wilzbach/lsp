@@ -32,7 +32,7 @@ class ASTAnalyzer:
                 assignment = line.split('=')[-1]
                 if len(assignment.strip()) > 0:
                     line = assignment
-            ast = self.parser.parse(line)
+            ast = self.parser.parse(line, allow_single_quotes=False)
             log.debug(ast.pretty())
             return self.try_ast(ast, context.word, is_space)
         except UnexpectedCharacters as e:

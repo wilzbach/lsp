@@ -13,7 +13,7 @@ def test_ast(magic, patch):
     ast = ASTAnalyzer(service_registry=registry)
     result = ast.complete(context)
 
-    Parser.parse.assert_called_with(context.line)
+    Parser.parse.assert_called_with(context.line, allow_single_quotes=False)
     ASTAnalyzer.try_ast.assert_called_with(Parser.parse(), context.word, False)
 
     assert result == ASTAnalyzer.try_ast()
