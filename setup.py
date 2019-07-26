@@ -36,7 +36,7 @@ classifiers = [
 
 requirements = [
     'python-jsonrpc-server==0.1.2',
-    'storyscript==0.22.1',
+    'storyscript==0.23.0',
     'asyncy-hub==0.0.1',
     'click==7.0',
     'click-alias==0.1.1a2',
