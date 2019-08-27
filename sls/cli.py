@@ -2,7 +2,7 @@ import json
 
 import click
 
-from click_alias import ClickAliasedGroup
+from click_aliases import ClickAliasedGroup
 
 
 from .app import App

@@ -39,7 +39,7 @@ requirements = [
     'storyscript==0.23.9',
     'asyncy-hub==0.0.1',
     'click==7.0',
-    'click-alias==0.1.1a2',
+    'click-aliases==1.0.1',
 ]
 
 setup(name=name,
