@@ -1,7 +1,7 @@
 [
   {
-    "detail": "Action: Make a HTTP request to the outside world.",
-    "documentation": "Make a HTTP request to the outside world.\nThis command is native to the platform for performance reasons.\n",
+    "detail": "Action: No help_ available",
+    "documentation": "No help_ available",
     "kind": 11,
     "label": "fetch",
     "textEdit": {
@@ -38,8 +38,8 @@
     }
   },
   {
-    "detail": "Action: No description available",
-    "documentation": "No description available",
+    "detail": "Action: No help_ available",
+    "documentation": "No help_ available",
     "kind": 11,
     "label": "server",
     "textEdit": {

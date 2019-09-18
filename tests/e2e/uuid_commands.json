@@ -1,11 +1,11 @@
 [
   {
-    "detail": "Command: Generates a UUID version 4",
-    "documentation": "Generates a UUID version 4",
+    "detail": "Action: No help_ available",
+    "documentation": "No help_ available",
     "kind": 11,
-    "label": "entrypoint",
+    "label": "generate",
     "textEdit": {
-      "newText": "entrypoint ",
+      "newText": "generate ",
       "range": {
         "end": {
           "character": 18,

@@ -1,7 +1,7 @@
 [
   {
-    "detail": "Action: Start a Slack bot",
-    "documentation": "Start a Slack bot",
+    "detail": "Action: No help_ available",
+    "documentation": "No help_ available",
     "kind": 11,
     "label": "bot",
     "textEdit": {
@@ -19,8 +19,8 @@
     }
   },
   {
-    "detail": "Action: Get a list of channels",
-    "documentation": "Get a list of channels",
+    "detail": "Action: No help_ available",
+    "documentation": "No help_ available",
     "kind": 11,
     "label": "channels",
     "textEdit": {
@@ -38,8 +38,8 @@
     }
   },
   {
-    "detail": "Action: Lists direct message channels for the calling user.",
-    "documentation": "Lists direct message channels for the calling user.",
+    "detail": "Action: No help_ available",
+    "documentation": "No help_ available",
     "kind": 11,
     "label": "directChannels",
     "textEdit": {
@@ -57,8 +57,27 @@
     }
   },
   {
-    "detail": "Action: Sends a message to a channel.",
-    "documentation": "Sends a message to a channel.\nhttps://api.slack.com/methods/chat.postMessage\n",
+    "detail": "Action: No help_ available",
+    "documentation": "No help_ available",
+    "kind": 11,
+    "label": "responds",
+    "textEdit": {
+      "newText": "responds ",
+      "range": {
+        "end": {
+          "character": 6,
+          "line": 0
+        },
+        "start": {
+          "character": 6,
+          "line": 0
+        }
+      }
+    }
+  },
+  {
+    "detail": "Action: No help_ available",
+    "documentation": "No help_ available",
     "kind": 11,
     "label": "send",
     "textEdit": {
@@ -76,8 +95,8 @@
     }
   },
   {
-    "detail": "Action: No description available",
-    "documentation": "No description available",
+    "detail": "Action: No help_ available",
+    "documentation": "No help_ available",
     "kind": 11,
     "label": "users",
     "textEdit": {
