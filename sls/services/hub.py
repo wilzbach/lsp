@@ -1,16 +1,13 @@
-from asyncy.hub.sdk.AsyncyHub import AsyncyHub
-
-
-from .service import Service
+from storyhub.sdk.StoryscriptHub import StoryscriptHub
 
 
 class ServiceHub():
     """
-    Contains a list of all available Asyncy services
+    Contains a list of all available Story hub services
     """
     def __init__(self, hub=None):
         if hub is None:
-            self.hub = AsyncyHub()
+            self.hub = StoryscriptHub()
         else:
             self.hub = hub
 
@@ -24,7 +21,7 @@ class ServiceHub():
     def get_service(self, service_name):
         if '/' in service_name:
             owner, name = service_name.split('/')
-            service = self.hub.get(owner=owner, name=name)
+            service = self.hub.get(owner=owner, name=name, wrap_service=True)
         else:
-            service = self.hub.get(alias=service_name)
-        return Service.from_hub(service_name, service)
+            service = self.hub.get(alias=service_name, wrap_service=True)
+        return service

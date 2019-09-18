@@ -1,8 +1,4 @@
-import json
-
-from asyncy.hub.sdk.db.Service import Service
-
-from playhouse.shortcuts import dict_to_model
+from storyhub.sdk.ServiceWrapper import ServiceWrapper
 
 
 class ConstServiceHub():
@@ -16,20 +12,15 @@ class ConstServiceHub():
 
     @classmethod
     def from_json(cls, path):
-        services = {}
-        with open(path, 'r') as f:
-            services = json.load(f)
+        return cls(ServiceWrapper.from_json_file(path))
 
-        for k, v in services.items():
-            services[k] = dict_to_model(Service, v)
-
-        return cls(services)
+    @classmethod
+    def update_hub_fixtures(cls, services, path):
+        services = ServiceWrapper(services)
+        services.as_json_file(path)
 
     def get_all_service_names(self):
-        return self.services.keys()
+        return self.services.get_all_service_names()
 
-    def get(self, alias=None, owner=None, name=None):
-        if alias:
-            return self.services[alias]
-        else:
-            return self.services[f'{owner}/{name}']
+    def get(self, alias=None, owner=None, name=None, **kwargs):
+        return self.services.get(alias, owner, name)
