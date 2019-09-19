@@ -3,7 +3,7 @@
 
 from os import path
 
-from sls.services.consthub import ConstServiceHub
+from storyhub.sdk.ServiceWrapper import ServiceWrapper
 
 
 # Only save a selected subset of services
@@ -20,7 +20,7 @@ def update_hub_fixture():
     fixture_dir = path.dirname(path.realpath(__file__))
     out_file = path.join(fixture_dir, 'hub.fixed.json')
 
-    ConstServiceHub.update_hub_fixtures(subset, out_file)
+    ServiceWrapper(subset).as_json_file(out_file)
 
 
 if __name__ == '__main__':

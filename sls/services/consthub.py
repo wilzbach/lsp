@@ -14,11 +14,6 @@ class ConstServiceHub():
     def from_json(cls, path):
         return cls(ServiceWrapper.from_json_file(path))
 
-    @classmethod
-    def update_hub_fixtures(cls, services, path):
-        services = ServiceWrapper(services)
-        services.as_json_file(path)
-
     def get_all_service_names(self):
         return self.services.get_all_service_names()
 
