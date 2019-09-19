@@ -1,0 +1,24 @@
+[
+  {
+    "detail": "Slack bot microservice",
+    "documentation": {
+      "kind": "markdown",
+      "value": "# _Slack_ OMG Microservice\n\n[![Open Microservice Guide](https://img.shields.io/badge/OMG%20Enabled-\ud83d\udc4d-green.svg?)](https://microservice.guide)\n\nThis microservice's goal is to fully utilise the Slack API.\n\n## Direct usage in [Storyscript](https://storyscript.io/):\n\n##### Send\n```coffee\n>>> slack send text:'messageText' channel:'channelName' attachments:'attachmentsList' token:'token'\n```\n##### Responds\n```coffee\n>>> slack responds pattern:'pattern'\n```\n##### Users\n```coffee\n>>> slack users token:'token' limit:'limit' cursor:'cursor'\n```\n##### Channels\n```coffee\n>>> slack channels token:'token' limit:'limit' types:'listOfTypes'\n```\n##### Direct Channels\n```coffee\n>>> slack directChannels token:'token' limit:'limit'\n```\n\nCurious to [learn more](https://docs.storyscript.io/)?\n\n\u2728\ud83c\udf70\u2728\n\n## Usage with [OMG CLI](https://www.npmjs.com/package/omg)\n\n##### Send\n```shell\n$ omg run send -a text=<MESSAGE_TEXT> -a channel=<ID/NAME> -a attachments=<ATTACHMENT_LIST> -a token=<TOKEN> -e BOT_TOKEN=<BOT_TOKEN>\n```\n##### Responds\n```shell\n$ omg run responds -a pattern=<PATTERN> -e BOT_TOKEN=<BOT_TOKEN>\n```\n##### Users\n```shell\n$ omg run users -a token=<TOKEN> -a limit=<LIMIT> -a cursor=<CURSOR> -e BOT_TOKEN=<BOT_TOKEN>\n```\n##### Channels\n```shell\n$ omg run channels -a token=<TOKEN> -a limit=<LIMIT> -a types=<LIST_OF_TYPES> -e BOT_TOKEN=<BOT_TOKEN>\n```\n##### Direct Channels\n```shell\n$ omg run directChannels -a token=<TOKEN> -a limit=<LIMIT> -e BOT_TOKEN=<BOT_TOKEN>\n```\n##### Bot\n```shell\n$ omg subscribe bot hears -a pattern=<PATTERN> -a channel=<ID/NAME> -e BOT_TOKEN=<BOT_TOKEN>\n```\n\n**Note**: The OMG CLI requires [Docker](https://docs.docker.com/install/) to be installed.\n\n## License\n[MIT License](https://github.com/omg-services/slack/blob/master/LICENSE).\n\n\n<!-- ## [Asyncy](https://asyncy.com) Example\n\nThe `slack` service is published in the [Asyncy Hub](https://hub.asyncy.com/service/slack)\n\n```storyscript\nslack bot as client\n    when client hears channel:'general' pattern:/^welcome/ as msg\n        msg emoji key:'thumbs_up'\n        msg reply message:'Nice to have you here'\n\n    when client responds pattern:/foo/ as msg\n        # respond to direct messages\n        msg reply message:'bar'\n\n    when client slash pattern:/deploy/ as msg\n        # when user does /deploy do something awesome\n\n# send a post\nslack send text:'Hello world!' to:'general'\n``` -->\n"
+    },
+    "kind": 2,
+    "label": "slack",
+    "textEdit": {
+      "newText": "slack ",
+      "range": {
+        "end": {
+          "character": 6,
+          "line": 0
+        },
+        "start": {
+          "character": 4,
+          "line": 0
+        }
+      }
+    }
+  }
+]
