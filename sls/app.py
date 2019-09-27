@@ -1,10 +1,11 @@
 import socketserver
 import sys
 
+from storyhub.sdk.ServiceWrapper import ServiceWrapper
+
 from .document import Document, Position
 from .logging import logger
 from .lsp import LanguageServer
-from .services.consthub import ConstServiceHub
 from .workspace import Workspace
 
 
@@ -16,7 +17,7 @@ class App:
     def __init__(self, hub=None, hub_path=None):
         self.language_server = LanguageServer
         if isinstance(hub_path, str):
-            hub = ConstServiceHub.from_json(hub_path)
+            hub = ServiceWrapper.from_json_file(hub_path)
         self.hub = hub
         self.ws = Workspace('.root.', hub=hub)
 

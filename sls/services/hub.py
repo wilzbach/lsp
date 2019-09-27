@@ -19,9 +19,4 @@ class ServiceHub():
         return services
 
     def get_service(self, service_name):
-        if '/' in service_name:
-            owner, name = service_name.split('/')
-            service = self.hub.get(owner=owner, name=name, wrap_service=True)
-        else:
-            service = self.hub.get(alias=service_name, wrap_service=True)
-        return service
+        return self.hub.get(alias=service_name)

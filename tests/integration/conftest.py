@@ -2,8 +2,7 @@ from os import path
 
 from pytest import fixture
 
-from sls.services.consthub import ConstServiceHub
-
+from storyhub.sdk.ServiceWrapper import ServiceWrapper
 from storyhub.sdk.StoryscriptHub import StoryscriptHub
 
 
@@ -27,7 +26,7 @@ def load():
     fixture_dir = path.join(script_dir, '..', 'fixtures', 'hub')
     fixture_file = path.join(fixture_dir, 'hub.fixed.json')
 
-    return ConstServiceHub.from_json(fixture_file)
+    return ServiceWrapper.from_json_file(fixture_file)
 
 
 @fixture
