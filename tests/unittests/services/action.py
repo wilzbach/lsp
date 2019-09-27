@@ -19,7 +19,7 @@ def test_args(magic):
     action_dict = {
         'name': 'foobar',
         'action': {
-            'help_': 'Test action',
+            'help': 'Test action',
             'arguments': args,
         }
     }

@@ -1,7 +1,7 @@
 [
   {
     "detail": "Arg. any",
-    "documentation": ".not.available",
+    "documentation": "No help available.",
     "kind": 12,
     "label": "body",
     "textEdit": {
@@ -20,7 +20,7 @@
   },
   {
     "detail": "Arg. map",
-    "documentation": ".not.available",
+    "documentation": "No help available.",
     "kind": 12,
     "label": "headers",
     "textEdit": {
@@ -39,7 +39,7 @@
   },
   {
     "detail": "Arg. string",
-    "documentation": ".not.available",
+    "documentation": "No help available.",
     "kind": 12,
     "label": "method",
     "textEdit": {
@@ -77,7 +77,7 @@
   },
   {
     "detail": "Arg. string",
-    "documentation": ".not.available",
+    "documentation": "No help available.",
     "kind": 12,
     "label": "url",
     "textEdit": {
