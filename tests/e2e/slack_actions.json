@@ -57,6 +57,25 @@
     }
   },
   {
+    "detail": "Action: Triggered by direct messages to the bot",
+    "documentation": "Triggered by direct messages to the bot",
+    "kind": 11,
+    "label": "responds",
+    "textEdit": {
+      "newText": "responds ",
+      "range": {
+        "end": {
+          "character": 6,
+          "line": 0
+        },
+        "start": {
+          "character": 6,
+          "line": 0
+        }
+      }
+    }
+  },
+  {
     "detail": "Action: Sends a message to a channel.",
     "documentation": "Sends a message to a channel.\nhttps://api.slack.com/methods/chat.postMessage\n",
     "kind": 11,
@@ -76,8 +95,8 @@
     }
   },
   {
-    "detail": "Action: No description available",
-    "documentation": "No description available",
+    "detail": "Action: No help available.",
+    "documentation": "No help available.",
     "kind": 11,
     "label": "users",
     "textEdit": {

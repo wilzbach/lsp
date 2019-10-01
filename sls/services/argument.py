@@ -4,33 +4,11 @@ from sls.document import Position, Range, TextEdit
 
 class Argument(CompletionItem):
     """
-    A service argument.
+    A service argument completion item.
     """
 
-    def __init__(self, name, description, type_):
-        self._name = name
-        self._description = description
-        self._type = type_
-
-    @classmethod
-    def from_hub(cls, name, argument):
-        description = argument.get(
-            'help', '.not.available'
-        )
-        return cls(
-            name=name,
-            description=description,
-            type_=argument['type'],
-        )
-
-    def name(self):
-        return self._name
-
-    def description(self):
-        return self._description
-
-    def type_(self):
-        return self._type
+    def __init__(self, argument):
+        self.argument = argument
 
     def to_completion(self, context):
         """
@@ -45,10 +23,10 @@ class Argument(CompletionItem):
             character=context.pos.char,
         )
         return self.completion_build(
-            label=self.name(),
-            text_edit=TextEdit(Range(start, end), f'{self.name()}:'),
-            detail=f'Arg. {self.type_()}',
-            documentation=self.description(),
+            label=self.argument.name(),
+            text_edit=TextEdit(Range(start, end), f'{self.argument.name()}:'),
+            detail=f'Arg. {self.argument.type()}',
+            documentation=self.argument.help(),
             completion_kind=CompletionItemKind.Value,
             context=context,
         )

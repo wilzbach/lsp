@@ -1,5 +1,6 @@
 from sls import App
-from sls.services.consthub import ConstServiceHub
+
+from storyhub.sdk.ServiceWrapper import ServiceWrapper
 
 
 def test_init(hub):
@@ -14,11 +15,11 @@ def test_init_hub_path(patch):
     """
     Tests that an SLS App with a Hub Path gets properly initialized.
     """
-    patch.object(ConstServiceHub, 'from_json')
+    patch.object(ServiceWrapper, 'from_json_file')
     hub_path = '.hub.path.'
     app = App(hub_path=hub_path)
-    ConstServiceHub.from_json.assert_called_with(hub_path)
-    assert app.hub is ConstServiceHub.from_json()
+    ServiceWrapper.from_json_file.assert_called_with(hub_path)
+    assert app.hub is ServiceWrapper.from_json_file()
 
 
 def test_complete(hub):

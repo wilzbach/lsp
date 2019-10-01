@@ -51,8 +51,8 @@ def test_complete_service(text, pos, expected, completion):
     ('http fetch ', (0, 11), [
         'body', 'headers', 'method', 'query', 'url'
     ]),
-    ('microservice/uuid ', (0, 18), [
-        'entrypoint'
+    ('omg-services/uuid ', (0, 18), [
+        'generate'
     ]),
 ])
 def test_complete_service_arguments(text, pos, expected, completion):

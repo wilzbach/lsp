@@ -1,6 +1,10 @@
 from lark.exceptions import UnexpectedCharacters, UnexpectedToken
 
 from sls.logging import logger
+from sls.services.action import Action
+from sls.services.argument import Argument
+from sls.services.command import Command
+from sls.services.service import Service
 
 from storyscript.parser import Parser
 
@@ -75,23 +79,28 @@ class ASTAnalyzer:
 
     def get_arguments(self, service_name, command_name):
         service = self.service_registry.get_service(service_name)
-        command = service.command(command_name)
-        action = service.action(command_name)
+        if service is None:
+            return []
+        service_config = service.configuration()
+        command = service_config.command(command_name)
+        action = service_config.action(command_name)
         result = []
         if command is not None:
             result.extend(command.args())
         if action is not None:
             result.extend(action.args())
-        return result
+        return [Argument(arg) for arg in result]
 
     def get_commands(self, service_name):
         service = self.service_registry.get_service(service_name)
-        log.info(service.description())
-        log.info(service.commands())
+        if service is None:
+            return []
+        service_config = service.configuration()
         return [
-            *service.commands(),
-            *service.actions(),
+            *[Command(command) for command in service_config.commands()],
+            *[Action(action) for action in service_config.actions()],
         ]
 
     def get_services(self, word):
-        return self.service_registry.find_services(word)
+        services = self.service_registry.find_services(word)
+        return [Service(service) for service in services]

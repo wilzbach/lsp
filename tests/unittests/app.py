@@ -5,8 +5,9 @@ from pytest import mark
 
 from sls import App
 from sls.lsp import LanguageServer
-from sls.services.consthub import ConstServiceHub
 from sls.workspace import Workspace
+
+from storyhub.sdk.ServiceWrapper import ServiceWrapper
 
 
 def test_init(patch):
@@ -25,12 +26,13 @@ def test_init_hub_path(patch):
     Tests that an SLS App with a Hub Path gets properly initialized.
     """
     patch.init(Workspace)
-    patch.object(ConstServiceHub, 'from_json', return_value='ConstServiceHub')
+    patch.object(ServiceWrapper, 'from_json_file',
+                 return_value='ConstServiceHub')
     hub_path = '.hub.path.'
     app = App(hub_path=hub_path)
-    ConstServiceHub.from_json.assert_called_with(hub_path)
+    ServiceWrapper.from_json_file.assert_called_with(hub_path)
     Workspace.__init__.assert_called_with('.root.',
-                                          hub=ConstServiceHub.from_json())
+                                          hub=ServiceWrapper.from_json_file())
     assert isinstance(app.ws, Workspace)
     assert app.hub == 'ConstServiceHub'
 
@@ -41,7 +43,8 @@ def test_stdio(patch):
     """
     patch.init(Workspace)
     patch.init(LanguageServer)
-    patch.object(ConstServiceHub, 'from_json', return_value='ConstServiceHub')
+    patch.object(ServiceWrapper, 'from_json_file',
+                 return_value='ConstServiceHub')
     patch.object(LanguageServer, 'start')
     app = App(hub_path='.hub.')
     app.start_stdio_server()
@@ -79,7 +82,8 @@ def test_tcp(patch, magic, keyboard_abort):
             did_exit = True
 
     patch.init(Workspace)
-    patch.object(ConstServiceHub, 'from_json', return_value='ConstServiceHub')
+    patch.object(ServiceWrapper, 'from_json_file',
+                 return_value='ConstServiceHub')
 
     patch.init(LanguageServer)
     patch.object(LanguageServer, 'start')

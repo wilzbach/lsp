@@ -6,7 +6,8 @@ from os import path
 from pytest import mark
 
 from sls import App
-from sls.services.consthub import ConstServiceHub
+
+from storyhub.sdk.ServiceWrapper import ServiceWrapper
 
 
 test_dir = path.dirname(path.realpath(__file__))
@@ -18,7 +19,7 @@ script_dir = path.dirname(path.realpath(__file__))
 fixture_dir = path.join(script_dir, '..', 'fixtures', 'hub')
 fixture_file = path.join(fixture_dir, 'hub.fixed.json')
 
-hub = ConstServiceHub.from_json(fixture_file)
+hub = ServiceWrapper.from_json_file(fixture_file)
 
 
 # compile a story and compare its completion with the expected tree

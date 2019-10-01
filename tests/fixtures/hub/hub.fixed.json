@@ -1,38 +1,288 @@
-{
-    "asyncy/crontab": {
-        "alias": "crontab",
-        "certified": false,
+[
+    {
         "configuration": {
-            "commands": {
-                "entrypoint": {
+            "actions": {
+                "bot": {
+                    "events": {
+                        "hears": {
+                            "arguments": {
+                                "channel": {
+                                    "help": "Only listen in a specific channel",
+                                    "in": "requestBody",
+                                    "required": true,
+                                    "type": "string"
+                                },
+                                "pattern": {
+                                    "help": "A regexp pattern to filter messages",
+                                    "in": "requestBody",
+                                    "type": "string"
+                                }
+                            },
+                            "help": "Triggered anytime a messages matches the pattern",
+                            "http": {
+                                "port": 8000,
+                                "subscribe": {
+                                    "contentType": "application/json",
+                                    "method": "post",
+                                    "path": "/subscribe"
+                                },
+                                "unsubscribe": {
+                                    "contentType": "application/json",
+                                    "method": "post",
+                                    "path": "/unsubscribe"
+                                }
+                            },
+                            "output": {
+                                "contentType": "application/json",
+                                "properties": {
+                                    "channel": {
+                                        "help": "The channel ID",
+                                        "type": "string"
+                                    },
+                                    "client_msg_id": {
+                                        "help": "The message ID",
+                                        "type": "string"
+                                    },
+                                    "text": {
+                                        "help": "The message text",
+                                        "type": "string"
+                                    },
+                                    "ts": {
+                                        "help": "The message timestamp (eg: \"1535474523.000100\")",
+                                        "type": "string"
+                                    },
+                                    "user": {
+                                        "help": "The user ID",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    },
+                    "help": "Start a Slack bot"
+                },
+                "channels": {
                     "arguments": {
-                        "tab": {
-                            "help": "* * * * * *\n| | | | | |\n| | | | | +-- Year              (range: 1900-3000)\n| | | | +---- Day of the Week   (range: 1-7, 1 standing for Monday)\n| | | +------ Month of the Year (range: 1-12)\n| | +-------- Day of the Month  (range: 1-31)\n| +---------- Hour              (range: 0-23)\n+------------ Minute            (range: 0-59)\n",
+                        "exclude_archived": {
+                            "default": false,
+                            "help": "Set to true to exclude archived channels from the list",
+                            "in": "requestBody",
+                            "type": "boolean"
+                        },
+                        "limit": {
+                            "default": 100,
+                            "help": "Limit the number of channels to return. Must be less than 1000.",
+                            "in": "requestBody",
+                            "type": "int"
+                        },
+                        "token": {
+                            "help": "Authentication token bearing required scopes.\nEnvironment variable BOT_TOKEN used by default.\n",
+                            "in": "requestBody",
+                            "type": "string"
+                        },
+                        "types": {
+                            "help": "Mix and match channel types: public_channel, private_channel, mpim, im\nDefault is public_channel only.\n",
+                            "in": "requestBody",
+                            "type": "list"
+                        }
+                    },
+                    "help": "Get a list of channels",
+                    "http": {
+                        "contentType": "application/json",
+                        "method": "post",
+                        "path": "/api/channels.list",
+                        "port": 8000
+                    },
+                    "output": {
+                        "contentType": "application/json",
+                        "type": "map"
+                    }
+                },
+                "directChannels": {
+                    "arguments": {
+                        "limit": {
+                            "default": 100,
+                            "help": "Limit the number of channels to return. Must be less than 1000.",
+                            "in": "requestBody",
+                            "type": "int"
+                        },
+                        "token": {
+                            "help": "Authentication token bearing required scopes.\nEnvironment variable BOT_TOKEN used by default.\n",
+                            "in": "requestBody",
                             "type": "string"
                         }
                     },
+                    "help": "Lists direct message channels for the calling user.",
+                    "http": {
+                        "contentType": "application/json",
+                        "method": "post",
+                        "path": "/api/im.list",
+                        "port": 8000
+                    },
                     "output": {
-                        "type": null
+                        "contentType": "application/json",
+                        "type": "map"
+                    }
+                },
+                "responds": {
+                    "arguments": {
+                        "pattern": {
+                            "help": "A regexp pattern to filter messages",
+                            "in": "requestBody",
+                            "type": "string"
+                        }
+                    },
+                    "help": "Triggered by direct messages to the bot",
+                    "http": {
+                        "contentType": "application/json",
+                        "method": "post",
+                        "path": "/api/chat.postMessage",
+                        "port": 8000
+                    },
+                    "output": {
+                        "contentType": "application/json",
+                        "properties": {
+                            "channel": {
+                                "help": "The channel ID",
+                                "type": "string"
+                            },
+                            "client_msg_id": {
+                                "help": "The message ID",
+                                "type": "string"
+                            },
+                            "text": {
+                                "help": "The message text",
+                                "type": "string"
+                            },
+                            "ts": {
+                                "help": "The message timestamp (eg: \"1535474523.000100\")",
+                                "type": "string"
+                            },
+                            "user": {
+                                "help": "The user ID",
+                                "type": "string"
+                            }
+                        },
+                        "type": "object"
+                    }
+                },
+                "send": {
+                    "arguments": {
+                        "attachments": {
+                            "in": "requestBody",
+                            "type": "list"
+                        },
+                        "channel": {
+                            "help": "What channel to send message in.\nThis can be a \"#channel\" \"@user\" or a channel id.\n",
+                            "in": "requestBody",
+                            "required": true,
+                            "type": "string"
+                        },
+                        "text": {
+                            "help": "Text of the message to send.",
+                            "in": "requestBody",
+                            "required": true,
+                            "type": "string"
+                        },
+                        "token": {
+                            "help": "Authentication token bearing required scopes.\nEnvironment variable BOT_TOKEN used by default.\n",
+                            "in": "requestBody",
+                            "type": "string"
+                        }
+                    },
+                    "help": "Sends a message to a channel.\nhttps://api.slack.com/methods/chat.postMessage\n",
+                    "http": {
+                        "contentType": "application/json",
+                        "method": "post",
+                        "path": "/api/chat.postMessage",
+                        "port": 8000
+                    },
+                    "output": {
+                        "contentType": "application/json",
+                        "type": "map"
+                    }
+                },
+                "users": {
+                    "arguments": {
+                        "cursor": {
+                            "help": "Paginate through collections of data by setting the cursor parameter to a next_cursor attribute returned by a previous request's response_metadata. Default value fetches the first \"page\" of the collection. See pagination for more detail.\n",
+                            "in": "requestBody",
+                            "type": "string"
+                        },
+                        "include_locale": {
+                            "help": "Set this to true to receive the locale for users. Defaults to false\n",
+                            "in": "requestBody",
+                            "type": "boolean"
+                        },
+                        "limit": {
+                            "default": 0,
+                            "help": "The maximum number of items to return. Fewer than the requested number of items may be returned, even if the end of the users list hasn't been reached.\n",
+                            "in": "requestBody",
+                            "range": {
+                                "min": 0
+                            },
+                            "type": "int"
+                        },
+                        "token": {
+                            "help": "Authentication token bearing required scopes.\nEnvironment variable BOT_TOKEN used by default.\n",
+                            "in": "requestBody",
+                            "type": "string"
+                        }
+                    },
+                    "http": {
+                        "contentType": "application/json",
+                        "method": "post",
+                        "path": "/api/users.list",
+                        "port": 8000
+                    },
+                    "output": {
+                        "contentType": "application/json",
+                        "type": "map"
                     }
                 }
-            }
+            },
+            "environment": {
+                "BOT_TOKEN": {
+                    "help": "The Slack bot token",
+                    "type": "string"
+                }
+            },
+            "info": {
+                "description": "This is a microservice for Slack",
+                "title": "Slack Microservice",
+                "version": "0.2.0"
+            },
+            "lifecycle": {
+                "startup": {
+                    "command": [
+                        "python",
+                        "app/main.py"
+                    ]
+                }
+            },
+            "omg": 1
         },
-        "description": "Crontab in Asyncy",
-        "name": "crontab",
-        "public": true,
-        "readme": "",
-        "service_uuid": "fa8ae7bb05c9432daa4f433c314fa3cf",
-        "state": "BETA",
-        "topics": [
-            "cron",
-            "microservice",
-            "crontab"
-        ],
-        "username": "asyncy"
+        "readme": "# _Slack_ OMG Microservice\n\n[![Open Microservice Guide](https://img.shields.io/badge/OMG%20Enabled-\ud83d\udc4d-green.svg?)](https://microservice.guide)\n\nThis microservice's goal is to fully utilise the Slack API.\n\n## Direct usage in [Storyscript](https://storyscript.io/):\n\n##### Send\n```coffee\n>>> slack send text:'messageText' channel:'channelName' attachments:'attachmentsList' token:'token'\n```\n##### Responds\n```coffee\n>>> slack responds pattern:'pattern'\n```\n##### Users\n```coffee\n>>> slack users token:'token' limit:'limit' cursor:'cursor'\n```\n##### Channels\n```coffee\n>>> slack channels token:'token' limit:'limit' types:'listOfTypes'\n```\n##### Direct Channels\n```coffee\n>>> slack directChannels token:'token' limit:'limit'\n```\n\nCurious to [learn more](https://docs.storyscript.io/)?\n\n\u2728\ud83c\udf70\u2728\n\n## Usage with [OMG CLI](https://www.npmjs.com/package/omg)\n\n##### Send\n```shell\n$ omg run send -a text=<MESSAGE_TEXT> -a channel=<ID/NAME> -a attachments=<ATTACHMENT_LIST> -a token=<TOKEN> -e BOT_TOKEN=<BOT_TOKEN>\n```\n##### Responds\n```shell\n$ omg run responds -a pattern=<PATTERN> -e BOT_TOKEN=<BOT_TOKEN>\n```\n##### Users\n```shell\n$ omg run users -a token=<TOKEN> -a limit=<LIMIT> -a cursor=<CURSOR> -e BOT_TOKEN=<BOT_TOKEN>\n```\n##### Channels\n```shell\n$ omg run channels -a token=<TOKEN> -a limit=<LIMIT> -a types=<LIST_OF_TYPES> -e BOT_TOKEN=<BOT_TOKEN>\n```\n##### Direct Channels\n```shell\n$ omg run directChannels -a token=<TOKEN> -a limit=<LIMIT> -e BOT_TOKEN=<BOT_TOKEN>\n```\n##### Bot\n```shell\n$ omg subscribe bot hears -a pattern=<PATTERN> -a channel=<ID/NAME> -e BOT_TOKEN=<BOT_TOKEN>\n```\n\n**Note**: The OMG CLI requires [Docker](https://docs.docker.com/install/) to be installed.\n\n## License\n[MIT License](https://github.com/omg-services/slack/blob/master/LICENSE).\n\n\n<!-- ## [Asyncy](https://asyncy.com) Example\n\nThe `slack` service is published in the [Asyncy Hub](https://hub.asyncy.com/service/slack)\n\n```storyscript\nslack bot as client\n    when client hears channel:'general' pattern:/^welcome/ as msg\n        msg emoji key:'thumbs_up'\n        msg reply message:'Nice to have you here'\n\n    when client responds pattern:/foo/ as msg\n        # respond to direct messages\n        msg reply message:'bar'\n\n    when client slash pattern:/deploy/ as msg\n        # when user does /deploy do something awesome\n\n# send a post\nslack send text:'Hello world!' to:'general'\n``` -->\n",
+        "service": {
+            "alias": "slack",
+            "description": "Slack bot microservice",
+            "isCertified": true,
+            "name": "slack",
+            "owner": {
+                "username": "omg-services"
+            },
+            "public": true,
+            "topics": [
+                "slack-bot",
+                "slack",
+                "microservice"
+            ]
+        },
+        "serviceUuid": "f7f099d5-da2c-45eb-b56a-84d1f7756a42",
+        "state": "BETA"
     },
-    "http": {
-        "alias": "http",
-        "certified": true,
+    {
         "configuration": {
             "actions": {
                 "fetch": {
@@ -50,6 +300,7 @@
                             "enum": [
                                 "get",
                                 "post",
+                                "patch",
                                 "delete",
                                 "put",
                                 "options"
@@ -83,6 +334,7 @@
                                     "enum": [
                                         "get",
                                         "post",
+                                        "patch",
                                         "delete",
                                         "put",
                                         "options"
@@ -209,12 +461,24 @@
                                 "contentType": "application/json",
                                 "properties": {
                                     "body": {
-                                        "help": "The JSON body of the HTTP request",
+                                        "help": "The JSON body of the incoming HTTP request",
                                         "type": "map"
                                     },
                                     "headers": {
-                                        "help": "The HTTP headers of the HTTP request",
+                                        "help": "The HTTP headers of the incoming HTTP request",
                                         "type": "map"
+                                    },
+                                    "path": {
+                                        "help": "The path portion of th URI of the incoming HTTP request",
+                                        "type": "string"
+                                    },
+                                    "query_params": {
+                                        "help": "The parsed query parameters of the HTTP request",
+                                        "type": "map"
+                                    },
+                                    "uri": {
+                                        "help": "The URI of the incoming HTTP request",
+                                        "type": "string"
                                     }
                                 },
                                 "type": "object"
@@ -225,323 +489,107 @@
             },
             "omg": 1
         },
-        "description": "The Asyncy API gateway server for executing Stories via HTTP.",
-        "name": "http",
-        "public": true,
-        "readme": "# Asyncy HTTP Gateway\n\nAPI gateway server for executing Stories via HTTP.\n\n```coffee\nhttp server as server\n  when server listen method: 'get' path: '/' as req\n    log info msg: req.body\n    log info msg: req.headers\n    log info msg: req.headers['Host']\n    req write data: 'Hello World'\n    req status code: 200\n    req finish\n```\n\n```sh\ncurl https://foobar.asyncyapp.com\n>>> Hello World\n```\n\n\n## Development\n\nSetup virtual environment and install dependencies\n```\nvirtualenv -p python3.6 venv\nsource venv/bin/activate\npip install -r requirements.txt\n```\n\nRun locally by calling\n\n```\npython -m app.main --logging=debug --debug\n```\n\n### Register an endpoint\n\n```shell\ncurl --data '{\"endpoint\": \"http://localhost:9000/story/foo\", \"data\":{\"path\":\"/ping\", \"method\": \"post\", \"host\": \"a\"}}' \\\n     -H \"Content-Type: application/json\" \\\n     localhost:8889/register\n```\n\nNow access that endpoint\n\n```shell\ncurl -X POST -d 'foobar' -H \"Host: a.asyncyapp.com\" http://localhost:8888/ping\n```\n\n\n### Unregister an endpoint\n\n```shell\ncurl --data '{\"endpoint\": \"http://localhost:9000/story/foo\", \"data\":{\"path\":\"/ping\", \"method\": \"post\", \"host\": \"a\"}}' \\\n     -H \"Content-Type: application/json\" \\\n     localhost:8889/unregister\n```\n",
-        "service_uuid": "1856484075514bb79ba7bb9c9e2d92b4",
-        "state": "BETA",
-        "topics": [
-            "asyncy-platform",
-            "asyncy-http",
-            "http"
-        ],
-        "username": "asyncy"
+        "readme": "# Asyncy HTTP Gateway\n\nAPI gateway server for executing Stories via HTTP.\n\n```coffee\nhttp server as server\n  when server listen method:'get' path:'/' as r\n    log info msg:r.body\n    log info msg:r.headers\n    log info msg:r.headers['Host']\n    r write data:'Hello World'\n    r status code:200\n    r finish\n```\n\n```sh\n$ curl https://foobar.storyscriptapp.com/\nHello World\n```\n\n\n## Development\n\nSetup virtual environment and install dependencies\n```\nvirtualenv -p python3.6 venv\nsource venv/bin/activate\npip install -r requirements.txt\n```\n\nYou may need to tell pycurl the path to your openssl installation\n```\npip install --install-option=\"--with-openssl\" --install-option=\"--openssl-dir=/usr/local/opt/openssl\" pycurl\n```\nSee https://github.com/nahamsec/JSParser/issues/22\n\n\nRun locally by calling\n\n```\npython -m app.main --logging=debug --debug\n```\n\n### Register an endpoint\n\n```shell\ncurl --data '{\"endpoint\": \"http://localhost:9000/story/foo\", \"data\":{\"path\":\"/ping\", \"method\": \"post\", \"host\": \"a\"}}' \\\n     -H \"Content-Type: application/json\" \\\n     localhost:8889/register\n```\n\nNow access that endpoint\n\n```shell\ncurl -X POST -d 'foobar' -H \"Host: a.storyscriptapp.com\" http://localhost:8888/ping\n```\n\n\n### Unregister an endpoint\n\n```shell\ncurl --data '{\"endpoint\": \"http://localhost:9000/story/foo\", \"data\":{\"path\":\"/ping\", \"method\": \"post\", \"host\": \"a\"}}' \\\n     -H \"Content-Type: application/json\" \\\n     localhost:8889/unregister\n```\n",
+        "service": {
+            "alias": "http",
+            "description": "The Asyncy API gateway server for executing Stories via HTTP.",
+            "isCertified": true,
+            "name": "http",
+            "owner": {
+                "username": "storyscript"
+            },
+            "public": true,
+            "topics": [
+                "omg",
+                "storyscript",
+                "microservice"
+            ]
+        },
+        "serviceUuid": "18564840-7551-4bb7-9ba7-bb9c9e2d92b4",
+        "state": "BETA"
     },
-    "microservice/uuid": {
-        "alias": "uuid",
-        "certified": false,
+    {
         "configuration": {
             "commands": {
                 "entrypoint": {
-                    "help": "Generates a UUID version 4",
+                    "arguments": {
+                        "tab": {
+                            "help": "* * * * * *\n| | | | | |\n| | | | | +-- Year              (range: 1900-3000)\n| | | | +---- Day of the Week   (range: 1-7, 1 standing for Monday)\n| | | +------ Month of the Year (range: 1-12)\n| | +-------- Day of the Month  (range: 1-31)\n| +---------- Hour              (range: 0-23)\n+------------ Minute            (range: 0-59)\n",
+                            "type": "string"
+                        }
+                    },
                     "output": {
-                        "type": "uuid"
+                        "type": null
                     }
                 }
             }
         },
-        "description": "UUID generator",
-        "name": "uuid",
-        "public": true,
-        "readme": "# UUID generator for Asyncy\n\nThis container should be used for creation of UUIDs.\nThe output is the created UUID.\n\n#### Example\n\n```storyscript\n# Storyscript\nid = uuid\n```\n\n```sh\n# OMG Cli\nomg exec\n```\n",
-        "service_uuid": "f156707b594c4cff8e0945c196024364",
-        "state": "BETA",
-        "topics": [
-            "uuid-generator",
-            "microservice"
-        ],
-        "username": "microservice"
+        "readme": "",
+        "service": {
+            "alias": "crontab",
+            "description": "Crontab in Asyncy",
+            "isCertified": false,
+            "name": "crontab",
+            "owner": {
+                "username": "storyscript"
+            },
+            "public": true,
+            "topics": [
+                "cron",
+                "microservice",
+                "crontab"
+            ]
+        },
+        "serviceUuid": "fa8ae7bb-05c9-432d-aa4f-433c314fa3cf",
+        "state": "BETA"
     },
-    "slack": {
-        "alias": "slack",
-        "certified": true,
+    {
         "configuration": {
             "actions": {
-                "bot": {
-                    "events": {
-                        "hears": {
-                            "arguments": {
-                                "channel": {
-                                    "help": "Only listen in a specific channel",
-                                    "in": "requestBody",
-                                    "required": true,
-                                    "type": "string"
-                                },
-                                "pattern": {
-                                    "help": "A regexp pattern to filter messages",
-                                    "in": "requestBody",
-                                    "type": "string"
-                                }
-                            },
-                            "help": "Triggered anytime a messages matches the pattern",
-                            "http": {
-                                "port": 8000,
-                                "subscribe": {
-                                    "contentType": "application/json",
-                                    "method": "post",
-                                    "path": "/subscribe"
-                                },
-                                "unsubscribe": {
-                                    "contentType": "application/json",
-                                    "method": "post",
-                                    "path": "/unsubscribe"
-                                }
-                            },
-                            "output": {
-                                "contentType": "application/json",
-                                "properties": {
-                                    "channel": {
-                                        "help": "The channel ID",
-                                        "type": "string"
-                                    },
-                                    "client_msg_id": {
-                                        "help": "The message ID",
-                                        "type": "string"
-                                    },
-                                    "text": {
-                                        "help": "The message text",
-                                        "type": "string"
-                                    },
-                                    "ts": {
-                                        "help": "The message timestamp (eg: \"1535474523.000100\")",
-                                        "type": "string"
-                                    },
-                                    "user": {
-                                        "help": "The user ID",
-                                        "type": "string"
-                                    }
-                                },
-                                "type": "object"
-                            }
-                        },
-                        "responds": {
-                            "arguments": {
-                                "pattern": {
-                                    "help": "A regexp pattern to filter messages",
-                                    "in": "requestBody",
-                                    "type": "string"
-                                }
-                            },
-                            "help": "Triggered by direct messages to the bot",
-                            "http": {
-                                "port": 8000,
-                                "subscribe": {
-                                    "contentType": "application/json",
-                                    "method": "post",
-                                    "path": "/subscribe"
-                                },
-                                "unsubscribe": {
-                                    "contentType": "application/json",
-                                    "method": "post",
-                                    "path": "/unsubscribe"
-                                }
-                            },
-                            "output": {
-                                "contentType": "application/json",
-                                "properties": {
-                                    "channel": {
-                                        "help": "The channel ID",
-                                        "type": "string"
-                                    },
-                                    "client_msg_id": {
-                                        "help": "The message ID",
-                                        "type": "string"
-                                    },
-                                    "text": {
-                                        "help": "The message text",
-                                        "type": "string"
-                                    },
-                                    "ts": {
-                                        "help": "The message timestamp (eg: \"1535474523.000100\")",
-                                        "type": "string"
-                                    },
-                                    "user": {
-                                        "help": "The user ID",
-                                        "type": "string"
-                                    }
-                                },
-                                "type": "object"
-                            }
-                        }
-                    },
-                    "help": "Start a Slack bot"
-                },
-                "channels": {
-                    "arguments": {
-                        "exclude_archived": {
-                            "default": false,
-                            "help": "Set to true to exclude archived channels from the list",
-                            "in": "requestBody",
-                            "type": "boolean"
-                        },
-                        "limit": {
-                            "default": 100,
-                            "help": "Limit the number of channels to return. Must be less than 1000.",
-                            "in": "requestBody",
-                            "type": "int"
-                        },
-                        "token": {
-                            "help": "Authentication token bearing required scopes.\nEnvironment variable BOT_TOKEN used by default.\n",
-                            "in": "requestBody",
-                            "type": "string"
-                        },
-                        "types": {
-                            "help": "Mix and match channel types: public_channel, private_channel, mpim, im\nDefault is public_channel only.\n",
-                            "in": "requestBody",
-                            "type": "list"
-                        }
-                    },
-                    "help": "Get a list of channels",
+                "generate": {
+                    "help": "Generate a UUID v4 like 38788d28-6526-45c5-acf9-bb179160c7d7\n",
                     "http": {
                         "contentType": "application/json",
-                        "method": "post",
-                        "path": "/api/channels.list",
+                        "method": "get",
+                        "path": "/generate",
                         "port": 8000
                     },
                     "output": {
-                        "contentType": "application/json",
-                        "type": "map"
-                    }
-                },
-                "directChannels": {
-                    "arguments": {
-                        "limit": {
-                            "default": 100,
-                            "help": "Limit the number of channels to return. Must be less than 1000.",
-                            "in": "requestBody",
-                            "type": "int"
-                        },
-                        "token": {
-                            "help": "Authentication token bearing required scopes.\nEnvironment variable BOT_TOKEN used by default.\n",
-                            "in": "requestBody",
-                            "type": "string"
-                        }
-                    },
-                    "help": "Lists direct message channels for the calling user.",
-                    "http": {
-                        "contentType": "application/json",
-                        "method": "post",
-                        "path": "/api/im.list",
-                        "port": 8000
-                    },
-                    "output": {
-                        "contentType": "application/json",
-                        "type": "map"
-                    }
-                },
-                "send": {
-                    "arguments": {
-                        "attachments": {
-                            "in": "requestBody",
-                            "type": "list"
-                        },
-                        "channel": {
-                            "help": "What channel to send message in.\nThis can be a \"#channel\" \"@user\" or a channel id.\n",
-                            "in": "requestBody",
-                            "required": true,
-                            "type": "string"
-                        },
-                        "text": {
-                            "help": "Text of the message to send.",
-                            "in": "requestBody",
-                            "required": true,
-                            "type": "string"
-                        },
-                        "token": {
-                            "help": "Authentication token bearing required scopes.\nEnvironment variable BOT_TOKEN used by default.\n",
-                            "in": "requestBody",
-                            "type": "string"
-                        }
-                    },
-                    "help": "Sends a message to a channel.\nhttps://api.slack.com/methods/chat.postMessage\n",
-                    "http": {
-                        "contentType": "application/json",
-                        "method": "post",
-                        "path": "/api/chat.postMessage",
-                        "port": 8000
-                    },
-                    "output": {
-                        "contentType": "application/json",
-                        "type": "map"
-                    }
-                },
-                "users": {
-                    "arguments": {
-                        "cursor": {
-                            "help": "Paginate through collections of data by setting the cursor parameter to a next_cursor attribute returned by a previous request's response_metadata. Default value fetches the first \"page\" of the collection. See pagination for more detail.\n",
-                            "in": "requestBody",
-                            "type": "string"
-                        },
-                        "include_locale": {
-                            "help": "Set this to true to receive the locale for users. Defaults to false\n",
-                            "in": "requestBody",
-                            "type": "boolean"
-                        },
-                        "limit": {
-                            "default": 0,
-                            "help": "The maximum number of items to return. Fewer than the requested number of items may be returned, even if the end of the users list hasn't been reached.\n",
-                            "in": "requestBody",
-                            "range": {
-                                "min": 0
-                            },
-                            "type": "int"
-                        },
-                        "token": {
-                            "help": "Authentication token bearing required scopes.\nEnvironment variable BOT_TOKEN used by default.\n",
-                            "in": "requestBody",
-                            "type": "string"
-                        }
-                    },
-                    "http": {
-                        "contentType": "application/json",
-                        "method": "post",
-                        "path": "/api/users.list",
-                        "port": 8000
-                    },
-                    "output": {
-                        "contentType": "application/json",
-                        "type": "map"
+                        "type": "string"
                     }
                 }
             },
-            "environment": {
-                "BOT_TOKEN": {
-                    "help": "The Slack bot token",
-                    "type": "string"
-                }
+            "info": {
+                "description": "This is a UUID service",
+                "title": "UUID",
+                "version": "1.0.0"
             },
             "lifecycle": {
                 "startup": {
                     "command": [
                         "python",
-                        "app/main.py"
+                        "/app/app.py"
                     ]
                 }
             },
             "omg": 1
         },
-        "description": "Slack bot microservice",
-        "name": "slack",
-        "public": true,
-        "readme": "# Slack as a microservice\n\n[![Open Microservice Guide](https://img.shields.io/badge/OMG-enabled-brightgreen.svg?style=for-the-badge)](https://microservice.guide)\n\nThis microservice's goal is to fully utilise the Slack API.\n\n## [OMG](hhttps://microservice.guide) CLI\n\n### Slack Bot\n```sh\nomg exec -e TOKEN=<secret> -c bot\n```\n\nSubscribe to an event.\n```sh\nomg subscribe bot hears -a \"pattern=/^hello/\"\n```\n\n\n## [Asyncy](https://asyncy.com) Example\n\nThe `slack` service is published in the [Asyncy Hub](https://hub.asyncy.com/service/slack)\n\n```storyscript\nslack bot as client\n    when client hears channel:'general' pattern:/^welcome/ as msg\n        msg emoji key:'thumbs_up'\n        msg reply message:'Nice to have you here'\n\n    when client responds pattern:/foo/ as msg\n        # respond to direct messages\n        msg reply message:'bar'\n\n    when client slash pattern:/deploy/ as msg\n        # when user does /deploy do something awesome\n\n# send a post\nslack send text:'Hello world!' to:'general'\n```\n",
-        "service_uuid": "f7f099d5da2c45ebb56a84d1f7756a42",
-        "state": "BETA",
-        "topics": [
-            "slack-bot",
-            "slack",
-            "microservice"
-        ],
-        "username": "microservice"
+        "readme": "# _UUID_ OMG Microservice\n\n[![Open Microservice Guide](https://img.shields.io/badge/OMG%20Enabled-\ud83d\udc4d-green.svg?)](https://microservice.guide)\n\nAn OMG service to generate a UUID v4.\n\n## Direct usage in [Storyscript](https://storyscript.io/):\n\n##### Generate \n```coffee\nuuid generate\n#result 38788d28-6526-45c5-acf9-bb179160c7d7\n```\n\nCurious to [learn more](https://docs.storyscript.io/)?\n\n\u2728\ud83c\udf70\u2728\n\n## Usage with [OMG CLI](https://www.npmjs.com/package/omg)\n\n##### Generate\n```shell\n$ omg run generate\n```\n\n**Note**: The OMG CLI requires [Docker](https://docs.docker.com/install/) to be installed.\n\n## License\n[MIT License](https://github.com/omg-services/uuid/blob/master/LICENSE).\n",
+        "service": {
+            "alias": "uuid",
+            "description": "UUID generator",
+            "isCertified": true,
+            "name": "uuid",
+            "owner": {
+                "username": "omg-services"
+            },
+            "public": true,
+            "topics": [
+                "uuid-generator",
+                "microservice"
+            ]
+        },
+        "serviceUuid": "f156707b-594c-4cff-8e09-45c196024364",
+        "state": "BETA"
     }
-}
+]

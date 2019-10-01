@@ -1,12 +1,9 @@
-import json
 from os import path
 
-from asyncy.hub.sdk.AsyncyHub import AsyncyHub
-from asyncy.hub.sdk.db.Service import Service
-
-from playhouse.shortcuts import dict_to_model
-
 from pytest import fixture
+
+from storyhub.sdk.ServiceWrapper import ServiceWrapper
+from storyhub.sdk.StoryscriptHub import StoryscriptHub
 
 
 def singleton(fn):
@@ -27,29 +24,16 @@ def singleton(fn):
 def load():
     script_dir = path.dirname(path.realpath(__file__))
     fixture_dir = path.join(script_dir, '..', 'fixtures', 'hub')
+    fixture_file = path.join(fixture_dir, 'hub.fixed.json')
 
-    services = {}
-    with open(path.join(fixture_dir, 'hub.fixed.json'), 'r') as f:
-        services = json.load(f)
-
-    for k, v in services.items():
-        services[k] = dict_to_model(Service, v)
-
-    def get_service(alias=None, owner=None, name=None):
-        if alias:
-            return services[alias]
-        else:
-            return services[f'{owner}/{name}']
-
-    def get_all_service_names():
-        return services.keys()
-
-    return get_service, get_all_service_names
+    return ServiceWrapper.from_json_file(fixture_file)
 
 
 @fixture
 def hub(patch):
-    patch.many(AsyncyHub, ['update_cache', 'get_all_service_names', 'get'])
-    get_service, get_all_service_names = load()
-    AsyncyHub.get.side_effect = get_service
-    AsyncyHub.get_all_service_names.side_effect = get_all_service_names
+    patch.many(StoryscriptHub,
+               ['update_cache', 'get_all_service_names', 'get'])
+    consthub = load()
+    StoryscriptHub.get.side_effect = consthub.get
+    StoryscriptHub.get_all_service_names.side_effect = \
+        consthub.get_all_service_names

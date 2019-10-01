@@ -1,27 +1,50 @@
-from sls.services.action import Action
+from sls.services.action import Action as ActionCompletionItem
+
+from storyhub.sdk.service.Action import Action
 
 
-def test_args():
-    arg1 = 1
-    arg2 = 2
+def test_args(magic):
     args = {
-        'arg1': arg1,
-        'arg2': arg2,
+        'arg1': {
+            'name': 'foo',
+            'help': 'Test arg 1',
+            'type': 'int'
+        },
+        'arg2': {
+            'name': 'bar',
+            'help': 'Test arg 2',
+            'type': 'int'
+        },
     }
-    action = Action('name', 'desc', args, {})
-    action.arg('arg1') == 1
-    action.arg('arg2') == 2
-    assert [*action.args()] == [1, 2]
-
-
-def test_events():
-    e1 = 1
-    e2 = 2
-    events = {
-        'e1': e1,
-        'e2': e2,
+    action_dict = {
+        'name': 'foobar',
+        'action': {
+            'help': 'Test action',
+            'arguments': args,
+        }
     }
-    action = Action('name', 'desc', {}, events)
-    action.event('e1') == 1
-    action.event('e2') == 2
-    assert [*action.events()] == [1, 2]
+    context = magic()
+    expected_completion_dict = {
+        'label': 'foobar',
+        'kind': 11,
+        'detail': 'Action: Test action',
+        'documentation': 'Test action',
+        'textEdit': {
+            'range': {
+                'start': {
+                    'line': context.pos.line,
+                    'character': context.pos.char - len(context.word)
+                },
+                'end': {
+                    'line': context.pos.line,
+                    'character': context.pos.char
+                }
+            },
+            'newText': 'foobar '
+        }
+    }
+
+    action = Action.from_dict(data=action_dict)
+    action_completion = ActionCompletionItem(action)
+    result = action_completion.to_completion(context)
+    assert result == expected_completion_dict
