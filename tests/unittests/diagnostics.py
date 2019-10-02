@@ -18,8 +18,8 @@ def test_to_error(magic):
     d = Diagnostics(endpoint=None)
     assert d.to_error(e) == {
         'range': {
-            'start': {'line': 0, 'character': 10},
-            'end': {'line': 0, 'character': 11},
+            'start': {'line': 0, 'character': 9},
+            'end': {'line': 0, 'character': 10},
         },
         'message': e.short_message(),
         'severity': DiagnosticSeverity.Error
@@ -34,8 +34,8 @@ def test_to_error_end(magic):
     d = Diagnostics(endpoint=None)
     assert d.to_error(e) == {
         'range': {
-            'start': {'line': 0, 'character': 10},
-            'end': {'line': 0, 'character': 42},
+            'start': {'line': 0, 'character': 9},
+            'end': {'line': 0, 'character': 41},
         },
         'message': e.short_message(),
         'severity': DiagnosticSeverity.Error
@@ -58,7 +58,7 @@ def test_run_empty(magic, patch):
 
 def test_run_story_error(magic, patch):
     endpoint = magic()
-    se = StoryError(None, None)
+    se = StoryError(None, '.story.')
     patch.init(Story)
     patch.object(Diagnostics, 'to_error')
     patch.object(Api, 'loads')
@@ -70,4 +70,21 @@ def test_run_story_error(magic, patch):
     endpoint.notify.assert_called_with('textDocument/publishDiagnostics', {
         'uri': doc.uri,
         'diagnostics': [Diagnostics.to_error()],
+    })
+
+
+def test_run_story_error_internal(magic, patch):
+    endpoint = magic()
+    se = StoryError(None, None)
+    patch.init(Story)
+    patch.object(Diagnostics, 'to_error')
+    patch.object(Api, 'loads')
+    Api.loads().errors.return_value = [se]
+    d = Diagnostics(endpoint=endpoint)
+    doc = Document(uri='.my.uri.', text='a = 0')
+    d.run(ws=magic(), doc=doc)
+    d.to_error.assert_not_called()
+    endpoint.notify.assert_called_with('textDocument/publishDiagnostics', {
+        'uri': doc.uri,
+        'diagnostics': [],
     })
