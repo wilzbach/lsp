@@ -34,7 +34,7 @@ Developing
 You can start the LSP server with:
 
 ```sh
-./lspserver.py
+./sls.py
 ```
 
 Testing with VSCode
@@ -45,18 +45,20 @@ Testing with VSCode
 Initially the dependencies of the VSCode extension need to be fetched:
 
 ```sh
+cd client
 npm install --prefix client
 ```
 
 2) Start a TCP LSP server
 
 ```sh
-./lspserver.py
+./sls.py tcp
 ```
 
 3) Open up VSCode
 
 ```sh
+cd client
 npm run --prefix client vscode
 ```
 
@@ -76,7 +78,7 @@ If a Stdio server is used, it will automatically spawn the server and connect to
 On changes to the server, it can be killed by e.g.:
 
 ```sh
-pkill lspserver.py
+pkill sls.py
 ```
 
 VSCode will automatically respawn a new LSP server instance.
@@ -90,5 +92,5 @@ npm run --prefix client watch
 Issues
 ------
 
-For problems directly related to the SLS, [add an issue on GitHub](https://github.com/storyscript/sls/issues/new)
-For other issues, [submit a support ticket](mailto:support@storyscript.io)
+For problems directly related to the SLS, [add an issue on GitHub](https://github.com/storyscript/sls/issues/new).
+For other issues, [submit a support ticket](mailto:support@storyscript.io).
