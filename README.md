@@ -4,6 +4,7 @@ Storyscript Language Server (SLS)
 [![PyPi](https://img.shields.io/pypi/v/sls.svg?maxAge=600&style=for-the-badge)](https://pypi.python.org/pypi/sls)
 [![CircleCI](https://img.shields.io/circleci/project/github/storyscript/sls/master.svg?style=for-the-badge)](https://circleci.com/gh/storyscript/sls)
 [![Codecov](https://img.shields.io/codecov/c/github/storyscript/sls.svg?style=for-the-badge)](https://codecov.io/github/storyscript/sls)
+[![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-v1.4%20adopted-ff69b4.svg?style=for-the-badge)](https://github.com/storyscript/.github/blob/master/CODE_OF_CONDUCT.md)
 
 SLS implements a Language Server for [Storyscript](https://github.com/storyscript/storyscript).
 
