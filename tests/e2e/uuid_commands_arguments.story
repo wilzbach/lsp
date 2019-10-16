@@ -1,1 +1,1 @@
-asyncy/crontab entrypoint 
+storyscript/crontab entrypoint 
