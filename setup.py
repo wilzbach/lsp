@@ -1,9 +1,11 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 import io
-from os import path
+import sys
+from os import path, system
+from shutil import rmtree
 
-from setuptools import find_packages, setup
+from setuptools import Command, find_packages, setup
 
 root_dir = path.dirname(__file__)
 
@@ -41,24 +43,63 @@ requirements = [
     'click-aliases==1.0.1',
 ]
 
-setup(name=name,
-      version=version,
-      description=short_description,
-      long_description=description,
-      long_description_content_type='text/markdown',
-      classifiers=classifiers,
-      download_url=('https://github.com/storyscript/sls/archive/'
-                    f'{version}.zip'),
-      keywords='storyscript language server vscode asyncy',
-      author='Storyscript',
-      author_email='support@storyscript.io',
-      url='https://storyscript.io',
-      license='Apache 2.0',
-      packages=find_packages(),
-      include_package_data=True,
-      zip_safe=True,
-      install_requires=requirements,
-      python_requires='>=3.6',
-      entry_points={
-          'console_scripts': ['sls=sls.cli:Cli.main']
-      })
+
+class UploadCommand(Command):
+    """Support setup.py upload."""
+
+    description = 'Build and publish the package.'
+    user_options = []
+
+    @staticmethod
+    def status(s):
+        """Prints things in bold."""
+        print('\033[1m{0}\033[0m'.format(s))
+
+    def initialize_options(self):
+        pass
+
+    def finalize_options(self):
+        pass
+
+    def run(self):
+        try:
+            self.status('Removing previous builds…')
+            rmtree(path.join(root_dir, 'dist'))
+        except OSError:
+            pass
+
+        self.status('Building Source and Wheel (universal) distribution…')
+        system(
+            '{0} setup.py sdist bdist_wheel --universal'.format(sys.executable)
+        )
+
+        self.status('Uploading the package to PyPI via Twine…')
+        system('twine upload dist/*')
+
+        sys.exit()
+
+
+setup(
+    name=name,
+    version=version,
+    description=short_description,
+    long_description=description,
+    long_description_content_type='text/markdown',
+    classifiers=classifiers,
+    download_url=('https://github.com/storyscript/sls/archive/'
+                  f'{version}.zip'),
+    keywords='storyscript language server vscode asyncy',
+    author='Storyscript',
+    author_email='support@storyscript.io',
+    url='https://storyscript.io',
+    license='Apache 2.0',
+    packages=find_packages(),
+    include_package_data=True,
+    zip_safe=True,
+    install_requires=requirements,
+    python_requires='>=3.6',
+    entry_points={
+        'console_scripts': ['sls=sls.cli:Cli.main']
+    },
+    cmdclass={'upload': UploadCommand},
+)
