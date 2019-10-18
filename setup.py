@@ -39,7 +39,7 @@ classifiers = [
 
 requirements = [
     'python-jsonrpc-server==0.1.2',
-    'storyscript==0.25.2',
+    'storyscript==0.25.3',
     'click==7.0',
     'click-aliases==1.0.1',
 ]
