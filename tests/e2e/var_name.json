@@ -1,0 +1,21 @@
+[
+  {
+    "detail": "Symbol. int",
+    "documentation": "TBD",
+    "kind": 12,
+    "label": "banana",
+    "textEdit": {
+      "newText": "banana",
+      "range": {
+        "end": {
+          "character": 8,
+          "line": 1
+        },
+        "start": {
+          "character": 4,
+          "line": 1
+        }
+      }
+    }
+  }
+]

@@ -52,6 +52,9 @@ class Document:
     def line(self, nr):
         return self._lines[nr]
 
+    def lines(self, start, end):
+        return self._lines[start:end]
+
     def line_to_cursor(self, pos):
         line = self.line(pos.line)
         cursor = pos.char
