@@ -1,3 +1,5 @@
+#!/usr/bin/env pytest
+
 import io
 import json
 from glob import glob
