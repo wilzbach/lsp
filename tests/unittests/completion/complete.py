@@ -6,6 +6,7 @@ from sls.document import Document
 def test_complete(magic, patch):
     patch.init(Document)
     patch.many(Document, ['line_to_cursor', 'word_on_cursor'])
+    patch.many(CompletionContext, ['_blocks'])
     c = Completion(plugins=[])
     doc = Document()
     ws = magic()
@@ -20,6 +21,7 @@ def test_complete(magic, patch):
 def test_complete_plugin(magic, patch):
     patch.init(Document)
     patch.many(Document, ['line_to_cursor', 'word_on_cursor'])
+    patch.many(CompletionContext, ['_blocks'])
     my_plugin = magic()
     i1 = magic()
     i2 = magic()
