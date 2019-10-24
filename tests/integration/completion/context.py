@@ -5,8 +5,7 @@ from sls.document import Document, Position
 
 
 def document(text):
-    doc = Document('.fake.uri.', text)
-    return doc
+    return Document('.fake.uri.', text)
 
 
 @mark.parametrize('text,expected', [
@@ -26,7 +25,7 @@ def document(text):
         [ContextBlock(0, 3), ContextBlock(3, 4)]),
 ])
 def test_blocks(text, expected, magic):
-    doc = Document(uri='.text.', text=text)
+    doc = document(text)
     pos = Position(0, 0)
     context = CompletionContext(ws=magic(), doc=doc, pos=pos)
     assert context.blocks == expected
@@ -43,7 +42,7 @@ def test_blocks(text, expected, magic):
         ['while true', ' a = 1', ' b = 1']),
 ])
 def test_current_block(text, line, expected, magic):
-    doc = Document(uri='.text.', text=text)
+    doc = document(text)
     pos = Position(line, 0)
     context = CompletionContext(ws=magic(), doc=doc, pos=pos)
     assert context.current_block() == expected
@@ -72,7 +71,14 @@ def test_current_block(text, line, expected, magic):
         [ContextBlock(0, 2), ContextBlock(2, 3)]),
 ])
 def test_other_blocks(text, expected, line, magic):
-    doc = Document(uri='.text.', text=text)
+    doc = document(text)
     pos = Position(line, 0)
     context = CompletionContext(ws=magic(), doc=doc, pos=pos)
     assert [*context.other_blocks()] == expected
+
+
+def test_empty(magic):
+    doc = document('')
+    pos = Position(0, 0)
+    context = CompletionContext(ws=magic(), doc=doc, pos=pos)
+    assert [*context.lines_until_current_block()] == []

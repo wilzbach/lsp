@@ -2,7 +2,8 @@
   {
     "detail": "Symbol. int",
     "documentation": "TBD",
-    "kind": 12,
+    "insertTextFormat": 1,
+    "kind": 6,
     "label": "banana",
     "textEdit": {
       "newText": "banana",

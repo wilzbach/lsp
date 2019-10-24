@@ -1,11 +1,12 @@
 [
   {
     "detail": "foo()",
-    "documentation": "Function: self.function.pretty()",
-    "kind": 12,
+    "documentation": "Function: foo()",
+    "insertTextFormat": 2,
+    "kind": 3,
     "label": "foo",
     "textEdit": {
-      "newText": "foo()",
+      "newText": "foo($1)",
       "range": {
         "end": {
           "character": 6,

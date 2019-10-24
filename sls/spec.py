@@ -74,3 +74,12 @@ class MarkupKind:
     """
     PlainText = 'plaintext'
     Markdown = 'markdown'
+
+
+class InsertTextFormat:
+    """
+    Defines whether the insert text in a completion item should be interpreted
+    as plain text or a snippet.
+    """
+    PlainText = 1
+    Snippet = 2

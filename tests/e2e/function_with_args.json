@@ -1,0 +1,42 @@
+[
+  {
+    "detail": "foo(a:int b:float)",
+    "documentation": "Function: foo(a:`int` b:`float`)",
+    "insertTextFormat": 2,
+    "kind": 3,
+    "label": "foo",
+    "textEdit": {
+      "newText": "foo($1)",
+      "range": {
+        "end": {
+          "character": 2,
+          "line": 3
+        },
+        "start": {
+          "character": 0,
+          "line": 3
+        }
+      }
+    }
+  },
+  {
+    "detail": "Loop",
+    "documentation": "TBD",
+    "insertTextFormat": 1,
+    "kind": 14,
+    "label": "foreach",
+    "textEdit": {
+      "newText": "foreach ",
+      "range": {
+        "end": {
+          "character": 2,
+          "line": 3
+        },
+        "start": {
+          "character": 0,
+          "line": 3
+        }
+      }
+    }
+  }
+]

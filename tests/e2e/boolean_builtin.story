@@ -1,0 +1,2 @@
+ls = true
+a = ls.

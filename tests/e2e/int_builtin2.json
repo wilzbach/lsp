@@ -1,0 +1,65 @@
+[
+  {
+    "detail": "isOdd()",
+    "documentation": "Builtin: isOdd",
+    "filterText": "ls.isOdd",
+    "insertTextFormat": 2,
+    "kind": 2,
+    "label": "isOdd",
+    "textEdit": {
+      "newText": "ls.isOdd($1)",
+      "range": {
+        "end": {
+          "character": 8,
+          "line": 1
+        },
+        "start": {
+          "character": 4,
+          "line": 1
+        }
+      }
+    }
+  },
+  {
+    "detail": "isEven()",
+    "documentation": "Builtin: isEven",
+    "filterText": "ls.isEven",
+    "insertTextFormat": 2,
+    "kind": 2,
+    "label": "isEven",
+    "textEdit": {
+      "newText": "ls.isEven($1)",
+      "range": {
+        "end": {
+          "character": 8,
+          "line": 1
+        },
+        "start": {
+          "character": 4,
+          "line": 1
+        }
+      }
+    }
+  },
+  {
+    "detail": "increment()",
+    "documentation": "Builtin: increment",
+    "filterText": "ls.increment",
+    "insertTextFormat": 2,
+    "kind": 2,
+    "label": "increment",
+    "textEdit": {
+      "newText": "ls.increment($1)",
+      "range": {
+        "end": {
+          "character": 8,
+          "line": 1
+        },
+        "start": {
+          "character": 4,
+          "line": 1
+        }
+      }
+    }
+  }
+]

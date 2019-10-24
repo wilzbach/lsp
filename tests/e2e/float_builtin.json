@@ -1,0 +1,443 @@
+[
+  {
+    "detail": "round()",
+    "documentation": "Builtin: round",
+    "filterText": "ls.round",
+    "insertTextFormat": 2,
+    "kind": 2,
+    "label": "round",
+    "textEdit": {
+      "newText": "ls.round($1)",
+      "range": {
+        "end": {
+          "character": 7,
+          "line": 1
+        },
+        "start": {
+          "character": 4,
+          "line": 1
+        }
+      }
+    }
+  },
+  {
+    "detail": "ceil()",
+    "documentation": "Builtin: ceil",
+    "filterText": "ls.ceil",
+    "insertTextFormat": 2,
+    "kind": 2,
+    "label": "ceil",
+    "textEdit": {
+      "newText": "ls.ceil($1)",
+      "range": {
+        "end": {
+          "character": 7,
+          "line": 1
+        },
+        "start": {
+          "character": 4,
+          "line": 1
+        }
+      }
+    }
+  },
+  {
+    "detail": "floor()",
+    "documentation": "Builtin: floor",
+    "filterText": "ls.floor",
+    "insertTextFormat": 2,
+    "kind": 2,
+    "label": "floor",
+    "textEdit": {
+      "newText": "ls.floor($1)",
+      "range": {
+        "end": {
+          "character": 7,
+          "line": 1
+        },
+        "start": {
+          "character": 4,
+          "line": 1
+        }
+      }
+    }
+  },
+  {
+    "detail": "sin()",
+    "documentation": "Builtin: sin",
+    "filterText": "ls.sin",
+    "insertTextFormat": 2,
+    "kind": 2,
+    "label": "sin",
+    "textEdit": {
+      "newText": "ls.sin($1)",
+      "range": {
+        "end": {
+          "character": 7,
+          "line": 1
+        },
+        "start": {
+          "character": 4,
+          "line": 1
+        }
+      }
+    }
+  },
+  {
+    "detail": "cos()",
+    "documentation": "Builtin: cos",
+    "filterText": "ls.cos",
+    "insertTextFormat": 2,
+    "kind": 2,
+    "label": "cos",
+    "textEdit": {
+      "newText": "ls.cos($1)",
+      "range": {
+        "end": {
+          "character": 7,
+          "line": 1
+        },
+        "start": {
+          "character": 4,
+          "line": 1
+        }
+      }
+    }
+  },
+  {
+    "detail": "tan()",
+    "documentation": "Builtin: tan",
+    "filterText": "ls.tan",
+    "insertTextFormat": 2,
+    "kind": 2,
+    "label": "tan",
+    "textEdit": {
+      "newText": "ls.tan($1)",
+      "range": {
+        "end": {
+          "character": 7,
+          "line": 1
+        },
+        "start": {
+          "character": 4,
+          "line": 1
+        }
+      }
+    }
+  },
+  {
+    "detail": "asin()",
+    "documentation": "Builtin: asin",
+    "filterText": "ls.asin",
+    "insertTextFormat": 2,
+    "kind": 2,
+    "label": "asin",
+    "textEdit": {
+      "newText": "ls.asin($1)",
+      "range": {
+        "end": {
+          "character": 7,
+          "line": 1
+        },
+        "start": {
+          "character": 4,
+          "line": 1
+        }
+      }
+    }
+  },
+  {
+    "detail": "acos()",
+    "documentation": "Builtin: acos",
+    "filterText": "ls.acos",
+    "insertTextFormat": 2,
+    "kind": 2,
+    "label": "acos",
+    "textEdit": {
+      "newText": "ls.acos($1)",
+      "range": {
+        "end": {
+          "character": 7,
+          "line": 1
+        },
+        "start": {
+          "character": 4,
+          "line": 1
+        }
+      }
+    }
+  },
+  {
+    "detail": "atan()",
+    "documentation": "Builtin: atan",
+    "filterText": "ls.atan",
+    "insertTextFormat": 2,
+    "kind": 2,
+    "label": "atan",
+    "textEdit": {
+      "newText": "ls.atan($1)",
+      "range": {
+        "end": {
+          "character": 7,
+          "line": 1
+        },
+        "start": {
+          "character": 4,
+          "line": 1
+        }
+      }
+    }
+  },
+  {
+    "detail": "log()",
+    "documentation": "Builtin: log",
+    "filterText": "ls.log",
+    "insertTextFormat": 2,
+    "kind": 2,
+    "label": "log",
+    "textEdit": {
+      "newText": "ls.log($1)",
+      "range": {
+        "end": {
+          "character": 7,
+          "line": 1
+        },
+        "start": {
+          "character": 4,
+          "line": 1
+        }
+      }
+    }
+  },
+  {
+    "detail": "log2()",
+    "documentation": "Builtin: log2",
+    "filterText": "ls.log2",
+    "insertTextFormat": 2,
+    "kind": 2,
+    "label": "log2",
+    "textEdit": {
+      "newText": "ls.log2($1)",
+      "range": {
+        "end": {
+          "character": 7,
+          "line": 1
+        },
+        "start": {
+          "character": 4,
+          "line": 1
+        }
+      }
+    }
+  },
+  {
+    "detail": "log10()",
+    "documentation": "Builtin: log10",
+    "filterText": "ls.log10",
+    "insertTextFormat": 2,
+    "kind": 2,
+    "label": "log10",
+    "textEdit": {
+      "newText": "ls.log10($1)",
+      "range": {
+        "end": {
+          "character": 7,
+          "line": 1
+        },
+        "start": {
+          "character": 4,
+          "line": 1
+        }
+      }
+    }
+  },
+  {
+    "detail": "exp()",
+    "documentation": "Builtin: exp",
+    "filterText": "ls.exp",
+    "insertTextFormat": 2,
+    "kind": 2,
+    "label": "exp",
+    "textEdit": {
+      "newText": "ls.exp($1)",
+      "range": {
+        "end": {
+          "character": 7,
+          "line": 1
+        },
+        "start": {
+          "character": 4,
+          "line": 1
+        }
+      }
+    }
+  },
+  {
+    "detail": "abs()",
+    "documentation": "Builtin: abs",
+    "filterText": "ls.abs",
+    "insertTextFormat": 2,
+    "kind": 2,
+    "label": "abs",
+    "textEdit": {
+      "newText": "ls.abs($1)",
+      "range": {
+        "end": {
+          "character": 7,
+          "line": 1
+        },
+        "start": {
+          "character": 4,
+          "line": 1
+        }
+      }
+    }
+  },
+  {
+    "detail": "isNaN()",
+    "documentation": "Builtin: isNaN",
+    "filterText": "ls.isNaN",
+    "insertTextFormat": 2,
+    "kind": 2,
+    "label": "isNaN",
+    "textEdit": {
+      "newText": "ls.isNaN($1)",
+      "range": {
+        "end": {
+          "character": 7,
+          "line": 1
+        },
+        "start": {
+          "character": 4,
+          "line": 1
+        }
+      }
+    }
+  },
+  {
+    "detail": "isInfinity()",
+    "documentation": "Builtin: isInfinity",
+    "filterText": "ls.isInfinity",
+    "insertTextFormat": 2,
+    "kind": 2,
+    "label": "isInfinity",
+    "textEdit": {
+      "newText": "ls.isInfinity($1)",
+      "range": {
+        "end": {
+          "character": 7,
+          "line": 1
+        },
+        "start": {
+          "character": 4,
+          "line": 1
+        }
+      }
+    }
+  },
+  {
+    "detail": "approxEqual(value:float)",
+    "documentation": "Builtin: approxEqual",
+    "filterText": "ls.approxEqual",
+    "insertTextFormat": 2,
+    "kind": 2,
+    "label": "approxEqual",
+    "textEdit": {
+      "newText": "ls.approxEqual($1)",
+      "range": {
+        "end": {
+          "character": 7,
+          "line": 1
+        },
+        "start": {
+          "character": 4,
+          "line": 1
+        }
+      }
+    }
+  },
+  {
+    "detail": "approxEqual(maxRelDiff:float value:float)",
+    "documentation": "Builtin: approxEqual",
+    "filterText": "ls.approxEqual",
+    "insertTextFormat": 2,
+    "kind": 2,
+    "label": "approxEqual",
+    "textEdit": {
+      "newText": "ls.approxEqual($1)",
+      "range": {
+        "end": {
+          "character": 7,
+          "line": 1
+        },
+        "start": {
+          "character": 4,
+          "line": 1
+        }
+      }
+    }
+  },
+  {
+    "detail": "approxEqual(maxAbsDiff:float value:float)",
+    "documentation": "Builtin: approxEqual",
+    "filterText": "ls.approxEqual",
+    "insertTextFormat": 2,
+    "kind": 2,
+    "label": "approxEqual",
+    "textEdit": {
+      "newText": "ls.approxEqual($1)",
+      "range": {
+        "end": {
+          "character": 7,
+          "line": 1
+        },
+        "start": {
+          "character": 4,
+          "line": 1
+        }
+      }
+    }
+  },
+  {
+    "detail": "approxEqual(maxAbsDiff:float maxRelDiff:float value:float)",
+    "documentation": "Builtin: approxEqual",
+    "filterText": "ls.approxEqual",
+    "insertTextFormat": 2,
+    "kind": 2,
+    "label": "approxEqual",
+    "textEdit": {
+      "newText": "ls.approxEqual($1)",
+      "range": {
+        "end": {
+          "character": 7,
+          "line": 1
+        },
+        "start": {
+          "character": 4,
+          "line": 1
+        }
+      }
+    }
+  },
+  {
+    "detail": "sqrt()",
+    "documentation": "Builtin: sqrt",
+    "filterText": "ls.sqrt",
+    "insertTextFormat": 2,
+    "kind": 2,
+    "label": "sqrt",
+    "textEdit": {
+      "newText": "ls.sqrt($1)",
+      "range": {
+        "end": {
+          "character": 7,
+          "line": 1
+        },
+        "start": {
+          "character": 4,
+          "line": 1
+        }
+      }
+    }
+  }
+]

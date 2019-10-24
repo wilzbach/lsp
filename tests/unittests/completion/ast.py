@@ -10,7 +10,7 @@ def test_ast(magic, patch):
     patch.object(ASTAnalyzer, 'try_ast')
     context.line = 'foo'
 
-    ast = ASTAnalyzer(service_registry=registry)
+    ast = ASTAnalyzer(service_registry=registry, context_cache=None)
     result = [*ast.complete(context)]
 
     Parser.parse.assert_called_with(context.line, allow_single_quotes=False)

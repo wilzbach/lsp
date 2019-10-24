@@ -2,6 +2,7 @@
   {
     "detail": "Arg. any",
     "documentation": "No help available.",
+    "insertTextFormat": 1,
     "kind": 12,
     "label": "body",
     "textEdit": {
@@ -21,6 +22,7 @@
   {
     "detail": "Arg. map",
     "documentation": "No help available.",
+    "insertTextFormat": 1,
     "kind": 12,
     "label": "headers",
     "textEdit": {
@@ -40,6 +42,7 @@
   {
     "detail": "Arg. string",
     "documentation": "No help available.",
+    "insertTextFormat": 1,
     "kind": 12,
     "label": "method",
     "textEdit": {
@@ -59,6 +62,7 @@
   {
     "detail": "Arg. map",
     "documentation": "Set an optional map of query parameters.\nQuery parameters are automatically appended to the url specified (/url?foo=bar&john=doe)\n",
+    "insertTextFormat": 1,
     "kind": 12,
     "label": "query",
     "textEdit": {
@@ -78,6 +82,7 @@
   {
     "detail": "Arg. string",
     "documentation": "No help available.",
+    "insertTextFormat": 1,
     "kind": 12,
     "label": "url",
     "textEdit": {
@@ -97,7 +102,8 @@
   {
     "detail": "Type conversion",
     "documentation": "TBD",
-    "kind": 12,
+    "insertTextFormat": 1,
+    "kind": 14,
     "label": "to",
     "textEdit": {
       "newText": "to ",
@@ -116,7 +122,8 @@
   {
     "detail": "Aliasing",
     "documentation": "TBD",
-    "kind": 12,
+    "insertTextFormat": 1,
+    "kind": 14,
     "label": "as",
     "textEdit": {
       "newText": "as ",
@@ -135,7 +142,8 @@
   {
     "detail": "Binary operator",
     "documentation": "TBD",
-    "kind": 12,
+    "insertTextFormat": 1,
+    "kind": 14,
     "label": "and",
     "textEdit": {
       "newText": "and ",
@@ -154,7 +162,8 @@
   {
     "detail": "Binary operator",
     "documentation": "TBD",
-    "kind": 12,
+    "insertTextFormat": 1,
+    "kind": 14,
     "label": "or",
     "textEdit": {
       "newText": "or ",
@@ -173,7 +182,8 @@
   {
     "detail": "Binary operator",
     "documentation": "TBD",
-    "kind": 12,
+    "insertTextFormat": 1,
+    "kind": 14,
     "label": "not",
     "textEdit": {
       "newText": "not ",

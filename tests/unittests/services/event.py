@@ -29,6 +29,7 @@ def test_args(magic):
         'kind': 11,
         'detail': 'Event: Test event',
         'documentation': 'Event doc: Test event',
+        'insertTextFormat': 1,
     }
 
     event = Event.from_dict(data=event_dict)

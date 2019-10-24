@@ -1,0 +1,22 @@
+[
+  {
+    "detail": "bar()",
+    "documentation": "Function: bar()",
+    "insertTextFormat": 2,
+    "kind": 3,
+    "label": "bar",
+    "textEdit": {
+      "newText": "bar($1)",
+      "range": {
+        "end": {
+          "character": 2,
+          "line": 6
+        },
+        "start": {
+          "character": 0,
+          "line": 6
+        }
+      }
+    }
+  }
+]

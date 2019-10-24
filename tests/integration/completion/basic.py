@@ -4,6 +4,14 @@ from sls.completion.complete import Completion
 from sls.document import Document, Position
 from sls.services.hub import ServiceHub
 
+int_mutations = [
+    'absolute',
+    'decrement',
+    'increment',
+    'isEven',
+    'isOdd',
+]
+
 
 def document(text):
     doc = Document('.fake.uri.', text)
@@ -60,3 +68,33 @@ def test_complete_service(text, pos, expected, completion):
 ])
 def test_complete_service_arguments(text, pos, expected, completion):
     assert completion.set(text=text).test(pos) == expected
+
+
+def test_complete_dot_additional_blocks(completion):
+    text = ('arr = [[0]]\n'
+            'foreach arr as e\n'
+            '  arr[0][0].\n'
+            '\n'
+            'a = 1')
+    assert sorted(completion.set(text=text).test((2, 12))) == int_mutations
+
+
+def test_complete_dot_multiple(completion):
+    """
+    Test that the cache gets properly removed.
+    """
+    text = ('arr = [0]\n'
+            'foreach arr as e8\n'
+            '  e8.\n'
+            )
+    c = completion.set(text=text)
+    res = c.test((2, 4))
+    assert res == ['e8']
+
+    text = ('arr = [0]\n'
+            'foreach arr as e9\n'
+            '  e9.\n'
+            )
+    c = completion.set(text=text)
+    res = c.test((2, 4))
+    assert res == ['e9']

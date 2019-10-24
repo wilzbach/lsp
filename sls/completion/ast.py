@@ -1,6 +1,5 @@
 from lark.exceptions import UnexpectedCharacters, UnexpectedToken
 
-from sls.completion.cache import ContextCache
 from sls.logging import logger
 from sls.services.action import Action
 from sls.services.argument import Argument
@@ -14,17 +13,13 @@ log = logger(__name__)
 
 
 class ASTAnalyzer:
-    # TODO: add basic keywords
-    # TODO: add existing variables
-    # TODO: add existing functions
 
-    def __init__(self, service_registry):
+    def __init__(self, service_registry, context_cache):
         self.parser = Parser()
         self.service_registry = service_registry
-        self.context_cache = ContextCache()
+        self.context_cache = context_cache
 
     def complete(self, context):
-        self.context_cache.update(context)
         is_space = len(context.line) > 0 and context.line[-1] == ' '
         log.debug(f"line: '{context.line}'")
         line = context.line
@@ -33,6 +28,8 @@ class ASTAnalyzer:
             yield from self.complete_name()
             return
         if ':' in line:
+            return
+        if '.' in context.word:
             return
         try:
             if '=' in line:
@@ -54,8 +51,6 @@ class ASTAnalyzer:
             log.error(e)
 
     def complete_name(self):
-        # variables or services
-        yield from self.context_cache.complete_global('')
         yield from self.get_services('')
 
     def try_ast(self, ast, word, is_space):
@@ -117,6 +112,6 @@ class ASTAnalyzer:
 
     def get_services(self, word):
         services = self.service_registry.find_services(word)
-        yield from self.context_cache.complete_global(word)
+        yield from self.context_cache.complete(word)
         for service in services:
             yield Service(service)

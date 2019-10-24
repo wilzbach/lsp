@@ -1,0 +1,22 @@
+[
+  {
+    "detail": "Symbol. Object",
+    "documentation": "TBD",
+    "insertTextFormat": 1,
+    "kind": 6,
+    "label": "app",
+    "textEdit": {
+      "newText": "app",
+      "range": {
+        "end": {
+          "character": 3,
+          "line": 1
+        },
+        "start": {
+          "character": 0,
+          "line": 1
+        }
+      }
+    }
+  }
+]

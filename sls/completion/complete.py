@@ -1,7 +1,9 @@
 from sls.logging import logger
 
 from .ast import ASTAnalyzer
+from .cache import ContextCache
 from .context import CompletionContext
+from .dot import DotCompletion
 from .keyword import KeywordCompletion
 
 
@@ -13,7 +15,8 @@ class Completion():
     Builds a completion list
     """
 
-    def __init__(self, plugins):
+    def __init__(self, context_cache, plugins):
+        self.context_cache = context_cache
         self.plugins = plugins
 
     def gather_completion(self, context):
@@ -32,6 +35,10 @@ class Completion():
         # Initialize context
         context = CompletionContext(ws=ws, doc=doc, pos=pos)
         log.info('Word on cursor: %s', context.word)
+
+        # Update context caches
+        self.context_cache.update(context)
+
         items = [*self.gather_completion(context)]
 
         return {
@@ -43,9 +50,12 @@ class Completion():
 
     @classmethod
     def full(cls, service_registry):
+        context_cache = ContextCache()
         return cls(
+            context_cache=context_cache,
             plugins=[
-                ASTAnalyzer(service_registry),
+                ASTAnalyzer(service_registry, context_cache),
+                DotCompletion(context_cache),
                 KeywordCompletion(),
             ]
         )

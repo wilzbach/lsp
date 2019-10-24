@@ -2,6 +2,7 @@
   {
     "detail": "Action: Start a Slack bot",
     "documentation": "Start a Slack bot",
+    "insertTextFormat": 1,
     "kind": 11,
     "label": "bot",
     "textEdit": {
@@ -21,6 +22,7 @@
   {
     "detail": "Action: Get a list of channels",
     "documentation": "Get a list of channels",
+    "insertTextFormat": 1,
     "kind": 11,
     "label": "channels",
     "textEdit": {
@@ -40,6 +42,7 @@
   {
     "detail": "Action: Lists direct message channels for the calling user.",
     "documentation": "Lists direct message channels for the calling user.",
+    "insertTextFormat": 1,
     "kind": 11,
     "label": "directChannels",
     "textEdit": {
@@ -59,6 +62,7 @@
   {
     "detail": "Action: Triggered by direct messages to the bot",
     "documentation": "Triggered by direct messages to the bot",
+    "insertTextFormat": 1,
     "kind": 11,
     "label": "responds",
     "textEdit": {
@@ -78,6 +82,7 @@
   {
     "detail": "Action: Sends a message to a channel.",
     "documentation": "Sends a message to a channel.\nhttps://api.slack.com/methods/chat.postMessage\n",
+    "insertTextFormat": 1,
     "kind": 11,
     "label": "send",
     "textEdit": {
@@ -97,6 +102,7 @@
   {
     "detail": "Action: No help available.",
     "documentation": "No help available.",
+    "insertTextFormat": 1,
     "kind": 11,
     "label": "users",
     "textEdit": {
@@ -116,7 +122,8 @@
   {
     "detail": "Type conversion",
     "documentation": "TBD",
-    "kind": 12,
+    "insertTextFormat": 1,
+    "kind": 14,
     "label": "to",
     "textEdit": {
       "newText": "to ",
@@ -135,7 +142,8 @@
   {
     "detail": "Aliasing",
     "documentation": "TBD",
-    "kind": 12,
+    "insertTextFormat": 1,
+    "kind": 14,
     "label": "as",
     "textEdit": {
       "newText": "as ",
@@ -154,7 +162,8 @@
   {
     "detail": "Binary operator",
     "documentation": "TBD",
-    "kind": 12,
+    "insertTextFormat": 1,
+    "kind": 14,
     "label": "and",
     "textEdit": {
       "newText": "and ",
@@ -173,7 +182,8 @@
   {
     "detail": "Binary operator",
     "documentation": "TBD",
-    "kind": 12,
+    "insertTextFormat": 1,
+    "kind": 14,
     "label": "or",
     "textEdit": {
       "newText": "or ",
@@ -192,7 +202,8 @@
   {
     "detail": "Binary operator",
     "documentation": "TBD",
-    "kind": 12,
+    "insertTextFormat": 1,
+    "kind": 14,
     "label": "not",
     "textEdit": {
       "newText": "not ",
