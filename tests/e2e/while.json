@@ -1,0 +1,21 @@
+[
+  {
+    "detail": "Loop",
+    "documentation": "TBD",
+    "kind": 12,
+    "label": "while",
+    "textEdit": {
+      "newText": "while ",
+      "range": {
+        "end": {
+          "character": 3,
+          "line": 0
+        },
+        "start": {
+          "character": 0,
+          "line": 0
+        }
+      }
+    }
+  }
+]

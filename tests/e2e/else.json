@@ -1,0 +1,40 @@
+[
+  {
+    "detail": "Conditions",
+    "documentation": "TBD",
+    "kind": 12,
+    "label": "else",
+    "textEdit": {
+      "newText": "else ",
+      "range": {
+        "end": {
+          "character": 3,
+          "line": 0
+        },
+        "start": {
+          "character": 0,
+          "line": 0
+        }
+      }
+    }
+  },
+  {
+    "detail": "Conditions",
+    "documentation": "TBD",
+    "kind": 12,
+    "label": "else if",
+    "textEdit": {
+      "newText": "else if ",
+      "range": {
+        "end": {
+          "character": 3,
+          "line": 0
+        },
+        "start": {
+          "character": 0,
+          "line": 0
+        }
+      }
+    }
+  }
+]

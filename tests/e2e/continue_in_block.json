@@ -1,0 +1,21 @@
+[
+  {
+    "detail": "Continue",
+    "documentation": "TBD",
+    "kind": 12,
+    "label": "continue",
+    "textEdit": {
+      "newText": "continue ",
+      "range": {
+        "end": {
+          "character": 8,
+          "line": 1
+        },
+        "start": {
+          "character": 4,
+          "line": 1
+        }
+      }
+    }
+  }
+]

@@ -1,0 +1,21 @@
+[
+  {
+    "detail": "Exception",
+    "documentation": "TBD",
+    "kind": 12,
+    "label": "try",
+    "textEdit": {
+      "newText": "try ",
+      "range": {
+        "end": {
+          "character": 2,
+          "line": 0
+        },
+        "start": {
+          "character": 0,
+          "line": 0
+        }
+      }
+    }
+  }
+]

@@ -1,24 +1,5 @@
 [
   {
-    "detail": "Arg. string",
-    "documentation": "* * * * * *\n| | | | | |\n| | | | | +-- Year              (range: 1900-3000)\n| | | | +---- Day of the Week   (range: 1-7, 1 standing for Monday)\n| | | +------ Month of the Year (range: 1-12)\n| | +-------- Day of the Month  (range: 1-31)\n| +---------- Hour              (range: 0-23)\n+------------ Minute            (range: 0-59)\n",
-    "kind": 12,
-    "label": "tab",
-    "textEdit": {
-      "newText": "tab:",
-      "range": {
-        "end": {
-          "character": 31,
-          "line": 0
-        },
-        "start": {
-          "character": 31,
-          "line": 0
-        }
-      }
-    }
-  },
-  {
     "detail": "Type conversion",
     "documentation": "TBD",
     "kind": 12,
@@ -27,11 +8,11 @@
       "newText": "to ",
       "range": {
         "end": {
-          "character": 31,
+          "character": 6,
           "line": 0
         },
         "start": {
-          "character": 31,
+          "character": 6,
           "line": 0
         }
       }
@@ -46,11 +27,11 @@
       "newText": "as ",
       "range": {
         "end": {
-          "character": 31,
+          "character": 6,
           "line": 0
         },
         "start": {
-          "character": 31,
+          "character": 6,
           "line": 0
         }
       }
@@ -65,11 +46,11 @@
       "newText": "and ",
       "range": {
         "end": {
-          "character": 31,
+          "character": 6,
           "line": 0
         },
         "start": {
-          "character": 31,
+          "character": 6,
           "line": 0
         }
       }
@@ -84,11 +65,11 @@
       "newText": "or ",
       "range": {
         "end": {
-          "character": 31,
+          "character": 6,
           "line": 0
         },
         "start": {
-          "character": 31,
+          "character": 6,
           "line": 0
         }
       }
@@ -103,11 +84,11 @@
       "newText": "not ",
       "range": {
         "end": {
-          "character": 31,
+          "character": 6,
           "line": 0
         },
         "start": {
-          "character": 31,
+          "character": 6,
           "line": 0
         }
       }

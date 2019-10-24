@@ -174,5 +174,195 @@
         }
       }
     }
+  },
+  {
+    "detail": "Loop",
+    "documentation": "TBD",
+    "kind": 12,
+    "label": "foreach",
+    "textEdit": {
+      "newText": "foreach ",
+      "range": {
+        "end": {
+          "character": 0,
+          "line": 0
+        },
+        "start": {
+          "character": 0,
+          "line": 0
+        }
+      }
+    }
+  },
+  {
+    "detail": "Loop",
+    "documentation": "TBD",
+    "kind": 12,
+    "label": "while",
+    "textEdit": {
+      "newText": "while ",
+      "range": {
+        "end": {
+          "character": 0,
+          "line": 0
+        },
+        "start": {
+          "character": 0,
+          "line": 0
+        }
+      }
+    }
+  },
+  {
+    "detail": "Listener",
+    "documentation": "TBD",
+    "kind": 12,
+    "label": "when",
+    "textEdit": {
+      "newText": "when ",
+      "range": {
+        "end": {
+          "character": 0,
+          "line": 0
+        },
+        "start": {
+          "character": 0,
+          "line": 0
+        }
+      }
+    }
+  },
+  {
+    "detail": "Exception",
+    "documentation": "TBD",
+    "kind": 12,
+    "label": "try",
+    "textEdit": {
+      "newText": "try ",
+      "range": {
+        "end": {
+          "character": 0,
+          "line": 0
+        },
+        "start": {
+          "character": 0,
+          "line": 0
+        }
+      }
+    }
+  },
+  {
+    "detail": "Exception handling",
+    "documentation": "TBD",
+    "kind": 12,
+    "label": "catch",
+    "textEdit": {
+      "newText": "catch ",
+      "range": {
+        "end": {
+          "character": 0,
+          "line": 0
+        },
+        "start": {
+          "character": 0,
+          "line": 0
+        }
+      }
+    }
+  },
+  {
+    "detail": "Conditions",
+    "documentation": "TBD",
+    "kind": 12,
+    "label": "if",
+    "textEdit": {
+      "newText": "if ",
+      "range": {
+        "end": {
+          "character": 0,
+          "line": 0
+        },
+        "start": {
+          "character": 0,
+          "line": 0
+        }
+      }
+    }
+  },
+  {
+    "detail": "Conditions",
+    "documentation": "TBD",
+    "kind": 12,
+    "label": "else",
+    "textEdit": {
+      "newText": "else ",
+      "range": {
+        "end": {
+          "character": 0,
+          "line": 0
+        },
+        "start": {
+          "character": 0,
+          "line": 0
+        }
+      }
+    }
+  },
+  {
+    "detail": "Conditions",
+    "documentation": "TBD",
+    "kind": 12,
+    "label": "else if",
+    "textEdit": {
+      "newText": "else if ",
+      "range": {
+        "end": {
+          "character": 0,
+          "line": 0
+        },
+        "start": {
+          "character": 0,
+          "line": 0
+        }
+      }
+    }
+  },
+  {
+    "detail": "Function",
+    "documentation": "TBD",
+    "kind": 12,
+    "label": "function",
+    "textEdit": {
+      "newText": "function ",
+      "range": {
+        "end": {
+          "character": 0,
+          "line": 0
+        },
+        "start": {
+          "character": 0,
+          "line": 0
+        }
+      }
+    }
+  },
+  {
+    "detail": "Throw",
+    "documentation": "TBD",
+    "kind": 12,
+    "label": "throw",
+    "textEdit": {
+      "newText": "throw ",
+      "range": {
+        "end": {
+          "character": 0,
+          "line": 0
+        },
+        "start": {
+          "character": 0,
+          "line": 0
+        }
+      }
+    }
   }
 ]

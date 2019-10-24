@@ -32,12 +32,15 @@ def completion(hub):
     return CompletionTest()
 
 
+inline_keywords = ['to', 'as', 'and', 'or', 'not']
+
+
 @mark.parametrize('text,pos,expected', [
     ('ht b', (0, 1), [
         'http',
     ]),
     ('http b', (0, 5), [
-        'fetch', 'help', 'server'
+        'fetch', 'help', 'server', *inline_keywords
     ]),
 ])
 def test_complete_service(text, pos, expected, completion):
@@ -46,13 +49,13 @@ def test_complete_service(text, pos, expected, completion):
 
 @mark.parametrize('text,pos,expected', [
     ('slack send ', (0, 11), [
-        'attachments', 'channel', 'text', 'token'
+        'attachments', 'channel', 'text', 'token', *inline_keywords
     ]),
     ('http fetch ', (0, 11), [
-        'body', 'headers', 'method', 'query', 'url'
+        'body', 'headers', 'method', 'query', 'url', *inline_keywords
     ]),
     ('omg-services/uuid ', (0, 18), [
-        'generate'
+        'generate', *inline_keywords
     ]),
 ])
 def test_complete_service_arguments(text, pos, expected, completion):
