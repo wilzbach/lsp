@@ -27,9 +27,10 @@ class ASTAnalyzer:
         line = context.line
         if len(line.strip()) == 0:
             # start of a new line
-            return self.complete_name()
+            yield from self.complete_name()
+            return
         if ':' in line:
-            return []
+            return
         try:
             if '=' in line:
                 # try to convert assignments to expressions for now
@@ -38,19 +39,20 @@ class ASTAnalyzer:
                     line = assignment
             ast = self.parser.parse(line, allow_single_quotes=False)
             log.debug(ast.pretty())
-            return self.try_ast(ast, context.word, is_space)
+            yield from self.try_ast(ast, context.word, is_space)
+            return
         except UnexpectedCharacters as e:
             log.error(e)
             pass
         except UnexpectedToken as e:
             if 'NAME' in e.expected:
-                return self.complete_name()
+                yield from self.complete_name()
+                return
             log.error(e)
-        return []
 
     def complete_name(self):
         # variables or services
-        return self.get_services('')
+        yield from self.get_services('')
 
     def try_ast(self, ast, word, is_space):
         if ast.block is not None:
@@ -65,42 +67,51 @@ class ASTAnalyzer:
                 if is_space:
                     # argument
                     command = ast.service_fragment.command.children[0].value
-                    return self.get_arguments(service, command)
+                    yield from self.get_arguments(service, command)
+                    return
 
                 # it's the command
-                return self.get_commands(service)
+                yield from self.get_commands(service)
+                return
             if is_space:
                 # fresh command starts here
                 service = ast.path.child(0).value
-                return self.get_commands(service)
+                yield from self.get_commands(service)
+                return
             else:
-                return self.get_services(word)
-        return []
+                yield from self.get_services(word)
+                return
 
     def get_arguments(self, service_name, command_name):
         service = self.service_registry.get_service(service_name)
         if service is None:
-            return []
+            return
+
         service_config = service.configuration()
+
         command = service_config.command(command_name)
-        action = service_config.action(command_name)
-        result = []
         if command is not None:
-            result.extend(command.args())
+            for arg in command.args():
+                yield Argument(arg)
+
+        action = service_config.action(command_name)
         if action is not None:
-            result.extend(action.args())
-        return [Argument(arg) for arg in result]
+            for arg in action.args():
+                yield Argument(arg)
 
     def get_commands(self, service_name):
         service = self.service_registry.get_service(service_name)
         if service is None:
-            return []
+            return
+
         service_config = service.configuration()
-        return [
-            *[Command(command) for command in service_config.commands()],
-            *[Action(action) for action in service_config.actions()],
-        ]
+        for command in service_config.commands():
+            yield Command(command)
+
+        for action in service_config.actions():
+            yield Action(action)
 
     def get_services(self, word):
         services = self.service_registry.find_services(word)
-        return [Service(service) for service in services]
+        for service in services:
+            yield Service(service)
