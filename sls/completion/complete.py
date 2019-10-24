@@ -2,6 +2,7 @@ from sls.logging import logger
 
 from .ast import ASTAnalyzer
 from .context import CompletionContext
+from .keyword import KeywordCompletion
 
 
 log = logger(__name__)
@@ -16,9 +17,6 @@ class Completion():
         self.plugins = plugins
 
     def gather_completion(self, context):
-        """
-        Gather completion suggestions from all plugins
-        """
         for plugin in self.plugins:
             ret = plugin.complete(context)
             # serialize all items
@@ -30,6 +28,7 @@ class Completion():
         See the LSP Protocol on Completion [1].
         [1] https://microsoft.github.io/language-server-protocol/specification#textDocument_completion
         """  # noqa
+
         # Initialize context
         context = CompletionContext(ws=ws, doc=doc, pos=pos)
         log.info('Word on cursor: %s', context.word)
@@ -45,5 +44,8 @@ class Completion():
     @classmethod
     def full(cls, service_registry):
         return cls(
-            plugins=[ASTAnalyzer(service_registry)]
+            plugins=[
+                ASTAnalyzer(service_registry),
+                KeywordCompletion(),
+            ]
         )
