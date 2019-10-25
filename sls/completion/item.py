@@ -1,3 +1,4 @@
+from sls.document import Position, Range, TextEdit
 from sls.spec import CompletionItemKind  # noqa F401
 
 
@@ -8,6 +9,17 @@ class CompletionItem():
 
     def to_completion(self):
         raise NotImplementedError()
+
+    def text_edit(self, context, text):
+        start = Position(
+            line=context.pos.line,
+            character=context.pos.char - len(context.word),
+        )
+        end = Position(
+            line=context.pos.line,
+            character=context.pos.char,
+        )
+        return TextEdit(Range(start, end), text)
 
     def completion_build(self, label, detail, documentation,
                          completion_kind, context, documentation_kind=None,
@@ -34,5 +46,6 @@ class CompletionItem():
         if text_edit:
             # only insert text edit if we're at the end of the document
             if len(context.line) == len(context.doc.line(context.pos.line)):
-                response['textEdit'] = text_edit.dump()
+                edit = self.text_edit(context, text_edit).dump()
+                response['textEdit'] = edit
         return response

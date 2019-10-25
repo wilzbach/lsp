@@ -1,5 +1,4 @@
 from sls.completion.item import CompletionItem
-from sls.document import Position, Range, TextEdit
 from sls.spec import CompletionItemKind, MarkupKind
 
 
@@ -12,19 +11,10 @@ class Service(CompletionItem):
         self.service_data = service_data
 
     def to_completion(self, context):
-        start = Position(
-            line=context.pos.line,
-            character=context.pos.char - len(context.word),
-        )
-        end = Position(
-            line=context.pos.line,
-            character=context.pos.char,
-        )
         return self.completion_build(
             label=self.service_data.name(),
             detail=self.service_data.service().description(),
-            text_edit=TextEdit(Range(start, end),
-                               f'{self.service_data.name()} '),
+            text_edit=f'{self.service_data.name()} ',
             documentation=self.service_data._readme,
             documentation_kind=MarkupKind.Markdown,
             completion_kind=CompletionItemKind.Method,
