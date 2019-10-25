@@ -1,5 +1,4 @@
 from sls.completion.item import CompletionItem, CompletionItemKind
-from sls.document import Position, Range, TextEdit
 from sls.logging import logger
 
 log = logger(__name__)
@@ -71,17 +70,9 @@ class KeywordCompletionSymbol(CompletionItem):
         """
         Returns a LSP representation.
         """
-        start = Position(
-            line=context.pos.line,
-            character=context.pos.char - len(context.word),
-        )
-        end = Position(
-            line=context.pos.line,
-            character=context.pos.char,
-        )
         return self.completion_build(
             label=self.keyword,
-            text_edit=TextEdit(Range(start, end), f'{self.keyword} '),
+            text_edit=f'{self.keyword} ',
             detail=self.description,
             documentation='TBD',
             completion_kind=CompletionItemKind.Value,
