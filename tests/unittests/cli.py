@@ -67,7 +67,7 @@ def test_cli_hub_flag(runner, echo, app):
             f.write('Hello World!')
         e = runner.invoke(Cli.main, ['--hub=my.hub'])
         assert e.exit_code == 0
-        App.__init__.assert_called_with(hub_path='my.hub')
+        app.__init__.assert_called_with(hub_path='my.hub')
 
 
 def test_cli_hub_manual(patch, runner, echo, app, magic):
@@ -75,8 +75,8 @@ def test_cli_hub_manual(patch, runner, echo, app, magic):
     Allows to manually overwrite --hub from outside calls.
     """
     Cli.main(args=['stdio'], standalone_mode=False, obj='my.hub')
-    App.__init__.assert_called_with(hub_path='my.hub')
-    App.start_stdio_server.assert_called()
+    app.__init__.assert_called_with(hub_path='my.hub')
+    app.start_stdio_server.assert_called()
 
 
 def test_cli_tcp(runner, echo, app):
@@ -84,7 +84,7 @@ def test_cli_tcp(runner, echo, app):
     Ensures tcp starts a server.
     """
     e = runner.invoke(Cli.main, ['tcp'])
-    App.start_tcp_server.assert_called_with(addr='127.0.0.1', port=2042)
+    app.start_tcp_server.assert_called_with(addr='127.0.0.1', port=2042)
     assert e.exit_code == 0
 
 
@@ -93,7 +93,7 @@ def test_cli_tcp_port(runner, echo, app):
     Ensures tcp starts a server.
     """
     e = runner.invoke(Cli.main, ['tcp', '--port=123'])
-    App.start_tcp_server.assert_called_with(addr='127.0.0.1', port=123)
+    app.start_tcp_server.assert_called_with(addr='127.0.0.1', port=123)
     assert e.exit_code == 0
 
 
@@ -102,7 +102,7 @@ def test_cli_tcp_host(runner, echo, app):
     Ensures tcp starts a server.
     """
     e = runner.invoke(Cli.main, ['tcp', '--host=foo'])
-    App.start_tcp_server.assert_called_with(addr='foo', port=2042)
+    app.start_tcp_server.assert_called_with(addr='foo', port=2042)
     assert e.exit_code == 0
 
 
@@ -115,8 +115,8 @@ def test_cli_tcp_hub(runner, echo, app):
             f.write('Hello World!')
         e = runner.invoke(Cli.main, ['--hub=my.hub', 'tcp'])
         assert e.exit_code == 0
-        App.__init__.assert_called_with(hub_path='my.hub')
-        App.start_tcp_server.assert_called_with(addr='127.0.0.1', port=2042)
+        app.__init__.assert_called_with(hub_path='my.hub')
+        app.start_tcp_server.assert_called_with(addr='127.0.0.1', port=2042)
 
 
 def test_cli_stdio(runner, echo, app):
@@ -124,7 +124,7 @@ def test_cli_stdio(runner, echo, app):
     Ensures stdio spawns a server.
     """
     e = runner.invoke(Cli.main, ['stdio'])
-    App.start_stdio_server.assert_called()
+    app.start_stdio_server.assert_called()
     assert e.exit_code == 0
 
 
@@ -137,8 +137,8 @@ def test_cli_stdio_hub(runner, echo, app):
             f.write('Hello World!')
         e = runner.invoke(Cli.main, ['--hub=my.hub', 'stdio'])
         assert e.exit_code == 0
-        App.__init__.assert_called_with(hub_path='my.hub')
-        App.start_stdio_server.assert_called()
+        app.__init__.assert_called_with(hub_path='my.hub')
+        app.start_stdio_server.assert_called()
 
 
 def test_cli_complete_missing(patch, runner, echo, app):
@@ -162,10 +162,10 @@ def test_cli_complete_hub(patch, runner, echo, app):
         with open('my.hub', 'w') as f:
             f.write('Hello World!')
         e = runner.invoke(Cli.main, ['--hub=my.hub', 'complete', 'my.story'])
-        App.__init__.assert_called_with(hub_path='my.hub')
-        App.complete.assert_called_with('|completion|', text,
+        app.__init__.assert_called_with(hub_path='my.hub')
+        app.complete.assert_called_with('|completion|', text,
                                         line=None, column=None)
-        json.dumps.assert_called_with(App.complete(), indent=2, sort_keys=True)
+        json.dumps.assert_called_with(app.complete(), indent=2, sort_keys=True)
         click.echo.assert_called_with(json.dumps())
         assert e.exit_code == 0
 
@@ -188,7 +188,7 @@ def test_cli_complete_line_column(patch, runner, echo, app, options, expected):
         with open('my.story', 'w') as f:
             f.write(text)
         e = runner.invoke(Cli.main, ['complete', 'my.story', *options])
-        App.complete.assert_called_with('|completion|', text, **expected)
-        json.dumps.assert_called_with(App.complete(), indent=2, sort_keys=True)
+        app.complete.assert_called_with('|completion|', text, **expected)
+        json.dumps.assert_called_with(app.complete(), indent=2, sort_keys=True)
         click.echo.assert_called_with(json.dumps())
         assert e.exit_code == 0

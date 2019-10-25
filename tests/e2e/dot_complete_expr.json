@@ -1,0 +1,107 @@
+[
+  {
+    "detail": "isOdd()",
+    "documentation": "Builtin: isOdd",
+    "filterText": "ls[0].isOdd",
+    "insertTextFormat": 2,
+    "kind": 2,
+    "label": "isOdd",
+    "textEdit": {
+      "newText": "ls[0].isOdd($1)",
+      "range": {
+        "end": {
+          "character": 10,
+          "line": 2
+        },
+        "start": {
+          "character": 4,
+          "line": 2
+        }
+      }
+    }
+  },
+  {
+    "detail": "isEven()",
+    "documentation": "Builtin: isEven",
+    "filterText": "ls[0].isEven",
+    "insertTextFormat": 2,
+    "kind": 2,
+    "label": "isEven",
+    "textEdit": {
+      "newText": "ls[0].isEven($1)",
+      "range": {
+        "end": {
+          "character": 10,
+          "line": 2
+        },
+        "start": {
+          "character": 4,
+          "line": 2
+        }
+      }
+    }
+  },
+  {
+    "detail": "absolute()",
+    "documentation": "Builtin: absolute",
+    "filterText": "ls[0].absolute",
+    "insertTextFormat": 2,
+    "kind": 2,
+    "label": "absolute",
+    "textEdit": {
+      "newText": "ls[0].absolute($1)",
+      "range": {
+        "end": {
+          "character": 10,
+          "line": 2
+        },
+        "start": {
+          "character": 4,
+          "line": 2
+        }
+      }
+    }
+  },
+  {
+    "detail": "increment()",
+    "documentation": "Builtin: increment",
+    "filterText": "ls[0].increment",
+    "insertTextFormat": 2,
+    "kind": 2,
+    "label": "increment",
+    "textEdit": {
+      "newText": "ls[0].increment($1)",
+      "range": {
+        "end": {
+          "character": 10,
+          "line": 2
+        },
+        "start": {
+          "character": 4,
+          "line": 2
+        }
+      }
+    }
+  },
+  {
+    "detail": "decrement()",
+    "documentation": "Builtin: decrement",
+    "filterText": "ls[0].decrement",
+    "insertTextFormat": 2,
+    "kind": 2,
+    "label": "decrement",
+    "textEdit": {
+      "newText": "ls[0].decrement($1)",
+      "range": {
+        "end": {
+          "character": 10,
+          "line": 2
+        },
+        "start": {
+          "character": 4,
+          "line": 2
+        }
+      }
+    }
+  }
+]

@@ -1,0 +1,170 @@
+[
+  {
+    "detail": "length()",
+    "documentation": "Builtin: length",
+    "filterText": "ls.length",
+    "insertTextFormat": 2,
+    "kind": 2,
+    "label": "length",
+    "textEdit": {
+      "newText": "ls.length($1)",
+      "range": {
+        "end": {
+          "character": 7,
+          "line": 1
+        },
+        "start": {
+          "character": 4,
+          "line": 1
+        }
+      }
+    }
+  },
+  {
+    "detail": "contains(key:string)",
+    "documentation": "Builtin: contains",
+    "filterText": "ls.contains",
+    "insertTextFormat": 2,
+    "kind": 2,
+    "label": "contains",
+    "textEdit": {
+      "newText": "ls.contains($1)",
+      "range": {
+        "end": {
+          "character": 7,
+          "line": 1
+        },
+        "start": {
+          "character": 4,
+          "line": 1
+        }
+      }
+    }
+  },
+  {
+    "detail": "contains(value:string)",
+    "documentation": "Builtin: contains",
+    "filterText": "ls.contains",
+    "insertTextFormat": 2,
+    "kind": 2,
+    "label": "contains",
+    "textEdit": {
+      "newText": "ls.contains($1)",
+      "range": {
+        "end": {
+          "character": 7,
+          "line": 1
+        },
+        "start": {
+          "character": 4,
+          "line": 1
+        }
+      }
+    }
+  },
+  {
+    "detail": "remove(key:string)",
+    "documentation": "Builtin: remove",
+    "filterText": "ls.remove",
+    "insertTextFormat": 2,
+    "kind": 2,
+    "label": "remove",
+    "textEdit": {
+      "newText": "ls.remove($1)",
+      "range": {
+        "end": {
+          "character": 7,
+          "line": 1
+        },
+        "start": {
+          "character": 4,
+          "line": 1
+        }
+      }
+    }
+  },
+  {
+    "detail": "keys()",
+    "documentation": "Builtin: keys",
+    "filterText": "ls.keys",
+    "insertTextFormat": 2,
+    "kind": 2,
+    "label": "keys",
+    "textEdit": {
+      "newText": "ls.keys($1)",
+      "range": {
+        "end": {
+          "character": 7,
+          "line": 1
+        },
+        "start": {
+          "character": 4,
+          "line": 1
+        }
+      }
+    }
+  },
+  {
+    "detail": "values()",
+    "documentation": "Builtin: values",
+    "filterText": "ls.values",
+    "insertTextFormat": 2,
+    "kind": 2,
+    "label": "values",
+    "textEdit": {
+      "newText": "ls.values($1)",
+      "range": {
+        "end": {
+          "character": 7,
+          "line": 1
+        },
+        "start": {
+          "character": 4,
+          "line": 1
+        }
+      }
+    }
+  },
+  {
+    "detail": "flatten()",
+    "documentation": "Builtin: flatten",
+    "filterText": "ls.flatten",
+    "insertTextFormat": 2,
+    "kind": 2,
+    "label": "flatten",
+    "textEdit": {
+      "newText": "ls.flatten($1)",
+      "range": {
+        "end": {
+          "character": 7,
+          "line": 1
+        },
+        "start": {
+          "character": 4,
+          "line": 1
+        }
+      }
+    }
+  },
+  {
+    "detail": "get(default:string key:string)",
+    "documentation": "Builtin: get",
+    "filterText": "ls.get",
+    "insertTextFormat": 2,
+    "kind": 2,
+    "label": "get",
+    "textEdit": {
+      "newText": "ls.get($1)",
+      "range": {
+        "end": {
+          "character": 7,
+          "line": 1
+        },
+        "start": {
+          "character": 4,
+          "line": 1
+        }
+      }
+    }
+  }
+]

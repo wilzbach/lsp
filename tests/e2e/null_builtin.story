@@ -1,0 +1,2 @@
+ls = null
+a = ls.

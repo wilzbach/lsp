@@ -2,7 +2,8 @@
   {
     "detail": "Conditions",
     "documentation": "TBD",
-    "kind": 12,
+    "insertTextFormat": 1,
+    "kind": 14,
     "label": "else",
     "textEdit": {
       "newText": "else ",
@@ -21,7 +22,8 @@
   {
     "detail": "Conditions",
     "documentation": "TBD",
-    "kind": 12,
+    "insertTextFormat": 1,
+    "kind": 14,
     "label": "else if",
     "textEdit": {
       "newText": "else if ",

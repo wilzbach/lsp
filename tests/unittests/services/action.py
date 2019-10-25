@@ -41,7 +41,8 @@ def test_args(magic):
                 }
             },
             'newText': 'foobar '
-        }
+        },
+        'insertTextFormat': 1,
     }
 
     action = Action.from_dict(data=action_dict)

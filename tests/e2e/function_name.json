@@ -1,0 +1,22 @@
+[
+  {
+    "detail": "foo()",
+    "documentation": "Function: foo()",
+    "insertTextFormat": 2,
+    "kind": 3,
+    "label": "foo",
+    "textEdit": {
+      "newText": "foo($1)",
+      "range": {
+        "end": {
+          "character": 6,
+          "line": 3
+        },
+        "start": {
+          "character": 4,
+          "line": 3
+        }
+      }
+    }
+  }
+]

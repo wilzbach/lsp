@@ -2,7 +2,8 @@
   {
     "detail": "Type conversion",
     "documentation": "TBD",
-    "kind": 12,
+    "insertTextFormat": 1,
+    "kind": 14,
     "label": "to",
     "textEdit": {
       "newText": "to ",
@@ -21,7 +22,8 @@
   {
     "detail": "Aliasing",
     "documentation": "TBD",
-    "kind": 12,
+    "insertTextFormat": 1,
+    "kind": 14,
     "label": "as",
     "textEdit": {
       "newText": "as ",
@@ -40,7 +42,8 @@
   {
     "detail": "Binary operator",
     "documentation": "TBD",
-    "kind": 12,
+    "insertTextFormat": 1,
+    "kind": 14,
     "label": "and",
     "textEdit": {
       "newText": "and ",
@@ -59,7 +62,8 @@
   {
     "detail": "Binary operator",
     "documentation": "TBD",
-    "kind": 12,
+    "insertTextFormat": 1,
+    "kind": 14,
     "label": "or",
     "textEdit": {
       "newText": "or ",
@@ -78,7 +82,8 @@
   {
     "detail": "Binary operator",
     "documentation": "TBD",
-    "kind": 12,
+    "insertTextFormat": 1,
+    "kind": 14,
     "label": "not",
     "textEdit": {
       "newText": "not ",

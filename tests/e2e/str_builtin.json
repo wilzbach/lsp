@@ -1,0 +1,317 @@
+[
+  {
+    "detail": "length()",
+    "documentation": "Builtin: length",
+    "filterText": "ls.length",
+    "insertTextFormat": 2,
+    "kind": 2,
+    "label": "length",
+    "textEdit": {
+      "newText": "ls.length($1)",
+      "range": {
+        "end": {
+          "character": 7,
+          "line": 1
+        },
+        "start": {
+          "character": 4,
+          "line": 1
+        }
+      }
+    }
+  },
+  {
+    "detail": "contains(pattern:regexp)",
+    "documentation": "Builtin: contains",
+    "filterText": "ls.contains",
+    "insertTextFormat": 2,
+    "kind": 2,
+    "label": "contains",
+    "textEdit": {
+      "newText": "ls.contains($1)",
+      "range": {
+        "end": {
+          "character": 7,
+          "line": 1
+        },
+        "start": {
+          "character": 4,
+          "line": 1
+        }
+      }
+    }
+  },
+  {
+    "detail": "contains(item:string)",
+    "documentation": "Builtin: contains",
+    "filterText": "ls.contains",
+    "insertTextFormat": 2,
+    "kind": 2,
+    "label": "contains",
+    "textEdit": {
+      "newText": "ls.contains($1)",
+      "range": {
+        "end": {
+          "character": 7,
+          "line": 1
+        },
+        "start": {
+          "character": 4,
+          "line": 1
+        }
+      }
+    }
+  },
+  {
+    "detail": "replace(by:string item:string)",
+    "documentation": "Builtin: replace",
+    "filterText": "ls.replace",
+    "insertTextFormat": 2,
+    "kind": 2,
+    "label": "replace",
+    "textEdit": {
+      "newText": "ls.replace($1)",
+      "range": {
+        "end": {
+          "character": 7,
+          "line": 1
+        },
+        "start": {
+          "character": 4,
+          "line": 1
+        }
+      }
+    }
+  },
+  {
+    "detail": "replace(by:string pattern:regexp)",
+    "documentation": "Builtin: replace",
+    "filterText": "ls.replace",
+    "insertTextFormat": 2,
+    "kind": 2,
+    "label": "replace",
+    "textEdit": {
+      "newText": "ls.replace($1)",
+      "range": {
+        "end": {
+          "character": 7,
+          "line": 1
+        },
+        "start": {
+          "character": 4,
+          "line": 1
+        }
+      }
+    }
+  },
+  {
+    "detail": "split(by:string)",
+    "documentation": "Builtin: split",
+    "filterText": "ls.split",
+    "insertTextFormat": 2,
+    "kind": 2,
+    "label": "split",
+    "textEdit": {
+      "newText": "ls.split($1)",
+      "range": {
+        "end": {
+          "character": 7,
+          "line": 1
+        },
+        "start": {
+          "character": 4,
+          "line": 1
+        }
+      }
+    }
+  },
+  {
+    "detail": "uppercase()",
+    "documentation": "Builtin: uppercase",
+    "filterText": "ls.uppercase",
+    "insertTextFormat": 2,
+    "kind": 2,
+    "label": "uppercase",
+    "textEdit": {
+      "newText": "ls.uppercase($1)",
+      "range": {
+        "end": {
+          "character": 7,
+          "line": 1
+        },
+        "start": {
+          "character": 4,
+          "line": 1
+        }
+      }
+    }
+  },
+  {
+    "detail": "lowercase()",
+    "documentation": "Builtin: lowercase",
+    "filterText": "ls.lowercase",
+    "insertTextFormat": 2,
+    "kind": 2,
+    "label": "lowercase",
+    "textEdit": {
+      "newText": "ls.lowercase($1)",
+      "range": {
+        "end": {
+          "character": 7,
+          "line": 1
+        },
+        "start": {
+          "character": 4,
+          "line": 1
+        }
+      }
+    }
+  },
+  {
+    "detail": "capitalize()",
+    "documentation": "Builtin: capitalize",
+    "filterText": "ls.capitalize",
+    "insertTextFormat": 2,
+    "kind": 2,
+    "label": "capitalize",
+    "textEdit": {
+      "newText": "ls.capitalize($1)",
+      "range": {
+        "end": {
+          "character": 7,
+          "line": 1
+        },
+        "start": {
+          "character": 4,
+          "line": 1
+        }
+      }
+    }
+  },
+  {
+    "detail": "trim()",
+    "documentation": "Builtin: trim",
+    "filterText": "ls.trim",
+    "insertTextFormat": 2,
+    "kind": 2,
+    "label": "trim",
+    "textEdit": {
+      "newText": "ls.trim($1)",
+      "range": {
+        "end": {
+          "character": 7,
+          "line": 1
+        },
+        "start": {
+          "character": 4,
+          "line": 1
+        }
+      }
+    }
+  },
+  {
+    "detail": "startswith(prefix:string)",
+    "documentation": "Builtin: startswith",
+    "filterText": "ls.startswith",
+    "insertTextFormat": 2,
+    "kind": 2,
+    "label": "startswith",
+    "textEdit": {
+      "newText": "ls.startswith($1)",
+      "range": {
+        "end": {
+          "character": 7,
+          "line": 1
+        },
+        "start": {
+          "character": 4,
+          "line": 1
+        }
+      }
+    }
+  },
+  {
+    "detail": "endswith(suffix:string)",
+    "documentation": "Builtin: endswith",
+    "filterText": "ls.endswith",
+    "insertTextFormat": 2,
+    "kind": 2,
+    "label": "endswith",
+    "textEdit": {
+      "newText": "ls.endswith($1)",
+      "range": {
+        "end": {
+          "character": 7,
+          "line": 1
+        },
+        "start": {
+          "character": 4,
+          "line": 1
+        }
+      }
+    }
+  },
+  {
+    "detail": "substring(start:int)",
+    "documentation": "Builtin: substring",
+    "filterText": "ls.substring",
+    "insertTextFormat": 2,
+    "kind": 2,
+    "label": "substring",
+    "textEdit": {
+      "newText": "ls.substring($1)",
+      "range": {
+        "end": {
+          "character": 7,
+          "line": 1
+        },
+        "start": {
+          "character": 4,
+          "line": 1
+        }
+      }
+    }
+  },
+  {
+    "detail": "substring(end:int start:int)",
+    "documentation": "Builtin: substring",
+    "filterText": "ls.substring",
+    "insertTextFormat": 2,
+    "kind": 2,
+    "label": "substring",
+    "textEdit": {
+      "newText": "ls.substring($1)",
+      "range": {
+        "end": {
+          "character": 7,
+          "line": 1
+        },
+        "start": {
+          "character": 4,
+          "line": 1
+        }
+      }
+    }
+  },
+  {
+    "detail": "substring(end:int)",
+    "documentation": "Builtin: substring",
+    "filterText": "ls.substring",
+    "insertTextFormat": 2,
+    "kind": 2,
+    "label": "substring",
+    "textEdit": {
+      "newText": "ls.substring($1)",
+      "range": {
+        "end": {
+          "character": 7,
+          "line": 1
+        },
+        "start": {
+          "character": 4,
+          "line": 1
+        }
+      }
+    }
+  }
+]

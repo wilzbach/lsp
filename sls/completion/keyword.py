@@ -75,6 +75,6 @@ class KeywordCompletionSymbol(CompletionItem):
             text_edit=f'{self.keyword} ',
             detail=self.description,
             documentation='TBD',
-            completion_kind=CompletionItemKind.Value,
+            completion_kind=CompletionItemKind.Keyword,
             context=context,
         )

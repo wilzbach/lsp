@@ -2,7 +2,8 @@
   {
     "detail": "Listener",
     "documentation": "TBD",
-    "kind": 12,
+    "insertTextFormat": 1,
+    "kind": 14,
     "label": "when",
     "textEdit": {
       "newText": "when ",

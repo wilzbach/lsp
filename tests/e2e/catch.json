@@ -2,7 +2,8 @@
   {
     "detail": "Exception handling",
     "documentation": "TBD",
-    "kind": 12,
+    "insertTextFormat": 1,
+    "kind": 14,
     "label": "catch",
     "textEdit": {
       "newText": "catch ",
