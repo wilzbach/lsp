@@ -1,4 +1,5 @@
 import json
+from os import environ
 
 import click
 
@@ -45,7 +46,7 @@ class Cli:
     @main.command()
     @click.option('--host', default='0.0.0.0',
                   help='Address to bind to')
-    @click.option('--port', default=2042,
+    @click.option('--port', default=environ.get('PORT', 2042),
                   help='Port to bind to')
     @click.pass_obj
     def websocket(app, host, port):
