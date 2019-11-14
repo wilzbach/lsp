@@ -54,6 +54,7 @@ class App:
 
         app = SLSApplication(self)
         app.listen(port)
+        log.info(f'Serving SLS/Websocket on ({addr}), {port})')
         tornado.ioloop.IOLoop.current().start()
 
     def start_stdio_server(self):
