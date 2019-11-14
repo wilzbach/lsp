@@ -34,6 +34,6 @@ def sls_websocket(sls_app):
 
 
 class SLSApplication(tornado.web.Application):
-    def __init__(self, sls_app):
+    def __init__(self, sls_app, **kwargs):
         handlers = [(r'/', sls_websocket(sls_app))]
-        super(SLSApplication, self).__init__(handlers)
+        super(SLSApplication, self).__init__(handlers, **kwargs)
