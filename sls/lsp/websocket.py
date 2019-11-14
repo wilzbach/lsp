@@ -28,7 +28,7 @@ def sls_websocket(sls_app):
             self.write_message(json.dumps(obj))
 
         def on_close(self):
-            log.warn('WebSocket closed')
+            log.warning('WebSocket closed')
 
     return SLSWebSocketHandler
 

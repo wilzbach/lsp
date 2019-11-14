@@ -42,3 +42,13 @@ def test_open(ws):
         '{"resolveProvider": false, "triggerCharacters": ["."]}, '
         '"hoverProvider": true, "documentFormattingProvider": true, '
         '"textDocumentSync": {"openClose": true, "change": 1}}}}')
+
+
+def test_check_origin(ws):
+    ws.open()
+    assert ws.check_origin('')
+
+
+def test_on_close(ws):
+    ws.open()
+    ws.on_close()
