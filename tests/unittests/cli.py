@@ -22,7 +22,8 @@ def echo(patch):
 @fixture
 def app(patch):
     patch.init(App)
-    patch.many(App, ['complete', 'start_tcp_server', 'start_stdio_server'])
+    patch.many(App, ['complete', 'start_tcp_server', 'start_stdio_server',
+                     'start_websocket_server'])
     return App
 
 
@@ -139,6 +140,47 @@ def test_cli_stdio_hub(runner, echo, app):
         assert e.exit_code == 0
         app.__init__.assert_called_with(hub_path='my.hub')
         app.start_stdio_server.assert_called()
+
+
+def test_cli_websocket(runner, echo, app):
+    """
+    Ensures websocket starts a server.
+    """
+    e = runner.invoke(Cli.main, ['websocket'])
+    app.start_websocket_server.assert_called_with(addr='0.0.0.0', port=2042)
+    assert e.exit_code == 0
+
+
+def test_cli_websocket_port(runner, echo, app):
+    """
+    Ensures websocket starts a server.
+    """
+    e = runner.invoke(Cli.main, ['websocket', '--port=123'])
+    app.start_websocket_server.assert_called_with(addr='0.0.0.0', port=123)
+    assert e.exit_code == 0
+
+
+def test_cli_websocket_host(runner, echo, app):
+    """
+    Ensures websocket starts a server.
+    """
+    e = runner.invoke(Cli.main, ['websocket', '--host=foo'])
+    app.start_websocket_server.assert_called_with(addr='foo', port=2042)
+    assert e.exit_code == 0
+
+
+def test_cli_websocket_hub(runner, echo, app):
+    """
+    Ensures websocket starts a server.
+    """
+    with runner.isolated_filesystem():
+        with open('my.hub', 'w') as f:
+            f.write('Hello World!')
+        e = runner.invoke(Cli.main, ['--hub=my.hub', 'websocket'])
+        assert e.exit_code == 0
+        app.__init__.assert_called_with(hub_path='my.hub')
+        app.start_websocket_server.assert_called_with(addr='0.0.0.0',
+                                                      port=2042)
 
 
 def test_cli_complete_missing(patch, runner, echo, app):
