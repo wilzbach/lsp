@@ -46,6 +46,7 @@ requirements = [
     "click-aliases~=1.0",
     "cachetools~=3.1",
     "tornado~=6.0",
+    "sentry_sdk~=0.13",
 ]
 
 
@@ -110,7 +111,7 @@ setup(
     include_package_data=True,
     zip_safe=True,
     install_requires=requirements,
-    python_requires=">=3.6",
+    python_requires=">=3.7",
     entry_points={"console_scripts": ["sls=sls.cli:Cli.main"]},
     extras_require={
         "stylecheck": ["black==19.10b0"],
