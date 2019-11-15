@@ -1,5 +1,7 @@
 FROM            python:3.7-alpine
 
+ENV             SENTRY_DSN https://bcd976c210e8458ab717fdea741c6a5a@sentry.io/1822749
+
 RUN             mkdir /app
 WORKDIR         /app
 COPY            setup.py README.md sls.py /app/

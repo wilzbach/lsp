@@ -5,10 +5,20 @@ import click
 
 from click_aliases import ClickAliasedGroup
 
+import sentry_sdk
+from sentry_sdk.integrations.tornado import TornadoIntegration
+
 
 from .app import App
 from .logging import configure_logging
 from .version import version_ as app_version
+
+
+sentry_sdk.init(
+    environ.get("SENTRY_DSN", None),
+    integrations=[TornadoIntegration()],
+    release=app_version,
+)
 
 
 class Cli:
