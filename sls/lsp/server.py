@@ -18,18 +18,21 @@ class LanguageServer(LSPDispatcher):
     slashes with double underscores, and removing dollar signs.
     """
 
-    def __init__(self, rx, tx, hub):
-        self._jsonrpc_stream_reader = streams.JsonRpcStreamReader(rx)
-        self._jsonrpc_stream_writer = streams.JsonRpcStreamWriter(tx)
-        self.endpoint = endpoint.Endpoint(
-            self,
-            self._jsonrpc_stream_writer.write,
-            max_workers=MAX_WORKERS,
-        )
+    def __init__(self, hub):
         self.hub = hub
 
-    def start(self):
+    def set_endpoint(self, write_command):
+        self.endpoint = endpoint.Endpoint(
+            self,
+            write_command,
+            max_workers=MAX_WORKERS,
+        )
+
+    def start(self, rx, tx):
         """Entry point for the server."""
+        self._jsonrpc_stream_reader = streams.JsonRpcStreamReader(rx)
+        self._jsonrpc_stream_writer = streams.JsonRpcStreamWriter(tx)
+        self.set_endpoint(self._jsonrpc_stream_writer.write)
         self._jsonrpc_stream_reader.listen(self.endpoint.consume)
 
     def build_capabilties(self):

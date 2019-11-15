@@ -43,6 +43,7 @@ requirements = [
     'click~=7.0',
     'click-aliases~=1.0',
     'cachetools~=3.1',
+    'tornado~=6.0',
 ]
 
 

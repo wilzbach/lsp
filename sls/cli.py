@@ -1,4 +1,5 @@
 import json
+from os import environ
 
 import click
 
@@ -40,6 +41,20 @@ class Cli:
         """
         configure_logging(with_stdio=True)
         app.start_tcp_server(addr=host, port=port)
+
+    @staticmethod
+    @main.command()
+    @click.option('--host', default='0.0.0.0',
+                  help='Address to bind to')
+    @click.option('--port', default=environ.get('PORT', 2042),
+                  help='Port to bind to')
+    @click.pass_obj
+    def websocket(app, host, port):
+        """
+        Start SLS via websocket
+        """
+        configure_logging(with_stdio=True)
+        app.start_websocket_server(addr=host, port=port)
 
     @staticmethod
     @main.command()
