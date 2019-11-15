@@ -17,7 +17,7 @@ def read(file_name):
 
 
 name = "sls"
-version = read(path.join("sls", "version.py")).split("'")[1].strip()
+version = read(path.join("sls", "version.py")).split('"')[1].strip()
 description = read("README.md")
 short_description = (
     "SLS is the Storyscript Language Server. It provides "
@@ -112,5 +112,14 @@ setup(
     install_requires=requirements,
     python_requires=">=3.6",
     entry_points={"console_scripts": ["sls=sls.cli:Cli.main"]},
+    extras_require={
+        "stylecheck": ["black==19.10b0"],
+        "pytest": [
+            "pytest==3.6.3",
+            "pytest-cov==2.5.1",
+            "pytest-mock==1.10.0",
+            "pytest-parallel==0.0.9",
+        ],
+    },
     cmdclass={"upload": UploadCommand},
 )
