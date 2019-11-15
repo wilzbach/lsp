@@ -8,31 +8,32 @@ class KeywordCompletion:
     """
     Completion for Storyscript keywords.
     """
+
     def __init__(self):
         self._block_start = [
-            KeywordCompletionSymbol('foreach', 'Loop'),
-            KeywordCompletionSymbol('while', 'Loop'),
-            KeywordCompletionSymbol('when', 'Listener'),
-            KeywordCompletionSymbol('try', 'Exception'),
-            KeywordCompletionSymbol('catch', 'Exception handling'),
-            KeywordCompletionSymbol('if', 'Conditions'),
-            KeywordCompletionSymbol('else', 'Conditions'),
-            KeywordCompletionSymbol('else if', 'Conditions'),
-            KeywordCompletionSymbol('function', 'Function'),
-            KeywordCompletionSymbol('throw', 'Throw'),
+            KeywordCompletionSymbol("foreach", "Loop"),
+            KeywordCompletionSymbol("while", "Loop"),
+            KeywordCompletionSymbol("when", "Listener"),
+            KeywordCompletionSymbol("try", "Exception"),
+            KeywordCompletionSymbol("catch", "Exception handling"),
+            KeywordCompletionSymbol("if", "Conditions"),
+            KeywordCompletionSymbol("else", "Conditions"),
+            KeywordCompletionSymbol("else if", "Conditions"),
+            KeywordCompletionSymbol("function", "Function"),
+            KeywordCompletionSymbol("throw", "Throw"),
         ]
         self._inside_block = [
-            KeywordCompletionSymbol('return', 'Return'),
-            KeywordCompletionSymbol('break', 'Break'),
-            KeywordCompletionSymbol('throw', 'Throw'),
-            KeywordCompletionSymbol('continue', 'Continue'),
+            KeywordCompletionSymbol("return", "Return"),
+            KeywordCompletionSymbol("break", "Break"),
+            KeywordCompletionSymbol("throw", "Throw"),
+            KeywordCompletionSymbol("continue", "Continue"),
         ]
         self._inline = [
-            KeywordCompletionSymbol('to', 'Type conversion'),
-            KeywordCompletionSymbol('as', 'Aliasing'),
-            KeywordCompletionSymbol('and', 'Binary operator'),
-            KeywordCompletionSymbol('or', 'Binary operator'),
-            KeywordCompletionSymbol('not', 'Binary operator'),
+            KeywordCompletionSymbol("to", "Type conversion"),
+            KeywordCompletionSymbol("as", "Aliasing"),
+            KeywordCompletionSymbol("and", "Binary operator"),
+            KeywordCompletionSymbol("or", "Binary operator"),
+            KeywordCompletionSymbol("not", "Binary operator"),
         ]
 
     def complete_with(self, keyword_list, word):
@@ -47,10 +48,10 @@ class KeywordCompletion:
         line = context.line
 
         # first word in a line -> could be a new block
-        if ' ' not in line:
+        if " " not in line:
             return self.complete_with(self._block_start, context.word)
         # first word in a block
-        if ' ' not in line.lstrip():
+        if " " not in line.lstrip():
             return self.complete_with(self._inside_block, context.word)
 
         # fall back to inline keywords
@@ -72,9 +73,9 @@ class KeywordCompletionSymbol(CompletionItem):
         """
         return self.completion_build(
             label=self.keyword,
-            text_edit=f'{self.keyword} ',
+            text_edit=f"{self.keyword} ",
             detail=self.description,
-            documentation='TBD',
+            documentation="TBD",
             completion_kind=CompletionItemKind.Keyword,
             context=context,
         )

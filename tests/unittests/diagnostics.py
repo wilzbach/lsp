@@ -17,12 +17,12 @@ def test_to_error(magic):
     e.error = FakeError()
     d = Diagnostics(endpoint=None)
     assert d.to_error(e) == {
-        'range': {
-            'start': {'line': 0, 'character': 9},
-            'end': {'line': 0, 'character': 10},
+        "range": {
+            "start": {"line": 0, "character": 9},
+            "end": {"line": 0, "character": 10},
         },
-        'message': e.short_message(),
-        'severity': DiagnosticSeverity.Error
+        "message": e.short_message(),
+        "severity": DiagnosticSeverity.Error,
     }
 
 
@@ -33,58 +33,56 @@ def test_to_error_end(magic):
     e.error.end_column = 42
     d = Diagnostics(endpoint=None)
     assert d.to_error(e) == {
-        'range': {
-            'start': {'line': 0, 'character': 9},
-            'end': {'line': 0, 'character': 41},
+        "range": {
+            "start": {"line": 0, "character": 9},
+            "end": {"line": 0, "character": 41},
         },
-        'message': e.short_message(),
-        'severity': DiagnosticSeverity.Error
+        "message": e.short_message(),
+        "severity": DiagnosticSeverity.Error,
     }
 
 
 def test_run_empty(magic, patch):
     endpoint = magic()
-    patch.object(Diagnostics, 'to_error')
-    patch.object(Api, 'loads')
+    patch.object(Diagnostics, "to_error")
+    patch.object(Api, "loads")
     Api.loads.errors.return_value = []
     d = Diagnostics(endpoint=endpoint)
-    doc = Document(uri='.my.uri.', text='a = 0')
+    doc = Document(uri=".my.uri.", text="a = 0")
     d.run(ws=magic(), doc=doc)
-    endpoint.notify.assert_called_with('textDocument/publishDiagnostics', {
-        'uri': doc.uri,
-        'diagnostics': [],
-    })
+    endpoint.notify.assert_called_with(
+        "textDocument/publishDiagnostics", {"uri": doc.uri, "diagnostics": [],}
+    )
 
 
 def test_run_story_error(magic, patch):
     endpoint = magic()
-    se = StoryError(None, '.story.')
+    se = StoryError(None, ".story.")
     patch.init(Story)
-    patch.object(Diagnostics, 'to_error')
-    patch.object(Api, 'loads')
+    patch.object(Diagnostics, "to_error")
+    patch.object(Api, "loads")
     Api.loads().errors.return_value = [se]
     d = Diagnostics(endpoint=endpoint)
-    doc = Document(uri='.my.uri.', text='a = 0')
+    doc = Document(uri=".my.uri.", text="a = 0")
     d.run(ws=magic(), doc=doc)
     d.to_error.assert_called_with(se)
-    endpoint.notify.assert_called_with('textDocument/publishDiagnostics', {
-        'uri': doc.uri,
-        'diagnostics': [Diagnostics.to_error()],
-    })
+    endpoint.notify.assert_called_with(
+        "textDocument/publishDiagnostics",
+        {"uri": doc.uri, "diagnostics": [Diagnostics.to_error()],},
+    )
 
 
 def test_run_story_error_internal(magic, patch):
     endpoint = magic()
     se = StoryError(None, None)
     patch.init(Story)
-    patch.object(Diagnostics, 'to_error')
-    patch.object(Api, 'loads')
+    patch.object(Diagnostics, "to_error")
+    patch.object(Api, "loads")
     Api.loads().errors.return_value = [se]
     d = Diagnostics(endpoint=endpoint)
-    doc = Document(uri='.my.uri.', text='a = 0')
+    doc = Document(uri=".my.uri.", text="a = 0")
     d.run(ws=magic(), doc=doc)
     d.to_error.assert_not_called()
-    endpoint.notify.assert_called_with('textDocument/publishDiagnostics', {
-        'uri': doc.uri,
-        'diagnostics': [],
-    })
+    endpoint.notify.assert_called_with(
+        "textDocument/publishDiagnostics", {"uri": doc.uri, "diagnostics": [],}
+    )

@@ -17,13 +17,12 @@ log = logger(__name__)
 
 
 class App:
-
     def __init__(self, hub=None, hub_path=None):
         self.language_server = LanguageServer
         if isinstance(hub_path, str):
             hub = ServiceWrapper.from_json_file(hub_path)
         self.hub = hub
-        self.ws = Workspace('.root.', hub=hub)
+        self.ws = Workspace(".root.", hub=hub)
 
     def start_tcp_server(self, addr, port):
         """
@@ -32,16 +31,15 @@ class App:
         _self = self
 
         class SLSTCPServer(socketserver.StreamRequestHandler):
-
             def handle(self):
-                log.info(f'Client connection initiated')
+                log.info(f"Client connection initiated")
                 self._ls = _self.language_server(hub=_self.hub)
                 self._ls.start(self.rfile, self.wfile)
 
         socketserver.TCPServer.allow_reuse_address = True
 
         with socketserver.TCPServer((addr, port), SLSTCPServer) as server:
-            log.info(f'Serving SLS/TCP on ({addr}, {port})')
+            log.info(f"Serving SLS/TCP on ({addr}, {port})")
             try:
                 server.serve_forever()
             except KeyboardInterrupt:
@@ -54,7 +52,7 @@ class App:
         """
         app = SLSApplication(self, default_host=addr)
         app.listen(port)
-        log.info(f'Serving SLS/Websocket on ({addr}, {port})')
+        log.info(f"Serving SLS/Websocket on ({addr}, {port})")
         tornado.ioloop.IOLoop.current().start()
 
     def start_stdio_server(self):
@@ -66,7 +64,7 @@ class App:
         ls.start(sys.stdin.buffer, sys.stdout.buffer)
 
     def complete(self, uri, text, line=None, column=None):
-        uri = 'complete:/' + uri
+        uri = "complete:/" + uri
         doc = Document(uri, text=text)
         # jump to the end of the story if no line/colum were set
         if line is None:
@@ -77,6 +75,6 @@ class App:
 
         position = Position(line=line, character=column)
         self.ws.add_document(doc)
-        response = self.ws.complete(uri, position=position)['items']
+        response = self.ws.complete(uri, position=position)["items"]
         self.ws.remove_document(uri)
         return response

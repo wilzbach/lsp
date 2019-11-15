@@ -17,7 +17,7 @@ def test_init(patch):
     """
     patch.init(Workspace)
     app = App()
-    Workspace.__init__.assert_called_with('.root.', hub=None)
+    Workspace.__init__.assert_called_with(".root.", hub=None)
     assert app.hub is None
     assert isinstance(app.ws, Workspace)
 
@@ -27,15 +27,17 @@ def test_init_hub_path(patch):
     Tests that an SLS App with a Hub Path gets properly initialized.
     """
     patch.init(Workspace)
-    patch.object(ServiceWrapper, 'from_json_file',
-                 return_value='ConstServiceHub')
-    hub_path = '.hub.path.'
+    patch.object(
+        ServiceWrapper, "from_json_file", return_value="ConstServiceHub"
+    )
+    hub_path = ".hub.path."
     app = App(hub_path=hub_path)
     ServiceWrapper.from_json_file.assert_called_with(hub_path)
-    Workspace.__init__.assert_called_with('.root.',
-                                          hub=ServiceWrapper.from_json_file())
+    Workspace.__init__.assert_called_with(
+        ".root.", hub=ServiceWrapper.from_json_file()
+    )
     assert isinstance(app.ws, Workspace)
-    assert app.hub == 'ConstServiceHub'
+    assert app.hub == "ConstServiceHub"
 
 
 def test_stdio(patch):
@@ -44,17 +46,19 @@ def test_stdio(patch):
     """
     patch.init(Workspace)
     patch.init(LanguageServer)
-    patch.object(ServiceWrapper, 'from_json_file',
-                 return_value='ConstServiceHub')
-    patch.object(LanguageServer, 'start')
-    app = App(hub_path='.hub.')
+    patch.object(
+        ServiceWrapper, "from_json_file", return_value="ConstServiceHub"
+    )
+    patch.object(LanguageServer, "start")
+    app = App(hub_path=".hub.")
     app.start_stdio_server()
-    LanguageServer.__init__.assert_called_with(hub='ConstServiceHub')
-    LanguageServer.start.assert_called_with(sys.stdin.buffer,
-                                            sys.stdout.buffer)
+    LanguageServer.__init__.assert_called_with(hub="ConstServiceHub")
+    LanguageServer.start.assert_called_with(
+        sys.stdin.buffer, sys.stdout.buffer
+    )
 
 
-@mark.parametrize('keyboard_abort', [False, True])
+@mark.parametrize("keyboard_abort", [False, True])
 def test_tcp(patch, magic, keyboard_abort):
     """
     Tests whether starting a tcp server works.
@@ -63,17 +67,17 @@ def test_tcp(patch, magic, keyboard_abort):
     if keyboard_abort:
         server.serve_forever.side_effect = KeyboardInterrupt()
     did_exit = False
-    class FakeServer:
 
+    class FakeServer:
         def __init__(self, arg_port, cls):
-            assert arg_port == ('.addr.', '.port.')
+            assert arg_port == (".addr.", ".port.")
             self.cls = cls
 
         def __enter__(self):
             LanguageServer.start.assert_not_called()
             tcp_server = self.cls()
-            tcp_server.rfile = 'rfile'
-            tcp_server.wfile = 'wfile'
+            tcp_server.rfile = "rfile"
+            tcp_server.wfile = "wfile"
             tcp_server.handle()
             return server
 
@@ -82,23 +86,24 @@ def test_tcp(patch, magic, keyboard_abort):
             did_exit = True
 
     patch.init(Workspace)
-    patch.object(ServiceWrapper, 'from_json_file',
-                 return_value='ConstServiceHub')
+    patch.object(
+        ServiceWrapper, "from_json_file", return_value="ConstServiceHub"
+    )
 
     patch.init(LanguageServer)
-    patch.object(LanguageServer, 'start')
+    patch.object(LanguageServer, "start")
 
-    patch('socketserver.TCPServer', FakeServer)
+    patch("socketserver.TCPServer", FakeServer)
     patch.init(StreamRequestHandler)
 
-    app = App(hub_path='.hub.')
-    app.start_tcp_server(addr='.addr.', port='.port.')
+    app = App(hub_path=".hub.")
+    app.start_tcp_server(addr=".addr.", port=".port.")
     assert FakeServer.allow_reuse_address
 
     server.serve_forever.assert_called()
     server.server_close.assert_called()
-    LanguageServer.__init__.assert_called_with(hub='ConstServiceHub')
-    LanguageServer.start.assert_called_with('rfile', 'wfile')
+    LanguageServer.__init__.assert_called_with(hub="ConstServiceHub")
+    LanguageServer.start.assert_called_with("rfile", "wfile")
     assert did_exit
 
 
@@ -107,17 +112,18 @@ def test_websocket(patch, magic):
     Tests whether starting a tcp server works.
     """
     patch.init(Workspace)
-    patch.object(ServiceWrapper, 'from_json_file',
-                 return_value='ConstServiceHub')
+    patch.object(
+        ServiceWrapper, "from_json_file", return_value="ConstServiceHub"
+    )
 
     patch.init(LanguageServer)
-    patch.object(LanguageServer, 'start')
+    patch.object(LanguageServer, "start")
 
-    patch.object(SLSApplication, 'listen')
-    patch.object(tornado.ioloop.IOLoop, 'current')
+    patch.object(SLSApplication, "listen")
+    patch.object(tornado.ioloop.IOLoop, "current")
 
-    app = App(hub_path='.hub.')
-    app.start_websocket_server(addr='.addr.', port='.port.')
+    app = App(hub_path=".hub.")
+    app.start_websocket_server(addr=".addr.", port=".port.")
 
-    SLSApplication.listen.assert_called_with('.port.')
+    SLSApplication.listen.assert_called_with(".port.")
     tornado.ioloop.IOLoop.current().start.assert_called()

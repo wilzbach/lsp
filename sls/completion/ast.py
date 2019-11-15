@@ -13,28 +13,27 @@ log = logger(__name__)
 
 
 class ASTAnalyzer:
-
     def __init__(self, service_registry, context_cache):
         self.parser = Parser()
         self.service_registry = service_registry
         self.context_cache = context_cache
 
     def complete(self, context):
-        is_space = len(context.line) > 0 and context.line[-1] == ' '
+        is_space = len(context.line) > 0 and context.line[-1] == " "
         log.debug(f"line: '{context.line}'")
         line = context.line
         if len(line.strip()) == 0:
             # start of a new line
             yield from self.complete_name()
             return
-        if ':' in line:
+        if ":" in line:
             return
-        if '.' in context.word:
+        if "." in context.word:
             return
         try:
-            if '=' in line:
+            if "=" in line:
                 # try to convert assignments to expressions for now
-                assignment = line.split('=')[-1]
+                assignment = line.split("=")[-1]
                 if len(assignment.strip()) > 0:
                     line = assignment
             ast = self.parser.parse(line, allow_single_quotes=False)
@@ -45,13 +44,13 @@ class ASTAnalyzer:
             log.error(e)
             pass
         except UnexpectedToken as e:
-            if 'NAME' in e.expected:
+            if "NAME" in e.expected:
                 yield from self.complete_name()
                 return
             log.error(e)
 
     def complete_name(self):
-        yield from self.get_services('')
+        yield from self.get_services("")
 
     def try_ast(self, ast, word, is_space):
         if ast.block is not None:
@@ -60,8 +59,10 @@ class ASTAnalyzer:
             ast = ast.rules
         if ast.service_block is not None:
             ast = ast.service_block.service
-            if ast.service_fragment and \
-                    ast.service_fragment.command is not None:
+            if (
+                ast.service_fragment
+                and ast.service_fragment.command is not None
+            ):
                 service = ast.path.child(0).value
                 if is_space:
                     # argument

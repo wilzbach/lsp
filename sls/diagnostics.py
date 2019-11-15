@@ -6,10 +6,11 @@ from .spec import DiagnosticSeverity
 log = logger(__name__)
 
 
-class Diagnostics():
+class Diagnostics:
     """
     Run diagnostics on a Storyscript file
     """
+
     def __init__(self, endpoint):
         self.endpoint = endpoint
 
@@ -19,16 +20,19 @@ class Diagnostics():
         """
         Run diagnostics on a document.
         """
-        log.info('Diagnostics for: %s', doc.uri)
+        log.info("Diagnostics for: %s", doc.uri)
         errors = []
         compilation = Api.loads(doc.text())
-        errors = [self.to_error(e) for e in compilation.errors()
-                  if not self.is_internal(e)]
+        errors = [
+            self.to_error(e)
+            for e in compilation.errors()
+            if not self.is_internal(e)
+        ]
 
-        self.endpoint.notify('textDocument/publishDiagnostics', {
-            'uri': doc.uri,
-            'diagnostics': errors
-        })
+        self.endpoint.notify(
+            "textDocument/publishDiagnostics",
+            {"uri": doc.uri, "diagnostics": errors},
+        )
 
     def is_internal(self, e):
         if e.story is None:
@@ -43,14 +47,14 @@ class Diagnostics():
         line = max(0, int(e.int_line()) - 1)
         start = max(0, int(e.error.column) - 1)
         end = start + 1
-        if hasattr(e.error, 'end_column'):
+        if hasattr(e.error, "end_column"):
             end = max(0, int(e.error.end_column) - 1)
         return {
             # The range at which the message applies.
-            'range': {
-                'start': {'line': line, 'character': start},
-                'end': {'line': line, 'character': end},
+            "range": {
+                "start": {"line": line, "character": start},
+                "end": {"line": line, "character": end},
             },
-            'message': e.short_message(),
-            'severity': DiagnosticSeverity.Error
+            "message": e.short_message(),
+            "severity": DiagnosticSeverity.Error,
         }

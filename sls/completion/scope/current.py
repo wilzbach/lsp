@@ -11,7 +11,7 @@ from storyscript.parser import Tree
 log = logger(__name__)
 
 # name of the dummy variable that gets inserted by SLS
-CACHE_DUMMY_VAR = '_sls_dummy_var'
+CACHE_DUMMY_VAR = "_sls_dummy_var"
 
 
 def scope_finder(tree, data):
@@ -35,10 +35,11 @@ def scope_finder(tree, data):
     return tree.scope
 
 
-class CurrentScopeCache():
+class CurrentScopeCache:
     """
     Cache for the current scope
     """
+
     def __init__(self, global_):
         self.global_ = global_
         self.scope_cache = LRUCache(100)
@@ -55,19 +56,20 @@ class CurrentScopeCache():
         if len(current_block) == 0:
             return Scope()
 
-        text = ''
+        text = ""
         for block in context.lines_until_current_block():
-            text += '\n'.join(block)
+            text += "\n".join(block)
 
-        current_block_text = '\n'.join(current_block[:-1])
+        current_block_text = "\n".join(current_block[:-1])
         key = text + current_block_text
 
         if key in self.scope_cache:
             return self.scope_cache[key]
         else:
             scope = Scope()
-            compiled_scope = self._build_current_scope(current_block_text,
-                                                       current_block)
+            compiled_scope = self._build_current_scope(
+                current_block_text, current_block
+            )
             if compiled_scope is not None:
                 for symbol in compiled_scope.symbols():
                     if symbol.name() != CACHE_DUMMY_VAR:
@@ -77,15 +79,15 @@ class CurrentScopeCache():
 
     def _build_current_scope(self, text, block):
         # replace current line with a dummy line
-        ws = ' ' * (len(block[-1]) - len(block[-1].lstrip()))
-        text += f'\n{ws}{CACHE_DUMMY_VAR} = 0'
+        ws = " " * (len(block[-1]) - len(block[-1].lstrip()))
+        text += f"\n{ws}{CACHE_DUMMY_VAR} = 0"
         scope = self.global_.global_scope.copy()
-        output = loads(text, backend='semantic', scope=scope)
+        output = loads(text, backend="semantic", scope=scope)
         if output.success():
             tree = output.result().output()
             return scope_finder(tree, CACHE_DUMMY_VAR)
         else:
-            log.debug('Current scope build failure: %s', output.errors())
+            log.debug("Current scope build failure: %s", output.errors())
 
     def complete(self, word):
         """

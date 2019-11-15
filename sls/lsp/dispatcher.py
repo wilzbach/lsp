@@ -2,7 +2,7 @@ import functools
 import re
 
 
-class LSPDispatcher():
+class LSPDispatcher:
     """
     Dispatches incoming JSON RPCS requests to itself.
     Method names are computed by converting camel case to snake case,
@@ -11,8 +11,8 @@ class LSPDispatcher():
     """
 
     def __getitem__(self, item):
-        method = item.replace('$', '').replace('/', '__')
-        method_name = f'rpc_{to_snake_case(method)}'
+        method = item.replace("$", "").replace("/", "__")
+        method_name = f"rpc_{to_snake_case(method)}"
         if hasattr(self, method_name):
             method = getattr(self, method_name)
 
@@ -26,13 +26,13 @@ class LSPDispatcher():
         raise KeyError()
 
 
-first_cap_re = re.compile('(.)([A-Z][a-z]+)')
-all_cap_re = re.compile('([a-z0-9])([A-Z])')
+first_cap_re = re.compile("(.)([A-Z][a-z]+)")
+all_cap_re = re.compile("([a-z0-9])([A-Z])")
 
 
 def to_snake_case(name):
     """
     Converts camel case method names to snake_case
     """
-    s1 = re.sub(first_cap_re, r'\1_\2', name)
-    return re.sub(all_cap_re, r'\1_\2', s1).lower()
+    s1 = re.sub(first_cap_re, r"\1_\2", name)
+    return re.sub(all_cap_re, r"\1_\2", s1).lower()

@@ -12,8 +12,8 @@ class Event(CompletionItem):
     def to_completion(self, context):
         return self.completion_build(
             label=self.event.name(),
-            detail=f'Event: {self.event.help()}',
-            documentation=f'Event doc: {self.event.help()}',
+            detail=f"Event: {self.event.help()}",
+            documentation=f"Event doc: {self.event.help()}",
             completion_kind=CompletionItemKind.Unit,
             context=context,
         )

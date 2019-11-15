@@ -15,8 +15,10 @@ def patch_init(mocker):
     """
     Makes patching a class' constructor slightly easier
     """
+
     def patch_init(item):
-        mocker.patch.object(item, '__init__', return_value=None)
+        mocker.patch.object(item, "__init__", return_value=None)
+
     return patch_init
 
 
@@ -25,9 +27,11 @@ def patch_many(mocker):
     """
     Makes patching many attributes of the same object simpler
     """
+
     def patch_many(item, attributes):
         for attribute in attributes:
             mocker.patch.object(item, attribute)
+
     return patch_many
 
 

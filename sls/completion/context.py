@@ -4,10 +4,10 @@ from sls.logging import logger
 
 log = logger(__name__)
 
-ContextBlock = namedtuple('ContextBlock', ['start', 'end'])
+ContextBlock = namedtuple("ContextBlock", ["start", "end"])
 
 
-class CompletionContext():
+class CompletionContext:
     """
     Holds the reference to all information known about the request.
     """
@@ -31,7 +31,7 @@ class CompletionContext():
             line = self.doc.line(i)
             empty_line = len(line) == 0
 
-            if not empty_line and line[0] != ' ':
+            if not empty_line and line[0] != " ":
                 end = i
                 if skip_empty > 0:
                     end -= skip_empty

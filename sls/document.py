@@ -20,14 +20,14 @@ class Document:
 
     @classmethod
     def from_object(cls, text_document):
-        doc = cls(text_document['uri'], version=text_document['version'])
-        if 'text' in text_document:
-            doc.update(text_document['text'])
+        doc = cls(text_document["uri"], version=text_document["version"])
+        if "text" in text_document:
+            doc.update(text_document["text"])
         return doc
 
     @classmethod
     def from_file(cls, uri):
-        log.debug(f'ws.doc.from_file: {uri}')
+        log.debug(f"ws.doc.from_file: {uri}")
         u = urlparse(uri)
         abs_path = path.abspath(path.join(u.netloc, u.path))
         return cls.from_file_path(uri, abs_path)
@@ -43,7 +43,7 @@ class Document:
 
     def update(self, text):
         # TODO: support \r\n and \r too
-        self._lines = text.split('\n')
+        self._lines = text.split("\n")
         self._text = text
 
     def nr_lines(self):
@@ -63,9 +63,9 @@ class Document:
         return line[:cursor]
 
     def word_on_cursor(self, pos):
-        buf = ''
+        buf = ""
         for c in reversed(self.line_to_cursor(pos)):
-            if c == ' ':
+            if c == " ":
                 break
             buf += c
 
@@ -76,15 +76,16 @@ class Range:
     """
     Represents a range in a text document consisting of two positions.
     """
+
     def __init__(self, start, end):
         self.start = start
         self.end = end
 
     def __str__(self):
-        return f'Range(start={self.start},end={self.end})'
+        return f"Range(start={self.start},end={self.end})"
 
     def dump(self):
-        return {'start': self.start.dump(), 'end': self.end.dump()}
+        return {"start": self.start.dump(), "end": self.end.dump()}
 
 
 class Position:
@@ -102,23 +103,22 @@ class Position:
 
     @classmethod
     def from_object(cls, pos):
-        return cls(pos['line'], pos['character'])
+        return cls(pos["line"], pos["character"])
 
     def __str__(self):
-        return f'Pos(l={self.line},c={self.char})'
+        return f"Pos(l={self.line},c={self.char})"
 
     def dump(self):
-        return {'line': self.line, 'character': self.char}
+        return {"line": self.line, "character": self.char}
 
 
 class TextEdit:
-
     def __init__(self, range_, new_text):
         self._range = range_
         self._new_text = new_text
 
     def dump(self):
         return {
-            'range': self._range.dump(),
-            'newText': self._new_text,
+            "range": self._range.dump(),
+            "newText": self._new_text,
         }

@@ -1,10 +1,11 @@
 from storyhub.sdk.StoryscriptHub import StoryscriptHub
 
 
-class ServiceHub():
+class ServiceHub:
     """
     Contains a list of all available Story hub services
     """
+
     def __init__(self, hub=None):
         if hub is None:
             self.hub = StoryscriptHub()

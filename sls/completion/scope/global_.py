@@ -6,29 +6,31 @@ from sls.completion.scope.items import CompletionFunction
 from sls.logging import logger
 
 from storyscript import loads
-from storyscript.compiler.semantics.functions.FunctionTable import \
-    FunctionTable
+from storyscript.compiler.semantics.functions.FunctionTable import (
+    FunctionTable,
+)
 from storyscript.compiler.semantics.functions.HubMutations import hub
 from storyscript.compiler.semantics.symbols.Scope import Scope
 
 
 log = logger(__name__)
 
-CacheOutput = namedtuple('CacheOutput', ['function_table', 'root_scope'])
+CacheOutput = namedtuple("CacheOutput", ["function_table", "root_scope"])
 
 
 def cache_compile(text):
     """
     Compile text and return CacheOutput on success.
     """
-    output = loads(text, backend='semantic')
+    output = loads(text, backend="semantic")
     if output.success():
         module = output.result().module()
-        return CacheOutput(function_table=module.function_table,
-                           root_scope=module.root_scope)
+        return CacheOutput(
+            function_table=module.function_table, root_scope=module.root_scope
+        )
 
 
-class GlobalScopeCache():
+class GlobalScopeCache:
     """
     Cache for other global blocks which caches global context like
         - FunctionTable
@@ -52,7 +54,7 @@ class GlobalScopeCache():
         """
         for block in context.other_blocks():
             text = context.doc.lines(block.start, block.end)
-            story_text = '\n'.join(text)
+            story_text = "\n".join(text)
             if story_text in self.block_cache:
                 result = self.block_cache[story_text]
             else:

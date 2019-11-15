@@ -6,7 +6,7 @@ from storyscript.compiler.semantics.symbols.Scope import Scope
 
 
 def test_error(magic):
-    doc = Document(uri='.text.', text='a = $\n  b = \n')
+    doc = Document(uri=".text.", text="a = $\n  b = \n")
     pos = Position(1, 4)
     context = CompletionContext(ws=magic(), doc=doc, pos=pos)
     global_ = magic()
@@ -17,7 +17,7 @@ def test_error(magic):
 
 
 def test_caching(magic):
-    doc = Document(uri='.text.', text='a = $')
+    doc = Document(uri=".text.", text="a = $")
     pos = Position(0, 0)
     context = CompletionContext(ws=magic(), doc=doc, pos=pos)
     global_ = magic()
@@ -25,9 +25,9 @@ def test_caching(magic):
     current = CurrentScopeCache(global_=global_)
     current.update(context)
     symbols = [s.name() for s in current.current_scope.symbols()]
-    assert symbols == ['app']
+    assert symbols == ["app"]
 
     # test caching
     current.update(context)
     symbols = [s.name() for s in current.current_scope.symbols()]
-    assert symbols == ['app']
+    assert symbols == ["app"]

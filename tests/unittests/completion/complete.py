@@ -5,8 +5,8 @@ from sls.document import Document
 
 def test_complete(magic, patch):
     patch.init(Document)
-    patch.many(Document, ['line_to_cursor', 'word_on_cursor'])
-    patch.many(CompletionContext, ['_blocks'])
+    patch.many(Document, ["line_to_cursor", "word_on_cursor"])
+    patch.many(CompletionContext, ["_blocks"])
     cache = magic()
     c = Completion(plugins=[], context_cache=cache)
     doc = Document()
@@ -15,15 +15,15 @@ def test_complete(magic, patch):
     result = c.complete(ws, doc, pos)
     assert isinstance(cache.update.call_args[0][0], CompletionContext)
     assert result == {
-        'isIncomplete': False,
-        'items': [],
+        "isIncomplete": False,
+        "items": [],
     }
 
 
 def test_complete_plugin(magic, patch):
     patch.init(Document)
-    patch.many(Document, ['line_to_cursor', 'word_on_cursor'])
-    patch.many(CompletionContext, ['_blocks'])
+    patch.many(Document, ["line_to_cursor", "word_on_cursor"])
+    patch.many(CompletionContext, ["_blocks"])
     my_plugin = magic()
     i1 = magic()
     i2 = magic()
@@ -36,6 +36,6 @@ def test_complete_plugin(magic, patch):
     result = c.complete(ws, doc, pos)
     assert isinstance(my_plugin.complete.call_args[0][0], CompletionContext)
     assert result == {
-        'isIncomplete': False,
-        'items': [i1.to_completion(), i2.to_completion()],
+        "isIncomplete": False,
+        "items": [i1.to_completion(), i2.to_completion()],
     }

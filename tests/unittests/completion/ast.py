@@ -6,9 +6,9 @@ from storyscript.parser import Parser
 def test_ast(magic, patch):
     registry = magic()
     context = magic()
-    patch.object(Parser, 'parse')
-    patch.object(ASTAnalyzer, 'try_ast')
-    context.line = 'foo'
+    patch.object(Parser, "parse")
+    patch.object(ASTAnalyzer, "try_ast")
+    context.line = "foo"
 
     ast = ASTAnalyzer(service_registry=registry, context_cache=None)
     result = [*ast.complete(context)]

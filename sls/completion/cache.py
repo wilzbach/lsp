@@ -6,7 +6,7 @@ from sls.logging import logger
 log = logger(__name__)
 
 
-class ContextCache():
+class ContextCache:
     """
     Cache for other global blocks which caches global context like
         - FunctionTable

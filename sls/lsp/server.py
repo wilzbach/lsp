@@ -23,9 +23,7 @@ class LanguageServer(LSPDispatcher):
 
     def set_endpoint(self, write_command):
         self.endpoint = endpoint.Endpoint(
-            self,
-            write_command,
-            max_workers=MAX_WORKERS,
+            self, write_command, max_workers=MAX_WORKERS,
         )
 
     def start(self, rx, tx):
@@ -38,62 +36,75 @@ class LanguageServer(LSPDispatcher):
     def build_capabilties(self):
         obj = {}
         # TODO: add more capabilities here
-        obj['completionProvider'] = {
+        obj["completionProvider"] = {
             # The server provides support to resolve additional information
             # for a completion item.
-            'resolveProvider': False,
+            "resolveProvider": False,
             # Characters that trigger completion automatically.
-            'triggerCharacters': ['.']
+            "triggerCharacters": ["."],
         }
-        obj['hoverProvider'] = True
-        obj['documentFormattingProvider'] = True
-        obj['textDocumentSync'] = {
+        obj["hoverProvider"] = True
+        obj["documentFormattingProvider"] = True
+        obj["textDocumentSync"] = {
             # Open and close notifications are sent to the server
-            'openClose': True,
+            "openClose": True,
             # Change notifications are sent to the server
-            'change': TextDocumentSyncKind.Full,
+            "change": TextDocumentSyncKind.Full,
         }
         return obj
 
-    def rpc_initialize(self, process_id=None, root_uri=None, root_path=None,
-                       init_options=None, **_kwargs):
-        log.debug(f'Initialized with pid={process_id} root_uri={root_uri} '
-                  f'root_path={root_path} options={init_options}')
-        self.workspace = Workspace(root_uri, endpoint=self.endpoint,
-                                   hub=self.hub)
+    def rpc_initialize(
+        self,
+        process_id=None,
+        root_uri=None,
+        root_path=None,
+        init_options=None,
+        **_kwargs,
+    ):
+        log.debug(
+            f"Initialized with pid={process_id} root_uri={root_uri} "
+            f"root_path={root_path} options={init_options}"
+        )
+        self.workspace = Workspace(
+            root_uri, endpoint=self.endpoint, hub=self.hub
+        )
         # TODO: load user config here
-        return {
-            'capabilities': self.build_capabilties()
-        }
+        return {"capabilities": self.build_capabilties()}
 
     def rpc_initialized(self, **_kwargs):
         pass
 
-    def rpc_text_document__completion(self, text_document=None,
-                                      position=None, **_kwargs):
-        return self.workspace.complete(text_document['uri'],
-                                       Position.from_object(position))
+    def rpc_text_document__completion(
+        self, text_document=None, position=None, **_kwargs
+    ):
+        return self.workspace.complete(
+            text_document["uri"], Position.from_object(position)
+        )
 
-    def rpc_text_document__hover(self, text_document=None,
-                                 position=None, **_kwargs):
-        return self.workspace.hover(text_document['uri'],
-                                    Position.from_object(position))
+    def rpc_text_document__hover(
+        self, text_document=None, position=None, **_kwargs
+    ):
+        return self.workspace.hover(
+            text_document["uri"], Position.from_object(position)
+        )
 
-    def rpc_text_document__formatting(self, text_document=None,
-                                      _options=None, **_kwargs):
-        return self.workspace.format(text_document['uri'])
+    def rpc_text_document__formatting(
+        self, text_document=None, _options=None, **_kwargs
+    ):
+        return self.workspace.format(text_document["uri"])
 
     def rpc_text_document__did_open(self, text_document=None, **_kwargs):
         self.workspace.add_document(Document.from_object(text_document))
         # TODO: run initial diagnostics here
 
     def rpc_text_document__did_close(self, text_document=None, **_kwargs):
-        self.workspace.remove_document(text_document['uri'])
+        self.workspace.remove_document(text_document["uri"])
 
-    def rpc_text_document__did_change(self, content_changes=None,
-                                      text_document=None, **_kwargs):
+    def rpc_text_document__did_change(
+        self, content_changes=None, text_document=None, **_kwargs
+    ):
         # TODO: use incremental changes
-        self.workspace.update_document(text_document['uri'], content_changes)
+        self.workspace.update_document(text_document["uri"], content_changes)
         # TODO: relint the document
 
     def rpc_text_document__did_save(self, text_document=None, **_kwargs):
