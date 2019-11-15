@@ -10,7 +10,7 @@ from .keyword import KeywordCompletion
 log = logger(__name__)
 
 
-class Completion():
+class Completion:
     """
     Builds a completion list
     """
@@ -34,7 +34,7 @@ class Completion():
 
         # Initialize context
         context = CompletionContext(ws=ws, doc=doc, pos=pos)
-        log.info('Word on cursor: %s', context.word)
+        log.info("Word on cursor: %s", context.word)
 
         # Update context caches
         self.context_cache.update(context)
@@ -44,8 +44,8 @@ class Completion():
         return {
             # Indicates that the list it not complete.
             # Further typing should result in recomputing this list.
-            'isIncomplete': False,
-            'items': items,
+            "isIncomplete": False,
+            "items": items,
         }
 
     @classmethod
@@ -57,5 +57,5 @@ class Completion():
                 ASTAnalyzer(service_registry, context_cache),
                 DotCompletion(context_cache),
                 KeywordCompletion(),
-            ]
+            ],
         )

@@ -9,6 +9,7 @@ class TextDocumentSyncKind:
     Defines how the host (editor) should sync document changes
     to the language server.
     """
+
     # Documents should not be synced at all.
     None_ = 0
     # Documents are synced by always sending the full content of the document.
@@ -23,6 +24,7 @@ class CompletionItemKind:
     """
     The kind of a completion entry.
     """
+
     Text = 1
     Method = 2
     Function = 3
@@ -72,8 +74,9 @@ class MarkupKind:
     """
     Markup format kind for content.
     """
-    PlainText = 'plaintext'
-    Markdown = 'markdown'
+
+    PlainText = "plaintext"
+    Markdown = "markdown"
 
 
 class InsertTextFormat:
@@ -81,5 +84,6 @@ class InsertTextFormat:
     Defines whether the insert text in a completion item should be interpreted
     as plain text or a snippet.
     """
+
     PlainText = 1
     Snippet = 2

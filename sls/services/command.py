@@ -12,8 +12,8 @@ class Command(CompletionItem):
     def to_completion(self, context):
         return self.completion_build(
             label=self.command.name(),
-            detail=f'Command: {self.command.help()}',
-            text_edit=f'{self.command.name()} ',
+            detail=f"Command: {self.command.help()}",
+            text_edit=f"{self.command.name()} ",
             documentation=self.command.help(),
             completion_kind=CompletionItemKind.Unit,
             context=context,

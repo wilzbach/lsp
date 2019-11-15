@@ -22,18 +22,18 @@ def sls_websocket(sls_app):
             try:
                 self._ls.endpoint.consume(json.loads(message))
             except ValueError:
-                log.exception('Failed to parse JSON message %s', message)
+                log.exception("Failed to parse JSON message %s", message)
 
         def write_object(self, obj):
             self.write_message(json.dumps(obj))
 
         def on_close(self):
-            log.warning('WebSocket closed')
+            log.warning("WebSocket closed")
 
     return SLSWebSocketHandler
 
 
 class SLSApplication(tornado.web.Application):
     def __init__(self, sls_app, **kwargs):
-        handlers = [(r'/', sls_websocket(sls_app))]
+        handlers = [(r"/", sls_websocket(sls_app))]
         super(SLSApplication, self).__init__(handlers, **kwargs)

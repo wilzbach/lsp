@@ -12,11 +12,14 @@ from .version import version_ as app_version
 
 
 class Cli:
-
     @click.group(invoke_without_command=True, cls=ClickAliasedGroup)
     @click.pass_context
-    @click.option('--hub', default=None, type=click.Path(exists=True),
-                  help='Fix the hub service to a JSON file')
+    @click.option(
+        "--hub",
+        default=None,
+        type=click.Path(exists=True),
+        help="Fix the hub service to a JSON file",
+    )
     def main(context, hub):  # noqa N805
         """
         Learn more at https://github.com/storyscript/sls
@@ -30,10 +33,8 @@ class Cli:
 
     @staticmethod
     @main.command()
-    @click.option('--host', default='127.0.0.1',
-                  help='Address to bind to')
-    @click.option('--port', default=2042,
-                  help='Port to bind to')
+    @click.option("--host", default="127.0.0.1", help="Address to bind to")
+    @click.option("--port", default=2042, help="Port to bind to")
     @click.pass_obj
     def tcp(app, host, port):
         """
@@ -44,10 +45,10 @@ class Cli:
 
     @staticmethod
     @main.command()
-    @click.option('--host', default='0.0.0.0',
-                  help='Address to bind to')
-    @click.option('--port', default=environ.get('PORT', 2042),
-                  help='Port to bind to')
+    @click.option("--host", default="0.0.0.0", help="Address to bind to")
+    @click.option(
+        "--port", default=environ.get("PORT", 2042), help="Port to bind to"
+    )
     @click.pass_obj
     def websocket(app, host, port):
         """
@@ -67,24 +68,35 @@ class Cli:
         app.start_stdio_server()
 
     @staticmethod
-    @main.command(aliases=['c'])
-    @click.argument('path', type=click.File('r'))
-    @click.option('--line', '-l', default=None, type=int,
-                  help='Line number of the completion request (0-based)')
-    @click.option('--column', '-c', default=None, type=int,
-                  help='Column number of the completion request (0-based)')
+    @main.command(aliases=["c"])
+    @click.argument("path", type=click.File("r"))
+    @click.option(
+        "--line",
+        "-l",
+        default=None,
+        type=int,
+        help="Line number of the completion request (0-based)",
+    )
+    @click.option(
+        "--column",
+        "-c",
+        default=None,
+        type=int,
+        help="Column number of the completion request (0-based)",
+    )
     @click.pass_obj
     def complete(app, path, line, column):
         """
         Provide completion info for stories.
         """
         configure_logging(with_stdio=True)
-        result = app.complete('|completion|', path.read(),
-                              line=line, column=column)
+        result = app.complete(
+            "|completion|", path.read(), line=line, column=column
+        )
         click.echo(json.dumps(result, indent=2, sort_keys=True))
 
     @staticmethod
-    @main.command(aliases=['h'])
+    @main.command(aliases=["h"])
     @click.pass_context
     def help(context):
         """
@@ -93,7 +105,7 @@ class Cli:
         click.echo(context.parent.get_help())
 
     @staticmethod
-    @main.command(aliases=['v'])
+    @main.command(aliases=["v"])
     def version():
         """
         Prints the current version

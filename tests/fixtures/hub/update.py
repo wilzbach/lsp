@@ -9,19 +9,19 @@ from storyhub.sdk.ServiceWrapper import ServiceWrapper
 # Only save a selected subset of services
 # This list should be kept small
 subset = [
-    'slack',
-    'http',
-    'storyscript/crontab',
-    'omg-services/uuid',
+    "slack",
+    "http",
+    "storyscript/crontab",
+    "omg-services/uuid",
 ]
 
 
 def update_hub_fixture():
     fixture_dir = path.dirname(path.realpath(__file__))
-    out_file = path.join(fixture_dir, 'hub.fixed.json')
+    out_file = path.join(fixture_dir, "hub.fixed.json")
 
     ServiceWrapper(subset).as_json_file(out_file)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     update_hub_fixture()
