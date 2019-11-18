@@ -105,4 +105,3 @@ Issues
 
 For problems directly related to the SLS, [add an issue on GitHub](https://github.com/storyscript/sls/issues/new).
 For other issues, [submit a support ticket](mailto:support@storyscript.io).
-
