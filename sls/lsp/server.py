@@ -1,3 +1,5 @@
+import os
+
 from pyls_jsonrpc import endpoint, streams
 
 from .dispatcher import LSPDispatcher
@@ -8,7 +10,10 @@ from ..workspace import Workspace
 
 log = logger(__name__)
 
-MAX_WORKERS = 32
+MAX_WORKERS = min(
+    32, os.cpu_count() + 4
+)  # ThreadPoolExecutor default in Python 3.8
+# https://docs.python.org/3/library/concurrent.futures.html#concurrent.futures.ThreadPoolExecutor
 
 
 class LanguageServer(LSPDispatcher):
@@ -23,7 +28,7 @@ class LanguageServer(LSPDispatcher):
 
     def set_endpoint(self, write_command):
         self.endpoint = endpoint.Endpoint(
-            self, write_command, max_workers=MAX_WORKERS,
+            self, write_command, max_workers=MAX_WORKERS
         )
 
     def start(self, rx, tx):
