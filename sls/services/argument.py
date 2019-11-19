@@ -1,5 +1,7 @@
 from sls.completion.item import CompletionItem, CompletionItemKind
 
+from .types import TypeMappings
+
 
 class Argument(CompletionItem):
     """
@@ -13,10 +15,11 @@ class Argument(CompletionItem):
         """
         Returns a LSP representation.
         """
+        ty = TypeMappings.get_type_string(self.argument.type())
         return self.completion_build(
             label=self.argument.name(),
             text_edit=f"{self.argument.name()}:",
-            detail=f"Arg. {self.argument.type()}",
+            detail=f"Arg. {ty}",
             documentation=self.argument.help(),
             completion_kind=CompletionItemKind.Value,
             context=context,
