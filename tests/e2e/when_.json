@@ -27,9 +27,9 @@
     },
     "insertTextFormat": 1,
     "kind": 2,
-    "label": "slack",
+    "label": "omg-services/slack",
     "textEdit": {
-      "newText": "slack ",
+      "newText": "omg-services/slack ",
       "range": {
         "end": {
           "character": 5,
@@ -73,9 +73,9 @@
     },
     "insertTextFormat": 1,
     "kind": 2,
-    "label": "http",
+    "label": "storyscript/http",
     "textEdit": {
-      "newText": "http ",
+      "newText": "storyscript/http ",
       "range": {
         "end": {
           "character": 5,
@@ -119,9 +119,9 @@
     },
     "insertTextFormat": 1,
     "kind": 2,
-    "label": "crontab",
+    "label": "storyscript/crontab",
     "textEdit": {
-      "newText": "crontab ",
+      "newText": "storyscript/crontab ",
       "range": {
         "end": {
           "character": 5,
@@ -165,9 +165,9 @@
     },
     "insertTextFormat": 1,
     "kind": 2,
-    "label": "uuid",
+    "label": "omg-services/uuid",
     "textEdit": {
-      "newText": "uuid ",
+      "newText": "omg-services/uuid ",
       "range": {
         "end": {
           "character": 5,
