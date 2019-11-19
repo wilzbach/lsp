@@ -4,7 +4,6 @@ from sls.logging import logger
 from sls.services.action import Action
 from sls.services.argument import Argument
 from sls.services.command import Command
-from sls.services.service import Service
 
 from storyscript.parser import Parser
 
@@ -83,7 +82,7 @@ class ASTAnalyzer:
                 return
 
     def get_arguments(self, service_name, command_name):
-        service = self.service_registry.get_service(service_name)
+        service = self.service_registry.get_service_data(service_name)
         if service is None:
             return
 
@@ -100,7 +99,7 @@ class ASTAnalyzer:
                 yield Argument(arg)
 
     def get_commands(self, service_name):
-        service = self.service_registry.get_service(service_name)
+        service = self.service_registry.get_service_data(service_name)
         if service is None:
             return
 
@@ -112,7 +111,5 @@ class ASTAnalyzer:
             yield Action(action)
 
     def get_services(self, word):
-        services = self.service_registry.find_services(word)
         yield from self.context_cache.complete(word)
-        for service in services:
-            yield Service(service)
+        yield from self.service_registry.find_services(word)
