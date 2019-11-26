@@ -1,0 +1,62 @@
+[
+  {
+    "detail": "and",
+    "documentation": "TBD",
+    "insertTextFormat": 1,
+    "kind": 14,
+    "label": "and",
+    "textEdit": {
+      "newText": "and ",
+      "range": {
+        "end": {
+          "character": 15,
+          "line": 0
+        },
+        "start": {
+          "character": 15,
+          "line": 0
+        }
+      }
+    }
+  },
+  {
+    "detail": "or",
+    "documentation": "TBD",
+    "insertTextFormat": 1,
+    "kind": 14,
+    "label": "or",
+    "textEdit": {
+      "newText": "or ",
+      "range": {
+        "end": {
+          "character": 15,
+          "line": 0
+        },
+        "start": {
+          "character": 15,
+          "line": 0
+        }
+      }
+    }
+  },
+  {
+    "detail": "to",
+    "documentation": "TBD",
+    "insertTextFormat": 1,
+    "kind": 14,
+    "label": "to",
+    "textEdit": {
+      "newText": "to ",
+      "range": {
+        "end": {
+          "character": 15,
+          "line": 0
+        },
+        "start": {
+          "character": 15,
+          "line": 0
+        }
+      }
+    }
+  }
+]

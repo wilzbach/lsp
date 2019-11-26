@@ -1,5 +1,89 @@
 [
   {
+    "detail": "append(item:int)",
+    "documentation": "Builtin: append",
+    "filterText": "ls.append",
+    "insertTextFormat": 2,
+    "kind": 2,
+    "label": "append",
+    "textEdit": {
+      "newText": "ls.append($1)",
+      "range": {
+        "end": {
+          "character": 7,
+          "line": 2
+        },
+        "start": {
+          "character": 4,
+          "line": 2
+        }
+      }
+    }
+  },
+  {
+    "detail": "contains(item:int)",
+    "documentation": "Builtin: contains",
+    "filterText": "ls.contains",
+    "insertTextFormat": 2,
+    "kind": 2,
+    "label": "contains",
+    "textEdit": {
+      "newText": "ls.contains($1)",
+      "range": {
+        "end": {
+          "character": 7,
+          "line": 2
+        },
+        "start": {
+          "character": 4,
+          "line": 2
+        }
+      }
+    }
+  },
+  {
+    "detail": "index(of:int)",
+    "documentation": "Builtin: index",
+    "filterText": "ls.index",
+    "insertTextFormat": 2,
+    "kind": 2,
+    "label": "index",
+    "textEdit": {
+      "newText": "ls.index($1)",
+      "range": {
+        "end": {
+          "character": 7,
+          "line": 2
+        },
+        "start": {
+          "character": 4,
+          "line": 2
+        }
+      }
+    }
+  },
+  {
+    "detail": "join(sep:string)",
+    "documentation": "Builtin: join",
+    "filterText": "ls.join",
+    "insertTextFormat": 2,
+    "kind": 2,
+    "label": "join",
+    "textEdit": {
+      "newText": "ls.join($1)",
+      "range": {
+        "end": {
+          "character": 7,
+          "line": 2
+        },
+        "start": {
+          "character": 4,
+          "line": 2
+        }
+      }
+    }
+  },
+  {
     "detail": "length()",
     "documentation": "Builtin: length",
     "filterText": "ls.length",
@@ -21,14 +105,35 @@
     }
   },
   {
-    "detail": "append(item:int)",
-    "documentation": "Builtin: append",
-    "filterText": "ls.append",
+    "detail": "max()",
+    "documentation": "Builtin: max",
+    "filterText": "ls.max",
     "insertTextFormat": 2,
     "kind": 2,
-    "label": "append",
+    "label": "max",
     "textEdit": {
-      "newText": "ls.append($1)",
+      "newText": "ls.max($1)",
+      "range": {
+        "end": {
+          "character": 7,
+          "line": 2
+        },
+        "start": {
+          "character": 4,
+          "line": 2
+        }
+      }
+    }
+  },
+  {
+    "detail": "min()",
+    "documentation": "Builtin: min",
+    "filterText": "ls.min",
+    "insertTextFormat": 2,
+    "kind": 2,
+    "label": "min",
+    "textEdit": {
+      "newText": "ls.min($1)",
       "range": {
         "end": {
           "character": 7,
@@ -84,153 +189,6 @@
     }
   },
   {
-    "detail": "reverse()",
-    "documentation": "Builtin: reverse",
-    "filterText": "ls.reverse",
-    "insertTextFormat": 2,
-    "kind": 2,
-    "label": "reverse",
-    "textEdit": {
-      "newText": "ls.reverse($1)",
-      "range": {
-        "end": {
-          "character": 7,
-          "line": 2
-        },
-        "start": {
-          "character": 4,
-          "line": 2
-        }
-      }
-    }
-  },
-  {
-    "detail": "sort()",
-    "documentation": "Builtin: sort",
-    "filterText": "ls.sort",
-    "insertTextFormat": 2,
-    "kind": 2,
-    "label": "sort",
-    "textEdit": {
-      "newText": "ls.sort($1)",
-      "range": {
-        "end": {
-          "character": 7,
-          "line": 2
-        },
-        "start": {
-          "character": 4,
-          "line": 2
-        }
-      }
-    }
-  },
-  {
-    "detail": "min()",
-    "documentation": "Builtin: min",
-    "filterText": "ls.min",
-    "insertTextFormat": 2,
-    "kind": 2,
-    "label": "min",
-    "textEdit": {
-      "newText": "ls.min($1)",
-      "range": {
-        "end": {
-          "character": 7,
-          "line": 2
-        },
-        "start": {
-          "character": 4,
-          "line": 2
-        }
-      }
-    }
-  },
-  {
-    "detail": "max()",
-    "documentation": "Builtin: max",
-    "filterText": "ls.max",
-    "insertTextFormat": 2,
-    "kind": 2,
-    "label": "max",
-    "textEdit": {
-      "newText": "ls.max($1)",
-      "range": {
-        "end": {
-          "character": 7,
-          "line": 2
-        },
-        "start": {
-          "character": 4,
-          "line": 2
-        }
-      }
-    }
-  },
-  {
-    "detail": "sum()",
-    "documentation": "Builtin: sum",
-    "filterText": "ls.sum",
-    "insertTextFormat": 2,
-    "kind": 2,
-    "label": "sum",
-    "textEdit": {
-      "newText": "ls.sum($1)",
-      "range": {
-        "end": {
-          "character": 7,
-          "line": 2
-        },
-        "start": {
-          "character": 4,
-          "line": 2
-        }
-      }
-    }
-  },
-  {
-    "detail": "contains(item:int)",
-    "documentation": "Builtin: contains",
-    "filterText": "ls.contains",
-    "insertTextFormat": 2,
-    "kind": 2,
-    "label": "contains",
-    "textEdit": {
-      "newText": "ls.contains($1)",
-      "range": {
-        "end": {
-          "character": 7,
-          "line": 2
-        },
-        "start": {
-          "character": 4,
-          "line": 2
-        }
-      }
-    }
-  },
-  {
-    "detail": "unique()",
-    "documentation": "Builtin: unique",
-    "filterText": "ls.unique",
-    "insertTextFormat": 2,
-    "kind": 2,
-    "label": "unique",
-    "textEdit": {
-      "newText": "ls.unique($1)",
-      "range": {
-        "end": {
-          "character": 7,
-          "line": 2
-        },
-        "start": {
-          "character": 4,
-          "line": 2
-        }
-      }
-    }
-  },
-  {
     "detail": "remove(item:int)",
     "documentation": "Builtin: remove",
     "filterText": "ls.remove",
@@ -252,14 +210,14 @@
     }
   },
   {
-    "detail": "index(of:int)",
-    "documentation": "Builtin: index",
-    "filterText": "ls.index",
+    "detail": "replace(by:int item:int)",
+    "documentation": "Builtin: replace",
+    "filterText": "ls.replace",
     "insertTextFormat": 2,
     "kind": 2,
-    "label": "index",
+    "label": "replace",
     "textEdit": {
-      "newText": "ls.index($1)",
+      "newText": "ls.replace($1)",
       "range": {
         "end": {
           "character": 7,
@@ -273,14 +231,14 @@
     }
   },
   {
-    "detail": "replace(by:int item:int)",
-    "documentation": "Builtin: replace",
-    "filterText": "ls.replace",
+    "detail": "reverse()",
+    "documentation": "Builtin: reverse",
+    "filterText": "ls.reverse",
     "insertTextFormat": 2,
     "kind": 2,
-    "label": "replace",
+    "label": "reverse",
     "textEdit": {
-      "newText": "ls.replace($1)",
+      "newText": "ls.reverse($1)",
       "range": {
         "end": {
           "character": 7,
@@ -357,14 +315,56 @@
     }
   },
   {
-    "detail": "join(sep:string)",
-    "documentation": "Builtin: join",
-    "filterText": "ls.join",
+    "detail": "sort()",
+    "documentation": "Builtin: sort",
+    "filterText": "ls.sort",
     "insertTextFormat": 2,
     "kind": 2,
-    "label": "join",
+    "label": "sort",
     "textEdit": {
-      "newText": "ls.join($1)",
+      "newText": "ls.sort($1)",
+      "range": {
+        "end": {
+          "character": 7,
+          "line": 2
+        },
+        "start": {
+          "character": 4,
+          "line": 2
+        }
+      }
+    }
+  },
+  {
+    "detail": "sum()",
+    "documentation": "Builtin: sum",
+    "filterText": "ls.sum",
+    "insertTextFormat": 2,
+    "kind": 2,
+    "label": "sum",
+    "textEdit": {
+      "newText": "ls.sum($1)",
+      "range": {
+        "end": {
+          "character": 7,
+          "line": 2
+        },
+        "start": {
+          "character": 4,
+          "line": 2
+        }
+      }
+    }
+  },
+  {
+    "detail": "unique()",
+    "documentation": "Builtin: unique",
+    "filterText": "ls.unique",
+    "insertTextFormat": 2,
+    "kind": 2,
+    "label": "unique",
+    "textEdit": {
+      "newText": "ls.unique($1)",
       "range": {
         "end": {
           "character": 7,

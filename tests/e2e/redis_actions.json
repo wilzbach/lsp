@@ -1,0 +1,442 @@
+[
+  {
+    "detail": "and",
+    "documentation": "TBD",
+    "insertTextFormat": 1,
+    "kind": 14,
+    "label": "and",
+    "textEdit": {
+      "newText": "and ",
+      "range": {
+        "end": {
+          "character": 6,
+          "line": 0
+        },
+        "start": {
+          "character": 6,
+          "line": 0
+        }
+      }
+    }
+  },
+  {
+    "detail": "Action: Appends 'value' to a 'key'.",
+    "documentation": "Appends 'value' to a 'key'.",
+    "insertTextFormat": 1,
+    "kind": 11,
+    "label": "append",
+    "textEdit": {
+      "newText": "append ",
+      "range": {
+        "end": {
+          "character": 6,
+          "line": 0
+        },
+        "start": {
+          "character": 6,
+          "line": 0
+        }
+      }
+    }
+  },
+  {
+    "detail": "Action: Removes and returns the first element of the list stored at 'key'.",
+    "documentation": "Removes and returns the first element of the list stored at 'key'.\nWhen there are no element in the list, the command will not return\nuntil an element got added.\n",
+    "insertTextFormat": 1,
+    "kind": 11,
+    "label": "blpop",
+    "textEdit": {
+      "newText": "blpop ",
+      "range": {
+        "end": {
+          "character": 6,
+          "line": 0
+        },
+        "start": {
+          "character": 6,
+          "line": 0
+        }
+      }
+    }
+  },
+  {
+    "detail": "Action: Removes and returns the last element of the list stored at 'key'.",
+    "documentation": "Removes and returns the last element of the list stored at 'key'.\nWhen there are no element in the list, the command will not return\nuntil an elements got added.\n",
+    "insertTextFormat": 1,
+    "kind": 11,
+    "label": "brpop",
+    "textEdit": {
+      "newText": "brpop ",
+      "range": {
+        "end": {
+          "character": 6,
+          "line": 0
+        },
+        "start": {
+          "character": 6,
+          "line": 0
+        }
+      }
+    }
+  },
+  {
+    "detail": "Action: Decrements a number stored at 'key'.",
+    "documentation": "Decrements a number stored at 'key'.",
+    "insertTextFormat": 1,
+    "kind": 11,
+    "label": "decrement",
+    "textEdit": {
+      "newText": "decrement ",
+      "range": {
+        "end": {
+          "character": 6,
+          "line": 0
+        },
+        "start": {
+          "character": 6,
+          "line": 0
+        }
+      }
+    }
+  },
+  {
+    "detail": "Action: Removes 'key'.",
+    "documentation": "Removes 'key'.",
+    "insertTextFormat": 1,
+    "kind": 11,
+    "label": "delete",
+    "textEdit": {
+      "newText": "delete ",
+      "range": {
+        "end": {
+          "character": 6,
+          "line": 0
+        },
+        "start": {
+          "character": 6,
+          "line": 0
+        }
+      }
+    }
+  },
+  {
+    "detail": "Action: Set a timeout on a 'key'.",
+    "documentation": "Set a timeout on a 'key'.",
+    "insertTextFormat": 1,
+    "kind": 11,
+    "label": "expire",
+    "textEdit": {
+      "newText": "expire ",
+      "range": {
+        "end": {
+          "character": 6,
+          "line": 0
+        },
+        "start": {
+          "character": 6,
+          "line": 0
+        }
+      }
+    }
+  },
+  {
+    "detail": "Action: Returns the value of 'key'.",
+    "documentation": "Returns the value of 'key'.",
+    "insertTextFormat": 1,
+    "kind": 11,
+    "label": "get",
+    "textEdit": {
+      "newText": "get ",
+      "range": {
+        "end": {
+          "character": 6,
+          "line": 0
+        },
+        "start": {
+          "character": 6,
+          "line": 0
+        }
+      }
+    }
+  },
+  {
+    "detail": "Action: Returns the current value of 'key' and overwrites it with 'value'.",
+    "documentation": "Returns the current value of 'key' and overwrites it with 'value'.",
+    "insertTextFormat": 1,
+    "kind": 11,
+    "label": "getSet",
+    "textEdit": {
+      "newText": "getSet ",
+      "range": {
+        "end": {
+          "character": 6,
+          "line": 0
+        },
+        "start": {
+          "character": 6,
+          "line": 0
+        }
+      }
+    }
+  },
+  {
+    "detail": "Action: Increments a number stored at 'key'.",
+    "documentation": "Increments a number stored at 'key'.",
+    "insertTextFormat": 1,
+    "kind": 11,
+    "label": "increment",
+    "textEdit": {
+      "newText": "increment ",
+      "range": {
+        "end": {
+          "character": 6,
+          "line": 0
+        },
+        "start": {
+          "character": 6,
+          "line": 0
+        }
+      }
+    }
+  },
+  {
+    "detail": "Action: No help available.",
+    "documentation": "No help available.",
+    "insertTextFormat": 1,
+    "kind": 11,
+    "label": "listener",
+    "textEdit": {
+      "newText": "listener ",
+      "range": {
+        "end": {
+          "character": 6,
+          "line": 0
+        },
+        "start": {
+          "character": 6,
+          "line": 0
+        }
+      }
+    }
+  },
+  {
+    "detail": "Action: Removes and returns the first element of the list stored at 'key'.",
+    "documentation": "Removes and returns the first element of the list stored at 'key'.",
+    "insertTextFormat": 1,
+    "kind": 11,
+    "label": "lpop",
+    "textEdit": {
+      "newText": "lpop ",
+      "range": {
+        "end": {
+          "character": 6,
+          "line": 0
+        },
+        "start": {
+          "character": 6,
+          "line": 0
+        }
+      }
+    }
+  },
+  {
+    "detail": "Action: Insert 'value' at the head of list stored at 'key'.",
+    "documentation": "Insert 'value' at the head of list stored at 'key'.",
+    "insertTextFormat": 1,
+    "kind": 11,
+    "label": "lpush",
+    "textEdit": {
+      "newText": "lpush ",
+      "range": {
+        "end": {
+          "character": 6,
+          "line": 0
+        },
+        "start": {
+          "character": 6,
+          "line": 0
+        }
+      }
+    }
+  },
+  {
+    "detail": "Action: Returns the values of multiple 'keys'.",
+    "documentation": "Returns the values of multiple 'keys'.",
+    "insertTextFormat": 1,
+    "kind": 11,
+    "label": "mget",
+    "textEdit": {
+      "newText": "mget ",
+      "range": {
+        "end": {
+          "character": 6,
+          "line": 0
+        },
+        "start": {
+          "character": 6,
+          "line": 0
+        }
+      }
+    }
+  },
+  {
+    "detail": "Action: Sets multiple 'key'/'value' pairs simultaneously.",
+    "documentation": "Sets multiple 'key'/'value' pairs simultaneously.",
+    "insertTextFormat": 1,
+    "kind": 11,
+    "label": "mset",
+    "textEdit": {
+      "newText": "mset ",
+      "range": {
+        "end": {
+          "character": 6,
+          "line": 0
+        },
+        "start": {
+          "character": 6,
+          "line": 0
+        }
+      }
+    }
+  },
+  {
+    "detail": "Action: Sets multiple 'key'/'value' pairs simultaneously.",
+    "documentation": "Sets multiple 'key'/'value' pairs simultaneously.\nOnly non-existing keys will be set.\n",
+    "insertTextFormat": 1,
+    "kind": 11,
+    "label": "msetnx",
+    "textEdit": {
+      "newText": "msetnx ",
+      "range": {
+        "end": {
+          "character": 6,
+          "line": 0
+        },
+        "start": {
+          "character": 6,
+          "line": 0
+        }
+      }
+    }
+  },
+  {
+    "detail": "or",
+    "documentation": "TBD",
+    "insertTextFormat": 1,
+    "kind": 14,
+    "label": "or",
+    "textEdit": {
+      "newText": "or ",
+      "range": {
+        "end": {
+          "character": 6,
+          "line": 0
+        },
+        "start": {
+          "character": 6,
+          "line": 0
+        }
+      }
+    }
+  },
+  {
+    "detail": "Action: Removes and returns the last element of the list stored at 'key'.",
+    "documentation": "Removes and returns the last element of the list stored at 'key'.",
+    "insertTextFormat": 1,
+    "kind": 11,
+    "label": "rpop",
+    "textEdit": {
+      "newText": "rpop ",
+      "range": {
+        "end": {
+          "character": 6,
+          "line": 0
+        },
+        "start": {
+          "character": 6,
+          "line": 0
+        }
+      }
+    }
+  },
+  {
+    "detail": "Action: Insert 'value' at the end of list stored at 'key'.",
+    "documentation": "Insert 'value' at the end of list stored at 'key'.",
+    "insertTextFormat": 1,
+    "kind": 11,
+    "label": "rpush",
+    "textEdit": {
+      "newText": "rpush ",
+      "range": {
+        "end": {
+          "character": 6,
+          "line": 0
+        },
+        "start": {
+          "character": 6,
+          "line": 0
+        }
+      }
+    }
+  },
+  {
+    "detail": "Action: Sets 'key' to hold 'value'.",
+    "documentation": "Sets 'key' to hold 'value'.",
+    "insertTextFormat": 1,
+    "kind": 11,
+    "label": "set",
+    "textEdit": {
+      "newText": "set ",
+      "range": {
+        "end": {
+          "character": 6,
+          "line": 0
+        },
+        "start": {
+          "character": 6,
+          "line": 0
+        }
+      }
+    }
+  },
+  {
+    "detail": "Action: Set a 'key' to 'value' only if the key does not exist yet.",
+    "documentation": "Set a 'key' to 'value' only if the key does not exist yet.",
+    "insertTextFormat": 1,
+    "kind": 11,
+    "label": "setnx",
+    "textEdit": {
+      "newText": "setnx ",
+      "range": {
+        "end": {
+          "character": 6,
+          "line": 0
+        },
+        "start": {
+          "character": 6,
+          "line": 0
+        }
+      }
+    }
+  },
+  {
+    "detail": "to",
+    "documentation": "TBD",
+    "insertTextFormat": 1,
+    "kind": 14,
+    "label": "to",
+    "textEdit": {
+      "newText": "to ",
+      "range": {
+        "end": {
+          "character": 6,
+          "line": 0
+        },
+        "start": {
+          "character": 6,
+          "line": 0
+        }
+      }
+    }
+  }
+]

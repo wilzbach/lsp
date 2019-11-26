@@ -1,10 +1,10 @@
 from sls.logging import logger
+import sls.sentry as sentry
 
 from .ast import ASTAnalyzer
 from .cache import ContextCache
 from .context import CompletionContext
 from .dot import DotCompletion
-from .keyword import KeywordCompletion
 
 
 log = logger(__name__)
@@ -24,7 +24,11 @@ class Completion:
             ret = plugin.complete(context)
             # serialize all items
             for item in ret:
-                yield item.to_completion(context)
+                # check whether serialization is necessary
+                if isinstance(item, dict):
+                    yield item
+                else:
+                    yield item.to_completion(context)
 
     def complete(self, ws, doc, pos):
         """"
@@ -39,7 +43,12 @@ class Completion:
         # Update context caches
         self.context_cache.update(context)
 
-        items = [*self.gather_completion(context)]
+        try:
+            items = self.gather_completion(context)
+            items = sorted(items, key=lambda x: x["label"])
+        except BaseException as e:
+            sentry.handle_exception(e)
+            items = []
 
         return {
             # Indicates that the list it not complete.
@@ -56,6 +65,5 @@ class Completion:
             plugins=[
                 ASTAnalyzer(service_registry, context_cache),
                 DotCompletion(context_cache),
-                KeywordCompletion(),
             ],
         )

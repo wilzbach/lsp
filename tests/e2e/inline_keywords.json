@@ -1,46 +1,6 @@
 [
   {
-    "detail": "Type conversion",
-    "documentation": "TBD",
-    "insertTextFormat": 1,
-    "kind": 14,
-    "label": "to",
-    "textEdit": {
-      "newText": "to ",
-      "range": {
-        "end": {
-          "character": 6,
-          "line": 0
-        },
-        "start": {
-          "character": 6,
-          "line": 0
-        }
-      }
-    }
-  },
-  {
-    "detail": "Aliasing",
-    "documentation": "TBD",
-    "insertTextFormat": 1,
-    "kind": 14,
-    "label": "as",
-    "textEdit": {
-      "newText": "as ",
-      "range": {
-        "end": {
-          "character": 6,
-          "line": 0
-        },
-        "start": {
-          "character": 6,
-          "line": 0
-        }
-      }
-    }
-  },
-  {
-    "detail": "Binary operator",
+    "detail": "and",
     "documentation": "TBD",
     "insertTextFormat": 1,
     "kind": 14,
@@ -60,7 +20,7 @@
     }
   },
   {
-    "detail": "Binary operator",
+    "detail": "or",
     "documentation": "TBD",
     "insertTextFormat": 1,
     "kind": 14,
@@ -80,13 +40,13 @@
     }
   },
   {
-    "detail": "Binary operator",
+    "detail": "to",
     "documentation": "TBD",
     "insertTextFormat": 1,
     "kind": 14,
-    "label": "not",
+    "label": "to",
     "textEdit": {
-      "newText": "not ",
+      "newText": "to ",
       "range": {
         "end": {
           "character": 6,

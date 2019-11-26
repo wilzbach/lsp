@@ -1,47 +1,5 @@
 [
   {
-    "detail": "isOdd()",
-    "documentation": "Builtin: isOdd",
-    "filterText": "b.isOdd",
-    "insertTextFormat": 2,
-    "kind": 2,
-    "label": "isOdd",
-    "textEdit": {
-      "newText": "b.isOdd($1)",
-      "range": {
-        "end": {
-          "character": 6,
-          "line": 2
-        },
-        "start": {
-          "character": 4,
-          "line": 2
-        }
-      }
-    }
-  },
-  {
-    "detail": "isEven()",
-    "documentation": "Builtin: isEven",
-    "filterText": "b.isEven",
-    "insertTextFormat": 2,
-    "kind": 2,
-    "label": "isEven",
-    "textEdit": {
-      "newText": "b.isEven($1)",
-      "range": {
-        "end": {
-          "character": 6,
-          "line": 2
-        },
-        "start": {
-          "character": 4,
-          "line": 2
-        }
-      }
-    }
-  },
-  {
     "detail": "absolute()",
     "documentation": "Builtin: absolute",
     "filterText": "b.absolute",
@@ -50,6 +8,27 @@
     "label": "absolute",
     "textEdit": {
       "newText": "b.absolute($1)",
+      "range": {
+        "end": {
+          "character": 6,
+          "line": 2
+        },
+        "start": {
+          "character": 4,
+          "line": 2
+        }
+      }
+    }
+  },
+  {
+    "detail": "decrement()",
+    "documentation": "Builtin: decrement",
+    "filterText": "b.decrement",
+    "insertTextFormat": 2,
+    "kind": 2,
+    "label": "decrement",
+    "textEdit": {
+      "newText": "b.decrement($1)",
       "range": {
         "end": {
           "character": 6,
@@ -84,14 +63,35 @@
     }
   },
   {
-    "detail": "decrement()",
-    "documentation": "Builtin: decrement",
-    "filterText": "b.decrement",
+    "detail": "isEven()",
+    "documentation": "Builtin: isEven",
+    "filterText": "b.isEven",
     "insertTextFormat": 2,
     "kind": 2,
-    "label": "decrement",
+    "label": "isEven",
     "textEdit": {
-      "newText": "b.decrement($1)",
+      "newText": "b.isEven($1)",
+      "range": {
+        "end": {
+          "character": 6,
+          "line": 2
+        },
+        "start": {
+          "character": 4,
+          "line": 2
+        }
+      }
+    }
+  },
+  {
+    "detail": "isOdd()",
+    "documentation": "Builtin: isOdd",
+    "filterText": "b.isOdd",
+    "insertTextFormat": 2,
+    "kind": 2,
+    "label": "isOdd",
+    "textEdit": {
+      "newText": "b.isOdd($1)",
       "range": {
         "end": {
           "character": 6,

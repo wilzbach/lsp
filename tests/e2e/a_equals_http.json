@@ -1,5 +1,25 @@
 [
   {
+    "detail": "and",
+    "documentation": "TBD",
+    "insertTextFormat": 1,
+    "kind": 14,
+    "label": "and",
+    "textEdit": {
+      "newText": "and ",
+      "range": {
+        "end": {
+          "character": 9,
+          "line": 0
+        },
+        "start": {
+          "character": 9,
+          "line": 0
+        }
+      }
+    }
+  },
+  {
     "detail": "Action: Make a HTTP request to the outside world.",
     "documentation": "Make a HTTP request to the outside world.\nThis command is native to the platform for performance reasons.\n",
     "insertTextFormat": 1,
@@ -20,13 +40,13 @@
     }
   },
   {
-    "detail": "Action: Make http calls and listen for http connections through the Asyncy Gateway",
-    "documentation": "Make http calls and listen for http connections through the Asyncy Gateway\nresulting in serverless http endpoints.\n",
+    "detail": "or",
+    "documentation": "TBD",
     "insertTextFormat": 1,
-    "kind": 11,
-    "label": "help",
+    "kind": 14,
+    "label": "or",
     "textEdit": {
-      "newText": "help ",
+      "newText": "or ",
       "range": {
         "end": {
           "character": 9,
@@ -60,93 +80,13 @@
     }
   },
   {
-    "detail": "Type conversion",
+    "detail": "to",
     "documentation": "TBD",
     "insertTextFormat": 1,
     "kind": 14,
     "label": "to",
     "textEdit": {
       "newText": "to ",
-      "range": {
-        "end": {
-          "character": 9,
-          "line": 0
-        },
-        "start": {
-          "character": 9,
-          "line": 0
-        }
-      }
-    }
-  },
-  {
-    "detail": "Aliasing",
-    "documentation": "TBD",
-    "insertTextFormat": 1,
-    "kind": 14,
-    "label": "as",
-    "textEdit": {
-      "newText": "as ",
-      "range": {
-        "end": {
-          "character": 9,
-          "line": 0
-        },
-        "start": {
-          "character": 9,
-          "line": 0
-        }
-      }
-    }
-  },
-  {
-    "detail": "Binary operator",
-    "documentation": "TBD",
-    "insertTextFormat": 1,
-    "kind": 14,
-    "label": "and",
-    "textEdit": {
-      "newText": "and ",
-      "range": {
-        "end": {
-          "character": 9,
-          "line": 0
-        },
-        "start": {
-          "character": 9,
-          "line": 0
-        }
-      }
-    }
-  },
-  {
-    "detail": "Binary operator",
-    "documentation": "TBD",
-    "insertTextFormat": 1,
-    "kind": 14,
-    "label": "or",
-    "textEdit": {
-      "newText": "or ",
-      "range": {
-        "end": {
-          "character": 9,
-          "line": 0
-        },
-        "start": {
-          "character": 9,
-          "line": 0
-        }
-      }
-    }
-  },
-  {
-    "detail": "Binary operator",
-    "documentation": "TBD",
-    "insertTextFormat": 1,
-    "kind": 14,
-    "label": "not",
-    "textEdit": {
-      "newText": "not ",
       "range": {
         "end": {
           "character": 9,

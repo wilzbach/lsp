@@ -1,0 +1,22 @@
+[
+  {
+    "detail": "returns",
+    "documentation": "TBD",
+    "insertTextFormat": 1,
+    "kind": 14,
+    "label": "returns",
+    "textEdit": {
+      "newText": "returns ",
+      "range": {
+        "end": {
+          "character": 22,
+          "line": 0
+        },
+        "start": {
+          "character": 20,
+          "line": 0
+        }
+      }
+    }
+  }
+]

@@ -1,0 +1,42 @@
+[
+  {
+    "detail": "Action: No help available.",
+    "documentation": "No help available.",
+    "insertTextFormat": 1,
+    "kind": 11,
+    "label": "find",
+    "textEdit": {
+      "newText": "find ",
+      "range": {
+        "end": {
+          "character": 29,
+          "line": 0
+        },
+        "start": {
+          "character": 25,
+          "line": 0
+        }
+      }
+    }
+  },
+  {
+    "detail": "Action: No help available.",
+    "documentation": "No help available.",
+    "insertTextFormat": 1,
+    "kind": 11,
+    "label": "findOne",
+    "textEdit": {
+      "newText": "findOne ",
+      "range": {
+        "end": {
+          "character": 29,
+          "line": 0
+        },
+        "start": {
+          "character": 25,
+          "line": 0
+        }
+      }
+    }
+  }
+]

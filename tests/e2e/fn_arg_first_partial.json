@@ -1,0 +1,42 @@
+[
+  {
+    "detail": "Arg. Symbol('i1', int, wa)",
+    "documentation": "Arg. Symbol('i1', int, wa)",
+    "insertTextFormat": 1,
+    "kind": 11,
+    "label": "i1",
+    "textEdit": {
+      "newText": "i1:",
+      "range": {
+        "end": {
+          "character": 5,
+          "line": 3
+        },
+        "start": {
+          "character": 4,
+          "line": 3
+        }
+      }
+    }
+  },
+  {
+    "detail": "Arg. Symbol('i2', int, wa)",
+    "documentation": "Arg. Symbol('i2', int, wa)",
+    "insertTextFormat": 1,
+    "kind": 11,
+    "label": "i2",
+    "textEdit": {
+      "newText": "i2:",
+      "range": {
+        "end": {
+          "character": 5,
+          "line": 3
+        },
+        "start": {
+          "character": 4,
+          "line": 3
+        }
+      }
+    }
+  }
+]

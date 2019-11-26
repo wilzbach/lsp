@@ -1,5 +1,25 @@
 [
   {
+    "detail": "and",
+    "documentation": "TBD",
+    "insertTextFormat": 1,
+    "kind": 14,
+    "label": "and",
+    "textEdit": {
+      "newText": "and ",
+      "range": {
+        "end": {
+          "character": 6,
+          "line": 0
+        },
+        "start": {
+          "character": 6,
+          "line": 0
+        }
+      }
+    }
+  },
+  {
     "detail": "Action: Start a Slack bot",
     "documentation": "Start a Slack bot",
     "insertTextFormat": 1,
@@ -60,13 +80,13 @@
     }
   },
   {
-    "detail": "Action: Triggered by direct messages to the bot",
-    "documentation": "Triggered by direct messages to the bot",
+    "detail": "or",
+    "documentation": "TBD",
     "insertTextFormat": 1,
-    "kind": 11,
-    "label": "responds",
+    "kind": 14,
+    "label": "or",
     "textEdit": {
-      "newText": "responds ",
+      "newText": "or ",
       "range": {
         "end": {
           "character": 6,
@@ -100,27 +120,7 @@
     }
   },
   {
-    "detail": "Action: No help available.",
-    "documentation": "No help available.",
-    "insertTextFormat": 1,
-    "kind": 11,
-    "label": "users",
-    "textEdit": {
-      "newText": "users ",
-      "range": {
-        "end": {
-          "character": 6,
-          "line": 0
-        },
-        "start": {
-          "character": 6,
-          "line": 0
-        }
-      }
-    }
-  },
-  {
-    "detail": "Type conversion",
+    "detail": "to",
     "documentation": "TBD",
     "insertTextFormat": 1,
     "kind": 14,
@@ -140,73 +140,13 @@
     }
   },
   {
-    "detail": "Aliasing",
-    "documentation": "TBD",
+    "detail": "Action: No help available.",
+    "documentation": "No help available.",
     "insertTextFormat": 1,
-    "kind": 14,
-    "label": "as",
+    "kind": 11,
+    "label": "users",
     "textEdit": {
-      "newText": "as ",
-      "range": {
-        "end": {
-          "character": 6,
-          "line": 0
-        },
-        "start": {
-          "character": 6,
-          "line": 0
-        }
-      }
-    }
-  },
-  {
-    "detail": "Binary operator",
-    "documentation": "TBD",
-    "insertTextFormat": 1,
-    "kind": 14,
-    "label": "and",
-    "textEdit": {
-      "newText": "and ",
-      "range": {
-        "end": {
-          "character": 6,
-          "line": 0
-        },
-        "start": {
-          "character": 6,
-          "line": 0
-        }
-      }
-    }
-  },
-  {
-    "detail": "Binary operator",
-    "documentation": "TBD",
-    "insertTextFormat": 1,
-    "kind": 14,
-    "label": "or",
-    "textEdit": {
-      "newText": "or ",
-      "range": {
-        "end": {
-          "character": 6,
-          "line": 0
-        },
-        "start": {
-          "character": 6,
-          "line": 0
-        }
-      }
-    }
-  },
-  {
-    "detail": "Binary operator",
-    "documentation": "TBD",
-    "insertTextFormat": 1,
-    "kind": 14,
-    "label": "not",
-    "textEdit": {
-      "newText": "not ",
+      "newText": "users ",
       "range": {
         "end": {
           "character": 6,

@@ -31,6 +31,29 @@
                                     "method": "post",
                                     "path": "/unsubscribe"
                                 }
+                            }
+                        },
+                        "responds": {
+                            "arguments": {
+                                "pattern": {
+                                    "help": "A regexp pattern to filter messages",
+                                    "in": "requestBody",
+                                    "type": "string"
+                                }
+                            },
+                            "help": "Triggered by direct messages to the bot",
+                            "http": {
+                                "port": 8000,
+                                "subscribe": {
+                                    "contentType": "application/json",
+                                    "method": "post",
+                                    "path": "/subscribe"
+                                },
+                                "unsubscribe": {
+                                    "contentType": "application/json",
+                                    "method": "post",
+                                    "path": "/unsubscribe"
+                                }
                             },
                             "output": {
                                 "contentType": "application/json",
@@ -125,15 +148,31 @@
                         "type": "map"
                     }
                 },
-                "responds": {
+                "send": {
                     "arguments": {
-                        "pattern": {
-                            "help": "A regexp pattern to filter messages",
+                        "attachments": {
+                            "in": "requestBody",
+                            "type": "list"
+                        },
+                        "channel": {
+                            "help": "What channel to send message in.\nThis can be a \"#channel\" \"@user\" or a channel id.\n",
+                            "in": "requestBody",
+                            "required": true,
+                            "type": "string"
+                        },
+                        "text": {
+                            "help": "Text of the message to send.",
+                            "in": "requestBody",
+                            "required": true,
+                            "type": "string"
+                        },
+                        "token": {
+                            "help": "Authentication token bearing required scopes.\nEnvironment variable BOT_TOKEN used by default.\n",
                             "in": "requestBody",
                             "type": "string"
                         }
                     },
-                    "help": "Triggered by direct messages to the bot",
+                    "help": "Sends a message to a channel.\nhttps://api.slack.com/methods/chat.postMessage\n",
                     "http": {
                         "contentType": "application/json",
                         "method": "post",
@@ -142,29 +181,247 @@
                     },
                     "output": {
                         "contentType": "application/json",
-                        "properties": {
-                            "channel": {
-                                "help": "The channel ID",
-                                "type": "string"
+                        "type": "map"
+                    }
+                },
+                "users": {
+                    "arguments": {
+                        "cursor": {
+                            "help": "Paginate through collections of data by setting the cursor parameter to a next_cursor attribute returned by a previous request's response_metadata. Default value fetches the first \"page\" of the collection. See pagination for more detail.\n",
+                            "in": "requestBody",
+                            "type": "string"
+                        },
+                        "include_locale": {
+                            "help": "Set this to true to receive the locale for users. Defaults to false\n",
+                            "in": "requestBody",
+                            "type": "boolean"
+                        },
+                        "limit": {
+                            "default": 0,
+                            "help": "The maximum number of items to return. Fewer than the requested number of items may be returned, even if the end of the users list hasn't been reached.\n",
+                            "in": "requestBody",
+                            "range": {
+                                "min": 0
                             },
-                            "client_msg_id": {
-                                "help": "The message ID",
-                                "type": "string"
+                            "type": "int"
+                        },
+                        "token": {
+                            "help": "Authentication token bearing required scopes.\nEnvironment variable BOT_TOKEN used by default.\n",
+                            "in": "requestBody",
+                            "type": "string"
+                        }
+                    },
+                    "http": {
+                        "contentType": "application/json",
+                        "method": "post",
+                        "path": "/api/users.list",
+                        "port": 8000
+                    },
+                    "output": {
+                        "contentType": "application/json",
+                        "type": "map"
+                    }
+                }
+            },
+            "environment": {
+                "BOT_TOKEN": {
+                    "help": "The Slack bot token",
+                    "type": "string"
+                }
+            },
+            "health": {
+                "http": {
+                    "path": "/health",
+                    "port": 8000
+                }
+            },
+            "info": {
+                "contact": {
+                    "email": "core@openmicroservices.org",
+                    "name": "Open Microservices",
+                    "url": "https://openmicroservices.org"
+                },
+                "description": "Wrapper for the Slack API",
+                "title": "Slack",
+                "version": "0.2.0"
+            },
+            "lifecycle": {
+                "startup": {
+                    "command": [
+                        "python",
+                        "app/main.py"
+                    ]
+                }
+            },
+            "oms": 1
+        },
+        "readme": "# _Slack_ Open Microservice\n\n> Wrapper for the Slack API\n\n[![Open Microservice Specification Version](https://img.shields.io/badge/Open%20Microservice-1.0-477bf3.svg)](https://openmicroservices.org) [![Open Microservices Spectrum Chat](https://withspectrum.github.io/badge/badge.svg)](https://spectrum.chat/open-microservices) [![Open Microservices Code of Conduct](https://img.shields.io/badge/Contributor%20Covenant-v1.4%20adopted-ff69b4.svg)](https://github.com/oms-services/.github/blob/master/CODE_OF_CONDUCT.md) [![Open Microservices Commitzen](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](http://makeapullrequest.com)\n\n## Introduction\n\nThis project is an example implementation of the [Open Microservice Specification](https://openmicroservices.org), a standard originally created at [Storyscript](https://storyscript.io) for building highly-portable \"microservices\" that expose the events, actions, and APIs inside containerized software.\n\n## Getting Started\n\nThe `oms` command-line interface allows you to interact with Open Microservices. If you're interested in creating an Open Microservice the CLI also helps validate, test, and debug your `oms.yml` implementation!\n\nSee the [oms-cli](https://github.com/microservices/oms) project to learn more!\n\n### Installation\n\n```\nnpm install -g @microservices/oms\n```\n\n## Usage\n\n### Open Microservices CLI Usage\n\nOnce you have the [oms-cli](https://github.com/microservices/oms) installed, you can run any of the following commands from within this project's root directory:\n\n#### Actions\n\n##### send\n\n> Sends a message to a channel.\nhttps://api.slack.com/methods/chat.postMessage\n\n##### Action Arguments\n\n| Argument Name | Type | Required | Default | Description |\n|:------------- |:---- |:-------- |:--------|:----------- |\n| text | `string` | `true` | None | Text of the message to send. |\n| channel | `string` | `true` | None | What channel to send message in. This can be a \"#channel\" \"@user\" or a channel id.  |\n| attachments | `list` | `false` | None | No description provided. |\n| token | `string` | `false` | None | Authentication token bearing required scopes. Environment variable BOT_TOKEN used by default.  |\n| BOT_TOKEN | `string` | `false` | None | The Slack bot token |\n\n``` shell\noms run send \\ \n    -a text='*****' \\ \n    -a channel='*****' \\ \n    -a attachments='*****' \\ \n    -a token='*****' \\ \n    -e BOT_TOKEN=$BOT_TOKEN\n```\n\n##### hears\n\n> Triggered anytime a messages matches the pattern\n##### Action Arguments\n\n| Argument Name | Type | Required | Default | Description |\n|:------------- |:---- |:-------- |:--------|:----------- |\n| pattern | `string` | `false` | None | A regexp pattern to filter messages |\n| channel | `string` | `true` | None | Only listen in a specific channel |\n| BOT_TOKEN | `string` | `false` | None | The Slack bot token |\n\n``` shell\noms subscribe hears \\ \n    -a pattern='*****' \\ \n    -a channel='*****' \\ \n    -e BOT_TOKEN=$BOT_TOKEN\n```\n,##### responds\n\n> Triggered by direct messages to the bot\n##### Action Arguments\n\n| Argument Name | Type | Required | Default | Description |\n|:------------- |:---- |:-------- |:--------|:----------- |\n| pattern | `string` | `false` | None | A regexp pattern to filter messages |\n| BOT_TOKEN | `string` | `false` | None | The Slack bot token |\n\n``` shell\noms subscribe responds \\ \n    -a pattern='*****' \\ \n    -e BOT_TOKEN=$BOT_TOKEN\n```\n\n##### users\n\n> \n##### Action Arguments\n\n| Argument Name | Type | Required | Default | Description |\n|:------------- |:---- |:-------- |:--------|:----------- |\n| token | `string` | `false` | None | Authentication token bearing required scopes. Environment variable BOT_TOKEN used by default.  |\n| include_locale | `boolean` | `false` | None | Set this to true to receive the locale for users. Defaults to false  |\n| limit | `int` | `false` | None | The maximum number of items to return. Fewer than the requested number of items may be returned, even if the end of the users list hasn't been reached.  |\n| cursor | `string` | `false` | None | Paginate through collections of data by setting the cursor parameter to a next_cursor attribute returned by a previous request's response_metadata. Default value fetches the first \"page\" of the collection. See pagination for more detail.  |\n| BOT_TOKEN | `string` | `false` | None | The Slack bot token |\n\n``` shell\noms run users \\ \n    -a token='*****' \\ \n    -a include_locale='*****' \\ \n    -a limit='*****' \\ \n    -a cursor='*****' \\ \n    -e BOT_TOKEN=$BOT_TOKEN\n```\n\n##### channels\n\n> Get a list of channels\n##### Action Arguments\n\n| Argument Name | Type | Required | Default | Description |\n|:------------- |:---- |:-------- |:--------|:----------- |\n| token | `string` | `false` | None | Authentication token bearing required scopes. Environment variable BOT_TOKEN used by default.  |\n| limit | `int` | `false` | None | Limit the number of channels to return. Must be less than 1000. |\n| exclude_archived | `boolean` | `false` | None | Set to true to exclude archived channels from the list |\n| types | `list` | `false` | None | Mix and match channel types: public_channel, private_channel, mpim, im Default is public_channel only.  |\n| BOT_TOKEN | `string` | `false` | None | The Slack bot token |\n\n``` shell\noms run channels \\ \n    -a token='*****' \\ \n    -a limit='*****' \\ \n    -a exclude_archived='*****' \\ \n    -a types='*****' \\ \n    -e BOT_TOKEN=$BOT_TOKEN\n```\n\n##### directChannels\n\n> Lists direct message channels for the calling user.\n##### Action Arguments\n\n| Argument Name | Type | Required | Default | Description |\n|:------------- |:---- |:-------- |:--------|:----------- |\n| token | `string` | `false` | None | Authentication token bearing required scopes. Environment variable BOT_TOKEN used by default.  |\n| limit | `int` | `false` | None | Limit the number of channels to return. Must be less than 1000. |\n| BOT_TOKEN | `string` | `false` | None | The Slack bot token |\n\n``` shell\noms run directChannels \\ \n    -a token='*****' \\ \n    -a limit='*****' \\ \n    -e BOT_TOKEN=$BOT_TOKEN\n```\n\n## Contributing\n\nAll suggestions in how to improve the specification and this guide are very welcome. Feel free share your thoughts in the Issue tracker, or even better, fork the repository to implement your own ideas and submit a pull request.\n\n[![Edit slack on CodeSandbox](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/oms-services/slack)\n\nThis project is guided by [Contributor Covenant](https://github.com/oms-services/.github/blob/master/CODE_OF_CONDUCT.md). Please read out full [Contribution Guidelines](https://github.com/oms-services/.github/blob/master/CONTRIBUTING.md).\n\n## Additional Resources\n\n* [Install the CLI](https://github.com/microservices/oms) - The OMS CLI helps developers create, test, validate, and build microservices.\n* [Example OMS Services](https://github.com/oms-services) - Examples of OMS-compliant services written in a variety of languages.\n* [Example Language Implementations](https://github.com/microservices) - Find tooling & language implementations in Node, Python, Scala, Java, Clojure.\n* [Storyscript Hub](https://hub.storyscript.io) - A public registry of OMS services.\n* [Community Chat](https://spectrum.chat/open-microservices) - Have ideas? Questions? Join us on Spectrum.\n",
+        "service": {
+            "alias": "slack",
+            "description": "Slack bot microservice",
+            "isCertified": true,
+            "name": "slack",
+            "owner": {
+                "username": "oms-services"
+            },
+            "public": true,
+            "topics": [
+                "slack-bot",
+                "slack",
+                "microservice",
+                "oms"
+            ]
+        },
+        "serviceUuid": "f7f099d5-da2c-45eb-b56a-84d1f7756a42",
+        "state": "BETA"
+    },
+    {
+        "configuration": {
+            "actions": {
+                "bot": {
+                    "events": {
+                        "hears": {
+                            "arguments": {
+                                "channel": {
+                                    "help": "Only listen in a specific channel",
+                                    "in": "requestBody",
+                                    "required": true,
+                                    "type": "string"
+                                },
+                                "pattern": {
+                                    "help": "A regexp pattern to filter messages",
+                                    "in": "requestBody",
+                                    "type": "string"
+                                }
                             },
-                            "text": {
-                                "help": "The message text",
-                                "type": "string"
-                            },
-                            "ts": {
-                                "help": "The message timestamp (eg: \"1535474523.000100\")",
-                                "type": "string"
-                            },
-                            "user": {
-                                "help": "The user ID",
-                                "type": "string"
+                            "help": "Triggered anytime a messages matches the pattern",
+                            "http": {
+                                "port": 8000,
+                                "subscribe": {
+                                    "contentType": "application/json",
+                                    "method": "post",
+                                    "path": "/subscribe"
+                                },
+                                "unsubscribe": {
+                                    "contentType": "application/json",
+                                    "method": "post",
+                                    "path": "/unsubscribe"
+                                }
                             }
                         },
-                        "type": "object"
+                        "responds": {
+                            "arguments": {
+                                "pattern": {
+                                    "help": "A regexp pattern to filter messages",
+                                    "in": "requestBody",
+                                    "type": "string"
+                                }
+                            },
+                            "help": "Triggered by direct messages to the bot",
+                            "http": {
+                                "port": 8000,
+                                "subscribe": {
+                                    "contentType": "application/json",
+                                    "method": "post",
+                                    "path": "/subscribe"
+                                },
+                                "unsubscribe": {
+                                    "contentType": "application/json",
+                                    "method": "post",
+                                    "path": "/unsubscribe"
+                                }
+                            },
+                            "output": {
+                                "contentType": "application/json",
+                                "properties": {
+                                    "channel": {
+                                        "help": "The channel ID",
+                                        "type": "string"
+                                    },
+                                    "client_msg_id": {
+                                        "help": "The message ID",
+                                        "type": "string"
+                                    },
+                                    "text": {
+                                        "help": "The message text",
+                                        "type": "string"
+                                    },
+                                    "ts": {
+                                        "help": "The message timestamp (eg: \"1535474523.000100\")",
+                                        "type": "string"
+                                    },
+                                    "user": {
+                                        "help": "The user ID",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    },
+                    "help": "Start a Slack bot"
+                },
+                "channels": {
+                    "arguments": {
+                        "exclude_archived": {
+                            "default": false,
+                            "help": "Set to true to exclude archived channels from the list",
+                            "in": "requestBody",
+                            "type": "boolean"
+                        },
+                        "limit": {
+                            "default": 100,
+                            "help": "Limit the number of channels to return. Must be less than 1000.",
+                            "in": "requestBody",
+                            "type": "int"
+                        },
+                        "token": {
+                            "help": "Authentication token bearing required scopes.\nEnvironment variable BOT_TOKEN used by default.\n",
+                            "in": "requestBody",
+                            "type": "string"
+                        },
+                        "types": {
+                            "help": "Mix and match channel types: public_channel, private_channel, mpim, im\nDefault is public_channel only.\n",
+                            "in": "requestBody",
+                            "type": "list"
+                        }
+                    },
+                    "help": "Get a list of channels",
+                    "http": {
+                        "contentType": "application/json",
+                        "method": "post",
+                        "path": "/api/channels.list",
+                        "port": 8000
+                    },
+                    "output": {
+                        "contentType": "application/json",
+                        "type": "map"
+                    }
+                },
+                "directChannels": {
+                    "arguments": {
+                        "limit": {
+                            "default": 100,
+                            "help": "Limit the number of channels to return. Must be less than 1000.",
+                            "in": "requestBody",
+                            "type": "int"
+                        },
+                        "token": {
+                            "help": "Authentication token bearing required scopes.\nEnvironment variable BOT_TOKEN used by default.\n",
+                            "in": "requestBody",
+                            "type": "string"
+                        }
+                    },
+                    "help": "Lists direct message channels for the calling user.",
+                    "http": {
+                        "contentType": "application/json",
+                        "method": "post",
+                        "path": "/api/im.list",
+                        "port": 8000
+                    },
+                    "output": {
+                        "contentType": "application/json",
+                        "type": "map"
                     }
                 },
                 "send": {
@@ -248,9 +505,20 @@
                     "type": "string"
                 }
             },
+            "health": {
+                "http": {
+                    "path": "/health",
+                    "port": 8000
+                }
+            },
             "info": {
-                "description": "This is a microservice for Slack",
-                "title": "Slack Microservice",
+                "contact": {
+                    "email": "core@openmicroservices.org",
+                    "name": "Open Microservices",
+                    "url": "https://openmicroservices.org"
+                },
+                "description": "Wrapper for the Slack API",
+                "title": "Slack",
                 "version": "0.2.0"
             },
             "lifecycle": {
@@ -261,22 +529,23 @@
                     ]
                 }
             },
-            "omg": 1
+            "oms": 1
         },
-        "readme": "# _Slack_ OMG Microservice\n\n[![Open Microservice Guide](https://img.shields.io/badge/OMG%20Enabled-\ud83d\udc4d-green.svg?)](https://microservice.guide)\n\nThis microservice's goal is to fully utilise the Slack API.\n\n## Direct usage in [Storyscript](https://storyscript.io/):\n\n##### Send\n```coffee\n>>> slack send text:'messageText' channel:'channelName' attachments:'attachmentsList' token:'token'\n```\n##### Responds\n```coffee\n>>> slack responds pattern:'pattern'\n```\n##### Users\n```coffee\n>>> slack users token:'token' limit:'limit' cursor:'cursor'\n```\n##### Channels\n```coffee\n>>> slack channels token:'token' limit:'limit' types:'listOfTypes'\n```\n##### Direct Channels\n```coffee\n>>> slack directChannels token:'token' limit:'limit'\n```\n\nCurious to [learn more](https://docs.storyscript.io/)?\n\n\u2728\ud83c\udf70\u2728\n\n## Usage with [OMG CLI](https://www.npmjs.com/package/omg)\n\n##### Send\n```shell\n$ omg run send -a text=<MESSAGE_TEXT> -a channel=<ID/NAME> -a attachments=<ATTACHMENT_LIST> -a token=<TOKEN> -e BOT_TOKEN=<BOT_TOKEN>\n```\n##### Responds\n```shell\n$ omg run responds -a pattern=<PATTERN> -e BOT_TOKEN=<BOT_TOKEN>\n```\n##### Users\n```shell\n$ omg run users -a token=<TOKEN> -a limit=<LIMIT> -a cursor=<CURSOR> -e BOT_TOKEN=<BOT_TOKEN>\n```\n##### Channels\n```shell\n$ omg run channels -a token=<TOKEN> -a limit=<LIMIT> -a types=<LIST_OF_TYPES> -e BOT_TOKEN=<BOT_TOKEN>\n```\n##### Direct Channels\n```shell\n$ omg run directChannels -a token=<TOKEN> -a limit=<LIMIT> -e BOT_TOKEN=<BOT_TOKEN>\n```\n##### Bot\n```shell\n$ omg subscribe bot hears -a pattern=<PATTERN> -a channel=<ID/NAME> -e BOT_TOKEN=<BOT_TOKEN>\n```\n\n**Note**: The OMG CLI requires [Docker](https://docs.docker.com/install/) to be installed.\n\n## License\n[MIT License](https://github.com/omg-services/slack/blob/master/LICENSE).\n\n\n<!-- ## [Asyncy](https://asyncy.com) Example\n\nThe `slack` service is published in the [Asyncy Hub](https://hub.asyncy.com/service/slack)\n\n```storyscript\nslack bot as client\n    when client hears channel:'general' pattern:/^welcome/ as msg\n        msg emoji key:'thumbs_up'\n        msg reply message:'Nice to have you here'\n\n    when client responds pattern:/foo/ as msg\n        # respond to direct messages\n        msg reply message:'bar'\n\n    when client slash pattern:/deploy/ as msg\n        # when user does /deploy do something awesome\n\n# send a post\nslack send text:'Hello world!' to:'general'\n``` -->\n",
+        "readme": "# _Slack_ Open Microservice\n\n> Wrapper for the Slack API\n\n[![Open Microservice Specification Version](https://img.shields.io/badge/Open%20Microservice-1.0-477bf3.svg)](https://openmicroservices.org) [![Open Microservices Spectrum Chat](https://withspectrum.github.io/badge/badge.svg)](https://spectrum.chat/open-microservices) [![Open Microservices Code of Conduct](https://img.shields.io/badge/Contributor%20Covenant-v1.4%20adopted-ff69b4.svg)](https://github.com/oms-services/.github/blob/master/CODE_OF_CONDUCT.md) [![Open Microservices Commitzen](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](http://makeapullrequest.com)\n\n## Introduction\n\nThis project is an example implementation of the [Open Microservice Specification](https://openmicroservices.org), a standard originally created at [Storyscript](https://storyscript.io) for building highly-portable \"microservices\" that expose the events, actions, and APIs inside containerized software.\n\n## Getting Started\n\nThe `oms` command-line interface allows you to interact with Open Microservices. If you're interested in creating an Open Microservice the CLI also helps validate, test, and debug your `oms.yml` implementation!\n\nSee the [oms-cli](https://github.com/microservices/oms) project to learn more!\n\n### Installation\n\n```\nnpm install -g @microservices/oms\n```\n\n## Usage\n\n### Open Microservices CLI Usage\n\nOnce you have the [oms-cli](https://github.com/microservices/oms) installed, you can run any of the following commands from within this project's root directory:\n\n#### Actions\n\n##### send\n\n> Sends a message to a channel.\nhttps://api.slack.com/methods/chat.postMessage\n\n##### Action Arguments\n\n| Argument Name | Type | Required | Default | Description |\n|:------------- |:---- |:-------- |:--------|:----------- |\n| text | `string` | `true` | None | Text of the message to send. |\n| channel | `string` | `true` | None | What channel to send message in. This can be a \"#channel\" \"@user\" or a channel id.  |\n| attachments | `list` | `false` | None | No description provided. |\n| token | `string` | `false` | None | Authentication token bearing required scopes. Environment variable BOT_TOKEN used by default.  |\n| BOT_TOKEN | `string` | `false` | None | The Slack bot token |\n\n``` shell\noms run send \\ \n    -a text='*****' \\ \n    -a channel='*****' \\ \n    -a attachments='*****' \\ \n    -a token='*****' \\ \n    -e BOT_TOKEN=$BOT_TOKEN\n```\n\n##### hears\n\n> Triggered anytime a messages matches the pattern\n##### Action Arguments\n\n| Argument Name | Type | Required | Default | Description |\n|:------------- |:---- |:-------- |:--------|:----------- |\n| pattern | `string` | `false` | None | A regexp pattern to filter messages |\n| channel | `string` | `true` | None | Only listen in a specific channel |\n| BOT_TOKEN | `string` | `false` | None | The Slack bot token |\n\n``` shell\noms subscribe hears \\ \n    -a pattern='*****' \\ \n    -a channel='*****' \\ \n    -e BOT_TOKEN=$BOT_TOKEN\n```\n,##### responds\n\n> Triggered by direct messages to the bot\n##### Action Arguments\n\n| Argument Name | Type | Required | Default | Description |\n|:------------- |:---- |:-------- |:--------|:----------- |\n| pattern | `string` | `false` | None | A regexp pattern to filter messages |\n| BOT_TOKEN | `string` | `false` | None | The Slack bot token |\n\n``` shell\noms subscribe responds \\ \n    -a pattern='*****' \\ \n    -e BOT_TOKEN=$BOT_TOKEN\n```\n\n##### users\n\n> \n##### Action Arguments\n\n| Argument Name | Type | Required | Default | Description |\n|:------------- |:---- |:-------- |:--------|:----------- |\n| token | `string` | `false` | None | Authentication token bearing required scopes. Environment variable BOT_TOKEN used by default.  |\n| include_locale | `boolean` | `false` | None | Set this to true to receive the locale for users. Defaults to false  |\n| limit | `int` | `false` | None | The maximum number of items to return. Fewer than the requested number of items may be returned, even if the end of the users list hasn't been reached.  |\n| cursor | `string` | `false` | None | Paginate through collections of data by setting the cursor parameter to a next_cursor attribute returned by a previous request's response_metadata. Default value fetches the first \"page\" of the collection. See pagination for more detail.  |\n| BOT_TOKEN | `string` | `false` | None | The Slack bot token |\n\n``` shell\noms run users \\ \n    -a token='*****' \\ \n    -a include_locale='*****' \\ \n    -a limit='*****' \\ \n    -a cursor='*****' \\ \n    -e BOT_TOKEN=$BOT_TOKEN\n```\n\n##### channels\n\n> Get a list of channels\n##### Action Arguments\n\n| Argument Name | Type | Required | Default | Description |\n|:------------- |:---- |:-------- |:--------|:----------- |\n| token | `string` | `false` | None | Authentication token bearing required scopes. Environment variable BOT_TOKEN used by default.  |\n| limit | `int` | `false` | None | Limit the number of channels to return. Must be less than 1000. |\n| exclude_archived | `boolean` | `false` | None | Set to true to exclude archived channels from the list |\n| types | `list` | `false` | None | Mix and match channel types: public_channel, private_channel, mpim, im Default is public_channel only.  |\n| BOT_TOKEN | `string` | `false` | None | The Slack bot token |\n\n``` shell\noms run channels \\ \n    -a token='*****' \\ \n    -a limit='*****' \\ \n    -a exclude_archived='*****' \\ \n    -a types='*****' \\ \n    -e BOT_TOKEN=$BOT_TOKEN\n```\n\n##### directChannels\n\n> Lists direct message channels for the calling user.\n##### Action Arguments\n\n| Argument Name | Type | Required | Default | Description |\n|:------------- |:---- |:-------- |:--------|:----------- |\n| token | `string` | `false` | None | Authentication token bearing required scopes. Environment variable BOT_TOKEN used by default.  |\n| limit | `int` | `false` | None | Limit the number of channels to return. Must be less than 1000. |\n| BOT_TOKEN | `string` | `false` | None | The Slack bot token |\n\n``` shell\noms run directChannels \\ \n    -a token='*****' \\ \n    -a limit='*****' \\ \n    -e BOT_TOKEN=$BOT_TOKEN\n```\n\n## Contributing\n\nAll suggestions in how to improve the specification and this guide are very welcome. Feel free share your thoughts in the Issue tracker, or even better, fork the repository to implement your own ideas and submit a pull request.\n\n[![Edit slack on CodeSandbox](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/oms-services/slack)\n\nThis project is guided by [Contributor Covenant](https://github.com/oms-services/.github/blob/master/CODE_OF_CONDUCT.md). Please read out full [Contribution Guidelines](https://github.com/oms-services/.github/blob/master/CONTRIBUTING.md).\n\n## Additional Resources\n\n* [Install the CLI](https://github.com/microservices/oms) - The OMS CLI helps developers create, test, validate, and build microservices.\n* [Example OMS Services](https://github.com/oms-services) - Examples of OMS-compliant services written in a variety of languages.\n* [Example Language Implementations](https://github.com/microservices) - Find tooling & language implementations in Node, Python, Scala, Java, Clojure.\n* [Storyscript Hub](https://hub.storyscript.io) - A public registry of OMS services.\n* [Community Chat](https://spectrum.chat/open-microservices) - Have ideas? Questions? Join us on Spectrum.\n",
         "service": {
             "alias": "slack",
             "description": "Slack bot microservice",
             "isCertified": true,
             "name": "slack",
             "owner": {
-                "username": "omg-services"
+                "username": "oms-services"
             },
             "public": true,
             "topics": [
                 "slack-bot",
                 "slack",
-                "microservice"
+                "microservice",
+                "oms"
             ]
         },
         "serviceUuid": "f7f099d5-da2c-45eb-b56a-84d1f7756a42",
@@ -306,7 +575,7 @@
                                 "options"
                             ],
                             "in": "requestBody",
-                            "type": "string"
+                            "type": "enum"
                         },
                         "query": {
                             "help": "Set an optional map of query parameters.\nQuery parameters are automatically appended to the url specified (/url?foo=bar&john=doe)\n",
@@ -320,11 +589,15 @@
                         }
                     },
                     "help": "Make a HTTP request to the outside world.\nThis command is native to the platform for performance reasons.\n",
+                    "http": {
+                        "method": "post",
+                        "path": "/ignore",
+                        "port": 8000
+                    },
                     "output": {
                         "type": "any"
                     }
                 },
-                "help": "Make http calls and listen for http connections through the Asyncy Gateway\nresulting in serverless http endpoints.\n",
                 "server": {
                     "events": {
                         "listen": {
@@ -340,7 +613,7 @@
                                         "options"
                                     ],
                                     "in": "requestBody",
-                                    "type": "string"
+                                    "type": "enum"
                                 },
                                 "path": {
                                     "in": "requestBody",
@@ -348,7 +621,7 @@
                                     "type": "string"
                                 }
                             },
-                            "help": "Listen and respond to http connections by\nregistering with the Asyncy Gateway resulting in a serverless function.\n",
+                            "help": "Listen and respond to http connections by\nregistering with the Storyscript Gateway resulting in a serverless function.\n",
                             "http": {
                                 "port": 8889,
                                 "subscribe": {
@@ -364,26 +637,34 @@
                             },
                             "output": {
                                 "actions": {
+                                    "addHeader": {
+                                        "arguments": {
+                                            "name": {
+                                                "in": "responseBody",
+                                                "required": true,
+                                                "type": "string"
+                                            },
+                                            "value": {
+                                                "in": "responseBody",
+                                                "required": true,
+                                                "type": "string"
+                                            }
+                                        },
+                                        "help": "Add an HTTP header.",
+                                        "http": {
+                                            "contentType": "application/json",
+                                            "use_event_conn": true
+                                        }
+                                    },
                                     "finish": {
+                                        "help": "Finish a response and send it to the client.",
                                         "http": {
                                             "contentType": "application/json",
                                             "use_event_conn": true
                                         }
                                     },
                                     "flush": {
-                                        "http": {
-                                            "contentType": "application/json",
-                                            "use_event_conn": true
-                                        }
-                                    },
-                                    "get_header": {
-                                        "arguments": {
-                                            "key": {
-                                                "in": "responseBody",
-                                                "required": true,
-                                                "type": "string"
-                                            }
-                                        },
+                                        "help": "Flushes the current output buffer to the network.",
                                         "http": {
                                             "contentType": "application/json",
                                             "use_event_conn": true
@@ -408,6 +689,20 @@
                                             "use_event_conn": true
                                         }
                                     },
+                                    "setStatus": {
+                                        "arguments": {
+                                            "code": {
+                                                "in": "responseBody",
+                                                "required": true,
+                                                "type": "int"
+                                            }
+                                        },
+                                        "help": "Set an HTTP status code.",
+                                        "http": {
+                                            "contentType": "application/json",
+                                            "use_event_conn": true
+                                        }
+                                    },
                                     "set_header": {
                                         "arguments": {
                                             "key": {
@@ -421,6 +716,7 @@
                                                 "type": "string"
                                             }
                                         },
+                                        "help": "DEPRECATED. Use 'header'.",
                                         "http": {
                                             "contentType": "application/json",
                                             "use_event_conn": true
@@ -434,6 +730,7 @@
                                                 "type": "int"
                                             }
                                         },
+                                        "help": "DEPRECATED. Use 'status'.",
                                         "http": {
                                             "contentType": "application/json",
                                             "use_event_conn": true
@@ -442,16 +739,33 @@
                                     "write": {
                                         "arguments": {
                                             "content": {
+                                                "help": "The response content.",
                                                 "in": "responseBody",
                                                 "required": true,
                                                 "type": "string"
                                             },
                                             "flush": {
+                                                "help": "Parameter which decides whether to flush the response.",
                                                 "in": "responseBody",
                                                 "required": false,
                                                 "type": "boolean"
                                             }
                                         },
+                                        "http": {
+                                            "contentType": "application/json",
+                                            "use_event_conn": true
+                                        }
+                                    },
+                                    "writeJSON": {
+                                        "arguments": {
+                                            "content": {
+                                                "help": "The content from which the JSON response will be built.",
+                                                "in": "responseBody",
+                                                "required": true,
+                                                "type": "any"
+                                            }
+                                        },
+                                        "help": "Write a JSON response body.",
                                         "http": {
                                             "contentType": "application/json",
                                             "use_event_conn": true
@@ -464,16 +778,79 @@
                                         "help": "The JSON body of the incoming HTTP request",
                                         "type": "map"
                                     },
+                                    "files": {
+                                        "map": {
+                                            "keys": {
+                                                "help": "File name in the request",
+                                                "type": "string"
+                                            },
+                                            "values": {
+                                                "help": "Individual file object",
+                                                "properties": {
+                                                    "body": {
+                                                        "help": "Raw source of this file",
+                                                        "type": "string"
+                                                    },
+                                                    "contentType": {
+                                                        "help": "Content-Type of the file object",
+                                                        "type": "string"
+                                                    },
+                                                    "filename": {
+                                                        "help": "Original local file name",
+                                                        "type": "string"
+                                                    },
+                                                    "name": {
+                                                        "help": "File name in the request",
+                                                        "type": "string"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        },
+                                        "type": "map"
+                                    },
+                                    "formFields": {
+                                        "help": "The form fields of the incoming HTTP request",
+                                        "map": {
+                                            "keys": {
+                                                "type": "string"
+                                            },
+                                            "values": {
+                                                "type": "string"
+                                            }
+                                        },
+                                        "type": "map"
+                                    },
                                     "headers": {
                                         "help": "The HTTP headers of the incoming HTTP request",
                                         "type": "map"
                                     },
                                     "path": {
-                                        "help": "The path portion of th URI of the incoming HTTP request",
+                                        "help": "The path portion of the URI of the incoming HTTP request",
                                         "type": "string"
                                     },
-                                    "query_params": {
+                                    "queryParams": {
                                         "help": "The parsed query parameters of the HTTP request",
+                                        "map": {
+                                            "keys": {
+                                                "type": "string"
+                                            },
+                                            "values": {
+                                                "type": "string"
+                                            }
+                                        },
+                                        "type": "map"
+                                    },
+                                    "query_params": {
+                                        "help": "DEPRECATED. Use 'queryParams'.\n",
+                                        "map": {
+                                            "keys": {
+                                                "type": "string"
+                                            },
+                                            "values": {
+                                                "type": "string"
+                                            }
+                                        },
                                         "type": "map"
                                     },
                                     "uri": {
@@ -487,9 +864,371 @@
                     }
                 }
             },
+            "info": {
+                "contact": {
+                    "email": "infra@storyscript.io",
+                    "name": "Storyscript",
+                    "url": "https://storyscript.io"
+                },
+                "description": "This is the HTTP service for Storyscript Cloud, which allows stories to be triggered via HTTP from the outside world.",
+                "license": {
+                    "name": "Apache 2",
+                    "url": "http://opensource.org/licenses/Apache-2.0"
+                },
+                "title": "HTTP gateway for Storyscript Cloud",
+                "version": "1.0.0"
+            },
             "omg": 1
         },
-        "readme": "# Asyncy HTTP Gateway\n\nAPI gateway server for executing Stories via HTTP.\n\n```coffee\nhttp server as server\n  when server listen method:'get' path:'/' as r\n    log info msg:r.body\n    log info msg:r.headers\n    log info msg:r.headers['Host']\n    r write data:'Hello World'\n    r status code:200\n    r finish\n```\n\n```sh\n$ curl https://foobar.storyscriptapp.com/\nHello World\n```\n\n\n## Development\n\nSetup virtual environment and install dependencies\n```\nvirtualenv -p python3.6 venv\nsource venv/bin/activate\npip install -r requirements.txt\n```\n\nYou may need to tell pycurl the path to your openssl installation\n```\npip install --install-option=\"--with-openssl\" --install-option=\"--openssl-dir=/usr/local/opt/openssl\" pycurl\n```\nSee https://github.com/nahamsec/JSParser/issues/22\n\n\nRun locally by calling\n\n```\npython -m app.main --logging=debug --debug\n```\n\n### Register an endpoint\n\n```shell\ncurl --data '{\"endpoint\": \"http://localhost:9000/story/foo\", \"data\":{\"path\":\"/ping\", \"method\": \"post\", \"host\": \"a\"}}' \\\n     -H \"Content-Type: application/json\" \\\n     localhost:8889/register\n```\n\nNow access that endpoint\n\n```shell\ncurl -X POST -d 'foobar' -H \"Host: a.storyscriptapp.com\" http://localhost:8888/ping\n```\n\n\n### Unregister an endpoint\n\n```shell\ncurl --data '{\"endpoint\": \"http://localhost:9000/story/foo\", \"data\":{\"path\":\"/ping\", \"method\": \"post\", \"host\": \"a\"}}' \\\n     -H \"Content-Type: application/json\" \\\n     localhost:8889/unregister\n```\n",
+        "readme": "# Storyscript HTTP Gateway\n\nAPI gateway server for executing Stories via HTTP.\n\n```coffee\nhttp server as server\n  when server listen method:\"post\" path:\"/\" as r\n    log info msg:(r.body to string)\n    log info msg:(r.headers to string)\n    log info msg:r.headers[\"Host\"]\n    r write content:\"Hello World\"\n    r setStatus code:200\n    r finish\n```\n\n```sh\n$ curl https://foobar.storyscriptapp.com/\nHello World\n```\n\n\n## Development\n\nSetup virtual environment and install dependencies\n```\nvirtualenv -p python3.6 venv\nsource venv/bin/activate\npip install -r requirements.txt\n```\n\nYou may need to tell pycurl the path to your openssl installation\n```\npip install --install-option=\"--with-openssl\" --install-option=\"--openssl-dir=/usr/local/opt/openssl\" pycurl\n```\nSee https://github.com/nahamsec/JSParser/issues/22\n\n\nRun locally by calling\n\n```\npython -m app.main --logging=debug --debug\n```\n\n### Register an endpoint\n\n```shell\ncurl --data '{\"endpoint\": \"http://localhost:9000/story/foo\", \"data\":{\"path\":\"/ping\", \"method\": \"post\", \"host\": \"a\"}}' \\\n     -H \"Content-Type: application/json\" \\\n     localhost:8889/register\n```\n\nNow access that endpoint\n\n```shell\ncurl -X POST -d 'foobar' -H \"Host: a.storyscriptapp.com\" http://localhost:8888/ping\n```\n\n### Unregister an endpoint\n\n```shell\ncurl --data '{\"endpoint\": \"http://localhost:9000/story/foo\", \"data\":{\"path\":\"/ping\", \"method\": \"post\", \"host\": \"a\"}}' \\\n     -H \"Content-Type: application/json\" \\\n     localhost:8889/unregister\n```\n",
+        "service": {
+            "alias": "http",
+            "description": "The Asyncy API gateway server for executing Stories via HTTP.",
+            "isCertified": true,
+            "name": "http",
+            "owner": {
+                "username": "storyscript"
+            },
+            "public": true,
+            "topics": [
+                "omg",
+                "storyscript",
+                "microservice"
+            ]
+        },
+        "serviceUuid": "18564840-7551-4bb7-9ba7-bb9c9e2d92b4",
+        "state": "BETA"
+    },
+    {
+        "configuration": {
+            "actions": {
+                "fetch": {
+                    "arguments": {
+                        "body": {
+                            "in": "requestBody",
+                            "type": "any"
+                        },
+                        "headers": {
+                            "in": "requestBody",
+                            "type": "map"
+                        },
+                        "method": {
+                            "default": "get",
+                            "enum": [
+                                "get",
+                                "post",
+                                "patch",
+                                "delete",
+                                "put",
+                                "options"
+                            ],
+                            "in": "requestBody",
+                            "type": "enum"
+                        },
+                        "query": {
+                            "help": "Set an optional map of query parameters.\nQuery parameters are automatically appended to the url specified (/url?foo=bar&john=doe)\n",
+                            "in": "requestBody",
+                            "type": "map"
+                        },
+                        "url": {
+                            "in": "requestBody",
+                            "required": true,
+                            "type": "string"
+                        }
+                    },
+                    "help": "Make a HTTP request to the outside world.\nThis command is native to the platform for performance reasons.\n",
+                    "http": {
+                        "method": "post",
+                        "path": "/ignore",
+                        "port": 8000
+                    },
+                    "output": {
+                        "type": "any"
+                    }
+                },
+                "server": {
+                    "events": {
+                        "listen": {
+                            "arguments": {
+                                "method": {
+                                    "default": "get",
+                                    "enum": [
+                                        "get",
+                                        "post",
+                                        "patch",
+                                        "delete",
+                                        "put",
+                                        "options"
+                                    ],
+                                    "in": "requestBody",
+                                    "type": "enum"
+                                },
+                                "path": {
+                                    "in": "requestBody",
+                                    "required": true,
+                                    "type": "string"
+                                }
+                            },
+                            "help": "Listen and respond to http connections by\nregistering with the Storyscript Gateway resulting in a serverless function.\n",
+                            "http": {
+                                "port": 8889,
+                                "subscribe": {
+                                    "contentType": "application/json",
+                                    "method": "post",
+                                    "path": "/register"
+                                },
+                                "unsubscribe": {
+                                    "contentType": "application/json",
+                                    "method": "post",
+                                    "path": "/unregister"
+                                }
+                            },
+                            "output": {
+                                "actions": {
+                                    "addHeader": {
+                                        "arguments": {
+                                            "name": {
+                                                "in": "responseBody",
+                                                "required": true,
+                                                "type": "string"
+                                            },
+                                            "value": {
+                                                "in": "responseBody",
+                                                "required": true,
+                                                "type": "string"
+                                            }
+                                        },
+                                        "help": "Add an HTTP header.",
+                                        "http": {
+                                            "contentType": "application/json",
+                                            "use_event_conn": true
+                                        }
+                                    },
+                                    "finish": {
+                                        "help": "Finish a response and send it to the client.",
+                                        "http": {
+                                            "contentType": "application/json",
+                                            "use_event_conn": true
+                                        }
+                                    },
+                                    "flush": {
+                                        "help": "Flushes the current output buffer to the network.",
+                                        "http": {
+                                            "contentType": "application/json",
+                                            "use_event_conn": true
+                                        }
+                                    },
+                                    "redirect": {
+                                        "arguments": {
+                                            "query": {
+                                                "help": "These query parameters are appended to the URL specified.",
+                                                "in": "responseBody",
+                                                "type": "map"
+                                            },
+                                            "url": {
+                                                "in": "responseBody",
+                                                "required": true,
+                                                "type": "string"
+                                            }
+                                        },
+                                        "help": "Redirect the incoming URL. No additional actions may be used after executing this command.",
+                                        "http": {
+                                            "contentType": "application/json",
+                                            "use_event_conn": true
+                                        }
+                                    },
+                                    "setStatus": {
+                                        "arguments": {
+                                            "code": {
+                                                "in": "responseBody",
+                                                "required": true,
+                                                "type": "int"
+                                            }
+                                        },
+                                        "help": "Set an HTTP status code.",
+                                        "http": {
+                                            "contentType": "application/json",
+                                            "use_event_conn": true
+                                        }
+                                    },
+                                    "set_header": {
+                                        "arguments": {
+                                            "key": {
+                                                "in": "responseBody",
+                                                "required": true,
+                                                "type": "string"
+                                            },
+                                            "value": {
+                                                "in": "responseBody",
+                                                "required": true,
+                                                "type": "string"
+                                            }
+                                        },
+                                        "help": "DEPRECATED. Use 'header'.",
+                                        "http": {
+                                            "contentType": "application/json",
+                                            "use_event_conn": true
+                                        }
+                                    },
+                                    "set_status": {
+                                        "arguments": {
+                                            "code": {
+                                                "in": "responseBody",
+                                                "required": true,
+                                                "type": "int"
+                                            }
+                                        },
+                                        "help": "DEPRECATED. Use 'status'.",
+                                        "http": {
+                                            "contentType": "application/json",
+                                            "use_event_conn": true
+                                        }
+                                    },
+                                    "write": {
+                                        "arguments": {
+                                            "content": {
+                                                "help": "The response content.",
+                                                "in": "responseBody",
+                                                "required": true,
+                                                "type": "string"
+                                            },
+                                            "flush": {
+                                                "help": "Parameter which decides whether to flush the response.",
+                                                "in": "responseBody",
+                                                "required": false,
+                                                "type": "boolean"
+                                            }
+                                        },
+                                        "http": {
+                                            "contentType": "application/json",
+                                            "use_event_conn": true
+                                        }
+                                    },
+                                    "writeJSON": {
+                                        "arguments": {
+                                            "content": {
+                                                "help": "The content from which the JSON response will be built.",
+                                                "in": "responseBody",
+                                                "required": true,
+                                                "type": "any"
+                                            }
+                                        },
+                                        "help": "Write a JSON response body.",
+                                        "http": {
+                                            "contentType": "application/json",
+                                            "use_event_conn": true
+                                        }
+                                    }
+                                },
+                                "contentType": "application/json",
+                                "properties": {
+                                    "body": {
+                                        "help": "The JSON body of the incoming HTTP request",
+                                        "type": "map"
+                                    },
+                                    "files": {
+                                        "map": {
+                                            "keys": {
+                                                "help": "File name in the request",
+                                                "type": "string"
+                                            },
+                                            "values": {
+                                                "help": "Individual file object",
+                                                "properties": {
+                                                    "body": {
+                                                        "help": "Raw source of this file",
+                                                        "type": "string"
+                                                    },
+                                                    "contentType": {
+                                                        "help": "Content-Type of the file object",
+                                                        "type": "string"
+                                                    },
+                                                    "filename": {
+                                                        "help": "Original local file name",
+                                                        "type": "string"
+                                                    },
+                                                    "name": {
+                                                        "help": "File name in the request",
+                                                        "type": "string"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        },
+                                        "type": "map"
+                                    },
+                                    "formFields": {
+                                        "help": "The form fields of the incoming HTTP request",
+                                        "map": {
+                                            "keys": {
+                                                "type": "string"
+                                            },
+                                            "values": {
+                                                "type": "string"
+                                            }
+                                        },
+                                        "type": "map"
+                                    },
+                                    "headers": {
+                                        "help": "The HTTP headers of the incoming HTTP request",
+                                        "type": "map"
+                                    },
+                                    "path": {
+                                        "help": "The path portion of the URI of the incoming HTTP request",
+                                        "type": "string"
+                                    },
+                                    "queryParams": {
+                                        "help": "The parsed query parameters of the HTTP request",
+                                        "map": {
+                                            "keys": {
+                                                "type": "string"
+                                            },
+                                            "values": {
+                                                "type": "string"
+                                            }
+                                        },
+                                        "type": "map"
+                                    },
+                                    "query_params": {
+                                        "help": "DEPRECATED. Use 'queryParams'.\n",
+                                        "map": {
+                                            "keys": {
+                                                "type": "string"
+                                            },
+                                            "values": {
+                                                "type": "string"
+                                            }
+                                        },
+                                        "type": "map"
+                                    },
+                                    "uri": {
+                                        "help": "The URI of the incoming HTTP request",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                }
+            },
+            "info": {
+                "contact": {
+                    "email": "infra@storyscript.io",
+                    "name": "Storyscript",
+                    "url": "https://storyscript.io"
+                },
+                "description": "This is the HTTP service for Storyscript Cloud, which allows stories to be triggered via HTTP from the outside world.",
+                "license": {
+                    "name": "Apache 2",
+                    "url": "http://opensource.org/licenses/Apache-2.0"
+                },
+                "title": "HTTP gateway for Storyscript Cloud",
+                "version": "1.0.0"
+            },
+            "omg": 1
+        },
+        "readme": "# Storyscript HTTP Gateway\n\nAPI gateway server for executing Stories via HTTP.\n\n```coffee\nhttp server as server\n  when server listen method:\"post\" path:\"/\" as r\n    log info msg:(r.body to string)\n    log info msg:(r.headers to string)\n    log info msg:r.headers[\"Host\"]\n    r write content:\"Hello World\"\n    r setStatus code:200\n    r finish\n```\n\n```sh\n$ curl https://foobar.storyscriptapp.com/\nHello World\n```\n\n\n## Development\n\nSetup virtual environment and install dependencies\n```\nvirtualenv -p python3.6 venv\nsource venv/bin/activate\npip install -r requirements.txt\n```\n\nYou may need to tell pycurl the path to your openssl installation\n```\npip install --install-option=\"--with-openssl\" --install-option=\"--openssl-dir=/usr/local/opt/openssl\" pycurl\n```\nSee https://github.com/nahamsec/JSParser/issues/22\n\n\nRun locally by calling\n\n```\npython -m app.main --logging=debug --debug\n```\n\n### Register an endpoint\n\n```shell\ncurl --data '{\"endpoint\": \"http://localhost:9000/story/foo\", \"data\":{\"path\":\"/ping\", \"method\": \"post\", \"host\": \"a\"}}' \\\n     -H \"Content-Type: application/json\" \\\n     localhost:8889/register\n```\n\nNow access that endpoint\n\n```shell\ncurl -X POST -d 'foobar' -H \"Host: a.storyscriptapp.com\" http://localhost:8888/ping\n```\n\n### Unregister an endpoint\n\n```shell\ncurl --data '{\"endpoint\": \"http://localhost:9000/story/foo\", \"data\":{\"path\":\"/ping\", \"method\": \"post\", \"host\": \"a\"}}' \\\n     -H \"Content-Type: application/json\" \\\n     localhost:8889/unregister\n```\n",
         "service": {
             "alias": "http",
             "description": "The Asyncy API gateway server for executing Stories via HTTP.",
@@ -545,6 +1284,41 @@
     },
     {
         "configuration": {
+            "commands": {
+                "entrypoint": {
+                    "arguments": {
+                        "tab": {
+                            "help": "* * * * * *\n| | | | | |\n| | | | | +-- Year              (range: 1900-3000)\n| | | | +---- Day of the Week   (range: 1-7, 1 standing for Monday)\n| | | +------ Month of the Year (range: 1-12)\n| | +-------- Day of the Month  (range: 1-31)\n| +---------- Hour              (range: 0-23)\n+------------ Minute            (range: 0-59)\n",
+                            "type": "string"
+                        }
+                    },
+                    "output": {
+                        "type": null
+                    }
+                }
+            }
+        },
+        "readme": "",
+        "service": {
+            "alias": "crontab",
+            "description": "Crontab in Asyncy",
+            "isCertified": false,
+            "name": "crontab",
+            "owner": {
+                "username": "storyscript"
+            },
+            "public": true,
+            "topics": [
+                "cron",
+                "microservice",
+                "crontab"
+            ]
+        },
+        "serviceUuid": "fa8ae7bb-05c9-432d-aa4f-433c314fa3cf",
+        "state": "BETA"
+    },
+    {
+        "configuration": {
             "actions": {
                 "generate": {
                     "help": "Generate a UUID v4 like 38788d28-6526-45c5-acf9-bb179160c7d7\n",
@@ -560,6 +1334,11 @@
                 }
             },
             "info": {
+                "contact": {
+                    "email": "core@openmicroservices.org",
+                    "name": "Open Microservices",
+                    "url": "https://openmicroservices.org"
+                },
                 "description": "This is a UUID service",
                 "title": "UUID",
                 "version": "1.0.0"
@@ -572,24 +1351,1394 @@
                     ]
                 }
             },
-            "omg": 1
+            "oms": 1
         },
-        "readme": "# _UUID_ OMG Microservice\n\n[![Open Microservice Guide](https://img.shields.io/badge/OMG%20Enabled-\ud83d\udc4d-green.svg?)](https://microservice.guide)\n\nAn OMG service to generate a UUID v4.\n\n## Direct usage in [Storyscript](https://storyscript.io/):\n\n##### Generate \n```coffee\nuuid generate\n#result 38788d28-6526-45c5-acf9-bb179160c7d7\n```\n\nCurious to [learn more](https://docs.storyscript.io/)?\n\n\u2728\ud83c\udf70\u2728\n\n## Usage with [OMG CLI](https://www.npmjs.com/package/omg)\n\n##### Generate\n```shell\n$ omg run generate\n```\n\n**Note**: The OMG CLI requires [Docker](https://docs.docker.com/install/) to be installed.\n\n## License\n[MIT License](https://github.com/omg-services/uuid/blob/master/LICENSE).\n",
+        "readme": "# _UUID_ Open Microservice\n\n> This is a UUID service\n\n[![Open Microservice Specification Version](https://img.shields.io/badge/Open%20Microservice-1.0-477bf3.svg)](https://openmicroservices.org) [![Open Microservices Spectrum Chat](https://withspectrum.github.io/badge/badge.svg)](https://spectrum.chat/open-microservices) [![Open Microservices Code of Conduct](https://img.shields.io/badge/Contributor%20Covenant-v1.4%20adopted-ff69b4.svg)](https://github.com/oms-services/.github/blob/master/CODE_OF_CONDUCT.md) [![Open Microservices Commitzen](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](http://makeapullrequest.com)\n\n## Introduction\n\nThis project is an example implementation of the [Open Microservice Specification](https://openmicroservices.org), a standard originally created at [Storyscript](https://storyscript.io) for building highly-portable \"microservices\" that expose the events, actions, and APIs inside containerized software.\n\n## Getting Started\n\nThe `oms` command-line interface allows you to interact with Open Microservices. If you're interested in creating an Open Microservice the CLI also helps validate, test, and debug your `oms.yml` implementation!\n\nSee the [oms-cli](https://github.com/microservices/oms) project to learn more!\n\n### Installation\n\n```\nnpm install -g @microservices/oms\n```\n\n## Usage\n\n### Open Microservices CLI Usage\n\nOnce you have the [oms-cli](https://github.com/microservices/oms) installed, you can run any of the following commands from within this project's root directory:\n\n#### Actions\n\n##### generate\n\n> Generate a UUID v4 like 38788d28-6526-45c5-acf9-bb179160c7d7\n\n```shell\noms run generate\n```\n\n## Contributing\n\nAll suggestions in how to improve the specification and this guide are very welcome. Feel free share your thoughts in the Issue tracker, or even better, fork the repository to implement your own ideas and submit a pull request.\n\n[![Edit uuid on CodeSandbox](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/oms-services/uuid)\n\nThis project is guided by [Contributor Covenant](https://github.com/oms-services/.github/blob/master/CODE_OF_CONDUCT.md). Please read out full [Contribution Guidelines](https://github.com/oms-services/.github/blob/master/CONTRIBUTING.md).\n\n## Additional Resources\n\n- [Install the CLI](https://github.com/microservices/oms) - The OMS CLI helps developers create, test, validate, and build microservices.\n- [Example OMS Services](https://github.com/oms-services) - Examples of OMS-compliant services written in a variety of languages.\n- [Example Language Implementations](https://github.com/microservices) - Find tooling & language implementations in Node, Python, Scala, Java, Clojure.\n- [Storyscript Hub](https://hub.storyscript.io) - A public registry of OMS services.\n- [Community Chat](https://spectrum.chat/open-microservices) - Have ideas? Questions? Join us on Spectrum.\n",
         "service": {
             "alias": "uuid",
             "description": "UUID generator",
             "isCertified": true,
             "name": "uuid",
             "owner": {
-                "username": "omg-services"
+                "username": "oms-services"
             },
             "public": true,
             "topics": [
                 "uuid-generator",
-                "microservice"
+                "microservice",
+                "open-microservice",
+                "oms"
             ]
         },
         "serviceUuid": "f156707b-594c-4cff-8e09-45c196024364",
+        "state": "BETA"
+    },
+    {
+        "configuration": {
+            "actions": {
+                "generate": {
+                    "help": "Generate a UUID v4 like 38788d28-6526-45c5-acf9-bb179160c7d7\n",
+                    "http": {
+                        "contentType": "application/json",
+                        "method": "get",
+                        "path": "/generate",
+                        "port": 8000
+                    },
+                    "output": {
+                        "type": "string"
+                    }
+                }
+            },
+            "info": {
+                "contact": {
+                    "email": "core@openmicroservices.org",
+                    "name": "Open Microservices",
+                    "url": "https://openmicroservices.org"
+                },
+                "description": "This is a UUID service",
+                "title": "UUID",
+                "version": "1.0.0"
+            },
+            "lifecycle": {
+                "startup": {
+                    "command": [
+                        "python",
+                        "/app/app.py"
+                    ]
+                }
+            },
+            "oms": 1
+        },
+        "readme": "# _UUID_ Open Microservice\n\n> This is a UUID service\n\n[![Open Microservice Specification Version](https://img.shields.io/badge/Open%20Microservice-1.0-477bf3.svg)](https://openmicroservices.org) [![Open Microservices Spectrum Chat](https://withspectrum.github.io/badge/badge.svg)](https://spectrum.chat/open-microservices) [![Open Microservices Code of Conduct](https://img.shields.io/badge/Contributor%20Covenant-v1.4%20adopted-ff69b4.svg)](https://github.com/oms-services/.github/blob/master/CODE_OF_CONDUCT.md) [![Open Microservices Commitzen](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](http://makeapullrequest.com)\n\n## Introduction\n\nThis project is an example implementation of the [Open Microservice Specification](https://openmicroservices.org), a standard originally created at [Storyscript](https://storyscript.io) for building highly-portable \"microservices\" that expose the events, actions, and APIs inside containerized software.\n\n## Getting Started\n\nThe `oms` command-line interface allows you to interact with Open Microservices. If you're interested in creating an Open Microservice the CLI also helps validate, test, and debug your `oms.yml` implementation!\n\nSee the [oms-cli](https://github.com/microservices/oms) project to learn more!\n\n### Installation\n\n```\nnpm install -g @microservices/oms\n```\n\n## Usage\n\n### Open Microservices CLI Usage\n\nOnce you have the [oms-cli](https://github.com/microservices/oms) installed, you can run any of the following commands from within this project's root directory:\n\n#### Actions\n\n##### generate\n\n> Generate a UUID v4 like 38788d28-6526-45c5-acf9-bb179160c7d7\n\n```shell\noms run generate\n```\n\n## Contributing\n\nAll suggestions in how to improve the specification and this guide are very welcome. Feel free share your thoughts in the Issue tracker, or even better, fork the repository to implement your own ideas and submit a pull request.\n\n[![Edit uuid on CodeSandbox](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/oms-services/uuid)\n\nThis project is guided by [Contributor Covenant](https://github.com/oms-services/.github/blob/master/CODE_OF_CONDUCT.md). Please read out full [Contribution Guidelines](https://github.com/oms-services/.github/blob/master/CONTRIBUTING.md).\n\n## Additional Resources\n\n- [Install the CLI](https://github.com/microservices/oms) - The OMS CLI helps developers create, test, validate, and build microservices.\n- [Example OMS Services](https://github.com/oms-services) - Examples of OMS-compliant services written in a variety of languages.\n- [Example Language Implementations](https://github.com/microservices) - Find tooling & language implementations in Node, Python, Scala, Java, Clojure.\n- [Storyscript Hub](https://hub.storyscript.io) - A public registry of OMS services.\n- [Community Chat](https://spectrum.chat/open-microservices) - Have ideas? Questions? Join us on Spectrum.\n",
+        "service": {
+            "alias": "uuid",
+            "description": "UUID generator",
+            "isCertified": true,
+            "name": "uuid",
+            "owner": {
+                "username": "oms-services"
+            },
+            "public": true,
+            "topics": [
+                "uuid-generator",
+                "microservice",
+                "open-microservice",
+                "oms"
+            ]
+        },
+        "serviceUuid": "f156707b-594c-4cff-8e09-45c196024364",
+        "state": "BETA"
+    },
+    {
+        "configuration": {
+            "actions": {
+                "append": {
+                    "arguments": {
+                        "key": {
+                            "in": "requestBody",
+                            "required": true,
+                            "type": "string"
+                        },
+                        "value": {
+                            "in": "requestBody",
+                            "required": true,
+                            "type": "any"
+                        }
+                    },
+                    "help": "Appends 'value' to a 'key'.",
+                    "http": {
+                        "contentType": "application/json",
+                        "method": "post",
+                        "path": "/append",
+                        "port": 8000
+                    },
+                    "output": {
+                        "type": "int"
+                    }
+                },
+                "blpop": {
+                    "arguments": {
+                        "key": {
+                            "in": "requestBody",
+                            "required": true,
+                            "type": "string"
+                        }
+                    },
+                    "help": "Removes and returns the first element of the list stored at 'key'.\nWhen there are no element in the list, the command will not return\nuntil an element got added.\n",
+                    "http": {
+                        "contentType": "application/json",
+                        "method": "post",
+                        "path": "/blpop",
+                        "port": 8000
+                    },
+                    "output": {
+                        "type": "any"
+                    }
+                },
+                "brpop": {
+                    "arguments": {
+                        "key": {
+                            "in": "requestBody",
+                            "required": true,
+                            "type": "string"
+                        }
+                    },
+                    "help": "Removes and returns the last element of the list stored at 'key'.\nWhen there are no element in the list, the command will not return\nuntil an elements got added.\n",
+                    "http": {
+                        "contentType": "application/json",
+                        "method": "post",
+                        "path": "/brpop",
+                        "port": 8000
+                    },
+                    "output": {
+                        "type": "any"
+                    }
+                },
+                "decrement": {
+                    "arguments": {
+                        "by": {
+                            "in": "requestBody",
+                            "type": "int"
+                        },
+                        "key": {
+                            "in": "requestBody",
+                            "required": true,
+                            "type": "string"
+                        }
+                    },
+                    "help": "Decrements a number stored at 'key'.",
+                    "http": {
+                        "contentType": "application/json",
+                        "method": "post",
+                        "path": "/decr",
+                        "port": 8000
+                    },
+                    "output": {
+                        "type": "int"
+                    }
+                },
+                "delete": {
+                    "arguments": {
+                        "key": {
+                            "in": "requestBody",
+                            "required": true,
+                            "type": "string"
+                        }
+                    },
+                    "help": "Removes 'key'.",
+                    "http": {
+                        "contentType": "application/json",
+                        "method": "post",
+                        "path": "/del",
+                        "port": 8000
+                    },
+                    "output": {
+                        "type": "none"
+                    }
+                },
+                "expire": {
+                    "arguments": {
+                        "key": {
+                            "in": "requestBody",
+                            "required": true,
+                            "type": "string"
+                        },
+                        "seconds": {
+                            "in": "requestBody",
+                            "required": true,
+                            "type": "int"
+                        }
+                    },
+                    "help": "Set a timeout on a 'key'.",
+                    "http": {
+                        "contentType": "application/json",
+                        "method": "post",
+                        "path": "/expire",
+                        "port": 8000
+                    },
+                    "output": {
+                        "type": "none"
+                    }
+                },
+                "get": {
+                    "arguments": {
+                        "key": {
+                            "in": "requestBody",
+                            "required": true,
+                            "type": "string"
+                        }
+                    },
+                    "help": "Returns the value of 'key'.",
+                    "http": {
+                        "contentType": "application/json",
+                        "method": "post",
+                        "path": "/get",
+                        "port": 8000
+                    },
+                    "output": {
+                        "type": "string"
+                    }
+                },
+                "getSet": {
+                    "arguments": {
+                        "key": {
+                            "in": "requestBody",
+                            "required": true,
+                            "type": "string"
+                        },
+                        "value": {
+                            "in": "requestBody",
+                            "required": true,
+                            "type": "any"
+                        }
+                    },
+                    "help": "Returns the current value of 'key' and overwrites it with 'value'.",
+                    "http": {
+                        "contentType": "application/json",
+                        "method": "post",
+                        "path": "/getset",
+                        "port": 8000
+                    },
+                    "output": {
+                        "type": "string"
+                    }
+                },
+                "increment": {
+                    "arguments": {
+                        "by": {
+                            "in": "requestBody",
+                            "type": "int"
+                        },
+                        "key": {
+                            "in": "requestBody",
+                            "required": true,
+                            "type": "string"
+                        }
+                    },
+                    "help": "Increments a number stored at 'key'.",
+                    "http": {
+                        "contentType": "application/json",
+                        "method": "post",
+                        "path": "/incr",
+                        "port": 8000
+                    },
+                    "output": {
+                        "type": "int"
+                    }
+                },
+                "listener": {
+                    "events": {
+                        "lpop": {
+                            "arguments": {
+                                "key": {
+                                    "help": "The key to LPOP",
+                                    "in": "requestBody",
+                                    "required": true,
+                                    "type": "string"
+                                }
+                            },
+                            "help": "LPOP a key constantly, and emit the values as events",
+                            "http": {
+                                "port": 8000,
+                                "subscribe": {
+                                    "method": "post",
+                                    "path": "/listener/add"
+                                },
+                                "unsubscribe": {
+                                    "method": "post",
+                                    "path": "/listener/remove"
+                                }
+                            },
+                            "output": {
+                                "type": "any"
+                            }
+                        },
+                        "rpop": {
+                            "arguments": {
+                                "key": {
+                                    "help": "The key to RPOP",
+                                    "in": "requestBody",
+                                    "required": true,
+                                    "type": "string"
+                                }
+                            },
+                            "help": "RPOP a key constantly, and emit the values as events",
+                            "http": {
+                                "port": 8000,
+                                "subscribe": {
+                                    "method": "post",
+                                    "path": "/listener/add"
+                                },
+                                "unsubscribe": {
+                                    "method": "post",
+                                    "path": "/listener/remove"
+                                }
+                            },
+                            "output": {
+                                "type": "any"
+                            }
+                        }
+                    }
+                },
+                "lpop": {
+                    "arguments": {
+                        "key": {
+                            "in": "requestBody",
+                            "required": true,
+                            "type": "string"
+                        }
+                    },
+                    "help": "Removes and returns the first element of the list stored at 'key'.",
+                    "http": {
+                        "contentType": "application/json",
+                        "method": "post",
+                        "path": "/lpop",
+                        "port": 8000
+                    },
+                    "output": {
+                        "type": "any"
+                    }
+                },
+                "lpush": {
+                    "arguments": {
+                        "key": {
+                            "in": "requestBody",
+                            "required": true,
+                            "type": "string"
+                        },
+                        "value": {
+                            "in": "requestBody",
+                            "required": true,
+                            "type": "any"
+                        }
+                    },
+                    "help": "Insert 'value' at the head of list stored at 'key'.",
+                    "http": {
+                        "contentType": "application/json",
+                        "method": "post",
+                        "path": "/lpush",
+                        "port": 8000
+                    },
+                    "output": {
+                        "type": "none"
+                    }
+                },
+                "mget": {
+                    "arguments": {
+                        "keys": {
+                            "in": "requestBody",
+                            "type": "list"
+                        }
+                    },
+                    "help": "Returns the values of multiple 'keys'.",
+                    "http": {
+                        "contentType": "application/json",
+                        "method": "post",
+                        "path": "/get",
+                        "port": 8000
+                    },
+                    "output": {
+                        "type": "list"
+                    }
+                },
+                "mset": {
+                    "arguments": {
+                        "pairs": {
+                            "in": "requestBody",
+                            "type": "map"
+                        }
+                    },
+                    "help": "Sets multiple 'key'/'value' pairs simultaneously.",
+                    "http": {
+                        "contentType": "application/json",
+                        "method": "post",
+                        "path": "/mset",
+                        "port": 8000
+                    },
+                    "output": {
+                        "type": "none"
+                    }
+                },
+                "msetnx": {
+                    "arguments": {
+                        "pairs": {
+                            "in": "requestBody",
+                            "type": "map"
+                        }
+                    },
+                    "help": "Sets multiple 'key'/'value' pairs simultaneously.\nOnly non-existing keys will be set.\n",
+                    "http": {
+                        "contentType": "application/json",
+                        "method": "post",
+                        "path": "/msetnx",
+                        "port": 8000
+                    },
+                    "output": {
+                        "type": "boolean"
+                    }
+                },
+                "rpop": {
+                    "arguments": {
+                        "key": {
+                            "in": "requestBody",
+                            "required": true,
+                            "type": "string"
+                        }
+                    },
+                    "help": "Removes and returns the last element of the list stored at 'key'.",
+                    "http": {
+                        "contentType": "application/json",
+                        "method": "post",
+                        "path": "/rpop",
+                        "port": 8000
+                    },
+                    "output": {
+                        "type": "any"
+                    }
+                },
+                "rpush": {
+                    "arguments": {
+                        "key": {
+                            "in": "requestBody",
+                            "required": true,
+                            "type": "string"
+                        },
+                        "value": {
+                            "in": "requestBody",
+                            "required": true,
+                            "type": "any"
+                        }
+                    },
+                    "help": "Insert 'value' at the end of list stored at 'key'.",
+                    "http": {
+                        "contentType": "application/json",
+                        "method": "post",
+                        "path": "/rpush",
+                        "port": 8000
+                    },
+                    "output": {
+                        "type": "none"
+                    }
+                },
+                "set": {
+                    "arguments": {
+                        "key": {
+                            "in": "requestBody",
+                            "required": true,
+                            "type": "string"
+                        },
+                        "value": {
+                            "in": "requestBody",
+                            "required": true,
+                            "type": "any"
+                        }
+                    },
+                    "help": "Sets 'key' to hold 'value'.",
+                    "http": {
+                        "contentType": "application/json",
+                        "method": "post",
+                        "path": "/set",
+                        "port": 8000
+                    },
+                    "output": {
+                        "type": "none"
+                    }
+                },
+                "setnx": {
+                    "arguments": {
+                        "key": {
+                            "in": "requestBody",
+                            "required": true,
+                            "type": "string"
+                        },
+                        "value": {
+                            "in": "requestBody",
+                            "required": true,
+                            "type": "any"
+                        }
+                    },
+                    "help": "Set a 'key' to 'value' only if the key does not exist yet.",
+                    "http": {
+                        "contentType": "application/json",
+                        "method": "post",
+                        "path": "/setnx",
+                        "port": 8000
+                    },
+                    "output": {
+                        "type": "boolean"
+                    }
+                }
+            },
+            "environment": {
+                "REDIS_DB": {
+                    "type": "string"
+                },
+                "REDIS_HOST": {
+                    "type": "string"
+                },
+                "REDIS_PASSWORD": {
+                    "type": "string"
+                },
+                "REDIS_PORT": {
+                    "type": "int"
+                }
+            },
+            "health": {
+                "http": {
+                    "path": "/health",
+                    "port": 8000
+                }
+            },
+            "info": {
+                "contact": {
+                    "email": "core@openmicroservices.org",
+                    "name": "Open Microservices",
+                    "url": "https://openmicroservices.org"
+                },
+                "description": "Wrapper for the Redis key-value store",
+                "title": "Redis",
+                "version": "1.0.1"
+            },
+            "lifecycle": {
+                "startup": {
+                    "command": [
+                        "/bin/sh",
+                        "/app/start.sh"
+                    ]
+                }
+            },
+            "oms": 1,
+            "volumes": {
+                "db": {
+                    "persist": true,
+                    "target": "/db"
+                }
+            }
+        },
+        "readme": "# _Redis_ Open Microservice\n\n> Wrapper for the Redis key-value store\n\n[![Open Microservice Specification Version](https://img.shields.io/badge/Open%20Microservice-1.0-477bf3.svg)](https://openmicroservices.org) [![Open Microservices Spectrum Chat](https://withspectrum.github.io/badge/badge.svg)](https://spectrum.chat/open-microservices) [![Open Microservices Code of Conduct](https://img.shields.io/badge/Contributor%20Covenant-v1.4%20adopted-ff69b4.svg)](https://github.com/oms-services/.github/blob/master/CODE_OF_CONDUCT.md) [![Open Microservices Commitzen](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](http://makeapullrequest.com)\n\n## Introduction\n\nThis project is an example implementation of the [Open Microservice Specification](https://openmicroservices.org), a standard originally created at [Storyscript](https://storyscript.io) for building highly-portable \"microservices\" that expose the events, actions, and APIs inside containerized software.\n\n## Getting Started\n\nThe `oms` command-line interface allows you to interact with Open Microservices. If you're interested in creating an Open Microservice the CLI also helps validate, test, and debug your `oms.yml` implementation!\n\nSee the [oms-cli](https://github.com/microservices/oms) project to learn more!\n\n### Installation\n\n```\nnpm install -g @microservices/oms\n```\n\n## Usage\n\n### Open Microservices CLI Usage\n\nOnce you have the [oms-cli](https://github.com/microservices/oms) installed, you can run any of the following commands from within this project's root directory:\n\n#### Actions\n\n##### set\n\n> Sets 'key' to hold 'value'.\n##### Action Arguments\n\n| Argument Name | Type | Required | Default | Description |\n|:------------- |:---- |:-------- |:--------|:----------- |\n| key | `string` | `true` | None | No description provided. |\n| value | `any` | `true` | None | No description provided. |\n| REDIS_HOST | `string` | `false` | None | No description provided. |\n| REDIS_PORT | `int` | `false` | None | No description provided. |\n| REDIS_DB | `string` | `false` | None | No description provided. |\n| REDIS_PASSWORD | `string` | `false` | None | No description provided. |\n\n``` shell\noms run set \\ \n    -a key='*****' \\ \n    -a value='*****' \\ \n    -e REDIS_HOST=$REDIS_HOST \\ \n    -e REDIS_PORT=$REDIS_PORT \\ \n    -e REDIS_DB=$REDIS_DB \\ \n    -e REDIS_PASSWORD=$REDIS_PASSWORD\n```\n\n##### rpush\n\n> Insert 'value' at the end of list stored at 'key'.\n##### Action Arguments\n\n| Argument Name | Type | Required | Default | Description |\n|:------------- |:---- |:-------- |:--------|:----------- |\n| key | `string` | `true` | None | No description provided. |\n| value | `any` | `true` | None | No description provided. |\n| REDIS_HOST | `string` | `false` | None | No description provided. |\n| REDIS_PORT | `int` | `false` | None | No description provided. |\n| REDIS_DB | `string` | `false` | None | No description provided. |\n| REDIS_PASSWORD | `string` | `false` | None | No description provided. |\n\n``` shell\noms run rpush \\ \n    -a key='*****' \\ \n    -a value='*****' \\ \n    -e REDIS_HOST=$REDIS_HOST \\ \n    -e REDIS_PORT=$REDIS_PORT \\ \n    -e REDIS_DB=$REDIS_DB \\ \n    -e REDIS_PASSWORD=$REDIS_PASSWORD\n```\n\n##### lpush\n\n> Insert 'value' at the head of list stored at 'key'.\n##### Action Arguments\n\n| Argument Name | Type | Required | Default | Description |\n|:------------- |:---- |:-------- |:--------|:----------- |\n| key | `string` | `true` | None | No description provided. |\n| value | `any` | `true` | None | No description provided. |\n| REDIS_HOST | `string` | `false` | None | No description provided. |\n| REDIS_PORT | `int` | `false` | None | No description provided. |\n| REDIS_DB | `string` | `false` | None | No description provided. |\n| REDIS_PASSWORD | `string` | `false` | None | No description provided. |\n\n``` shell\noms run lpush \\ \n    -a key='*****' \\ \n    -a value='*****' \\ \n    -e REDIS_HOST=$REDIS_HOST \\ \n    -e REDIS_PORT=$REDIS_PORT \\ \n    -e REDIS_DB=$REDIS_DB \\ \n    -e REDIS_PASSWORD=$REDIS_PASSWORD\n```\n\n##### lpop\n\n> Removes and returns the first element of the list stored at 'key'.\n##### Action Arguments\n\n| Argument Name | Type | Required | Default | Description |\n|:------------- |:---- |:-------- |:--------|:----------- |\n| key | `string` | `true` | None | No description provided. |\n| REDIS_HOST | `string` | `false` | None | No description provided. |\n| REDIS_PORT | `int` | `false` | None | No description provided. |\n| REDIS_DB | `string` | `false` | None | No description provided. |\n| REDIS_PASSWORD | `string` | `false` | None | No description provided. |\n\n``` shell\noms run lpop \\ \n    -a key='*****' \\ \n    -e REDIS_HOST=$REDIS_HOST \\ \n    -e REDIS_PORT=$REDIS_PORT \\ \n    -e REDIS_DB=$REDIS_DB \\ \n    -e REDIS_PASSWORD=$REDIS_PASSWORD\n```\n\n##### rpop\n\n> Removes and returns the last element of the list stored at 'key'.\n##### Action Arguments\n\n| Argument Name | Type | Required | Default | Description |\n|:------------- |:---- |:-------- |:--------|:----------- |\n| key | `string` | `true` | None | No description provided. |\n| REDIS_HOST | `string` | `false` | None | No description provided. |\n| REDIS_PORT | `int` | `false` | None | No description provided. |\n| REDIS_DB | `string` | `false` | None | No description provided. |\n| REDIS_PASSWORD | `string` | `false` | None | No description provided. |\n\n``` shell\noms run rpop \\ \n    -a key='*****' \\ \n    -e REDIS_HOST=$REDIS_HOST \\ \n    -e REDIS_PORT=$REDIS_PORT \\ \n    -e REDIS_DB=$REDIS_DB \\ \n    -e REDIS_PASSWORD=$REDIS_PASSWORD\n```\n\n##### blpop\n\n> Removes and returns the first element of the list stored at 'key'.\nWhen there are no element in the list, the command will not return\nuntil an element got added.\n\n##### Action Arguments\n\n| Argument Name | Type | Required | Default | Description |\n|:------------- |:---- |:-------- |:--------|:----------- |\n| key | `string` | `true` | None | No description provided. |\n| REDIS_HOST | `string` | `false` | None | No description provided. |\n| REDIS_PORT | `int` | `false` | None | No description provided. |\n| REDIS_DB | `string` | `false` | None | No description provided. |\n| REDIS_PASSWORD | `string` | `false` | None | No description provided. |\n\n``` shell\noms run blpop \\ \n    -a key='*****' \\ \n    -e REDIS_HOST=$REDIS_HOST \\ \n    -e REDIS_PORT=$REDIS_PORT \\ \n    -e REDIS_DB=$REDIS_DB \\ \n    -e REDIS_PASSWORD=$REDIS_PASSWORD\n```\n\n##### brpop\n\n> Removes and returns the last element of the list stored at 'key'.\nWhen there are no element in the list, the command will not return\nuntil an elements got added.\n\n##### Action Arguments\n\n| Argument Name | Type | Required | Default | Description |\n|:------------- |:---- |:-------- |:--------|:----------- |\n| key | `string` | `true` | None | No description provided. |\n| REDIS_HOST | `string` | `false` | None | No description provided. |\n| REDIS_PORT | `int` | `false` | None | No description provided. |\n| REDIS_DB | `string` | `false` | None | No description provided. |\n| REDIS_PASSWORD | `string` | `false` | None | No description provided. |\n\n``` shell\noms run brpop \\ \n    -a key='*****' \\ \n    -e REDIS_HOST=$REDIS_HOST \\ \n    -e REDIS_PORT=$REDIS_PORT \\ \n    -e REDIS_DB=$REDIS_DB \\ \n    -e REDIS_PASSWORD=$REDIS_PASSWORD\n```\n\n##### delete\n\n> Removes 'key'.\n##### Action Arguments\n\n| Argument Name | Type | Required | Default | Description |\n|:------------- |:---- |:-------- |:--------|:----------- |\n| key | `string` | `true` | None | No description provided. |\n| REDIS_HOST | `string` | `false` | None | No description provided. |\n| REDIS_PORT | `int` | `false` | None | No description provided. |\n| REDIS_DB | `string` | `false` | None | No description provided. |\n| REDIS_PASSWORD | `string` | `false` | None | No description provided. |\n\n``` shell\noms run delete \\ \n    -a key='*****' \\ \n    -e REDIS_HOST=$REDIS_HOST \\ \n    -e REDIS_PORT=$REDIS_PORT \\ \n    -e REDIS_DB=$REDIS_DB \\ \n    -e REDIS_PASSWORD=$REDIS_PASSWORD\n```\n\n##### get\n\n> Returns the value of 'key'.\n##### Action Arguments\n\n| Argument Name | Type | Required | Default | Description |\n|:------------- |:---- |:-------- |:--------|:----------- |\n| key | `string` | `true` | None | No description provided. |\n| REDIS_HOST | `string` | `false` | None | No description provided. |\n| REDIS_PORT | `int` | `false` | None | No description provided. |\n| REDIS_DB | `string` | `false` | None | No description provided. |\n| REDIS_PASSWORD | `string` | `false` | None | No description provided. |\n\n``` shell\noms run get \\ \n    -a key='*****' \\ \n    -e REDIS_HOST=$REDIS_HOST \\ \n    -e REDIS_PORT=$REDIS_PORT \\ \n    -e REDIS_DB=$REDIS_DB \\ \n    -e REDIS_PASSWORD=$REDIS_PASSWORD\n```\n\n##### mget\n\n> Returns the values of multiple 'keys'.\n##### Action Arguments\n\n| Argument Name | Type | Required | Default | Description |\n|:------------- |:---- |:-------- |:--------|:----------- |\n| keys | `list` | `false` | None | No description provided. |\n| REDIS_HOST | `string` | `false` | None | No description provided. |\n| REDIS_PORT | `int` | `false` | None | No description provided. |\n| REDIS_DB | `string` | `false` | None | No description provided. |\n| REDIS_PASSWORD | `string` | `false` | None | No description provided. |\n\n``` shell\noms run mget \\ \n    -a keys='*****' \\ \n    -e REDIS_HOST=$REDIS_HOST \\ \n    -e REDIS_PORT=$REDIS_PORT \\ \n    -e REDIS_DB=$REDIS_DB \\ \n    -e REDIS_PASSWORD=$REDIS_PASSWORD\n```\n\n##### increment\n\n> Increments a number stored at 'key'.\n##### Action Arguments\n\n| Argument Name | Type | Required | Default | Description |\n|:------------- |:---- |:-------- |:--------|:----------- |\n| key | `string` | `true` | None | No description provided. |\n| by | `int` | `false` | None | No description provided. |\n| REDIS_HOST | `string` | `false` | None | No description provided. |\n| REDIS_PORT | `int` | `false` | None | No description provided. |\n| REDIS_DB | `string` | `false` | None | No description provided. |\n| REDIS_PASSWORD | `string` | `false` | None | No description provided. |\n\n``` shell\noms run increment \\ \n    -a key='*****' \\ \n    -a by='*****' \\ \n    -e REDIS_HOST=$REDIS_HOST \\ \n    -e REDIS_PORT=$REDIS_PORT \\ \n    -e REDIS_DB=$REDIS_DB \\ \n    -e REDIS_PASSWORD=$REDIS_PASSWORD\n```\n\n##### decrement\n\n> Decrements a number stored at 'key'.\n##### Action Arguments\n\n| Argument Name | Type | Required | Default | Description |\n|:------------- |:---- |:-------- |:--------|:----------- |\n| key | `string` | `true` | None | No description provided. |\n| by | `int` | `false` | None | No description provided. |\n| REDIS_HOST | `string` | `false` | None | No description provided. |\n| REDIS_PORT | `int` | `false` | None | No description provided. |\n| REDIS_DB | `string` | `false` | None | No description provided. |\n| REDIS_PASSWORD | `string` | `false` | None | No description provided. |\n\n``` shell\noms run decrement \\ \n    -a key='*****' \\ \n    -a by='*****' \\ \n    -e REDIS_HOST=$REDIS_HOST \\ \n    -e REDIS_PORT=$REDIS_PORT \\ \n    -e REDIS_DB=$REDIS_DB \\ \n    -e REDIS_PASSWORD=$REDIS_PASSWORD\n```\n\n##### append\n\n> Appends 'value' to a 'key'.\n##### Action Arguments\n\n| Argument Name | Type | Required | Default | Description |\n|:------------- |:---- |:-------- |:--------|:----------- |\n| key | `string` | `true` | None | No description provided. |\n| value | `any` | `true` | None | No description provided. |\n| REDIS_HOST | `string` | `false` | None | No description provided. |\n| REDIS_PORT | `int` | `false` | None | No description provided. |\n| REDIS_DB | `string` | `false` | None | No description provided. |\n| REDIS_PASSWORD | `string` | `false` | None | No description provided. |\n\n``` shell\noms run append \\ \n    -a key='*****' \\ \n    -a value='*****' \\ \n    -e REDIS_HOST=$REDIS_HOST \\ \n    -e REDIS_PORT=$REDIS_PORT \\ \n    -e REDIS_DB=$REDIS_DB \\ \n    -e REDIS_PASSWORD=$REDIS_PASSWORD\n```\n\n##### getSet\n\n> Returns the current value of 'key' and overwrites it with 'value'.\n##### Action Arguments\n\n| Argument Name | Type | Required | Default | Description |\n|:------------- |:---- |:-------- |:--------|:----------- |\n| key | `string` | `true` | None | No description provided. |\n| value | `any` | `true` | None | No description provided. |\n| REDIS_HOST | `string` | `false` | None | No description provided. |\n| REDIS_PORT | `int` | `false` | None | No description provided. |\n| REDIS_DB | `string` | `false` | None | No description provided. |\n| REDIS_PASSWORD | `string` | `false` | None | No description provided. |\n\n``` shell\noms run getSet \\ \n    -a key='*****' \\ \n    -a value='*****' \\ \n    -e REDIS_HOST=$REDIS_HOST \\ \n    -e REDIS_PORT=$REDIS_PORT \\ \n    -e REDIS_DB=$REDIS_DB \\ \n    -e REDIS_PASSWORD=$REDIS_PASSWORD\n```\n\n##### setnx\n\n> Set a 'key' to 'value' only if the key does not exist yet.\n##### Action Arguments\n\n| Argument Name | Type | Required | Default | Description |\n|:------------- |:---- |:-------- |:--------|:----------- |\n| key | `string` | `true` | None | No description provided. |\n| value | `any` | `true` | None | No description provided. |\n| REDIS_HOST | `string` | `false` | None | No description provided. |\n| REDIS_PORT | `int` | `false` | None | No description provided. |\n| REDIS_DB | `string` | `false` | None | No description provided. |\n| REDIS_PASSWORD | `string` | `false` | None | No description provided. |\n\n``` shell\noms run setnx \\ \n    -a key='*****' \\ \n    -a value='*****' \\ \n    -e REDIS_HOST=$REDIS_HOST \\ \n    -e REDIS_PORT=$REDIS_PORT \\ \n    -e REDIS_DB=$REDIS_DB \\ \n    -e REDIS_PASSWORD=$REDIS_PASSWORD\n```\n\n##### mset\n\n> Sets multiple 'key'/'value' pairs simultaneously.\n##### Action Arguments\n\n| Argument Name | Type | Required | Default | Description |\n|:------------- |:---- |:-------- |:--------|:----------- |\n| pairs | `map` | `false` | None | No description provided. |\n| REDIS_HOST | `string` | `false` | None | No description provided. |\n| REDIS_PORT | `int` | `false` | None | No description provided. |\n| REDIS_DB | `string` | `false` | None | No description provided. |\n| REDIS_PASSWORD | `string` | `false` | None | No description provided. |\n\n``` shell\noms run mset \\ \n    -a pairs='*****' \\ \n    -e REDIS_HOST=$REDIS_HOST \\ \n    -e REDIS_PORT=$REDIS_PORT \\ \n    -e REDIS_DB=$REDIS_DB \\ \n    -e REDIS_PASSWORD=$REDIS_PASSWORD\n```\n\n##### msetnx\n\n> Sets multiple 'key'/'value' pairs simultaneously.\nOnly non-existing keys will be set.\n\n##### Action Arguments\n\n| Argument Name | Type | Required | Default | Description |\n|:------------- |:---- |:-------- |:--------|:----------- |\n| pairs | `map` | `false` | None | No description provided. |\n| REDIS_HOST | `string` | `false` | None | No description provided. |\n| REDIS_PORT | `int` | `false` | None | No description provided. |\n| REDIS_DB | `string` | `false` | None | No description provided. |\n| REDIS_PASSWORD | `string` | `false` | None | No description provided. |\n\n``` shell\noms run msetnx \\ \n    -a pairs='*****' \\ \n    -e REDIS_HOST=$REDIS_HOST \\ \n    -e REDIS_PORT=$REDIS_PORT \\ \n    -e REDIS_DB=$REDIS_DB \\ \n    -e REDIS_PASSWORD=$REDIS_PASSWORD\n```\n\n##### expire\n\n> Set a timeout on a 'key'.\n##### Action Arguments\n\n| Argument Name | Type | Required | Default | Description |\n|:------------- |:---- |:-------- |:--------|:----------- |\n| key | `string` | `true` | None | No description provided. |\n| seconds | `int` | `true` | None | No description provided. |\n| REDIS_HOST | `string` | `false` | None | No description provided. |\n| REDIS_PORT | `int` | `false` | None | No description provided. |\n| REDIS_DB | `string` | `false` | None | No description provided. |\n| REDIS_PASSWORD | `string` | `false` | None | No description provided. |\n\n``` shell\noms run expire \\ \n    -a key='*****' \\ \n    -a seconds='*****' \\ \n    -e REDIS_HOST=$REDIS_HOST \\ \n    -e REDIS_PORT=$REDIS_PORT \\ \n    -e REDIS_DB=$REDIS_DB \\ \n    -e REDIS_PASSWORD=$REDIS_PASSWORD\n```\n\n##### rpop\n\n> RPOP a key constantly, and emit the values as events\n##### Action Arguments\n\n| Argument Name | Type | Required | Default | Description |\n|:------------- |:---- |:-------- |:--------|:----------- |\n| key | `string` | `true` | None | The key to RPOP |\n| REDIS_HOST | `string` | `false` | None | No description provided. |\n| REDIS_PORT | `int` | `false` | None | No description provided. |\n| REDIS_DB | `string` | `false` | None | No description provided. |\n| REDIS_PASSWORD | `string` | `false` | None | No description provided. |\n\n``` shell\noms subscribe rpop \\ \n    -a key='*****' \\ \n    -e REDIS_HOST=$REDIS_HOST \\ \n    -e REDIS_PORT=$REDIS_PORT \\ \n    -e REDIS_DB=$REDIS_DB \\ \n    -e REDIS_PASSWORD=$REDIS_PASSWORD\n```\n,##### lpop\n\n> LPOP a key constantly, and emit the values as events\n##### Action Arguments\n\n| Argument Name | Type | Required | Default | Description |\n|:------------- |:---- |:-------- |:--------|:----------- |\n| key | `string` | `true` | None | The key to LPOP |\n| REDIS_HOST | `string` | `false` | None | No description provided. |\n| REDIS_PORT | `int` | `false` | None | No description provided. |\n| REDIS_DB | `string` | `false` | None | No description provided. |\n| REDIS_PASSWORD | `string` | `false` | None | No description provided. |\n\n``` shell\noms subscribe lpop \\ \n    -a key='*****' \\ \n    -e REDIS_HOST=$REDIS_HOST \\ \n    -e REDIS_PORT=$REDIS_PORT \\ \n    -e REDIS_DB=$REDIS_DB \\ \n    -e REDIS_PASSWORD=$REDIS_PASSWORD\n```\n\n## Contributing\n\nAll suggestions in how to improve the specification and this guide are very welcome. Feel free share your thoughts in the Issue tracker, or even better, fork the repository to implement your own ideas and submit a pull request.\n\n[![Edit redis on CodeSandbox](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/oms-services/redis)\n\nThis project is guided by [Contributor Covenant](https://github.com/oms-services/.github/blob/master/CODE_OF_CONDUCT.md). Please read out full [Contribution Guidelines](https://github.com/oms-services/.github/blob/master/CONTRIBUTING.md).\n\n## Additional Resources\n\n* [Install the CLI](https://github.com/microservices/oms) - The OMS CLI helps developers create, test, validate, and build microservices.\n* [Example OMS Services](https://github.com/oms-services) - Examples of OMS-compliant services written in a variety of languages.\n* [Example Language Implementations](https://github.com/microservices) - Find tooling & language implementations in Node, Python, Scala, Java, Clojure.\n* [Storyscript Hub](https://hub.storyscript.io) - A public registry of OMS services.\n* [Community Chat](https://spectrum.chat/open-microservices) - Have ideas? Questions? Join us on Spectrum.\n",
+        "service": {
+            "alias": "redis",
+            "description": "Run redis in a Story.",
+            "isCertified": true,
+            "name": "redis",
+            "owner": {
+                "username": "oms-services"
+            },
+            "public": true,
+            "topics": [
+                "microservice",
+                "redis-server",
+                "redis",
+                "oms",
+                "open-microservice"
+            ]
+        },
+        "serviceUuid": "352885c0-2673-46e1-949e-be3c8043376f",
+        "state": "BETA"
+    },
+    {
+        "configuration": {
+            "actions": {
+                "append": {
+                    "arguments": {
+                        "key": {
+                            "in": "requestBody",
+                            "required": true,
+                            "type": "string"
+                        },
+                        "value": {
+                            "in": "requestBody",
+                            "required": true,
+                            "type": "any"
+                        }
+                    },
+                    "help": "Appends 'value' to a 'key'.",
+                    "http": {
+                        "contentType": "application/json",
+                        "method": "post",
+                        "path": "/append",
+                        "port": 8000
+                    },
+                    "output": {
+                        "type": "int"
+                    }
+                },
+                "blpop": {
+                    "arguments": {
+                        "key": {
+                            "in": "requestBody",
+                            "required": true,
+                            "type": "string"
+                        }
+                    },
+                    "help": "Removes and returns the first element of the list stored at 'key'.\nWhen there are no element in the list, the command will not return\nuntil an element got added.\n",
+                    "http": {
+                        "contentType": "application/json",
+                        "method": "post",
+                        "path": "/blpop",
+                        "port": 8000
+                    },
+                    "output": {
+                        "type": "any"
+                    }
+                },
+                "brpop": {
+                    "arguments": {
+                        "key": {
+                            "in": "requestBody",
+                            "required": true,
+                            "type": "string"
+                        }
+                    },
+                    "help": "Removes and returns the last element of the list stored at 'key'.\nWhen there are no element in the list, the command will not return\nuntil an elements got added.\n",
+                    "http": {
+                        "contentType": "application/json",
+                        "method": "post",
+                        "path": "/brpop",
+                        "port": 8000
+                    },
+                    "output": {
+                        "type": "any"
+                    }
+                },
+                "decrement": {
+                    "arguments": {
+                        "by": {
+                            "in": "requestBody",
+                            "type": "int"
+                        },
+                        "key": {
+                            "in": "requestBody",
+                            "required": true,
+                            "type": "string"
+                        }
+                    },
+                    "help": "Decrements a number stored at 'key'.",
+                    "http": {
+                        "contentType": "application/json",
+                        "method": "post",
+                        "path": "/decr",
+                        "port": 8000
+                    },
+                    "output": {
+                        "type": "int"
+                    }
+                },
+                "delete": {
+                    "arguments": {
+                        "key": {
+                            "in": "requestBody",
+                            "required": true,
+                            "type": "string"
+                        }
+                    },
+                    "help": "Removes 'key'.",
+                    "http": {
+                        "contentType": "application/json",
+                        "method": "post",
+                        "path": "/del",
+                        "port": 8000
+                    },
+                    "output": {
+                        "type": "none"
+                    }
+                },
+                "expire": {
+                    "arguments": {
+                        "key": {
+                            "in": "requestBody",
+                            "required": true,
+                            "type": "string"
+                        },
+                        "seconds": {
+                            "in": "requestBody",
+                            "required": true,
+                            "type": "int"
+                        }
+                    },
+                    "help": "Set a timeout on a 'key'.",
+                    "http": {
+                        "contentType": "application/json",
+                        "method": "post",
+                        "path": "/expire",
+                        "port": 8000
+                    },
+                    "output": {
+                        "type": "none"
+                    }
+                },
+                "get": {
+                    "arguments": {
+                        "key": {
+                            "in": "requestBody",
+                            "required": true,
+                            "type": "string"
+                        }
+                    },
+                    "help": "Returns the value of 'key'.",
+                    "http": {
+                        "contentType": "application/json",
+                        "method": "post",
+                        "path": "/get",
+                        "port": 8000
+                    },
+                    "output": {
+                        "type": "string"
+                    }
+                },
+                "getSet": {
+                    "arguments": {
+                        "key": {
+                            "in": "requestBody",
+                            "required": true,
+                            "type": "string"
+                        },
+                        "value": {
+                            "in": "requestBody",
+                            "required": true,
+                            "type": "any"
+                        }
+                    },
+                    "help": "Returns the current value of 'key' and overwrites it with 'value'.",
+                    "http": {
+                        "contentType": "application/json",
+                        "method": "post",
+                        "path": "/getset",
+                        "port": 8000
+                    },
+                    "output": {
+                        "type": "string"
+                    }
+                },
+                "increment": {
+                    "arguments": {
+                        "by": {
+                            "in": "requestBody",
+                            "type": "int"
+                        },
+                        "key": {
+                            "in": "requestBody",
+                            "required": true,
+                            "type": "string"
+                        }
+                    },
+                    "help": "Increments a number stored at 'key'.",
+                    "http": {
+                        "contentType": "application/json",
+                        "method": "post",
+                        "path": "/incr",
+                        "port": 8000
+                    },
+                    "output": {
+                        "type": "int"
+                    }
+                },
+                "listener": {
+                    "events": {
+                        "lpop": {
+                            "arguments": {
+                                "key": {
+                                    "help": "The key to LPOP",
+                                    "in": "requestBody",
+                                    "required": true,
+                                    "type": "string"
+                                }
+                            },
+                            "help": "LPOP a key constantly, and emit the values as events",
+                            "http": {
+                                "port": 8000,
+                                "subscribe": {
+                                    "method": "post",
+                                    "path": "/listener/add"
+                                },
+                                "unsubscribe": {
+                                    "method": "post",
+                                    "path": "/listener/remove"
+                                }
+                            },
+                            "output": {
+                                "type": "any"
+                            }
+                        },
+                        "rpop": {
+                            "arguments": {
+                                "key": {
+                                    "help": "The key to RPOP",
+                                    "in": "requestBody",
+                                    "required": true,
+                                    "type": "string"
+                                }
+                            },
+                            "help": "RPOP a key constantly, and emit the values as events",
+                            "http": {
+                                "port": 8000,
+                                "subscribe": {
+                                    "method": "post",
+                                    "path": "/listener/add"
+                                },
+                                "unsubscribe": {
+                                    "method": "post",
+                                    "path": "/listener/remove"
+                                }
+                            },
+                            "output": {
+                                "type": "any"
+                            }
+                        }
+                    }
+                },
+                "lpop": {
+                    "arguments": {
+                        "key": {
+                            "in": "requestBody",
+                            "required": true,
+                            "type": "string"
+                        }
+                    },
+                    "help": "Removes and returns the first element of the list stored at 'key'.",
+                    "http": {
+                        "contentType": "application/json",
+                        "method": "post",
+                        "path": "/lpop",
+                        "port": 8000
+                    },
+                    "output": {
+                        "type": "any"
+                    }
+                },
+                "lpush": {
+                    "arguments": {
+                        "key": {
+                            "in": "requestBody",
+                            "required": true,
+                            "type": "string"
+                        },
+                        "value": {
+                            "in": "requestBody",
+                            "required": true,
+                            "type": "any"
+                        }
+                    },
+                    "help": "Insert 'value' at the head of list stored at 'key'.",
+                    "http": {
+                        "contentType": "application/json",
+                        "method": "post",
+                        "path": "/lpush",
+                        "port": 8000
+                    },
+                    "output": {
+                        "type": "none"
+                    }
+                },
+                "mget": {
+                    "arguments": {
+                        "keys": {
+                            "in": "requestBody",
+                            "type": "list"
+                        }
+                    },
+                    "help": "Returns the values of multiple 'keys'.",
+                    "http": {
+                        "contentType": "application/json",
+                        "method": "post",
+                        "path": "/get",
+                        "port": 8000
+                    },
+                    "output": {
+                        "type": "list"
+                    }
+                },
+                "mset": {
+                    "arguments": {
+                        "pairs": {
+                            "in": "requestBody",
+                            "type": "map"
+                        }
+                    },
+                    "help": "Sets multiple 'key'/'value' pairs simultaneously.",
+                    "http": {
+                        "contentType": "application/json",
+                        "method": "post",
+                        "path": "/mset",
+                        "port": 8000
+                    },
+                    "output": {
+                        "type": "none"
+                    }
+                },
+                "msetnx": {
+                    "arguments": {
+                        "pairs": {
+                            "in": "requestBody",
+                            "type": "map"
+                        }
+                    },
+                    "help": "Sets multiple 'key'/'value' pairs simultaneously.\nOnly non-existing keys will be set.\n",
+                    "http": {
+                        "contentType": "application/json",
+                        "method": "post",
+                        "path": "/msetnx",
+                        "port": 8000
+                    },
+                    "output": {
+                        "type": "boolean"
+                    }
+                },
+                "rpop": {
+                    "arguments": {
+                        "key": {
+                            "in": "requestBody",
+                            "required": true,
+                            "type": "string"
+                        }
+                    },
+                    "help": "Removes and returns the last element of the list stored at 'key'.",
+                    "http": {
+                        "contentType": "application/json",
+                        "method": "post",
+                        "path": "/rpop",
+                        "port": 8000
+                    },
+                    "output": {
+                        "type": "any"
+                    }
+                },
+                "rpush": {
+                    "arguments": {
+                        "key": {
+                            "in": "requestBody",
+                            "required": true,
+                            "type": "string"
+                        },
+                        "value": {
+                            "in": "requestBody",
+                            "required": true,
+                            "type": "any"
+                        }
+                    },
+                    "help": "Insert 'value' at the end of list stored at 'key'.",
+                    "http": {
+                        "contentType": "application/json",
+                        "method": "post",
+                        "path": "/rpush",
+                        "port": 8000
+                    },
+                    "output": {
+                        "type": "none"
+                    }
+                },
+                "set": {
+                    "arguments": {
+                        "key": {
+                            "in": "requestBody",
+                            "required": true,
+                            "type": "string"
+                        },
+                        "value": {
+                            "in": "requestBody",
+                            "required": true,
+                            "type": "any"
+                        }
+                    },
+                    "help": "Sets 'key' to hold 'value'.",
+                    "http": {
+                        "contentType": "application/json",
+                        "method": "post",
+                        "path": "/set",
+                        "port": 8000
+                    },
+                    "output": {
+                        "type": "none"
+                    }
+                },
+                "setnx": {
+                    "arguments": {
+                        "key": {
+                            "in": "requestBody",
+                            "required": true,
+                            "type": "string"
+                        },
+                        "value": {
+                            "in": "requestBody",
+                            "required": true,
+                            "type": "any"
+                        }
+                    },
+                    "help": "Set a 'key' to 'value' only if the key does not exist yet.",
+                    "http": {
+                        "contentType": "application/json",
+                        "method": "post",
+                        "path": "/setnx",
+                        "port": 8000
+                    },
+                    "output": {
+                        "type": "boolean"
+                    }
+                }
+            },
+            "environment": {
+                "REDIS_DB": {
+                    "type": "string"
+                },
+                "REDIS_HOST": {
+                    "type": "string"
+                },
+                "REDIS_PASSWORD": {
+                    "type": "string"
+                },
+                "REDIS_PORT": {
+                    "type": "int"
+                }
+            },
+            "health": {
+                "http": {
+                    "path": "/health",
+                    "port": 8000
+                }
+            },
+            "info": {
+                "contact": {
+                    "email": "core@openmicroservices.org",
+                    "name": "Open Microservices",
+                    "url": "https://openmicroservices.org"
+                },
+                "description": "Wrapper for the Redis key-value store",
+                "title": "Redis",
+                "version": "1.0.1"
+            },
+            "lifecycle": {
+                "startup": {
+                    "command": [
+                        "/bin/sh",
+                        "/app/start.sh"
+                    ]
+                }
+            },
+            "oms": 1,
+            "volumes": {
+                "db": {
+                    "persist": true,
+                    "target": "/db"
+                }
+            }
+        },
+        "readme": "# _Redis_ Open Microservice\n\n> Wrapper for the Redis key-value store\n\n[![Open Microservice Specification Version](https://img.shields.io/badge/Open%20Microservice-1.0-477bf3.svg)](https://openmicroservices.org) [![Open Microservices Spectrum Chat](https://withspectrum.github.io/badge/badge.svg)](https://spectrum.chat/open-microservices) [![Open Microservices Code of Conduct](https://img.shields.io/badge/Contributor%20Covenant-v1.4%20adopted-ff69b4.svg)](https://github.com/oms-services/.github/blob/master/CODE_OF_CONDUCT.md) [![Open Microservices Commitzen](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](http://makeapullrequest.com)\n\n## Introduction\n\nThis project is an example implementation of the [Open Microservice Specification](https://openmicroservices.org), a standard originally created at [Storyscript](https://storyscript.io) for building highly-portable \"microservices\" that expose the events, actions, and APIs inside containerized software.\n\n## Getting Started\n\nThe `oms` command-line interface allows you to interact with Open Microservices. If you're interested in creating an Open Microservice the CLI also helps validate, test, and debug your `oms.yml` implementation!\n\nSee the [oms-cli](https://github.com/microservices/oms) project to learn more!\n\n### Installation\n\n```\nnpm install -g @microservices/oms\n```\n\n## Usage\n\n### Open Microservices CLI Usage\n\nOnce you have the [oms-cli](https://github.com/microservices/oms) installed, you can run any of the following commands from within this project's root directory:\n\n#### Actions\n\n##### set\n\n> Sets 'key' to hold 'value'.\n##### Action Arguments\n\n| Argument Name | Type | Required | Default | Description |\n|:------------- |:---- |:-------- |:--------|:----------- |\n| key | `string` | `true` | None | No description provided. |\n| value | `any` | `true` | None | No description provided. |\n| REDIS_HOST | `string` | `false` | None | No description provided. |\n| REDIS_PORT | `int` | `false` | None | No description provided. |\n| REDIS_DB | `string` | `false` | None | No description provided. |\n| REDIS_PASSWORD | `string` | `false` | None | No description provided. |\n\n``` shell\noms run set \\ \n    -a key='*****' \\ \n    -a value='*****' \\ \n    -e REDIS_HOST=$REDIS_HOST \\ \n    -e REDIS_PORT=$REDIS_PORT \\ \n    -e REDIS_DB=$REDIS_DB \\ \n    -e REDIS_PASSWORD=$REDIS_PASSWORD\n```\n\n##### rpush\n\n> Insert 'value' at the end of list stored at 'key'.\n##### Action Arguments\n\n| Argument Name | Type | Required | Default | Description |\n|:------------- |:---- |:-------- |:--------|:----------- |\n| key | `string` | `true` | None | No description provided. |\n| value | `any` | `true` | None | No description provided. |\n| REDIS_HOST | `string` | `false` | None | No description provided. |\n| REDIS_PORT | `int` | `false` | None | No description provided. |\n| REDIS_DB | `string` | `false` | None | No description provided. |\n| REDIS_PASSWORD | `string` | `false` | None | No description provided. |\n\n``` shell\noms run rpush \\ \n    -a key='*****' \\ \n    -a value='*****' \\ \n    -e REDIS_HOST=$REDIS_HOST \\ \n    -e REDIS_PORT=$REDIS_PORT \\ \n    -e REDIS_DB=$REDIS_DB \\ \n    -e REDIS_PASSWORD=$REDIS_PASSWORD\n```\n\n##### lpush\n\n> Insert 'value' at the head of list stored at 'key'.\n##### Action Arguments\n\n| Argument Name | Type | Required | Default | Description |\n|:------------- |:---- |:-------- |:--------|:----------- |\n| key | `string` | `true` | None | No description provided. |\n| value | `any` | `true` | None | No description provided. |\n| REDIS_HOST | `string` | `false` | None | No description provided. |\n| REDIS_PORT | `int` | `false` | None | No description provided. |\n| REDIS_DB | `string` | `false` | None | No description provided. |\n| REDIS_PASSWORD | `string` | `false` | None | No description provided. |\n\n``` shell\noms run lpush \\ \n    -a key='*****' \\ \n    -a value='*****' \\ \n    -e REDIS_HOST=$REDIS_HOST \\ \n    -e REDIS_PORT=$REDIS_PORT \\ \n    -e REDIS_DB=$REDIS_DB \\ \n    -e REDIS_PASSWORD=$REDIS_PASSWORD\n```\n\n##### lpop\n\n> Removes and returns the first element of the list stored at 'key'.\n##### Action Arguments\n\n| Argument Name | Type | Required | Default | Description |\n|:------------- |:---- |:-------- |:--------|:----------- |\n| key | `string` | `true` | None | No description provided. |\n| REDIS_HOST | `string` | `false` | None | No description provided. |\n| REDIS_PORT | `int` | `false` | None | No description provided. |\n| REDIS_DB | `string` | `false` | None | No description provided. |\n| REDIS_PASSWORD | `string` | `false` | None | No description provided. |\n\n``` shell\noms run lpop \\ \n    -a key='*****' \\ \n    -e REDIS_HOST=$REDIS_HOST \\ \n    -e REDIS_PORT=$REDIS_PORT \\ \n    -e REDIS_DB=$REDIS_DB \\ \n    -e REDIS_PASSWORD=$REDIS_PASSWORD\n```\n\n##### rpop\n\n> Removes and returns the last element of the list stored at 'key'.\n##### Action Arguments\n\n| Argument Name | Type | Required | Default | Description |\n|:------------- |:---- |:-------- |:--------|:----------- |\n| key | `string` | `true` | None | No description provided. |\n| REDIS_HOST | `string` | `false` | None | No description provided. |\n| REDIS_PORT | `int` | `false` | None | No description provided. |\n| REDIS_DB | `string` | `false` | None | No description provided. |\n| REDIS_PASSWORD | `string` | `false` | None | No description provided. |\n\n``` shell\noms run rpop \\ \n    -a key='*****' \\ \n    -e REDIS_HOST=$REDIS_HOST \\ \n    -e REDIS_PORT=$REDIS_PORT \\ \n    -e REDIS_DB=$REDIS_DB \\ \n    -e REDIS_PASSWORD=$REDIS_PASSWORD\n```\n\n##### blpop\n\n> Removes and returns the first element of the list stored at 'key'.\nWhen there are no element in the list, the command will not return\nuntil an element got added.\n\n##### Action Arguments\n\n| Argument Name | Type | Required | Default | Description |\n|:------------- |:---- |:-------- |:--------|:----------- |\n| key | `string` | `true` | None | No description provided. |\n| REDIS_HOST | `string` | `false` | None | No description provided. |\n| REDIS_PORT | `int` | `false` | None | No description provided. |\n| REDIS_DB | `string` | `false` | None | No description provided. |\n| REDIS_PASSWORD | `string` | `false` | None | No description provided. |\n\n``` shell\noms run blpop \\ \n    -a key='*****' \\ \n    -e REDIS_HOST=$REDIS_HOST \\ \n    -e REDIS_PORT=$REDIS_PORT \\ \n    -e REDIS_DB=$REDIS_DB \\ \n    -e REDIS_PASSWORD=$REDIS_PASSWORD\n```\n\n##### brpop\n\n> Removes and returns the last element of the list stored at 'key'.\nWhen there are no element in the list, the command will not return\nuntil an elements got added.\n\n##### Action Arguments\n\n| Argument Name | Type | Required | Default | Description |\n|:------------- |:---- |:-------- |:--------|:----------- |\n| key | `string` | `true` | None | No description provided. |\n| REDIS_HOST | `string` | `false` | None | No description provided. |\n| REDIS_PORT | `int` | `false` | None | No description provided. |\n| REDIS_DB | `string` | `false` | None | No description provided. |\n| REDIS_PASSWORD | `string` | `false` | None | No description provided. |\n\n``` shell\noms run brpop \\ \n    -a key='*****' \\ \n    -e REDIS_HOST=$REDIS_HOST \\ \n    -e REDIS_PORT=$REDIS_PORT \\ \n    -e REDIS_DB=$REDIS_DB \\ \n    -e REDIS_PASSWORD=$REDIS_PASSWORD\n```\n\n##### delete\n\n> Removes 'key'.\n##### Action Arguments\n\n| Argument Name | Type | Required | Default | Description |\n|:------------- |:---- |:-------- |:--------|:----------- |\n| key | `string` | `true` | None | No description provided. |\n| REDIS_HOST | `string` | `false` | None | No description provided. |\n| REDIS_PORT | `int` | `false` | None | No description provided. |\n| REDIS_DB | `string` | `false` | None | No description provided. |\n| REDIS_PASSWORD | `string` | `false` | None | No description provided. |\n\n``` shell\noms run delete \\ \n    -a key='*****' \\ \n    -e REDIS_HOST=$REDIS_HOST \\ \n    -e REDIS_PORT=$REDIS_PORT \\ \n    -e REDIS_DB=$REDIS_DB \\ \n    -e REDIS_PASSWORD=$REDIS_PASSWORD\n```\n\n##### get\n\n> Returns the value of 'key'.\n##### Action Arguments\n\n| Argument Name | Type | Required | Default | Description |\n|:------------- |:---- |:-------- |:--------|:----------- |\n| key | `string` | `true` | None | No description provided. |\n| REDIS_HOST | `string` | `false` | None | No description provided. |\n| REDIS_PORT | `int` | `false` | None | No description provided. |\n| REDIS_DB | `string` | `false` | None | No description provided. |\n| REDIS_PASSWORD | `string` | `false` | None | No description provided. |\n\n``` shell\noms run get \\ \n    -a key='*****' \\ \n    -e REDIS_HOST=$REDIS_HOST \\ \n    -e REDIS_PORT=$REDIS_PORT \\ \n    -e REDIS_DB=$REDIS_DB \\ \n    -e REDIS_PASSWORD=$REDIS_PASSWORD\n```\n\n##### mget\n\n> Returns the values of multiple 'keys'.\n##### Action Arguments\n\n| Argument Name | Type | Required | Default | Description |\n|:------------- |:---- |:-------- |:--------|:----------- |\n| keys | `list` | `false` | None | No description provided. |\n| REDIS_HOST | `string` | `false` | None | No description provided. |\n| REDIS_PORT | `int` | `false` | None | No description provided. |\n| REDIS_DB | `string` | `false` | None | No description provided. |\n| REDIS_PASSWORD | `string` | `false` | None | No description provided. |\n\n``` shell\noms run mget \\ \n    -a keys='*****' \\ \n    -e REDIS_HOST=$REDIS_HOST \\ \n    -e REDIS_PORT=$REDIS_PORT \\ \n    -e REDIS_DB=$REDIS_DB \\ \n    -e REDIS_PASSWORD=$REDIS_PASSWORD\n```\n\n##### increment\n\n> Increments a number stored at 'key'.\n##### Action Arguments\n\n| Argument Name | Type | Required | Default | Description |\n|:------------- |:---- |:-------- |:--------|:----------- |\n| key | `string` | `true` | None | No description provided. |\n| by | `int` | `false` | None | No description provided. |\n| REDIS_HOST | `string` | `false` | None | No description provided. |\n| REDIS_PORT | `int` | `false` | None | No description provided. |\n| REDIS_DB | `string` | `false` | None | No description provided. |\n| REDIS_PASSWORD | `string` | `false` | None | No description provided. |\n\n``` shell\noms run increment \\ \n    -a key='*****' \\ \n    -a by='*****' \\ \n    -e REDIS_HOST=$REDIS_HOST \\ \n    -e REDIS_PORT=$REDIS_PORT \\ \n    -e REDIS_DB=$REDIS_DB \\ \n    -e REDIS_PASSWORD=$REDIS_PASSWORD\n```\n\n##### decrement\n\n> Decrements a number stored at 'key'.\n##### Action Arguments\n\n| Argument Name | Type | Required | Default | Description |\n|:------------- |:---- |:-------- |:--------|:----------- |\n| key | `string` | `true` | None | No description provided. |\n| by | `int` | `false` | None | No description provided. |\n| REDIS_HOST | `string` | `false` | None | No description provided. |\n| REDIS_PORT | `int` | `false` | None | No description provided. |\n| REDIS_DB | `string` | `false` | None | No description provided. |\n| REDIS_PASSWORD | `string` | `false` | None | No description provided. |\n\n``` shell\noms run decrement \\ \n    -a key='*****' \\ \n    -a by='*****' \\ \n    -e REDIS_HOST=$REDIS_HOST \\ \n    -e REDIS_PORT=$REDIS_PORT \\ \n    -e REDIS_DB=$REDIS_DB \\ \n    -e REDIS_PASSWORD=$REDIS_PASSWORD\n```\n\n##### append\n\n> Appends 'value' to a 'key'.\n##### Action Arguments\n\n| Argument Name | Type | Required | Default | Description |\n|:------------- |:---- |:-------- |:--------|:----------- |\n| key | `string` | `true` | None | No description provided. |\n| value | `any` | `true` | None | No description provided. |\n| REDIS_HOST | `string` | `false` | None | No description provided. |\n| REDIS_PORT | `int` | `false` | None | No description provided. |\n| REDIS_DB | `string` | `false` | None | No description provided. |\n| REDIS_PASSWORD | `string` | `false` | None | No description provided. |\n\n``` shell\noms run append \\ \n    -a key='*****' \\ \n    -a value='*****' \\ \n    -e REDIS_HOST=$REDIS_HOST \\ \n    -e REDIS_PORT=$REDIS_PORT \\ \n    -e REDIS_DB=$REDIS_DB \\ \n    -e REDIS_PASSWORD=$REDIS_PASSWORD\n```\n\n##### getSet\n\n> Returns the current value of 'key' and overwrites it with 'value'.\n##### Action Arguments\n\n| Argument Name | Type | Required | Default | Description |\n|:------------- |:---- |:-------- |:--------|:----------- |\n| key | `string` | `true` | None | No description provided. |\n| value | `any` | `true` | None | No description provided. |\n| REDIS_HOST | `string` | `false` | None | No description provided. |\n| REDIS_PORT | `int` | `false` | None | No description provided. |\n| REDIS_DB | `string` | `false` | None | No description provided. |\n| REDIS_PASSWORD | `string` | `false` | None | No description provided. |\n\n``` shell\noms run getSet \\ \n    -a key='*****' \\ \n    -a value='*****' \\ \n    -e REDIS_HOST=$REDIS_HOST \\ \n    -e REDIS_PORT=$REDIS_PORT \\ \n    -e REDIS_DB=$REDIS_DB \\ \n    -e REDIS_PASSWORD=$REDIS_PASSWORD\n```\n\n##### setnx\n\n> Set a 'key' to 'value' only if the key does not exist yet.\n##### Action Arguments\n\n| Argument Name | Type | Required | Default | Description |\n|:------------- |:---- |:-------- |:--------|:----------- |\n| key | `string` | `true` | None | No description provided. |\n| value | `any` | `true` | None | No description provided. |\n| REDIS_HOST | `string` | `false` | None | No description provided. |\n| REDIS_PORT | `int` | `false` | None | No description provided. |\n| REDIS_DB | `string` | `false` | None | No description provided. |\n| REDIS_PASSWORD | `string` | `false` | None | No description provided. |\n\n``` shell\noms run setnx \\ \n    -a key='*****' \\ \n    -a value='*****' \\ \n    -e REDIS_HOST=$REDIS_HOST \\ \n    -e REDIS_PORT=$REDIS_PORT \\ \n    -e REDIS_DB=$REDIS_DB \\ \n    -e REDIS_PASSWORD=$REDIS_PASSWORD\n```\n\n##### mset\n\n> Sets multiple 'key'/'value' pairs simultaneously.\n##### Action Arguments\n\n| Argument Name | Type | Required | Default | Description |\n|:------------- |:---- |:-------- |:--------|:----------- |\n| pairs | `map` | `false` | None | No description provided. |\n| REDIS_HOST | `string` | `false` | None | No description provided. |\n| REDIS_PORT | `int` | `false` | None | No description provided. |\n| REDIS_DB | `string` | `false` | None | No description provided. |\n| REDIS_PASSWORD | `string` | `false` | None | No description provided. |\n\n``` shell\noms run mset \\ \n    -a pairs='*****' \\ \n    -e REDIS_HOST=$REDIS_HOST \\ \n    -e REDIS_PORT=$REDIS_PORT \\ \n    -e REDIS_DB=$REDIS_DB \\ \n    -e REDIS_PASSWORD=$REDIS_PASSWORD\n```\n\n##### msetnx\n\n> Sets multiple 'key'/'value' pairs simultaneously.\nOnly non-existing keys will be set.\n\n##### Action Arguments\n\n| Argument Name | Type | Required | Default | Description |\n|:------------- |:---- |:-------- |:--------|:----------- |\n| pairs | `map` | `false` | None | No description provided. |\n| REDIS_HOST | `string` | `false` | None | No description provided. |\n| REDIS_PORT | `int` | `false` | None | No description provided. |\n| REDIS_DB | `string` | `false` | None | No description provided. |\n| REDIS_PASSWORD | `string` | `false` | None | No description provided. |\n\n``` shell\noms run msetnx \\ \n    -a pairs='*****' \\ \n    -e REDIS_HOST=$REDIS_HOST \\ \n    -e REDIS_PORT=$REDIS_PORT \\ \n    -e REDIS_DB=$REDIS_DB \\ \n    -e REDIS_PASSWORD=$REDIS_PASSWORD\n```\n\n##### expire\n\n> Set a timeout on a 'key'.\n##### Action Arguments\n\n| Argument Name | Type | Required | Default | Description |\n|:------------- |:---- |:-------- |:--------|:----------- |\n| key | `string` | `true` | None | No description provided. |\n| seconds | `int` | `true` | None | No description provided. |\n| REDIS_HOST | `string` | `false` | None | No description provided. |\n| REDIS_PORT | `int` | `false` | None | No description provided. |\n| REDIS_DB | `string` | `false` | None | No description provided. |\n| REDIS_PASSWORD | `string` | `false` | None | No description provided. |\n\n``` shell\noms run expire \\ \n    -a key='*****' \\ \n    -a seconds='*****' \\ \n    -e REDIS_HOST=$REDIS_HOST \\ \n    -e REDIS_PORT=$REDIS_PORT \\ \n    -e REDIS_DB=$REDIS_DB \\ \n    -e REDIS_PASSWORD=$REDIS_PASSWORD\n```\n\n##### rpop\n\n> RPOP a key constantly, and emit the values as events\n##### Action Arguments\n\n| Argument Name | Type | Required | Default | Description |\n|:------------- |:---- |:-------- |:--------|:----------- |\n| key | `string` | `true` | None | The key to RPOP |\n| REDIS_HOST | `string` | `false` | None | No description provided. |\n| REDIS_PORT | `int` | `false` | None | No description provided. |\n| REDIS_DB | `string` | `false` | None | No description provided. |\n| REDIS_PASSWORD | `string` | `false` | None | No description provided. |\n\n``` shell\noms subscribe rpop \\ \n    -a key='*****' \\ \n    -e REDIS_HOST=$REDIS_HOST \\ \n    -e REDIS_PORT=$REDIS_PORT \\ \n    -e REDIS_DB=$REDIS_DB \\ \n    -e REDIS_PASSWORD=$REDIS_PASSWORD\n```\n,##### lpop\n\n> LPOP a key constantly, and emit the values as events\n##### Action Arguments\n\n| Argument Name | Type | Required | Default | Description |\n|:------------- |:---- |:-------- |:--------|:----------- |\n| key | `string` | `true` | None | The key to LPOP |\n| REDIS_HOST | `string` | `false` | None | No description provided. |\n| REDIS_PORT | `int` | `false` | None | No description provided. |\n| REDIS_DB | `string` | `false` | None | No description provided. |\n| REDIS_PASSWORD | `string` | `false` | None | No description provided. |\n\n``` shell\noms subscribe lpop \\ \n    -a key='*****' \\ \n    -e REDIS_HOST=$REDIS_HOST \\ \n    -e REDIS_PORT=$REDIS_PORT \\ \n    -e REDIS_DB=$REDIS_DB \\ \n    -e REDIS_PASSWORD=$REDIS_PASSWORD\n```\n\n## Contributing\n\nAll suggestions in how to improve the specification and this guide are very welcome. Feel free share your thoughts in the Issue tracker, or even better, fork the repository to implement your own ideas and submit a pull request.\n\n[![Edit redis on CodeSandbox](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/oms-services/redis)\n\nThis project is guided by [Contributor Covenant](https://github.com/oms-services/.github/blob/master/CODE_OF_CONDUCT.md). Please read out full [Contribution Guidelines](https://github.com/oms-services/.github/blob/master/CONTRIBUTING.md).\n\n## Additional Resources\n\n* [Install the CLI](https://github.com/microservices/oms) - The OMS CLI helps developers create, test, validate, and build microservices.\n* [Example OMS Services](https://github.com/oms-services) - Examples of OMS-compliant services written in a variety of languages.\n* [Example Language Implementations](https://github.com/microservices) - Find tooling & language implementations in Node, Python, Scala, Java, Clojure.\n* [Storyscript Hub](https://hub.storyscript.io) - A public registry of OMS services.\n* [Community Chat](https://spectrum.chat/open-microservices) - Have ideas? Questions? Join us on Spectrum.\n",
+        "service": {
+            "alias": "redis",
+            "description": "Run redis in a Story.",
+            "isCertified": true,
+            "name": "redis",
+            "owner": {
+                "username": "oms-services"
+            },
+            "public": true,
+            "topics": [
+                "microservice",
+                "redis-server",
+                "redis",
+                "oms",
+                "open-microservice"
+            ]
+        },
+        "serviceUuid": "352885c0-2673-46e1-949e-be3c8043376f",
+        "state": "BETA"
+    },
+    {
+        "configuration": {
+            "actions": {
+                "find": {
+                    "arguments": {
+                        "coll": {
+                            "in": "requestBody",
+                            "required": true,
+                            "type": "string"
+                        },
+                        "db": {
+                            "in": "requestBody",
+                            "required": true,
+                            "type": "string"
+                        },
+                        "fields": {
+                            "in": "requestBody",
+                            "type": "map"
+                        },
+                        "query": {
+                            "in": "requestBody",
+                            "required": true,
+                            "type": "map"
+                        },
+                        "sort": {
+                            "in": "requestBody",
+                            "type": "map"
+                        }
+                    },
+                    "http": {
+                        "method": "post",
+                        "path": "/find",
+                        "port": 8000
+                    },
+                    "output": {
+                        "contentType": "application/json",
+                        "type": "list"
+                    }
+                },
+                "findOne": {
+                    "arguments": {
+                        "coll": {
+                            "in": "requestBody",
+                            "required": true,
+                            "type": "string"
+                        },
+                        "db": {
+                            "in": "requestBody",
+                            "required": true,
+                            "type": "string"
+                        },
+                        "fields": {
+                            "in": "requestBody",
+                            "type": "map"
+                        },
+                        "query": {
+                            "in": "requestBody",
+                            "required": true,
+                            "type": "map"
+                        },
+                        "sort": {
+                            "in": "requestBody",
+                            "type": "map"
+                        }
+                    },
+                    "http": {
+                        "method": "post",
+                        "path": "/findOne",
+                        "port": 8000
+                    },
+                    "output": {
+                        "contentType": "application/json",
+                        "type": "map"
+                    }
+                },
+                "insert": {
+                    "arguments": {
+                        "coll": {
+                            "in": "requestBody",
+                            "required": true,
+                            "type": "string"
+                        },
+                        "db": {
+                            "in": "requestBody",
+                            "required": true,
+                            "type": "string"
+                        },
+                        "doc": {
+                            "in": "requestBody",
+                            "required": true,
+                            "type": "map"
+                        }
+                    },
+                    "http": {
+                        "method": "post",
+                        "path": "/insert",
+                        "port": 8000
+                    },
+                    "output": {
+                        "contentType": "application/json",
+                        "properties": {
+                            "_id": {
+                                "type": "any"
+                            }
+                        },
+                        "type": "object"
+                    }
+                }
+            },
+            "environment": {
+                "MONGODB_URI": {
+                    "help": "The MongoDB URI to be used in the connection.\nDefaults to mongodb://localhost:27017/.\n",
+                    "type": "string"
+                }
+            },
+            "info": {
+                "description": "This is a mongodb service",
+                "title": "MongoDB",
+                "version": "1.0.0"
+            },
+            "lifecycle": {
+                "startup": {
+                    "command": [
+                        "python",
+                        "/app/app.py"
+                    ]
+                }
+            },
+            "omg": 1
+        },
+        "readme": "# _MongoDB_ Open Microservice\n\n> This is a mongodb service\n\n[![Open Microservice Specification Version](https://img.shields.io/badge/Open%20Microservice-1.0-477bf3.svg)](https://openmicroservices.org) [![Open Microservices Spectrum Chat](https://withspectrum.github.io/badge/badge.svg)](https://spectrum.chat/open-microservices) [![Open Microservices Code of Conduct](https://img.shields.io/badge/Contributor%20Covenant-v1.4%20adopted-ff69b4.svg)](https://github.com/oms-services/.github/blob/master/CODE_OF_CONDUCT.md) [![Open Microservices Commitzen](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](http://makeapullrequest.com)\n\n## Introduction\n\nThis project is an example implementation of the [Open Microservice Specification](https://openmicroservices.org), a standard originally created at [Storyscript](https://storyscript.io) for building highly-portable \"microservices\" that expose the events, actions, and APIs inside containerized software.\n\n## Getting Started\n\nThe `oms` command-line interface allows you to interact with Open Microservices. If you're interested in creating an Open Microservice the CLI also helps validate, test, and debug your `oms.yml` implementation!\n\nSee the [oms-cli](https://github.com/microservices/oms) project to learn more!\n\n### Installation\n\n```\nnpm install -g @microservices/oms\n```\n\n## Usage\n\n### Open Microservices CLI Usage\n\nOnce you have the [oms-cli](https://github.com/microservices/oms) installed, you can run any of the following commands from within this project's root directory:\n\n#### Actions\n\n##### find\n\n> \n##### Action Arguments\n\n| Argument Name | Type | Required | Default | Description |\n|:------------- |:---- |:-------- |:--------|:----------- |\n| db | `string` | `true` | None | No description provided. |\n| coll | `string` | `true` | None | No description provided. |\n| query | `map` | `true` | None | No description provided. |\n| sort | `map` | `false` | None | No description provided. |\n| fields | `map` | `false` | None | No description provided. |\n| MONGODB_URI | `string` | `false` | None | The MongoDB URI to be used in the connection. Defaults to mongodb://localhost:27017/.  |\n\n``` shell\noms run find \\ \n    -a db='*****' \\ \n    -a coll='*****' \\ \n    -a query='*****' \\ \n    -a sort='*****' \\ \n    -a fields='*****' \\ \n    -e MONGODB_URI=$MONGODB_URI\n```\n\n##### findOne\n\n> \n##### Action Arguments\n\n| Argument Name | Type | Required | Default | Description |\n|:------------- |:---- |:-------- |:--------|:----------- |\n| db | `string` | `true` | None | No description provided. |\n| coll | `string` | `true` | None | No description provided. |\n| query | `map` | `true` | None | No description provided. |\n| sort | `map` | `false` | None | No description provided. |\n| fields | `map` | `false` | None | No description provided. |\n| MONGODB_URI | `string` | `false` | None | The MongoDB URI to be used in the connection. Defaults to mongodb://localhost:27017/.  |\n\n``` shell\noms run findOne \\ \n    -a db='*****' \\ \n    -a coll='*****' \\ \n    -a query='*****' \\ \n    -a sort='*****' \\ \n    -a fields='*****' \\ \n    -e MONGODB_URI=$MONGODB_URI\n```\n\n##### insert\n\n> \n##### Action Arguments\n\n| Argument Name | Type | Required | Default | Description |\n|:------------- |:---- |:-------- |:--------|:----------- |\n| db | `string` | `true` | None | No description provided. |\n| coll | `string` | `true` | None | No description provided. |\n| doc | `map` | `true` | None | No description provided. |\n| MONGODB_URI | `string` | `false` | None | The MongoDB URI to be used in the connection. Defaults to mongodb://localhost:27017/.  |\n\n``` shell\noms run insert \\ \n    -a db='*****' \\ \n    -a coll='*****' \\ \n    -a doc='*****' \\ \n    -e MONGODB_URI=$MONGODB_URI\n```\n\n## Contributing\n\nAll suggestions in how to improve the specification and this guide are very welcome. Feel free share your thoughts in the Issue tracker, or even better, fork the repository to implement your own ideas and submit a pull request.\n\n[![Edit mongodb on CodeSandbox](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/oms-services/mongodb)\n\nThis project is guided by [Contributor Covenant](https://github.com/oms-services/.github/blob/master/CODE_OF_CONDUCT.md). Please read out full [Contribution Guidelines](https://github.com/oms-services/.github/blob/master/CONTRIBUTING.md).\n\n## Additional Resources\n\n* [Install the CLI](https://github.com/microservices/oms) - The OMS CLI helps developers create, test, validate, and build microservices.\n* [Example OMS Services](https://github.com/oms-services) - Examples of OMS-compliant services written in a variety of languages.\n* [Example Language Implementations](https://github.com/microservices) - Find tooling & language implementations in Node, Python, Scala, Java, Clojure.\n* [Storyscript Hub](https://hub.storyscript.io) - A public registry of OMS services.\n* [Community Chat](https://spectrum.chat/open-microservices) - Have ideas? Questions? Join us on Spectrum.\n",
+        "service": {
+            "alias": "mongodb",
+            "description": "An OMG service to connect to a MongoDB instance",
+            "isCertified": true,
+            "name": "mongodb",
+            "owner": {
+                "username": "oms-services"
+            },
+            "public": true,
+            "topics": [
+                "mongodb",
+                "microservice",
+                "open-microservice"
+            ]
+        },
+        "serviceUuid": "8ad0cd7c-a549-4532-a325-7de0cd7e5a16",
+        "state": "BETA"
+    },
+    {
+        "configuration": {
+            "actions": {
+                "find": {
+                    "arguments": {
+                        "coll": {
+                            "in": "requestBody",
+                            "required": true,
+                            "type": "string"
+                        },
+                        "db": {
+                            "in": "requestBody",
+                            "required": true,
+                            "type": "string"
+                        },
+                        "fields": {
+                            "in": "requestBody",
+                            "type": "map"
+                        },
+                        "query": {
+                            "in": "requestBody",
+                            "required": true,
+                            "type": "map"
+                        },
+                        "sort": {
+                            "in": "requestBody",
+                            "type": "map"
+                        }
+                    },
+                    "http": {
+                        "method": "post",
+                        "path": "/find",
+                        "port": 8000
+                    },
+                    "output": {
+                        "contentType": "application/json",
+                        "type": "list"
+                    }
+                },
+                "findOne": {
+                    "arguments": {
+                        "coll": {
+                            "in": "requestBody",
+                            "required": true,
+                            "type": "string"
+                        },
+                        "db": {
+                            "in": "requestBody",
+                            "required": true,
+                            "type": "string"
+                        },
+                        "fields": {
+                            "in": "requestBody",
+                            "type": "map"
+                        },
+                        "query": {
+                            "in": "requestBody",
+                            "required": true,
+                            "type": "map"
+                        },
+                        "sort": {
+                            "in": "requestBody",
+                            "type": "map"
+                        }
+                    },
+                    "http": {
+                        "method": "post",
+                        "path": "/findOne",
+                        "port": 8000
+                    },
+                    "output": {
+                        "contentType": "application/json",
+                        "type": "map"
+                    }
+                },
+                "insert": {
+                    "arguments": {
+                        "coll": {
+                            "in": "requestBody",
+                            "required": true,
+                            "type": "string"
+                        },
+                        "db": {
+                            "in": "requestBody",
+                            "required": true,
+                            "type": "string"
+                        },
+                        "doc": {
+                            "in": "requestBody",
+                            "required": true,
+                            "type": "map"
+                        }
+                    },
+                    "http": {
+                        "method": "post",
+                        "path": "/insert",
+                        "port": 8000
+                    },
+                    "output": {
+                        "contentType": "application/json",
+                        "properties": {
+                            "_id": {
+                                "type": "any"
+                            }
+                        },
+                        "type": "object"
+                    }
+                }
+            },
+            "environment": {
+                "MONGODB_URI": {
+                    "help": "The MongoDB URI to be used in the connection.\nDefaults to mongodb://localhost:27017/.\n",
+                    "type": "string"
+                }
+            },
+            "info": {
+                "description": "This is a mongodb service",
+                "title": "MongoDB",
+                "version": "1.0.0"
+            },
+            "lifecycle": {
+                "startup": {
+                    "command": [
+                        "python",
+                        "/app/app.py"
+                    ]
+                }
+            },
+            "omg": 1
+        },
+        "readme": "# _MongoDB_ Open Microservice\n\n> This is a mongodb service\n\n[![Open Microservice Specification Version](https://img.shields.io/badge/Open%20Microservice-1.0-477bf3.svg)](https://openmicroservices.org) [![Open Microservices Spectrum Chat](https://withspectrum.github.io/badge/badge.svg)](https://spectrum.chat/open-microservices) [![Open Microservices Code of Conduct](https://img.shields.io/badge/Contributor%20Covenant-v1.4%20adopted-ff69b4.svg)](https://github.com/oms-services/.github/blob/master/CODE_OF_CONDUCT.md) [![Open Microservices Commitzen](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](http://makeapullrequest.com)\n\n## Introduction\n\nThis project is an example implementation of the [Open Microservice Specification](https://openmicroservices.org), a standard originally created at [Storyscript](https://storyscript.io) for building highly-portable \"microservices\" that expose the events, actions, and APIs inside containerized software.\n\n## Getting Started\n\nThe `oms` command-line interface allows you to interact with Open Microservices. If you're interested in creating an Open Microservice the CLI also helps validate, test, and debug your `oms.yml` implementation!\n\nSee the [oms-cli](https://github.com/microservices/oms) project to learn more!\n\n### Installation\n\n```\nnpm install -g @microservices/oms\n```\n\n## Usage\n\n### Open Microservices CLI Usage\n\nOnce you have the [oms-cli](https://github.com/microservices/oms) installed, you can run any of the following commands from within this project's root directory:\n\n#### Actions\n\n##### find\n\n> \n##### Action Arguments\n\n| Argument Name | Type | Required | Default | Description |\n|:------------- |:---- |:-------- |:--------|:----------- |\n| db | `string` | `true` | None | No description provided. |\n| coll | `string` | `true` | None | No description provided. |\n| query | `map` | `true` | None | No description provided. |\n| sort | `map` | `false` | None | No description provided. |\n| fields | `map` | `false` | None | No description provided. |\n| MONGODB_URI | `string` | `false` | None | The MongoDB URI to be used in the connection. Defaults to mongodb://localhost:27017/.  |\n\n``` shell\noms run find \\ \n    -a db='*****' \\ \n    -a coll='*****' \\ \n    -a query='*****' \\ \n    -a sort='*****' \\ \n    -a fields='*****' \\ \n    -e MONGODB_URI=$MONGODB_URI\n```\n\n##### findOne\n\n> \n##### Action Arguments\n\n| Argument Name | Type | Required | Default | Description |\n|:------------- |:---- |:-------- |:--------|:----------- |\n| db | `string` | `true` | None | No description provided. |\n| coll | `string` | `true` | None | No description provided. |\n| query | `map` | `true` | None | No description provided. |\n| sort | `map` | `false` | None | No description provided. |\n| fields | `map` | `false` | None | No description provided. |\n| MONGODB_URI | `string` | `false` | None | The MongoDB URI to be used in the connection. Defaults to mongodb://localhost:27017/.  |\n\n``` shell\noms run findOne \\ \n    -a db='*****' \\ \n    -a coll='*****' \\ \n    -a query='*****' \\ \n    -a sort='*****' \\ \n    -a fields='*****' \\ \n    -e MONGODB_URI=$MONGODB_URI\n```\n\n##### insert\n\n> \n##### Action Arguments\n\n| Argument Name | Type | Required | Default | Description |\n|:------------- |:---- |:-------- |:--------|:----------- |\n| db | `string` | `true` | None | No description provided. |\n| coll | `string` | `true` | None | No description provided. |\n| doc | `map` | `true` | None | No description provided. |\n| MONGODB_URI | `string` | `false` | None | The MongoDB URI to be used in the connection. Defaults to mongodb://localhost:27017/.  |\n\n``` shell\noms run insert \\ \n    -a db='*****' \\ \n    -a coll='*****' \\ \n    -a doc='*****' \\ \n    -e MONGODB_URI=$MONGODB_URI\n```\n\n## Contributing\n\nAll suggestions in how to improve the specification and this guide are very welcome. Feel free share your thoughts in the Issue tracker, or even better, fork the repository to implement your own ideas and submit a pull request.\n\n[![Edit mongodb on CodeSandbox](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/oms-services/mongodb)\n\nThis project is guided by [Contributor Covenant](https://github.com/oms-services/.github/blob/master/CODE_OF_CONDUCT.md). Please read out full [Contribution Guidelines](https://github.com/oms-services/.github/blob/master/CONTRIBUTING.md).\n\n## Additional Resources\n\n* [Install the CLI](https://github.com/microservices/oms) - The OMS CLI helps developers create, test, validate, and build microservices.\n* [Example OMS Services](https://github.com/oms-services) - Examples of OMS-compliant services written in a variety of languages.\n* [Example Language Implementations](https://github.com/microservices) - Find tooling & language implementations in Node, Python, Scala, Java, Clojure.\n* [Storyscript Hub](https://hub.storyscript.io) - A public registry of OMS services.\n* [Community Chat](https://spectrum.chat/open-microservices) - Have ideas? Questions? Join us on Spectrum.\n",
+        "service": {
+            "alias": "mongodb",
+            "description": "An OMG service to connect to a MongoDB instance",
+            "isCertified": true,
+            "name": "mongodb",
+            "owner": {
+                "username": "oms-services"
+            },
+            "public": true,
+            "topics": [
+                "mongodb",
+                "microservice",
+                "open-microservice"
+            ]
+        },
+        "serviceUuid": "8ad0cd7c-a549-4532-a325-7de0cd7e5a16",
         "state": "BETA"
     }
 ]

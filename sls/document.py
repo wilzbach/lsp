@@ -65,7 +65,7 @@ class Document:
     def word_on_cursor(self, pos):
         buf = ""
         for c in reversed(self.line_to_cursor(pos)):
-            if c == " ":
+            if c == " " or c == "(" or c == ")":
                 break
             buf += c
 

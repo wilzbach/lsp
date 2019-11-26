@@ -1,13 +1,13 @@
 [
   {
-    "detail": "length()",
-    "documentation": "Builtin: length",
-    "filterText": "m[\"f\"].length",
+    "detail": "capitalize()",
+    "documentation": "Builtin: capitalize",
+    "filterText": "m[\"f\"].capitalize",
     "insertTextFormat": 2,
     "kind": 2,
-    "label": "length",
+    "label": "capitalize",
     "textEdit": {
-      "newText": "m[\"f\"].length($1)",
+      "newText": "m[\"f\"].capitalize($1)",
       "range": {
         "end": {
           "character": 7,
@@ -50,6 +50,69 @@
     "label": "contains",
     "textEdit": {
       "newText": "m[\"f\"].contains($1)",
+      "range": {
+        "end": {
+          "character": 7,
+          "line": 1
+        },
+        "start": {
+          "character": 0,
+          "line": 1
+        }
+      }
+    }
+  },
+  {
+    "detail": "endswith(suffix:string)",
+    "documentation": "Builtin: endswith",
+    "filterText": "m[\"f\"].endswith",
+    "insertTextFormat": 2,
+    "kind": 2,
+    "label": "endswith",
+    "textEdit": {
+      "newText": "m[\"f\"].endswith($1)",
+      "range": {
+        "end": {
+          "character": 7,
+          "line": 1
+        },
+        "start": {
+          "character": 0,
+          "line": 1
+        }
+      }
+    }
+  },
+  {
+    "detail": "length()",
+    "documentation": "Builtin: length",
+    "filterText": "m[\"f\"].length",
+    "insertTextFormat": 2,
+    "kind": 2,
+    "label": "length",
+    "textEdit": {
+      "newText": "m[\"f\"].length($1)",
+      "range": {
+        "end": {
+          "character": 7,
+          "line": 1
+        },
+        "start": {
+          "character": 0,
+          "line": 1
+        }
+      }
+    }
+  },
+  {
+    "detail": "lowercase()",
+    "documentation": "Builtin: lowercase",
+    "filterText": "m[\"f\"].lowercase",
+    "insertTextFormat": 2,
+    "kind": 2,
+    "label": "lowercase",
+    "textEdit": {
+      "newText": "m[\"f\"].lowercase($1)",
       "range": {
         "end": {
           "character": 7,
@@ -126,90 +189,6 @@
     }
   },
   {
-    "detail": "uppercase()",
-    "documentation": "Builtin: uppercase",
-    "filterText": "m[\"f\"].uppercase",
-    "insertTextFormat": 2,
-    "kind": 2,
-    "label": "uppercase",
-    "textEdit": {
-      "newText": "m[\"f\"].uppercase($1)",
-      "range": {
-        "end": {
-          "character": 7,
-          "line": 1
-        },
-        "start": {
-          "character": 0,
-          "line": 1
-        }
-      }
-    }
-  },
-  {
-    "detail": "lowercase()",
-    "documentation": "Builtin: lowercase",
-    "filterText": "m[\"f\"].lowercase",
-    "insertTextFormat": 2,
-    "kind": 2,
-    "label": "lowercase",
-    "textEdit": {
-      "newText": "m[\"f\"].lowercase($1)",
-      "range": {
-        "end": {
-          "character": 7,
-          "line": 1
-        },
-        "start": {
-          "character": 0,
-          "line": 1
-        }
-      }
-    }
-  },
-  {
-    "detail": "capitalize()",
-    "documentation": "Builtin: capitalize",
-    "filterText": "m[\"f\"].capitalize",
-    "insertTextFormat": 2,
-    "kind": 2,
-    "label": "capitalize",
-    "textEdit": {
-      "newText": "m[\"f\"].capitalize($1)",
-      "range": {
-        "end": {
-          "character": 7,
-          "line": 1
-        },
-        "start": {
-          "character": 0,
-          "line": 1
-        }
-      }
-    }
-  },
-  {
-    "detail": "trim()",
-    "documentation": "Builtin: trim",
-    "filterText": "m[\"f\"].trim",
-    "insertTextFormat": 2,
-    "kind": 2,
-    "label": "trim",
-    "textEdit": {
-      "newText": "m[\"f\"].trim($1)",
-      "range": {
-        "end": {
-          "character": 7,
-          "line": 1
-        },
-        "start": {
-          "character": 0,
-          "line": 1
-        }
-      }
-    }
-  },
-  {
     "detail": "startswith(prefix:string)",
     "documentation": "Builtin: startswith",
     "filterText": "m[\"f\"].startswith",
@@ -218,27 +197,6 @@
     "label": "startswith",
     "textEdit": {
       "newText": "m[\"f\"].startswith($1)",
-      "range": {
-        "end": {
-          "character": 7,
-          "line": 1
-        },
-        "start": {
-          "character": 0,
-          "line": 1
-        }
-      }
-    }
-  },
-  {
-    "detail": "endswith(suffix:string)",
-    "documentation": "Builtin: endswith",
-    "filterText": "m[\"f\"].endswith",
-    "insertTextFormat": 2,
-    "kind": 2,
-    "label": "endswith",
-    "textEdit": {
-      "newText": "m[\"f\"].endswith($1)",
       "range": {
         "end": {
           "character": 7,
@@ -302,6 +260,48 @@
     "label": "substring",
     "textEdit": {
       "newText": "m[\"f\"].substring($1)",
+      "range": {
+        "end": {
+          "character": 7,
+          "line": 1
+        },
+        "start": {
+          "character": 0,
+          "line": 1
+        }
+      }
+    }
+  },
+  {
+    "detail": "trim()",
+    "documentation": "Builtin: trim",
+    "filterText": "m[\"f\"].trim",
+    "insertTextFormat": 2,
+    "kind": 2,
+    "label": "trim",
+    "textEdit": {
+      "newText": "m[\"f\"].trim($1)",
+      "range": {
+        "end": {
+          "character": 7,
+          "line": 1
+        },
+        "start": {
+          "character": 0,
+          "line": 1
+        }
+      }
+    }
+  },
+  {
+    "detail": "uppercase()",
+    "documentation": "Builtin: uppercase",
+    "filterText": "m[\"f\"].uppercase",
+    "insertTextFormat": 2,
+    "kind": 2,
+    "label": "uppercase",
+    "textEdit": {
+      "newText": "m[\"f\"].uppercase($1)",
       "range": {
         "end": {
           "character": 7,

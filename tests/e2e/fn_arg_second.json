@@ -1,0 +1,82 @@
+[
+  {
+    "detail": "and",
+    "documentation": "TBD",
+    "insertTextFormat": 1,
+    "kind": 14,
+    "label": "and",
+    "textEdit": {
+      "newText": "and ",
+      "range": {
+        "end": {
+          "character": 9,
+          "line": 3
+        },
+        "start": {
+          "character": 9,
+          "line": 3
+        }
+      }
+    }
+  },
+  {
+    "detail": "Arg. Symbol('i2', int, wa)",
+    "documentation": "Arg. Symbol('i2', int, wa)",
+    "insertTextFormat": 1,
+    "kind": 11,
+    "label": "i2",
+    "textEdit": {
+      "newText": "i2:",
+      "range": {
+        "end": {
+          "character": 9,
+          "line": 3
+        },
+        "start": {
+          "character": 9,
+          "line": 3
+        }
+      }
+    }
+  },
+  {
+    "detail": "or",
+    "documentation": "TBD",
+    "insertTextFormat": 1,
+    "kind": 14,
+    "label": "or",
+    "textEdit": {
+      "newText": "or ",
+      "range": {
+        "end": {
+          "character": 9,
+          "line": 3
+        },
+        "start": {
+          "character": 9,
+          "line": 3
+        }
+      }
+    }
+  },
+  {
+    "detail": "to",
+    "documentation": "TBD",
+    "insertTextFormat": 1,
+    "kind": 14,
+    "label": "to",
+    "textEdit": {
+      "newText": "to ",
+      "range": {
+        "end": {
+          "character": 9,
+          "line": 3
+        },
+        "start": {
+          "character": 9,
+          "line": 3
+        }
+      }
+    }
+  }
+]

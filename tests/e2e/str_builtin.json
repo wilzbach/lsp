@@ -1,13 +1,13 @@
 [
   {
-    "detail": "length()",
-    "documentation": "Builtin: length",
-    "filterText": "ls.length",
+    "detail": "capitalize()",
+    "documentation": "Builtin: capitalize",
+    "filterText": "ls.capitalize",
     "insertTextFormat": 2,
     "kind": 2,
-    "label": "length",
+    "label": "capitalize",
     "textEdit": {
-      "newText": "ls.length($1)",
+      "newText": "ls.capitalize($1)",
       "range": {
         "end": {
           "character": 7,
@@ -50,6 +50,69 @@
     "label": "contains",
     "textEdit": {
       "newText": "ls.contains($1)",
+      "range": {
+        "end": {
+          "character": 7,
+          "line": 1
+        },
+        "start": {
+          "character": 4,
+          "line": 1
+        }
+      }
+    }
+  },
+  {
+    "detail": "endswith(suffix:string)",
+    "documentation": "Builtin: endswith",
+    "filterText": "ls.endswith",
+    "insertTextFormat": 2,
+    "kind": 2,
+    "label": "endswith",
+    "textEdit": {
+      "newText": "ls.endswith($1)",
+      "range": {
+        "end": {
+          "character": 7,
+          "line": 1
+        },
+        "start": {
+          "character": 4,
+          "line": 1
+        }
+      }
+    }
+  },
+  {
+    "detail": "length()",
+    "documentation": "Builtin: length",
+    "filterText": "ls.length",
+    "insertTextFormat": 2,
+    "kind": 2,
+    "label": "length",
+    "textEdit": {
+      "newText": "ls.length($1)",
+      "range": {
+        "end": {
+          "character": 7,
+          "line": 1
+        },
+        "start": {
+          "character": 4,
+          "line": 1
+        }
+      }
+    }
+  },
+  {
+    "detail": "lowercase()",
+    "documentation": "Builtin: lowercase",
+    "filterText": "ls.lowercase",
+    "insertTextFormat": 2,
+    "kind": 2,
+    "label": "lowercase",
+    "textEdit": {
+      "newText": "ls.lowercase($1)",
       "range": {
         "end": {
           "character": 7,
@@ -126,90 +189,6 @@
     }
   },
   {
-    "detail": "uppercase()",
-    "documentation": "Builtin: uppercase",
-    "filterText": "ls.uppercase",
-    "insertTextFormat": 2,
-    "kind": 2,
-    "label": "uppercase",
-    "textEdit": {
-      "newText": "ls.uppercase($1)",
-      "range": {
-        "end": {
-          "character": 7,
-          "line": 1
-        },
-        "start": {
-          "character": 4,
-          "line": 1
-        }
-      }
-    }
-  },
-  {
-    "detail": "lowercase()",
-    "documentation": "Builtin: lowercase",
-    "filterText": "ls.lowercase",
-    "insertTextFormat": 2,
-    "kind": 2,
-    "label": "lowercase",
-    "textEdit": {
-      "newText": "ls.lowercase($1)",
-      "range": {
-        "end": {
-          "character": 7,
-          "line": 1
-        },
-        "start": {
-          "character": 4,
-          "line": 1
-        }
-      }
-    }
-  },
-  {
-    "detail": "capitalize()",
-    "documentation": "Builtin: capitalize",
-    "filterText": "ls.capitalize",
-    "insertTextFormat": 2,
-    "kind": 2,
-    "label": "capitalize",
-    "textEdit": {
-      "newText": "ls.capitalize($1)",
-      "range": {
-        "end": {
-          "character": 7,
-          "line": 1
-        },
-        "start": {
-          "character": 4,
-          "line": 1
-        }
-      }
-    }
-  },
-  {
-    "detail": "trim()",
-    "documentation": "Builtin: trim",
-    "filterText": "ls.trim",
-    "insertTextFormat": 2,
-    "kind": 2,
-    "label": "trim",
-    "textEdit": {
-      "newText": "ls.trim($1)",
-      "range": {
-        "end": {
-          "character": 7,
-          "line": 1
-        },
-        "start": {
-          "character": 4,
-          "line": 1
-        }
-      }
-    }
-  },
-  {
     "detail": "startswith(prefix:string)",
     "documentation": "Builtin: startswith",
     "filterText": "ls.startswith",
@@ -218,27 +197,6 @@
     "label": "startswith",
     "textEdit": {
       "newText": "ls.startswith($1)",
-      "range": {
-        "end": {
-          "character": 7,
-          "line": 1
-        },
-        "start": {
-          "character": 4,
-          "line": 1
-        }
-      }
-    }
-  },
-  {
-    "detail": "endswith(suffix:string)",
-    "documentation": "Builtin: endswith",
-    "filterText": "ls.endswith",
-    "insertTextFormat": 2,
-    "kind": 2,
-    "label": "endswith",
-    "textEdit": {
-      "newText": "ls.endswith($1)",
       "range": {
         "end": {
           "character": 7,
@@ -302,6 +260,48 @@
     "label": "substring",
     "textEdit": {
       "newText": "ls.substring($1)",
+      "range": {
+        "end": {
+          "character": 7,
+          "line": 1
+        },
+        "start": {
+          "character": 4,
+          "line": 1
+        }
+      }
+    }
+  },
+  {
+    "detail": "trim()",
+    "documentation": "Builtin: trim",
+    "filterText": "ls.trim",
+    "insertTextFormat": 2,
+    "kind": 2,
+    "label": "trim",
+    "textEdit": {
+      "newText": "ls.trim($1)",
+      "range": {
+        "end": {
+          "character": 7,
+          "line": 1
+        },
+        "start": {
+          "character": 4,
+          "line": 1
+        }
+      }
+    }
+  },
+  {
+    "detail": "uppercase()",
+    "documentation": "Builtin: uppercase",
+    "filterText": "ls.uppercase",
+    "insertTextFormat": 2,
+    "kind": 2,
+    "label": "uppercase",
+    "textEdit": {
+      "newText": "ls.uppercase($1)",
       "range": {
         "end": {
           "character": 7,

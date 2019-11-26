@@ -30,10 +30,15 @@ keywords = {
     "not": "not_operator",
     "return": "return",
     "returns": "returns",
+    "if": "if",
+    "else": "else",
     "when": "when",
     "foreach": "foreach",
     "while": "while",
     "function": "function",
+    "true": "true",
+    "false": "false",
+    "null": "null",
 }
 
 operators = {
@@ -58,10 +63,13 @@ operators = {
     "List": "list_type",
 }
 
+operator_start = ["+", "-", "*", "/", "%", "<", ">", "!", "=", ")", "]", "}"]
+
 # TODO: fix line/column information
 # TODO: peek during loop
 # TODO: support comments
 # TODO: multi-line strings
+# TODO: try/catch
 
 
 class ErrorCodes:
@@ -69,6 +77,7 @@ class ErrorCodes:
     string_no_end = 2
     name_only_alphanumeric = 3
     number_only_digits = 4
+    regex_invalid_flag = 5
 
 
 class LexerException(Exception):
@@ -95,11 +104,6 @@ class Tokenizer:
     def peek(self):
         return self.ts[self.idx]
 
-    def next(self, i=1):
-        if len(self.ts) > self.idx + i:
-            return self.ts[self.idx + i]
-        return None
-
     def pop(self):
         t = self.ts[self.idx]
         self.idx += 1
@@ -118,9 +122,10 @@ class Tokenizer:
             yield self.pop()
 
     def tokenize(self):
+        self.indent_levels = []
+        self.ws = 0
         for t in self.ts_iterate():
             ts = self.ts[self.idx - 1 :]
-            print("[tokenize]", repr(t))
             if t == "/":
                 r = yield from self.regex_tok()
                 # TODO: allow ws in regex
@@ -129,14 +134,13 @@ class Tokenizer:
             elif t == '"':
                 yield from self.string_tok()
                 continue
-                continue
             elif t.isdigit():
                 yield from self.int_tok()
                 continue
             elif t == "\n":
                 # TODO: handle \r
                 yield self.create_token(self.idx - 1, self.idx, "nl")
-                yield from self.indent_tok()
+                yield from self.indent_dedent_tok()
                 continue
             elif self.is_white(t):
                 continue
@@ -154,13 +158,29 @@ class Tokenizer:
 
             yield from self.tok_operator_single(t, ts)
 
+        # TODO: add EOF or NL if file without
+
+        assert len(self.indent_levels) >= 0
+        for _ in self.indent_levels:
+            yield self.create_token(self.idx, self.idx, "dedent")
+
     def tok_keyword(self, t, ts):
         for keyword, id in keywords.items():
             if ts.startswith(keyword):
-                if len(ts) == len(keyword) or self.is_white(ts[len(keyword)]):
-                    self.idx += len(keyword) - 1
-                    yield self.create_keyword(keyword, id)
-                    return True
+                if len(ts) > len(keyword):
+                    next_char = ts[len(keyword)]
+                    # verify that its a true keyword (e.g. followed by ws,
+                    # newline, operators)
+                    if not (
+                        self.is_white(next_char)
+                        or self.is_newline(next_char)
+                        or next_char in operator_start
+                    ):
+                        continue
+
+                self.idx += len(keyword) - 1
+                yield self.create_keyword(keyword, id)
+                return True
         return False
 
     def tok_operator(self, t, ts):
@@ -179,7 +199,6 @@ class Tokenizer:
         return False
 
     def create_keyword(self, keyword, id):
-        print("id", id)
         return Token(id, keyword, self.line, self.column)
 
     def create_operator(self, op, id):
@@ -190,13 +209,11 @@ class Tokenizer:
         return Token(id, text, self.line, self.column)
 
     def regex_tok(self):
-        # TODO: add escaping + flags
+        # TODO: add escaping
         start = self.idx - 1
         idx = self.idx
         while idx < len(self.ts):
             t = self.ts[idx]
-            print("t", t)
-            # TODO: error on newline
             if t == "/":
                 idx += 1
                 if idx >= len(self.ts):
@@ -208,13 +225,21 @@ class Tokenizer:
                     self.idx = idx
                     yield self.create_token(start, self.idx, "regex")
                     return True
-                # TODO: check for invalid flags
-                assert 0
+                if t == "i" or t == "m" or t == "s":
+                    # allow regex flags
+                    self.idx = idx + 1
+                    yield self.create_token(start, self.idx, "regex")
+                    return True
+
+                self.error(
+                    ErrorCodes.regex_invalid_flag, f"Regex flag {t} is invalid"
+                )
 
             if self.is_newline(t):
-                return False
+                self.error(ErrorCodes.regex_no_end, "Regex must end with /")
 
             idx = idx + 1
+
         return False
 
     def string_tok(self):
@@ -239,8 +264,10 @@ class Tokenizer:
             if self.is_white(t) or self.is_newline(t):
                 yield self.create_token(start, self.idx, id)
                 return
-            if t == ".":
+            elif t == ".":
                 id = "float"
+            elif t in operator_start:
+                break
             elif not t.isdigit():
                 self.error(
                     ErrorCodes.number_only_digits,
@@ -257,18 +284,19 @@ class Tokenizer:
         start = self.idx - 1
         while not self.is_empty():
             t = self.peek()
-            print("name", t)
             if self.is_white(t) or self.is_newline(t):
                 yield self.create_token(start, self.idx, "name")
                 return
             if t.isalnum():
                 self.pop()
                 continue
-            if t == "_" or t == "/":
+            if t == "_" or t == "/" or t == "-":
                 self.pop()
                 continue
 
-            if t == "[" or t == "(" or t == ".":
+            if (
+                t == "[" or t == "(" or t == "." or t == ":"
+            ) or t in operator_start:
                 yield self.create_token(start, self.idx, "name")
                 return
 
@@ -280,19 +308,42 @@ class Tokenizer:
         # EOF reached
         yield self.create_token(start, self.idx, "name")
 
-    def indent_tok(self):
+    def indent_dedent(self, start, ws):
+        if self.idx > start:
+            if ws == self.ws:
+                # current indentation
+                pass
+            elif ws > self.ws:
+                self.indent_levels.append(ws)
+                yield self.create_token(start, self.idx, "indent")
+            else:
+                # jump back to the match indent level
+                while True:
+                    assert len(self.indent_levels) > 0
+                    level = self.indent_levels[-1]
+                    if level <= ws:
+                        break
+                    yield self.create_token(start, self.idx, "dedent")
+                    self.indent_levels.pop()
+        else:
+            for _ in self.indent_levels:
+                yield self.create_token(start, self.idx, "dedent")
+            self.indent_levels = []
+        self.ws = ws
+
+    def indent_dedent_tok(self):
         start = self.idx
+        ws = 0
         while not self.is_empty():
             t = self.peek()
             if self.is_white(t):
+                ws += 1
                 self.pop()
                 continue
-            if self.idx > start:
-                yield self.create_token(start, self.idx, "indent")
+            yield from self.indent_dedent(start, ws)
             return
         # EOF reached
-        if self.idx > start:
-            yield self.create_token(start, self.idx, "indent")
+        yield from self.indent_dedent(start, ws)
 
     @staticmethod
     def is_white(t):

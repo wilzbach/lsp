@@ -31,3 +31,15 @@ def test_caching(magic):
     current.update(context)
     symbols = [s.name() for s in current.current_scope.symbols()]
     assert symbols == ["app"]
+
+
+def test_complete(magic):
+    doc = Document(uri=".text.", text="a = $")
+    pos = Position(0, 0)
+    context = CompletionContext(ws=magic(), doc=doc, pos=pos)
+    global_ = magic()
+    global_.global_scope = Scope.root()
+    current = CurrentScopeCache(global_=global_)
+    current.update(context)
+    assert [x.symbol.name() for x in current.complete("a")] == ["app"]
+    assert [x.symbol.name() for x in current.complete("b")] == []

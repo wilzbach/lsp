@@ -1,0 +1,42 @@
+[
+  {
+    "detail": "Action: Returns the value of 'key'.",
+    "documentation": "Returns the value of 'key'.",
+    "insertTextFormat": 1,
+    "kind": 11,
+    "label": "get",
+    "textEdit": {
+      "newText": "get ",
+      "range": {
+        "end": {
+          "character": 24,
+          "line": 0
+        },
+        "start": {
+          "character": 22,
+          "line": 0
+        }
+      }
+    }
+  },
+  {
+    "detail": "Action: Returns the current value of 'key' and overwrites it with 'value'.",
+    "documentation": "Returns the current value of 'key' and overwrites it with 'value'.",
+    "insertTextFormat": 1,
+    "kind": 11,
+    "label": "getSet",
+    "textEdit": {
+      "newText": "getSet ",
+      "range": {
+        "end": {
+          "character": 24,
+          "line": 0
+        },
+        "start": {
+          "character": 22,
+          "line": 0
+        }
+      }
+    }
+  }
+]

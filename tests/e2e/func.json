@@ -1,0 +1,22 @@
+[
+  {
+    "detail": "function",
+    "documentation": "TBD",
+    "insertTextFormat": 1,
+    "kind": 14,
+    "label": "function",
+    "textEdit": {
+      "newText": "function ",
+      "range": {
+        "end": {
+          "character": 4,
+          "line": 0
+        },
+        "start": {
+          "character": 0,
+          "line": 0
+        }
+      }
+    }
+  }
+]

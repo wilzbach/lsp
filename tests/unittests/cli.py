@@ -1,4 +1,5 @@
 import json
+from unittest.mock import call
 
 import click
 from click.testing import CliRunner
@@ -17,6 +18,7 @@ def runner():
 @fixture
 def echo(patch):
     patch.object(click, "echo")
+    return click.echo
 
 
 @fixture
@@ -245,4 +247,25 @@ def test_cli_complete_line_column(patch, runner, echo, app, options, expected):
         app.complete.assert_called_with("|completion|", text, **expected)
         json.dumps.assert_called_with(app.complete(), indent=2, sort_keys=True)
         click.echo.assert_called_with(json.dumps())
+        assert e.exit_code == 0
+
+
+def test_cli_complete_short(patch, runner, echo, app):
+    """
+    Ensures CLI completion with shortened output.
+    """
+    app.complete.return_value = [{"label": "foo"}, {"label": "bar"}]
+    with runner.isolated_filesystem():
+        text = "foobar"
+        with open("my.story", "w") as f:
+            f.write(text)
+        e = runner.invoke(Cli.main, ["complete", "--short", "my.story"])
+        app.complete.assert_called_with(
+            "|completion|", text, line=None, column=None
+        )
+        assert echo.call_args_list == [
+            call(),
+            call("foo"),
+            call("bar"),
+        ]
         assert e.exit_code == 0
