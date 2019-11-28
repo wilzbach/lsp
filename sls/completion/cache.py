@@ -27,3 +27,9 @@ class ContextCache:
         """
         yield from self.current.complete(word)
         yield from self.global_.complete(word)
+
+    def function(self, fn_name):
+        """
+        Returns a matching function or None.
+        """
+        return self.global_.function(fn_name)

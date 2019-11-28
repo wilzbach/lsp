@@ -1,6 +1,26 @@
 [
   {
-    "detail": "Exception",
+    "detail": "true",
+    "documentation": "TBD",
+    "insertTextFormat": 1,
+    "kind": 14,
+    "label": "true",
+    "textEdit": {
+      "newText": "true ",
+      "range": {
+        "end": {
+          "character": 2,
+          "line": 0
+        },
+        "start": {
+          "character": 0,
+          "line": 0
+        }
+      }
+    }
+  },
+  {
+    "detail": "try",
     "documentation": "TBD",
     "insertTextFormat": 1,
     "kind": 14,

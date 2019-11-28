@@ -1,1 +1,22 @@
-[]
+[
+  {
+    "detail": "continue",
+    "documentation": "TBD",
+    "insertTextFormat": 1,
+    "kind": 14,
+    "label": "continue",
+    "textEdit": {
+      "newText": "continue ",
+      "range": {
+        "end": {
+          "character": 6,
+          "line": 0
+        },
+        "start": {
+          "character": 0,
+          "line": 0
+        }
+      }
+    }
+  }
+]

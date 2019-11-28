@@ -1,0 +1,42 @@
+[
+  {
+    "detail": "Action: Sets 'key' to hold 'value'.",
+    "documentation": "Sets 'key' to hold 'value'.",
+    "insertTextFormat": 1,
+    "kind": 11,
+    "label": "set",
+    "textEdit": {
+      "newText": "set ",
+      "range": {
+        "end": {
+          "character": 9,
+          "line": 0
+        },
+        "start": {
+          "character": 6,
+          "line": 0
+        }
+      }
+    }
+  },
+  {
+    "detail": "Action: Set a 'key' to 'value' only if the key does not exist yet.",
+    "documentation": "Set a 'key' to 'value' only if the key does not exist yet.",
+    "insertTextFormat": 1,
+    "kind": 11,
+    "label": "setnx",
+    "textEdit": {
+      "newText": "setnx ",
+      "range": {
+        "end": {
+          "character": 9,
+          "line": 0
+        },
+        "start": {
+          "character": 6,
+          "line": 0
+        }
+      }
+    }
+  }
+]

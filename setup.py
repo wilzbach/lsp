@@ -47,6 +47,7 @@ requirements = [
     "cachetools~=3.1",
     "tornado~=6.0",
     "sentry_sdk~=0.13",
+    "parso==0.5.1",
 ]
 
 

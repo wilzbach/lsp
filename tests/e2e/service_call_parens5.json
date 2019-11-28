@@ -1,0 +1,102 @@
+[
+  {
+    "detail": "Arg. string",
+    "documentation": "No help available.",
+    "insertTextFormat": 1,
+    "kind": 12,
+    "label": "coll",
+    "textEdit": {
+      "newText": "coll:",
+      "range": {
+        "end": {
+          "character": 33,
+          "line": 0
+        },
+        "start": {
+          "character": 33,
+          "line": 0
+        }
+      }
+    }
+  },
+  {
+    "detail": "Arg. string",
+    "documentation": "No help available.",
+    "insertTextFormat": 1,
+    "kind": 12,
+    "label": "db",
+    "textEdit": {
+      "newText": "db:",
+      "range": {
+        "end": {
+          "character": 33,
+          "line": 0
+        },
+        "start": {
+          "character": 33,
+          "line": 0
+        }
+      }
+    }
+  },
+  {
+    "detail": "Arg. Map[any,any]",
+    "documentation": "No help available.",
+    "insertTextFormat": 1,
+    "kind": 12,
+    "label": "fields",
+    "textEdit": {
+      "newText": "fields:",
+      "range": {
+        "end": {
+          "character": 33,
+          "line": 0
+        },
+        "start": {
+          "character": 33,
+          "line": 0
+        }
+      }
+    }
+  },
+  {
+    "detail": "Arg. Map[any,any]",
+    "documentation": "No help available.",
+    "insertTextFormat": 1,
+    "kind": 12,
+    "label": "query",
+    "textEdit": {
+      "newText": "query:",
+      "range": {
+        "end": {
+          "character": 33,
+          "line": 0
+        },
+        "start": {
+          "character": 33,
+          "line": 0
+        }
+      }
+    }
+  },
+  {
+    "detail": "Arg. Map[any,any]",
+    "documentation": "No help available.",
+    "insertTextFormat": 1,
+    "kind": 12,
+    "label": "sort",
+    "textEdit": {
+      "newText": "sort:",
+      "range": {
+        "end": {
+          "character": 33,
+          "line": 0
+        },
+        "start": {
+          "character": 33,
+          "line": 0
+        }
+      }
+    }
+  }
+]

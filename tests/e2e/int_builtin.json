@@ -1,47 +1,5 @@
 [
   {
-    "detail": "isOdd()",
-    "documentation": "Builtin: isOdd",
-    "filterText": "ls.isOdd",
-    "insertTextFormat": 2,
-    "kind": 2,
-    "label": "isOdd",
-    "textEdit": {
-      "newText": "ls.isOdd($1)",
-      "range": {
-        "end": {
-          "character": 7,
-          "line": 1
-        },
-        "start": {
-          "character": 4,
-          "line": 1
-        }
-      }
-    }
-  },
-  {
-    "detail": "isEven()",
-    "documentation": "Builtin: isEven",
-    "filterText": "ls.isEven",
-    "insertTextFormat": 2,
-    "kind": 2,
-    "label": "isEven",
-    "textEdit": {
-      "newText": "ls.isEven($1)",
-      "range": {
-        "end": {
-          "character": 7,
-          "line": 1
-        },
-        "start": {
-          "character": 4,
-          "line": 1
-        }
-      }
-    }
-  },
-  {
     "detail": "absolute()",
     "documentation": "Builtin: absolute",
     "filterText": "ls.absolute",
@@ -50,6 +8,27 @@
     "label": "absolute",
     "textEdit": {
       "newText": "ls.absolute($1)",
+      "range": {
+        "end": {
+          "character": 7,
+          "line": 1
+        },
+        "start": {
+          "character": 4,
+          "line": 1
+        }
+      }
+    }
+  },
+  {
+    "detail": "decrement()",
+    "documentation": "Builtin: decrement",
+    "filterText": "ls.decrement",
+    "insertTextFormat": 2,
+    "kind": 2,
+    "label": "decrement",
+    "textEdit": {
+      "newText": "ls.decrement($1)",
       "range": {
         "end": {
           "character": 7,
@@ -84,14 +63,35 @@
     }
   },
   {
-    "detail": "decrement()",
-    "documentation": "Builtin: decrement",
-    "filterText": "ls.decrement",
+    "detail": "isEven()",
+    "documentation": "Builtin: isEven",
+    "filterText": "ls.isEven",
     "insertTextFormat": 2,
     "kind": 2,
-    "label": "decrement",
+    "label": "isEven",
     "textEdit": {
-      "newText": "ls.decrement($1)",
+      "newText": "ls.isEven($1)",
+      "range": {
+        "end": {
+          "character": 7,
+          "line": 1
+        },
+        "start": {
+          "character": 4,
+          "line": 1
+        }
+      }
+    }
+  },
+  {
+    "detail": "isOdd()",
+    "documentation": "Builtin: isOdd",
+    "filterText": "ls.isOdd",
+    "insertTextFormat": 2,
+    "kind": 2,
+    "label": "isOdd",
+    "textEdit": {
+      "newText": "ls.isOdd($1)",
       "range": {
         "end": {
           "character": 7,

@@ -32,7 +32,7 @@ class CompletionTest:
     def test(self, pos):
         result = self.get_completion_for(Position(*pos))
         # filter only for label for now
-        return [k["label"] for k in result["items"]]
+        return sorted([k["label"] for k in result["items"]])
 
 
 @fixture
@@ -40,38 +40,34 @@ def completion(hub):
     return CompletionTest()
 
 
-inline_keywords = ["to", "as", "and", "or", "not"]
+inline_keywords = ["or", "and", "to"]
 
 
 @mark.parametrize(
     "text,pos,expected",
     [
         ("ht b", (0, 1), ["http",]),
-        ("http b", (0, 5), ["fetch", "help", "server", *inline_keywords]),
+        ("http b", (0, 5), ["fetch", "server", *inline_keywords]),
     ],
 )
 def test_complete_service(text, pos, expected, completion):
-    assert completion.set(text=text).test(pos) == expected
+    assert completion.set(text=text).test(pos) == sorted(expected)
 
 
 @mark.parametrize(
     "text,pos,expected",
     [
-        (
-            "slack send ",
-            (0, 11),
-            ["attachments", "channel", "text", "token", *inline_keywords],
-        ),
+        ("slack send ", (0, 11), ["attachments", "channel", "text", "token"],),
         (
             "http fetch ",
             (0, 11),
-            ["body", "headers", "method", "query", "url", *inline_keywords],
+            ["body", "headers", "method", "query", "url"],
         ),
-        ("omg-services/uuid ", (0, 18), ["generate", *inline_keywords]),
+        ("oms-services/uuid ", (0, 18), ["generate", *inline_keywords]),
     ],
 )
 def test_complete_service_arguments(text, pos, expected, completion):
-    assert completion.set(text=text).test(pos) == expected
+    assert completion.set(text=text).test(pos) == sorted(expected)
 
 
 def test_complete_dot_additional_blocks(completion):

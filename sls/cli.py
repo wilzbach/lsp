@@ -5,20 +5,13 @@ import click
 
 from click_aliases import ClickAliasedGroup
 
-import sentry_sdk
-from sentry_sdk.integrations.tornado import TornadoIntegration
-
-
 from .app import App
 from .logging import configure_logging
+from .sentry import init as sentry_init
 from .version import version_ as app_version
 
 
-sentry_sdk.init(
-    environ.get("SENTRY_DSN", None),
-    integrations=[TornadoIntegration()],
-    release=app_version,
-)
+sentry_init()
 
 
 class Cli:
@@ -94,8 +87,11 @@ class Cli:
         type=int,
         help="Column number of the completion request (0-based)",
     )
+    @click.option(
+        "--short", "-s", is_flag=True, help="Shortend output",
+    )
     @click.pass_obj
-    def complete(app, path, line, column):
+    def complete(app, path, line, column, short):
         """
         Provide completion info for stories.
         """
@@ -103,7 +99,12 @@ class Cli:
         result = app.complete(
             "|completion|", path.read(), line=line, column=column
         )
-        click.echo(json.dumps(result, indent=2, sort_keys=True))
+        if short:
+            click.echo()
+            for item in result:
+                click.echo(item["label"])
+        else:
+            click.echo(json.dumps(result, indent=2, sort_keys=True))
 
     @staticmethod
     @main.command(aliases=["h"])

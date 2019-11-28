@@ -12,7 +12,9 @@ subset = [
     "slack",
     "http",
     "storyscript/crontab",
-    "omg-services/uuid",
+    "oms-services/uuid",
+    "redis",
+    "mongodb",
 ]
 
 

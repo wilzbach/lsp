@@ -91,3 +91,9 @@ class GlobalScopeCache:
         for name, function in self.function_table.functions.items():
             if name.startswith(word):
                 yield CompletionFunction(function)
+
+    def function(self, fn_name):
+        """
+        Returns a matching function or None.
+        """
+        return self.function_table.functions.get(fn_name, None)

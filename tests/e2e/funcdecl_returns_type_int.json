@@ -1,0 +1,22 @@
+[
+  {
+    "detail": "int",
+    "documentation": "TBD",
+    "insertTextFormat": 1,
+    "kind": 14,
+    "label": "int",
+    "textEdit": {
+      "newText": "int ",
+      "range": {
+        "end": {
+          "character": 22,
+          "line": 0
+        },
+        "start": {
+          "character": 21,
+          "line": 0
+        }
+      }
+    }
+  }
+]
