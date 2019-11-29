@@ -1,0 +1,182 @@
+[
+  {
+    "detail": "List",
+    "documentation": "TBD",
+    "insertTextFormat": 1,
+    "kind": 14,
+    "label": "List",
+    "textEdit": {
+      "newText": "List ",
+      "range": {
+        "end": {
+          "character": 9,
+          "line": 0
+        },
+        "start": {
+          "character": 9,
+          "line": 0
+        }
+      }
+    }
+  },
+  {
+    "detail": "Map",
+    "documentation": "TBD",
+    "insertTextFormat": 1,
+    "kind": 14,
+    "label": "Map",
+    "textEdit": {
+      "newText": "Map ",
+      "range": {
+        "end": {
+          "character": 9,
+          "line": 0
+        },
+        "start": {
+          "character": 9,
+          "line": 0
+        }
+      }
+    }
+  },
+  {
+    "detail": "any",
+    "documentation": "TBD",
+    "insertTextFormat": 1,
+    "kind": 14,
+    "label": "any",
+    "textEdit": {
+      "newText": "any ",
+      "range": {
+        "end": {
+          "character": 9,
+          "line": 0
+        },
+        "start": {
+          "character": 9,
+          "line": 0
+        }
+      }
+    }
+  },
+  {
+    "detail": "boolean",
+    "documentation": "TBD",
+    "insertTextFormat": 1,
+    "kind": 14,
+    "label": "boolean",
+    "textEdit": {
+      "newText": "boolean ",
+      "range": {
+        "end": {
+          "character": 9,
+          "line": 0
+        },
+        "start": {
+          "character": 9,
+          "line": 0
+        }
+      }
+    }
+  },
+  {
+    "detail": "float",
+    "documentation": "TBD",
+    "insertTextFormat": 1,
+    "kind": 14,
+    "label": "float",
+    "textEdit": {
+      "newText": "float ",
+      "range": {
+        "end": {
+          "character": 9,
+          "line": 0
+        },
+        "start": {
+          "character": 9,
+          "line": 0
+        }
+      }
+    }
+  },
+  {
+    "detail": "int",
+    "documentation": "TBD",
+    "insertTextFormat": 1,
+    "kind": 14,
+    "label": "int",
+    "textEdit": {
+      "newText": "int ",
+      "range": {
+        "end": {
+          "character": 9,
+          "line": 0
+        },
+        "start": {
+          "character": 9,
+          "line": 0
+        }
+      }
+    }
+  },
+  {
+    "detail": "regex",
+    "documentation": "TBD",
+    "insertTextFormat": 1,
+    "kind": 14,
+    "label": "regex",
+    "textEdit": {
+      "newText": "regex ",
+      "range": {
+        "end": {
+          "character": 9,
+          "line": 0
+        },
+        "start": {
+          "character": 9,
+          "line": 0
+        }
+      }
+    }
+  },
+  {
+    "detail": "string",
+    "documentation": "TBD",
+    "insertTextFormat": 1,
+    "kind": 14,
+    "label": "string",
+    "textEdit": {
+      "newText": "string ",
+      "range": {
+        "end": {
+          "character": 9,
+          "line": 0
+        },
+        "start": {
+          "character": 9,
+          "line": 0
+        }
+      }
+    }
+  },
+  {
+    "detail": "time",
+    "documentation": "TBD",
+    "insertTextFormat": 1,
+    "kind": 14,
+    "label": "time",
+    "textEdit": {
+      "newText": "time ",
+      "range": {
+        "end": {
+          "character": 9,
+          "line": 0
+        },
+        "start": {
+          "character": 9,
+          "line": 0
+        }
+      }
+    }
+  }
+]
