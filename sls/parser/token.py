@@ -23,6 +23,7 @@ class StoryTokenSpace:
     DEDENT = TokenType("DEDENT")
     LPARENS = TokenType("LPARENS")
     RPARENS = TokenType("RPARENS")
+    COLON = TokenType("COLON")
 
     OTHER = TokenType("OTHER", True)
 
@@ -61,6 +62,8 @@ class Token:
             ty = StoryTokenSpace.NUMBER
         elif id_ == "float":
             ty = StoryTokenSpace.NUMBER
+        elif id_ == "string":
+            ty = StoryTokenSpace.STRING
         elif id_ == "add":
             ty = StoryTokenSpace.OPERATOR
         elif id_ == "nl":
@@ -73,6 +76,8 @@ class Token:
             ty = StoryTokenSpace.LPARENS
         elif id_ == "rparens":
             ty = StoryTokenSpace.RPARENS
+        elif id_ == "colon":
+            ty = StoryTokenSpace.COLON
         else:
             ty = StoryTokenSpace.OTHER
             # assert 0, id_

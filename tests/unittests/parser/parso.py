@@ -80,7 +80,7 @@ def test_parser_fn():
 
 def test_parser_fn_colon():
     s = parse("foo(a")
-    assert s == [":"]
+    assert s == [StoryTokenSpace.COLON]
 
 
 def test_parser_fn_value():

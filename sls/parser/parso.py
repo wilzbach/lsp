@@ -48,14 +48,14 @@ service_suffix: service_op [arglist]
 service_op: NAME
 
 list: '[' [value (value ',' )] ']'
-map: '{' [value ':' (value ',' )] '}'
+map: '{' [value COLON (value ',' )] '}'
 boolean: 'true' | 'false'
 
-arglist: (arg_name ':' expression)*
+arglist: (arg_name COLON expression)*
 arg_name: NAME
 
 fn_name: NAME
-fn_arguments: (fn_arg_name ':' type)+
+fn_arguments: (fn_arg_name COLON type)+
 fn_arg_name: NAME
 type: 'boolean' | 'int' | 'float' | 'string' | 'regex' | 'time' | 'any' | map_type | list_type
 map_type: 'Map' '[' type ',' type ']'
