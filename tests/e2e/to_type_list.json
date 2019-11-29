@@ -1,19 +1,19 @@
 [
   {
-    "detail": "Declare a new function",
-    "documentation": "Declare a new function",
+    "detail": "Typed list",
+    "documentation": "Typed list",
     "insertTextFormat": 1,
     "kind": 14,
-    "label": "function",
+    "label": "List",
     "textEdit": {
-      "newText": "function ",
+      "newText": "List[",
       "range": {
         "end": {
-          "character": 5,
+          "character": 12,
           "line": 0
         },
         "start": {
-          "character": 0,
+          "character": 9,
           "line": 0
         }
       }

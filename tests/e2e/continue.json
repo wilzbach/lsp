@@ -1,7 +1,7 @@
 [
   {
-    "detail": "continue",
-    "documentation": "TBD",
+    "detail": "Jump to the next iteration",
+    "documentation": "Jump to the next iteration",
     "insertTextFormat": 1,
     "kind": 14,
     "label": "continue",

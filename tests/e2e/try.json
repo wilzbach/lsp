@@ -1,7 +1,7 @@
 [
   {
-    "detail": "true",
-    "documentation": "TBD",
+    "detail": "Boolean value representing truth",
+    "documentation": "Boolean value representing truth",
     "insertTextFormat": 1,
     "kind": 14,
     "label": "true",
@@ -20,8 +20,8 @@
     }
   },
   {
-    "detail": "try",
-    "documentation": "TBD",
+    "detail": "Exception handling block",
+    "documentation": "Exception handling block",
     "insertTextFormat": 1,
     "kind": 14,
     "label": "try",

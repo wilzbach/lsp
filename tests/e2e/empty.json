@@ -1,7 +1,7 @@
 [
   {
-    "detail": "break",
-    "documentation": "TBD",
+    "detail": "Stop current flow",
+    "documentation": "Stop current flow",
     "insertTextFormat": 1,
     "kind": 14,
     "label": "break",
@@ -20,8 +20,8 @@
     }
   },
   {
-    "detail": "continue",
-    "documentation": "TBD",
+    "detail": "Jump to the next iteration",
+    "documentation": "Jump to the next iteration",
     "insertTextFormat": 1,
     "kind": 14,
     "label": "continue",
@@ -63,8 +63,8 @@
     }
   },
   {
-    "detail": "false",
-    "documentation": "TBD",
+    "detail": "Boolean value representing falsehood",
+    "documentation": "Boolean value representing falsehood",
     "insertTextFormat": 1,
     "kind": 14,
     "label": "false",
@@ -83,8 +83,8 @@
     }
   },
   {
-    "detail": "foreach",
-    "documentation": "TBD",
+    "detail": "Execute block for each element",
+    "documentation": "Execute block for each element",
     "insertTextFormat": 1,
     "kind": 14,
     "label": "foreach",
@@ -103,8 +103,8 @@
     }
   },
   {
-    "detail": "function",
-    "documentation": "TBD",
+    "detail": "Declare a new function",
+    "documentation": "Declare a new function",
     "insertTextFormat": 1,
     "kind": 14,
     "label": "function",
@@ -146,8 +146,8 @@
     }
   },
   {
-    "detail": "if",
-    "documentation": "TBD",
+    "detail": "Conditional block",
+    "documentation": "Conditional block",
     "insertTextFormat": 1,
     "kind": 14,
     "label": "if",
@@ -189,8 +189,8 @@
     }
   },
   {
-    "detail": "not",
-    "documentation": "TBD",
+    "detail": "Logical negation",
+    "documentation": "Logical negation",
     "insertTextFormat": 1,
     "kind": 14,
     "label": "not",
@@ -209,8 +209,8 @@
     }
   },
   {
-    "detail": "null",
-    "documentation": "TBD",
+    "detail": "Intentional absence of any value",
+    "documentation": "Intentional absence of any value",
     "insertTextFormat": 1,
     "kind": 14,
     "label": "null",
@@ -344,8 +344,8 @@
     }
   },
   {
-    "detail": "return",
-    "documentation": "TBD",
+    "detail": "Return a value to caller or event",
+    "documentation": "Return a value to caller or event",
     "insertTextFormat": 1,
     "kind": 14,
     "label": "return",
@@ -433,8 +433,8 @@
     }
   },
   {
-    "detail": "throw",
-    "documentation": "TBD",
+    "detail": "Throw an exception",
+    "documentation": "Throw an exception",
     "insertTextFormat": 1,
     "kind": 14,
     "label": "throw",
@@ -453,8 +453,8 @@
     }
   },
   {
-    "detail": "true",
-    "documentation": "TBD",
+    "detail": "Boolean value representing truth",
+    "documentation": "Boolean value representing truth",
     "insertTextFormat": 1,
     "kind": 14,
     "label": "true",
@@ -473,8 +473,8 @@
     }
   },
   {
-    "detail": "try",
-    "documentation": "TBD",
+    "detail": "Exception handling block",
+    "documentation": "Exception handling block",
     "insertTextFormat": 1,
     "kind": 14,
     "label": "try",
@@ -516,8 +516,8 @@
     }
   },
   {
-    "detail": "when",
-    "documentation": "TBD",
+    "detail": "Execute block on an event",
+    "documentation": "Execute block on an event",
     "insertTextFormat": 1,
     "kind": 14,
     "label": "when",
@@ -536,8 +536,8 @@
     }
   },
   {
-    "detail": "while",
-    "documentation": "TBD",
+    "detail": "Repeated block until 'boolean' is 'false'",
+    "documentation": "Repeated block until 'boolean' is 'false'",
     "insertTextFormat": 1,
     "kind": 14,
     "label": "while",

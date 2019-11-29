@@ -1,7 +1,7 @@
 [
   {
-    "detail": "throw",
-    "documentation": "TBD",
+    "detail": "Throw an exception",
+    "documentation": "Throw an exception",
     "insertTextFormat": 1,
     "kind": 14,
     "label": "throw",

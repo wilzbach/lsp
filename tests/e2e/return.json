@@ -1,7 +1,7 @@
 [
   {
-    "detail": "return",
-    "documentation": "TBD",
+    "detail": "Return a value to caller or event",
+    "documentation": "Return a value to caller or event",
     "insertTextFormat": 1,
     "kind": 14,
     "label": "return",

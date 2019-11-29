@@ -1,7 +1,7 @@
 [
   {
-    "detail": "break",
-    "documentation": "TBD",
+    "detail": "Stop current flow",
+    "documentation": "Stop current flow",
     "insertTextFormat": 1,
     "kind": 14,
     "label": "break",

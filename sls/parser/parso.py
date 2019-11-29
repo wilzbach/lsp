@@ -62,9 +62,9 @@ map_type: 'Map' '[' type ',' type ']'
 list_type: 'List' '[' type ']'
 
 
+to_tok: 'to'
 # for simplicity assignments are treated as binary operations
 assign_tok: '=' | '+=' | '-=' | '*=' | '/=' | '%='
-to_tok: 'to'
 
 variable_name: NAME
 """

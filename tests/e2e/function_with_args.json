@@ -20,8 +20,8 @@
     }
   },
   {
-    "detail": "foreach",
-    "documentation": "TBD",
+    "detail": "Execute block for each element",
+    "documentation": "Execute block for each element",
     "insertTextFormat": 1,
     "kind": 14,
     "label": "foreach",

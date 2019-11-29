@@ -1,7 +1,7 @@
 [
   {
-    "detail": "function",
-    "documentation": "TBD",
+    "detail": "Declare a new function",
+    "documentation": "Declare a new function",
     "insertTextFormat": 1,
     "kind": 14,
     "label": "function",

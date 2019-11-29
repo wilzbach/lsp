@@ -1,7 +1,7 @@
 [
   {
-    "detail": "while",
-    "documentation": "TBD",
+    "detail": "Repeated block until 'boolean' is 'false'",
+    "documentation": "Repeated block until 'boolean' is 'false'",
     "insertTextFormat": 1,
     "kind": 14,
     "label": "while",
