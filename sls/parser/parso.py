@@ -33,8 +33,8 @@ throw_stmt: 'throw'
 
 base_expression: expression
 expression: binary_op
-binary_op: unary_op (binary_tok expression)*
-binary_tok: '+' | '-' | '*' | '/' | '%' | '^' | 'and' | 'or' | '<' | '<=' | '==' | '!=' | '>' | '>=' | assign_tok | to_tok
+binary_op: unary_op (binary_tok expression | to_tok type)*
+binary_tok: '+' | '-' | '*' | '/' | '%' | '^' | 'and' | 'or' | '<' | '<=' | '==' | '!=' | '>' | '>=' | assign_tok
 
 unary_op: atom | unary_tok atom
 unary_tok: 'not'
