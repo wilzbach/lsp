@@ -35,7 +35,7 @@ def test_regex_token_flag():
     assert toks[0].text() == "/foo/i"
 
 
-def test_regex_token_Div():
+def test_regex_token_div():
     toks = tokenize("/fo")
     assert len(toks) == 2
     assert toks[0].id() == "div"
@@ -197,6 +197,32 @@ def test_newline_token_indent():
     assert toks[3].text() == ""
 
 
+def test_comment():
+    toks = tokenize("#")
+    assert len(toks) == 1
+    assert toks[0].id() == "comment"
+
+
+def test_comment_2():
+    toks = tokenize("  #")
+    assert len(toks) == 1
+    assert toks[0].id() == "comment"
+
+
+def test_comment_3():
+    toks = tokenize("  # foo")
+    assert len(toks) == 1
+    assert toks[0].id() == "comment"
+
+
+def test_comment_4():
+    toks = tokenize("# foo \n12")
+    assert len(toks) == 3
+    assert toks[0].id() == "comment"
+    assert toks[1].id() == "nl"
+    assert toks[2].id() == "int"
+
+
 def test_fn_token():
     toks = tokenize("foo(")
     assert len(toks) == 2
@@ -328,6 +354,26 @@ b = foo()
                 "name",
                 "assign",
                 "int",
+                "nl",
+                "return",
+                "int",
+                "dedent",
+            ],
+        ),
+        (
+            "if 1\n# foo\n  a = 1\n  # foo\n  return 2",
+            [
+                "if",
+                "int",
+                "nl",
+                "comment",
+                "nl",
+                "indent",
+                "name",
+                "assign",
+                "int",
+                "nl",
+                "comment",
                 "nl",
                 "return",
                 "int",
