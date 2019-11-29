@@ -48,14 +48,28 @@ def test_string_token():
     toks = tokenize('"a"')
     assert len(toks) == 1
     assert toks[0].id() == "string"
-    assert toks[0].text() == '"a"'
+    assert toks[0].text() == "a"
 
 
 def test_string_token_ws():
     toks = tokenize('"a" ')
     assert len(toks) == 1
     assert toks[0].id() == "string"
-    assert toks[0].text() == '"a"'
+    assert toks[0].text() == "a"
+
+
+def test_string_token_escaped():
+    toks = tokenize(r'"a\\b"')
+    assert len(toks) == 1
+    assert toks[0].id() == "string"
+    assert toks[0].text() == "a\\b"
+
+
+def test_string_token_escaped_2():
+    toks = tokenize(r'"a\"b"')
+    assert len(toks) == 1
+    assert toks[0].id() == "string"
+    assert toks[0].text() == 'a"b'
 
 
 def test_int_token():
@@ -390,6 +404,7 @@ def test_stories(story, ids):
     "story,error",
     [
         ('"a', ErrorCodes.string_no_end),
+        ('"a\n 2', ErrorCodes.string_no_end),
         ("2a", ErrorCodes.number_only_digits),
         ("a$", ErrorCodes.name_only_alphanumeric),
         ("/rr/z", ErrorCodes.regex_invalid_flag),
