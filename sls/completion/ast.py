@@ -65,7 +65,7 @@ class ASTAnalyzer:
             return
 
         for op in self.process_ops(stack):
-            if op.keyword.startswith(like_word):
+            if op.keyword.lower().startswith(like_word):
                 yield op
 
     def process_ops(self, stack):

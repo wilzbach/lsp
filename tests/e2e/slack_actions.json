@@ -1,7 +1,7 @@
 [
   {
-    "detail": "and",
-    "documentation": "TBD",
+    "detail": "Logical conjunction",
+    "documentation": "Logical conjunction",
     "insertTextFormat": 1,
     "kind": 14,
     "label": "and",
@@ -80,8 +80,8 @@
     }
   },
   {
-    "detail": "or",
-    "documentation": "TBD",
+    "detail": "Logical disjunction",
+    "documentation": "Logical disjunction",
     "insertTextFormat": 1,
     "kind": 14,
     "label": "or",
@@ -120,8 +120,8 @@
     }
   },
   {
-    "detail": "to",
-    "documentation": "TBD",
+    "detail": "Type conversion",
+    "documentation": "Type conversion",
     "insertTextFormat": 1,
     "kind": 14,
     "label": "to",

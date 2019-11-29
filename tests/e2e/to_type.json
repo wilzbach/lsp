@@ -1,12 +1,12 @@
 [
   {
-    "detail": "List",
-    "documentation": "TBD",
+    "detail": "Typed list",
+    "documentation": "Typed list",
     "insertTextFormat": 1,
     "kind": 14,
     "label": "List",
     "textEdit": {
-      "newText": "List ",
+      "newText": "List[",
       "range": {
         "end": {
           "character": 9,
@@ -20,13 +20,13 @@
     }
   },
   {
-    "detail": "Map",
-    "documentation": "TBD",
+    "detail": "Key-value collection type",
+    "documentation": "Key-value collection type",
     "insertTextFormat": 1,
     "kind": 14,
     "label": "Map",
     "textEdit": {
-      "newText": "Map ",
+      "newText": "Map[",
       "range": {
         "end": {
           "character": 9,
@@ -40,8 +40,8 @@
     }
   },
   {
-    "detail": "any",
-    "documentation": "TBD",
+    "detail": "Arbitrary type",
+    "documentation": "Arbitrary type",
     "insertTextFormat": 1,
     "kind": 14,
     "label": "any",
@@ -60,8 +60,8 @@
     }
   },
   {
-    "detail": "boolean",
-    "documentation": "TBD",
+    "detail": "Binary state type of 'true' and 'false'",
+    "documentation": "Binary state type of 'true' and 'false'",
     "insertTextFormat": 1,
     "kind": 14,
     "label": "boolean",
@@ -80,8 +80,8 @@
     }
   },
   {
-    "detail": "float",
-    "documentation": "TBD",
+    "detail": "Floating-point number type",
+    "documentation": "Floating-point number type",
     "insertTextFormat": 1,
     "kind": 14,
     "label": "float",
@@ -100,8 +100,8 @@
     }
   },
   {
-    "detail": "int",
-    "documentation": "TBD",
+    "detail": "Integer number type",
+    "documentation": "Integer number type",
     "insertTextFormat": 1,
     "kind": 14,
     "label": "int",
@@ -120,8 +120,8 @@
     }
   },
   {
-    "detail": "regex",
-    "documentation": "TBD",
+    "detail": "Regular Expression type",
+    "documentation": "Regular Expression type",
     "insertTextFormat": 1,
     "kind": 14,
     "label": "regex",
@@ -140,8 +140,8 @@
     }
   },
   {
-    "detail": "string",
-    "documentation": "TBD",
+    "detail": "Text representation type",
+    "documentation": "Text representation type",
     "insertTextFormat": 1,
     "kind": 14,
     "label": "string",
@@ -160,8 +160,8 @@
     }
   },
   {
-    "detail": "time",
-    "documentation": "TBD",
+    "detail": "Time representation type",
+    "documentation": "Time representation type",
     "insertTextFormat": 1,
     "kind": 14,
     "label": "time",

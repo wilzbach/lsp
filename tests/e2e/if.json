@@ -1,7 +1,7 @@
 [
   {
-    "detail": "if",
-    "documentation": "TBD",
+    "detail": "Conditional block",
+    "documentation": "Conditional block",
     "insertTextFormat": 1,
     "kind": 14,
     "label": "if",

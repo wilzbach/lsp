@@ -1,7 +1,7 @@
 [
   {
-    "detail": "when",
-    "documentation": "TBD",
+    "detail": "Execute block on an event",
+    "documentation": "Execute block on an event",
     "insertTextFormat": 1,
     "kind": 14,
     "label": "when",

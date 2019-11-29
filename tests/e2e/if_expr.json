@@ -43,8 +43,8 @@
     }
   },
   {
-    "detail": "false",
-    "documentation": "TBD",
+    "detail": "Boolean value representing falsehood",
+    "documentation": "Boolean value representing falsehood",
     "insertTextFormat": 1,
     "kind": 14,
     "label": "false",
@@ -109,8 +109,8 @@
     }
   },
   {
-    "detail": "not",
-    "documentation": "TBD",
+    "detail": "Logical negation",
+    "documentation": "Logical negation",
     "insertTextFormat": 1,
     "kind": 14,
     "label": "not",
@@ -129,8 +129,8 @@
     }
   },
   {
-    "detail": "null",
-    "documentation": "TBD",
+    "detail": "Intentional absence of any value",
+    "documentation": "Intentional absence of any value",
     "insertTextFormat": 1,
     "kind": 14,
     "label": "null",
@@ -333,8 +333,8 @@
     }
   },
   {
-    "detail": "true",
-    "documentation": "TBD",
+    "detail": "Boolean value representing truth",
+    "documentation": "Boolean value representing truth",
     "insertTextFormat": 1,
     "kind": 14,
     "label": "true",

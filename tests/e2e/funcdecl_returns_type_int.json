@@ -1,7 +1,7 @@
 [
   {
-    "detail": "int",
-    "documentation": "TBD",
+    "detail": "Integer number type",
+    "documentation": "Integer number type",
     "insertTextFormat": 1,
     "kind": 14,
     "label": "int",

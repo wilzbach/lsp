@@ -1,19 +1,19 @@
 [
   {
-    "detail": "Declare a new function",
-    "documentation": "Declare a new function",
+    "detail": "Key-value collection type",
+    "documentation": "Key-value collection type",
     "insertTextFormat": 1,
     "kind": 14,
-    "label": "function",
+    "label": "Map",
     "textEdit": {
-      "newText": "function ",
+      "newText": "Map[",
       "range": {
         "end": {
-          "character": 5,
+          "character": 12,
           "line": 0
         },
         "start": {
-          "character": 0,
+          "character": 9,
           "line": 0
         }
       }
