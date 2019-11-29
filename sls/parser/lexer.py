@@ -137,6 +137,9 @@ class Tokenizer:
             elif t.isdigit():
                 yield from self.int_tok()
                 continue
+            elif t == "#":
+                yield from self.comment_tok(self.idx)
+                continue
             elif t == "\n":
                 # TODO: handle \r
                 yield self.create_token(self.idx - 1, self.idx, "nl")
@@ -357,6 +360,16 @@ class Tokenizer:
             return
         # EOF reached
         yield from self.indent_dedent(start, ws)
+
+    def comment_tok(self, idx):
+        start = 0
+        end = self.ts.find("\n", idx)
+        if end == -1:
+            # EOF
+            end = len(self.ts)
+
+        yield self.create_token(start, end, "comment")
+        self.idx = end
 
     @staticmethod
     def is_white(t):
