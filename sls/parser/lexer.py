@@ -243,13 +243,26 @@ class Tokenizer:
         return False
 
     def string_tok(self):
-        # TODO: add escaping
         start = self.idx - 1
+        escaped = False
+        text = ""
         for t in self.ts_iterate():
-            # TODO: error on newline
+            if escaped:
+                escaped = False
+                text += t
+                continue
+
             if t == '"':
-                yield self.create_token(start, self.idx, "string")
+                yield Token("string", text, start + 1, self.idx - 1)
                 return
+            elif t == "\\":
+                # next character is escaped
+                escaped = True
+            elif t == "\n":
+                # single-line string
+                self.error(ErrorCodes.string_no_end, 'String must end with "')
+            else:
+                text += t
 
         # EOF reached
         self.error(ErrorCodes.string_no_end, 'String must end with "')
