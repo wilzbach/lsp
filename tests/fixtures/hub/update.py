@@ -15,6 +15,7 @@ subset = [
     "oms-services/uuid",
     "redis",
     "mongodb",
+    "matthewhudson/oms-airtable",
 ]
 
 
