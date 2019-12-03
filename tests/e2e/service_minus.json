@@ -1,0 +1,82 @@
+[
+  {
+    "detail": "Logical conjunction",
+    "documentation": "Logical conjunction",
+    "insertTextFormat": 1,
+    "kind": 14,
+    "label": "and",
+    "textEdit": {
+      "newText": "and ",
+      "range": {
+        "end": {
+          "character": 27,
+          "line": 0
+        },
+        "start": {
+          "character": 27,
+          "line": 0
+        }
+      }
+    }
+  },
+  {
+    "detail": "Action: List records in a table.",
+    "documentation": "List records in a table.",
+    "insertTextFormat": 1,
+    "kind": 11,
+    "label": "list",
+    "textEdit": {
+      "newText": "list ",
+      "range": {
+        "end": {
+          "character": 27,
+          "line": 0
+        },
+        "start": {
+          "character": 27,
+          "line": 0
+        }
+      }
+    }
+  },
+  {
+    "detail": "Logical disjunction",
+    "documentation": "Logical disjunction",
+    "insertTextFormat": 1,
+    "kind": 14,
+    "label": "or",
+    "textEdit": {
+      "newText": "or ",
+      "range": {
+        "end": {
+          "character": 27,
+          "line": 0
+        },
+        "start": {
+          "character": 27,
+          "line": 0
+        }
+      }
+    }
+  },
+  {
+    "detail": "Type conversion",
+    "documentation": "Type conversion",
+    "insertTextFormat": 1,
+    "kind": 14,
+    "label": "to",
+    "textEdit": {
+      "newText": "to ",
+      "range": {
+        "end": {
+          "character": 27,
+          "line": 0
+        },
+        "start": {
+          "character": 27,
+          "line": 0
+        }
+      }
+    }
+  }
+]

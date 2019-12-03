@@ -159,6 +159,20 @@ def test_name_token_5():
     assert toks[2].id() == "name"
 
 
+def test_name_token_6():
+    toks = tokenize("a-b")
+    assert len(toks) == 1
+    assert toks[0].id() == "name"
+    assert toks[0].text() == "a-b"
+
+
+def test_name_token_7():
+    toks = tokenize("a-2")
+    assert len(toks) == 1
+    assert toks[0].id() == "name"
+    assert toks[0].text() == "a-2"
+
+
 def test_name_token_ws():
     toks = tokenize("abc ")
     assert len(toks) == 1
