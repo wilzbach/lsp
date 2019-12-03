@@ -1,6 +1,6 @@
 [
   {
-    "detail": "returns Symbol('hostname', string, r-)",
+    "detail": "returns string",
     "documentation": "hostname",
     "filterText": "app.hostname",
     "insertTextFormat": 1,
@@ -21,7 +21,7 @@
     }
   },
   {
-    "detail": "returns Symbol('secrets', Object, r-)",
+    "detail": "returns Object",
     "documentation": "secrets",
     "filterText": "app.secrets",
     "insertTextFormat": 1,
@@ -42,7 +42,7 @@
     }
   },
   {
-    "detail": "returns Symbol('version', string, r-)",
+    "detail": "returns string",
     "documentation": "version",
     "filterText": "app.version",
     "insertTextFormat": 1,

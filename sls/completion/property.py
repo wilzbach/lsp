@@ -4,6 +4,8 @@ from sls.completion.item import (
 )
 from sls.logging import logger
 
+from storyscript.compiler.semantics.types.Types import BaseType
+
 log = logger(__name__)
 
 
@@ -22,7 +24,10 @@ class PropertyCompletionSymbol(CompletionItem):
         Returns a LSP representation.
         """
         full_text = f"{self.word}.{self.name}"
-        desc = f"returns {self.prop}"
+        ty = self.prop
+        if not isinstance(ty, BaseType):
+            ty = ty.type()
+        desc = f"returns {ty}"
         return self.completion_build(
             label=self.name,
             text_edit=full_text,
