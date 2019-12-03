@@ -106,6 +106,29 @@
     }
   },
   {
+    "detail": "An Open Microservice wrapper for the Airtable API.",
+    "documentation": {
+      "kind": "markdown",
+      "value": "# _Airtable_ Open Microservice\n\n> An Open Microservice wrapper for the Airtable API.\n\n[![Open Microservice Specification Version](https://img.shields.io/badge/Open%20Microservice-1.0-477bf3.svg)](https://openmicroservices.org) [![Open Microservices Spectrum Chat](https://withspectrum.github.io/badge/badge.svg)](https://spectrum.chat/open-microservices) [![Open Microservices Code of Conduct](https://img.shields.io/badge/Contributor%20Covenant-v1.4%20adopted-ff69b4.svg)](https://github.com/oms-services/.github/blob/master/CODE_OF_CONDUCT.md) [![Open Microservices Commitzen](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](http://makeapullrequest.com)\n[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)\n\n## Introduction\n\nThis project is an example implementation of the [Open Microservice Specification](https://openmicroservices.org), a standard originally created at [Storyscript](https://storyscript.io) for building highly-portable \"microservices\" that expose the events, actions, and APIs inside containerized software.\n\n## Getting Started\n\nThe `oms` command-line interface allows you to interact with Open Microservices. If you're interested in creating an Open Microservice the CLI also helps validate, test, and debug your `oms.yml` implementation!\n\nSee the [oms-cli](https://github.com/microservices/oms) project to learn more!\n\n### Installation\n\n```\nnpm install -g @microservices/oms\n```\n\n## Usage\n\n### Open Microservices CLI Usage\n\nOnce you have the [oms-cli](https://github.com/microservices/oms) installed, you can run any of the following commands from within this project's root directory:\n\n#### Actions\n\n##### list\n\n> List records in a table.\n\n##### Action Arguments\n\n| Argument Name    | Type     | Required | Default | Description                                                                                                                                                                           |\n| :--------------- | :------- | :------- | :------ | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |\n| baseId           | `string` | `true`   | None    | No description provided.                                                                                                                                                              |\n| tableName        | `string` | `true`   | None    | No description provided.                                                                                                                                                              |\n| view             | `string` | `false`  | None    | No description provided.                                                                                                                                                              |\n| fields           | `list`   | `false`  | None    | Only data for fields whose names are in this list will be included in the result. If you don't need every field, you can use this parameter to reduce the amount of data transferred. |\n| maxRecords       | `int`    | `false`  | None    | The maximum total number of records that will be returned in your request.                                                                                                            |\n| AIRTABLE_API_KEY | `string` | `true`   | None    | API Key provided by Airtable                                                                                                                                                          |\n\n```shell\noms run list \\\n    -a baseId='*****' \\\n    -a tableName='*****' \\\n    -a view='*****' \\\n    -a fields='*****' \\\n    -a maxRecords='*****' \\\n    -e AIRTABLE_API_KEY=$AIRTABLE_API_KEY\n```\n\n## Contributing\n\nAll suggestions in how to improve the specification and this guide are very welcome. Feel free share your thoughts in the Issue tracker, or even better, fork the repository to implement your own ideas and submit a pull request.\n\n[![Edit oms-airtable on CodeSandbox](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/oms-services/oms-airtable)\n\nThis project is guided by [Contributor Covenant](https://github.com/oms-services/.github/blob/master/CODE_OF_CONDUCT.md). Please read out full [Contribution Guidelines](https://github.com/oms-services/.github/blob/master/CONTRIBUTING.md).\n\n## Additional Resources\n\n- [Install the CLI](https://github.com/microservices/oms) - The OMS CLI helps developers create, test, validate, and build microservices.\n- [Example OMS Services](https://github.com/oms-services) - Examples of OMS-compliant services written in a variety of languages.\n- [Example Language Implementations](https://github.com/microservices) - Find tooling & language implementations in Node, Python, Scala, Java, Clojure.\n- [Storyscript Hub](https://hub.storyscript.io) - A public registry of OMS services.\n- [Community Chat](https://spectrum.chat/open-microservices) - Have ideas? Questions? Join us on Spectrum.\n"
+    },
+    "insertTextFormat": 1,
+    "kind": 2,
+    "label": "matthewhudson/oms-airtable",
+    "textEdit": {
+      "newText": "matthewhudson/oms-airtable ",
+      "range": {
+        "end": {
+          "character": 6,
+          "line": 3
+        },
+        "start": {
+          "character": 4,
+          "line": 3
+        }
+      }
+    }
+  },
+  {
     "detail": "An OMG service to connect to a MongoDB instance",
     "documentation": {
       "kind": "markdown",
