@@ -6,6 +6,9 @@ from storyscript.compiler.semantics.functions.MutationTable import (
     MutationTable,
 )
 
+from storyscript.compiler.semantics.types.Types import ObjectType
+
+from .property import PropertyCompletionSymbol
 
 log = logger(__name__)
 
@@ -47,3 +50,8 @@ class DotCompletion:
         muts = self.mutation_table.resolve_by_type(ty)
         for mut in muts:
             yield CompletionBuiltin(expr, mut.instantiate(ty))
+
+        if isinstance(ty, ObjectType):
+            # properties
+            for prop_name, prop_value in ty._object.items():
+                yield PropertyCompletionSymbol(expr, prop_name, prop_value)

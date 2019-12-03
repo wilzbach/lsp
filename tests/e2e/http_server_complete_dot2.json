@@ -1,0 +1,23 @@
+[
+  {
+    "detail": "returns Map[string,string]",
+    "documentation": "queryParams",
+    "filterText": "req.queryParams",
+    "insertTextFormat": 1,
+    "kind": 2,
+    "label": "queryParams",
+    "textEdit": {
+      "newText": "req.queryParams",
+      "range": {
+        "end": {
+          "character": 18,
+          "line": 1
+        },
+        "start": {
+          "character": 8,
+          "line": 1
+        }
+      }
+    }
+  }
+]
