@@ -36,24 +36,14 @@ class DotCompletion:
         assert symbol is not None
         return symbol.type()
 
-    def complete(self, context):
+    def complete(self, expr):
         """
-        Perform dot completion by extraction the expression before the dot.
-        The type of this expression is then extraction and
-        queried against the mutation table.
+        Perform dot completion for mutation
         """
-        if "." not in context.word:
-            return
-
-        word, *parts, builtin = context.word.split(".")
-        if len(word) == 0:
-            return
-
-        expr = ".".join([word, *parts])
+        log.debug("complete: %s", expr)
         ty = self.expr_type_resolver(expr)
         if ty is None:
             return
         muts = self.mutation_table.resolve_by_type(ty)
         for mut in muts:
-            if mut.name().startswith(builtin):
-                yield CompletionBuiltin(word, mut.instantiate(ty))
+            yield CompletionBuiltin(expr, mut.instantiate(ty))

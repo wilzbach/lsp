@@ -48,6 +48,7 @@ def op():
         "*=",
         "/=",
         "%=",
+        StoryTokenSpace.DOT,
     ]
 
 
@@ -95,7 +96,7 @@ def test_parser_fn_end():
 
 def test_parser_service():
     s = parse("foo ")
-    compare(s, op() + [StoryTokenSpace.LPARENS, StoryTokenSpace.NAME])
+    compare(s, op() + [StoryTokenSpace.LPARENS, StoryTokenSpace.NAME, "["])
 
 
 def test_parser_service_args():

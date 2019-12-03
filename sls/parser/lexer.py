@@ -248,7 +248,7 @@ class Tokenizer:
     def string_tok(self):
         start = self.idx - 1
         escaped = False
-        text = ""
+        text = '"'
         for t in self.ts_iterate():
             if escaped:
                 escaped = False
@@ -256,7 +256,8 @@ class Tokenizer:
                 continue
 
             if t == '"':
-                yield Token("string", text, start + 1, self.idx - 1)
+                text += t
+                yield Token("string", text, start, self.idx)
                 return
             elif t == "\\":
                 # next character is escaped

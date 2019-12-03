@@ -7,7 +7,10 @@ from sls.services.function_argument import FunctionArgument
 
 from sls.parser.lexer import LexerException
 from sls.parser.parso import Parser
+from sls.parser.stack import Stack
 from sls.parser.token import StoryTokenSpace
+
+from .dot import DotCompletion
 
 
 log = logger(__name__)
@@ -18,6 +21,7 @@ class ASTAnalyzer:
         self.parser = Parser()
         self.service_registry = service_registry
         self.context_cache = context_cache
+        self.dot = DotCompletion(context_cache)
 
     def complete(self, context):
         try:
@@ -30,9 +34,6 @@ class ASTAnalyzer:
         is_space = len(context.line) > 0 and context.line[-1] == " "
         log.debug(f"line: '{context.line}'")
         line = context.line
-        if "." in context.word:
-            # handled by DotCompletion
-            return
 
         tokens = [*self.parser.tokenize(line)]
 
@@ -43,6 +44,8 @@ class ASTAnalyzer:
             like_word = tokens.pop().text()
             # case-insensitive searches
             like_word = like_word.lower()
+
+        log.debug("tokens: %s", tokens)
 
         try:
             stack = self.parser.stack_tokens(tokens)
@@ -62,6 +65,7 @@ class ASTAnalyzer:
                     yield c
 
         if not self.state_with_ops(transitions):
+            log.debug("state without operator completion.")
             return
 
         for op in self.process_ops(stack):
@@ -84,16 +88,24 @@ class ASTAnalyzer:
         Iterate over all non-terminal transitions and check whether operators should be yielded.
         For now, this is a simple blacklist of special rules.
         """
-        if len(transitions) == 0:
-            return True
+        count = 0
 
         # ignore operator yielding when only special rules have been observed
         only_special_rules = True
         for tok, dfa in transitions:
             if tok == StoryTokenSpace.RPARENS:
                 continue
+            if tok == StoryTokenSpace.DOT:
+                continue
+            if tok == StoryTokenSpace.NL:
+                continue
             from_rule = dfa.next_dfa.from_rule
             only_special_rules &= from_rule == "service_suffix"
+            count += 1
+
+        # no real transitions
+        if count == 0:
+            return True
 
         return not only_special_rules
 
@@ -101,6 +113,7 @@ class ASTAnalyzer:
         """
         Forwards processing of the non-terminal to its respective processor.
         """
+        log.debug("process non-terminal: %s", tok)
         if tok == StoryTokenSpace.NAME:
             yield from self.process_name(dfa, stack)
         elif tok == StoryTokenSpace.NULL:
@@ -109,6 +122,10 @@ class ASTAnalyzer:
             # no completion for strings
             pass
         elif tok == StoryTokenSpace.LPARENS or tok == StoryTokenSpace.RPARENS:
+            pass
+        elif tok == StoryTokenSpace.DOT:
+            pass
+        elif tok == StoryTokenSpace.NL:
             pass
         else:
             # no completion for numbers
@@ -140,6 +157,9 @@ class ASTAnalyzer:
         from_rule = dfa.next_dfa.from_rule
         assert len(dfa.dfa_pushes) > 0
         next_rule = dfa.dfa_pushes[0].from_rule
+        log.debug(
+            "process_name, from_rule:%s, next_rule:%s", from_rule, next_rule
+        )
         if next_rule == "service_suffix":
             assert from_rule == "value"
             service_name = self.extract(stack, "value")[0].value
@@ -163,6 +183,10 @@ class ASTAnalyzer:
         elif next_rule == "fn_arguments":
             # no name completion for function args in function declaration
             return
+        elif next_rule == "dot_name":
+            yield from self.process_mutation(stack)
+        elif next_rule == "mut_arguments":
+            return
         else:
             assert next_rule == "expression", next_rule
             yield from self.get_name("")
@@ -181,6 +205,15 @@ class ASTAnalyzer:
         """
         fn_name = self.extract(stack, "value")[0].value
         yield from self.get_fn_args(fn_name)
+
+    def process_mutation(self, stack):
+        """
+        Extract previous token for mutation completion.
+        """
+        dot_op = self.extract(stack, "dot_op")
+        toks = [t.value for t in Stack.flatten(dot_op)]
+        word = "".join(toks)
+        yield from self.dot.complete(word)
 
     @staticmethod
     def stack_find_closest_rule(stack, rules):

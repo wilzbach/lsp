@@ -36,16 +36,23 @@ expression: binary_op
 binary_op: unary_op (binary_tok expression | to_tok type)*
 binary_tok: '+' | '-' | '*' | '/' | '%' | '^' | 'and' | 'or' | '<' | '<=' | '==' | '!=' | '>' | '>=' | assign_tok
 
-unary_op: atom | unary_tok atom
+unary_op: dot_op | unary_tok atom
 unary_tok: 'not'
+
+dot_op: atom | atom (dot_expr)+ [LPARENS mut_arguments RPARENS]
+dot_expr: DOT dot_name
+dot_name: NAME
+mut_arguments: (mut_arg_name COLON expression)*
+mut_arg_name: NAME
 
 atom: value | LPARENS expression RPARENS
 
-value: NAME [ fn_suffix | service_suffix ] | NUMBER | STRING | boolean | NULL | list | map
+value: NAME [ fn_suffix | service_suffix | path_suffix ] | NUMBER | STRING | boolean | NULL | list | map
 # | REGEX | TIME
 fn_suffix: LPARENS arglist RPARENS
 service_suffix: service_op [arglist]
 service_op: NAME
+path_suffix: ('[' expression ']')+
 
 list: '[' [value (value ',' )] ']'
 map: '{' [value COLON (value ',' )] '}'
@@ -55,7 +62,7 @@ arglist: (arg_name COLON expression)*
 arg_name: NAME
 
 fn_name: NAME
-fn_arguments: (fn_arg_name COLON type)+
+fn_arguments: (fn_arg_name COLON type)*
 fn_arg_name: NAME
 type: 'boolean' | 'int' | 'float' | 'string' | 'regex' | 'time' | 'any' | map_type | list_type
 map_type: 'Map' '[' type ',' type ']'
