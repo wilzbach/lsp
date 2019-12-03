@@ -4,7 +4,6 @@ import sls.sentry as sentry
 from .ast import ASTAnalyzer
 from .cache import ContextCache
 from .context import CompletionContext
-from .dot import DotCompletion
 
 
 log = logger(__name__)
@@ -62,8 +61,5 @@ class Completion:
         context_cache = ContextCache()
         return cls(
             context_cache=context_cache,
-            plugins=[
-                ASTAnalyzer(service_registry, context_cache),
-                DotCompletion(context_cache),
-            ],
+            plugins=[ASTAnalyzer(service_registry, context_cache),],
         )

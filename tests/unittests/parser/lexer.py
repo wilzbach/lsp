@@ -48,28 +48,28 @@ def test_string_token():
     toks = tokenize('"a"')
     assert len(toks) == 1
     assert toks[0].id() == "string"
-    assert toks[0].text() == "a"
+    assert toks[0].text() == '"a"'
 
 
 def test_string_token_ws():
     toks = tokenize('"a" ')
     assert len(toks) == 1
     assert toks[0].id() == "string"
-    assert toks[0].text() == "a"
+    assert toks[0].text() == '"a"'
 
 
 def test_string_token_escaped():
     toks = tokenize(r'"a\\b"')
     assert len(toks) == 1
     assert toks[0].id() == "string"
-    assert toks[0].text() == "a\\b"
+    assert toks[0].text() == '"a\\b"'
 
 
 def test_string_token_escaped_2():
     toks = tokenize(r'"a\"b"')
     assert len(toks) == 1
     assert toks[0].id() == "string"
-    assert toks[0].text() == 'a"b'
+    assert toks[0].text() == '"a"b"'
 
 
 def test_int_token():
