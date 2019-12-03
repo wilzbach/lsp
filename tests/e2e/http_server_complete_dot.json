@@ -1,0 +1,170 @@
+[
+  {
+    "detail": "returns Map[any,any]",
+    "documentation": "body",
+    "filterText": "req.body",
+    "insertTextFormat": 1,
+    "kind": 2,
+    "label": "body",
+    "textEdit": {
+      "newText": "req.body",
+      "range": {
+        "end": {
+          "character": 12,
+          "line": 1
+        },
+        "start": {
+          "character": 8,
+          "line": 1
+        }
+      }
+    }
+  },
+  {
+    "detail": "returns Map[string,Object]",
+    "documentation": "files",
+    "filterText": "req.files",
+    "insertTextFormat": 1,
+    "kind": 2,
+    "label": "files",
+    "textEdit": {
+      "newText": "req.files",
+      "range": {
+        "end": {
+          "character": 12,
+          "line": 1
+        },
+        "start": {
+          "character": 8,
+          "line": 1
+        }
+      }
+    }
+  },
+  {
+    "detail": "returns Map[string,string]",
+    "documentation": "formFields",
+    "filterText": "req.formFields",
+    "insertTextFormat": 1,
+    "kind": 2,
+    "label": "formFields",
+    "textEdit": {
+      "newText": "req.formFields",
+      "range": {
+        "end": {
+          "character": 12,
+          "line": 1
+        },
+        "start": {
+          "character": 8,
+          "line": 1
+        }
+      }
+    }
+  },
+  {
+    "detail": "returns Map[any,any]",
+    "documentation": "headers",
+    "filterText": "req.headers",
+    "insertTextFormat": 1,
+    "kind": 2,
+    "label": "headers",
+    "textEdit": {
+      "newText": "req.headers",
+      "range": {
+        "end": {
+          "character": 12,
+          "line": 1
+        },
+        "start": {
+          "character": 8,
+          "line": 1
+        }
+      }
+    }
+  },
+  {
+    "detail": "returns string",
+    "documentation": "path",
+    "filterText": "req.path",
+    "insertTextFormat": 1,
+    "kind": 2,
+    "label": "path",
+    "textEdit": {
+      "newText": "req.path",
+      "range": {
+        "end": {
+          "character": 12,
+          "line": 1
+        },
+        "start": {
+          "character": 8,
+          "line": 1
+        }
+      }
+    }
+  },
+  {
+    "detail": "returns Map[string,string]",
+    "documentation": "queryParams",
+    "filterText": "req.queryParams",
+    "insertTextFormat": 1,
+    "kind": 2,
+    "label": "queryParams",
+    "textEdit": {
+      "newText": "req.queryParams",
+      "range": {
+        "end": {
+          "character": 12,
+          "line": 1
+        },
+        "start": {
+          "character": 8,
+          "line": 1
+        }
+      }
+    }
+  },
+  {
+    "detail": "returns Map[string,string]",
+    "documentation": "query_params",
+    "filterText": "req.query_params",
+    "insertTextFormat": 1,
+    "kind": 2,
+    "label": "query_params",
+    "textEdit": {
+      "newText": "req.query_params",
+      "range": {
+        "end": {
+          "character": 12,
+          "line": 1
+        },
+        "start": {
+          "character": 8,
+          "line": 1
+        }
+      }
+    }
+  },
+  {
+    "detail": "returns string",
+    "documentation": "uri",
+    "filterText": "req.uri",
+    "insertTextFormat": 1,
+    "kind": 2,
+    "label": "uri",
+    "textEdit": {
+      "newText": "req.uri",
+      "range": {
+        "end": {
+          "character": 12,
+          "line": 1
+        },
+        "start": {
+          "character": 8,
+          "line": 1
+        }
+      }
+    }
+  }
+]
