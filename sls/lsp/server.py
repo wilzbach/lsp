@@ -46,7 +46,7 @@ class LanguageServer(LSPDispatcher):
             # for a completion item.
             "resolveProvider": False,
             # Characters that trigger completion automatically.
-            "triggerCharacters": ["."],
+            "triggerCharacters": [".", "(", " "],
         }
         obj["hoverProvider"] = True
         obj["documentFormattingProvider"] = True

@@ -44,7 +44,7 @@ def test_message(ws):
     ws.write_message.assert_called_with(
         '{"jsonrpc": "2.0", "id": 0, '
         '"result": {"capabilities": {"completionProvider": '
-        '{"resolveProvider": false, "triggerCharacters": ["."]}, '
+        '{"resolveProvider": false, "triggerCharacters": [".", "(", " "]}, '
         '"hoverProvider": true, "documentFormattingProvider": true, '
         '"textDocumentSync": {"openClose": true, "change": 1}}}}'
     )
