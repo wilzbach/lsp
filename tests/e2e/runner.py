@@ -11,6 +11,8 @@ from sls import App
 
 from storyhub.sdk.ServiceWrapper import ServiceWrapper
 
+from tests.e2e.utils.features import parse_options
+
 
 test_dir = path.dirname(path.realpath(__file__))
 # make the test_file paths relative, s.t. test paths are nice to read
@@ -29,8 +31,8 @@ hub = ServiceWrapper.from_json_file(fixture_file)
 
 
 # compile a story and compare its completion with the expected tree
-def run_test_completion(uri, source, expected, patch):
-    assert App(hub=hub).complete(uri=uri, text=source) == expected
+def run_test_completion(uri, source, expected, patch, options):
+    assert App(hub=hub).complete(uri=uri, text=source, **options) == expected
 
 
 # load a story from the file system and load its expected result file (.json)
@@ -50,7 +52,12 @@ def run_test(story_path, patch):
 
     # deserialize the expected completion
     expected = json.loads(expected_completion)
-    return run_test_completion(story_path, story_string, expected, patch)
+
+    options = parse_options(story_string)
+
+    return run_test_completion(
+        story_path, story_string, expected, patch, options
+    )
 
 
 @mark.parametrize("test_file", test_files)

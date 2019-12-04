@@ -39,10 +39,10 @@ binary_tok: '+' | '-' | '*' | '/' | '%' | '^' | 'and' | 'or' | '<' | '<=' | '=='
 unary_op: dot_op | unary_tok atom
 unary_tok: 'not'
 
-dot_op: atom | atom (dot_expr)+ [LPARENS mut_arguments RPARENS]
-dot_expr: DOT dot_name
+dot_op: atom | atom dot_expr
+dot_expr: (DOT dot_name)+ [mut_arguments]
 dot_name: NAME
-mut_arguments: (mut_arg_name COLON expression)*
+mut_arguments: LPARENS (mut_arg_name COLON expression)* RPARENS
 mut_arg_name: NAME
 
 atom: value | LPARENS expression RPARENS

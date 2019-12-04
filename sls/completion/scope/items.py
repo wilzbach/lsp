@@ -1,4 +1,4 @@
-from sls.completion.item import (
+from sls.completion.items.item import (
     CompletionItem,
     CompletionItemKind,
     InsertTextFormat,

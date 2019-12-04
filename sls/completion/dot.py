@@ -8,7 +8,7 @@ from storyscript.compiler.semantics.functions.MutationTable import (
 
 from storyscript.compiler.semantics.types.Types import ObjectType
 
-from .property import PropertyCompletionSymbol
+from sls.completion.items.property import PropertyCompletionSymbol
 
 log = logger(__name__)
 
@@ -39,14 +39,30 @@ class DotCompletion:
         assert symbol is not None
         return symbol.type()
 
+    def mut_complete(self, expr, mut_name):
+        """
+        Returns a specific mutation overload set for an expression or None.
+        """
+        ty = self.expr_type_resolver(expr)
+        if ty is None:
+            return
+
+        muts = self.mutation_table.resolve(ty, mut_name)
+        if muts is None:
+            return
+
+        for mut in muts.all():
+            yield mut.instantiate(ty)
+
     def complete(self, expr):
         """
-        Perform dot completion for mutation
+        Perform dot completion for mutations and objects.
         """
         log.debug("complete: %s", expr)
         ty = self.expr_type_resolver(expr)
         if ty is None:
             return
+
         muts = self.mutation_table.resolve_by_type(ty)
         for mut in muts:
             yield CompletionBuiltin(expr, mut.instantiate(ty))

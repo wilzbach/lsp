@@ -1,9 +1,9 @@
-from sls.completion.item import CompletionItem, CompletionItemKind
+from sls.completion.items.item import CompletionItem, CompletionItemKind
 
 
-class FunctionArgument(CompletionItem):
+class MutationArgument(CompletionItem):
     """
-    A function argument completion item.
+    A mutation argument completion item.
     """
 
     def __init__(self, name, ty):
@@ -14,7 +14,7 @@ class FunctionArgument(CompletionItem):
         """
         Returns a LSP representation.
         """
-        ty = str(self.ty)
+        ty = str(self.ty.type())
         return self.completion_build(
             label=self.name,
             text_edit=f"{self.name}:",
