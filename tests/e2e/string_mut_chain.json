@@ -1,0 +1,22 @@
+[
+  {
+    "detail": "Arg. string",
+    "documentation": "Arg. string",
+    "insertTextFormat": 1,
+    "kind": 11,
+    "label": "prefix",
+    "textEdit": {
+      "newText": "prefix:",
+      "range": {
+        "end": {
+          "character": 40,
+          "line": 1
+        },
+        "start": {
+          "character": 40,
+          "line": 1
+        }
+      }
+    }
+  }
+]
