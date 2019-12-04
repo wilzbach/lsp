@@ -7,6 +7,8 @@ omit =
   venv/*
   .tox/*
   tests/fixtures/*
+  tests/e2e/update
+  tests/e2e/utils/*
   sls.py
   sls.fixed
   sls/__main__.py

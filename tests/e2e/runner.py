@@ -1,33 +1,18 @@
 #!/usr/bin/env pytest
-
 import io
 import json
-from glob import glob
 from os import path
 
 from pytest import mark
 
 from sls import App
 
-from storyhub.sdk.ServiceWrapper import ServiceWrapper
 
 from tests.e2e.utils.features import parse_options
+from tests.e2e.utils.fixtures import find_test_files, hub, test_dir
 
 
-test_dir = path.dirname(path.realpath(__file__))
-# make the test_file paths relative, s.t. test paths are nice to read
-test_files = list(
-    map(
-        lambda e: path.relpath(e, test_dir),
-        glob(path.join(test_dir, "**", "*.story"), recursive=True),
-    )
-)
-
-script_dir = path.dirname(path.realpath(__file__))
-fixture_dir = path.join(script_dir, "..", "fixtures", "hub")
-fixture_file = path.join(fixture_dir, "hub.fixed.json")
-
-hub = ServiceWrapper.from_json_file(fixture_file)
+test_files = find_test_files(relative=True)
 
 
 # compile a story and compare its completion with the expected tree
