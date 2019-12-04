@@ -42,70 +42,7 @@
     }
   },
   {
-    "detail": "approxEqual(value:float)",
-    "documentation": "Builtin: approxEqual",
-    "filterText": "ls.approxEqual",
-    "insertTextFormat": 2,
-    "kind": 2,
-    "label": "approxEqual",
-    "textEdit": {
-      "newText": "ls.approxEqual($1)",
-      "range": {
-        "end": {
-          "character": 7,
-          "line": 1
-        },
-        "start": {
-          "character": 4,
-          "line": 1
-        }
-      }
-    }
-  },
-  {
-    "detail": "approxEqual(maxRelDiff:float value:float)",
-    "documentation": "Builtin: approxEqual",
-    "filterText": "ls.approxEqual",
-    "insertTextFormat": 2,
-    "kind": 2,
-    "label": "approxEqual",
-    "textEdit": {
-      "newText": "ls.approxEqual($1)",
-      "range": {
-        "end": {
-          "character": 7,
-          "line": 1
-        },
-        "start": {
-          "character": 4,
-          "line": 1
-        }
-      }
-    }
-  },
-  {
-    "detail": "approxEqual(maxAbsDiff:float value:float)",
-    "documentation": "Builtin: approxEqual",
-    "filterText": "ls.approxEqual",
-    "insertTextFormat": 2,
-    "kind": 2,
-    "label": "approxEqual",
-    "textEdit": {
-      "newText": "ls.approxEqual($1)",
-      "range": {
-        "end": {
-          "character": 7,
-          "line": 1
-        },
-        "start": {
-          "character": 4,
-          "line": 1
-        }
-      }
-    }
-  },
-  {
-    "detail": "approxEqual(maxAbsDiff:float maxRelDiff:float value:float)",
+    "detail": "approxEqual(value:float)\napproxEqual(maxRelDiff:float value:float)\napproxEqual(maxAbsDiff:float value:float)\napproxEqual(maxAbsDiff:float maxRelDiff:float value:float)",
     "documentation": "Builtin: approxEqual",
     "filterText": "ls.approxEqual",
     "insertTextFormat": 2,

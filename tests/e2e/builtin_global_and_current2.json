@@ -252,49 +252,7 @@
     }
   },
   {
-    "detail": "slice(start:int)",
-    "documentation": "Builtin: slice",
-    "filterText": "ls.slice",
-    "insertTextFormat": 2,
-    "kind": 2,
-    "label": "slice",
-    "textEdit": {
-      "newText": "ls.slice($1)",
-      "range": {
-        "end": {
-          "character": 7,
-          "line": 2
-        },
-        "start": {
-          "character": 4,
-          "line": 2
-        }
-      }
-    }
-  },
-  {
-    "detail": "slice(end:int start:int)",
-    "documentation": "Builtin: slice",
-    "filterText": "ls.slice",
-    "insertTextFormat": 2,
-    "kind": 2,
-    "label": "slice",
-    "textEdit": {
-      "newText": "ls.slice($1)",
-      "range": {
-        "end": {
-          "character": 7,
-          "line": 2
-        },
-        "start": {
-          "character": 4,
-          "line": 2
-        }
-      }
-    }
-  },
-  {
-    "detail": "slice(end:int)",
+    "detail": "slice(start:int)\nslice(end:int start:int)\nslice(end:int)",
     "documentation": "Builtin: slice",
     "filterText": "ls.slice",
     "insertTextFormat": 2,

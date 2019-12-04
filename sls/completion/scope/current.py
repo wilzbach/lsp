@@ -1,6 +1,6 @@
 from cachetools import LRUCache
 
-from sls.completion.scope.items import CompletionSymbol
+from sls.completion.items.symbol import CompletionSymbol
 from sls.logging import logger
 
 from storyscript import loads

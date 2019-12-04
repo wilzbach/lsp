@@ -1,27 +1,6 @@
 [
   {
-    "detail": "contains(key:string)",
-    "documentation": "Builtin: contains",
-    "filterText": "ls.contains",
-    "insertTextFormat": 2,
-    "kind": 2,
-    "label": "contains",
-    "textEdit": {
-      "newText": "ls.contains($1)",
-      "range": {
-        "end": {
-          "character": 7,
-          "line": 1
-        },
-        "start": {
-          "character": 4,
-          "line": 1
-        }
-      }
-    }
-  },
-  {
-    "detail": "contains(value:string)",
+    "detail": "contains(key:string)\ncontains(value:string)",
     "documentation": "Builtin: contains",
     "filterText": "ls.contains",
     "insertTextFormat": 2,

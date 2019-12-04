@@ -1,4 +1,6 @@
-from sls.completion.scope.items import CompletionBuiltin
+from collections import defaultdict
+
+from sls.completion.items.builtin import CompletionBuiltin
 from sls.logging import logger
 
 from storyscript import loads
@@ -39,7 +41,7 @@ class DotCompletion:
         assert symbol is not None
         return symbol.type()
 
-    def mut_complete(self, expr, mut_name):
+    def mut_arg_complete(self, expr, mut_name):
         """
         Returns a specific mutation overload set for an expression or None.
         """
@@ -63,11 +65,22 @@ class DotCompletion:
         if ty is None:
             return
 
-        muts = self.mutation_table.resolve_by_type(ty)
-        for mut in muts:
-            yield CompletionBuiltin(expr, mut.instantiate(ty))
+        yield from self.mut_complete(expr, ty)
 
         if isinstance(ty, ObjectType):
             # properties
             for prop_name, prop_value in ty._object.items():
                 yield PropertyCompletionSymbol(expr, prop_name, prop_value)
+
+    def mut_complete(self, expr, ty):
+        """
+        Perform dot completion for a mutation.
+        Group mutations overloads of the same name into one mutation.
+        """
+        muts = self.mutation_table.resolve_by_type(ty)
+        mos = defaultdict(list)
+        for mut in muts:
+            mos[mut.name()].append(mut.instantiate(ty))
+
+        for name, muts in mos.items():
+            yield CompletionBuiltin(expr, name, muts)
