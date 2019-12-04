@@ -16,7 +16,7 @@ def parse_options(text):
     """
     options = {}
     for line in text.splitlines():
-        if line.startswith("#"):
+        if line.startswith("#") and line.find(":") > 0:
             feat, values = line[1:].split(":")
             if feat.strip() == "pos":
                 for val in values.split(","):

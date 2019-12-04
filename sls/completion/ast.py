@@ -168,8 +168,6 @@ class ASTAnalyzer:
             return
         elif next_rule == "dot_name":
             yield from self.process_mut(stack)
-        elif next_rule == "mut_arguments":
-            yield from self.process_mut_args(stack)
         elif next_rule == "mut_arg_name":
             yield from self.process_mut_args(stack)
         else:
@@ -199,9 +197,9 @@ class ASTAnalyzer:
         """
         dot_op = self.get_mut_toks(stack)
         toks = [t.value for t in Stack.flatten(dot_op)]
-        if toks[-1] == ".":
-            toks.pop()
-        expr = "".join(toks)
+        # always remove the final dot
+        assert toks[-1] == "."
+        expr = "".join(toks[:-1])
         yield from self.dot.complete(expr)
 
     def process_args(self, stack):
@@ -256,7 +254,7 @@ class ASTAnalyzer:
 
     def get_mut_toks(self, stack, before=None):
         """
-        Returns all tokesn from the stack belonging to the current mutation.
+        Returns all tokens from the stack belonging to the current mutation.
         """
         return [
             *Stack.extract(stack, "dot_op", before),
@@ -309,8 +307,6 @@ class ASTAnalyzer:
         """
         log.debug("mut_args completion: %s", expr)
         muts = self.dot.mut_complete(expr, mut_name)
-        if muts is None:
-            return
         for mut in muts:
             for arg_name, arg_type in mut.args().items():
                 yield MutationArgument(arg_name, arg_type)
