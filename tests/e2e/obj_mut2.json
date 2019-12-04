@@ -1,0 +1,23 @@
+[
+  {
+    "detail": "startswith(prefix:string)",
+    "documentation": "Builtin: startswith",
+    "filterText": "req.path.startswith",
+    "insertTextFormat": 2,
+    "kind": 2,
+    "label": "startswith",
+    "textEdit": {
+      "newText": "req.path.startswith($1)",
+      "range": {
+        "end": {
+          "character": 25,
+          "line": 1
+        },
+        "start": {
+          "character": 8,
+          "line": 1
+        }
+      }
+    }
+  }
+]

@@ -1,4 +1,4 @@
-from sls.completion.item import CompletionItem, CompletionItemKind
+from sls.completion.items.item import CompletionItem, CompletionItemKind
 from sls.logging import logger
 
 log = logger(__name__)

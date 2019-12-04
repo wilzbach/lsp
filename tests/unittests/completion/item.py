@@ -1,6 +1,6 @@
 from pytest import raises
 
-from sls.completion.item import CompletionItem
+from sls.completion.items.item import CompletionItem
 
 
 def test_to_completion():

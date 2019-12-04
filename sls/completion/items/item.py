@@ -10,7 +10,8 @@ class CompletionItem:
     def to_completion(self):
         raise NotImplementedError()
 
-    def text_edit(self, context, text):
+    @staticmethod
+    def text_edit(context, text):
         start = Position(
             line=context.pos.line,
             character=context.pos.char - len(context.word),

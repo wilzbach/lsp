@@ -1,0 +1,170 @@
+[
+  {
+    "detail": "contains(key:any)",
+    "documentation": "Builtin: contains",
+    "filterText": "req.body.contains",
+    "insertTextFormat": 2,
+    "kind": 2,
+    "label": "contains",
+    "textEdit": {
+      "newText": "req.body.contains($1)",
+      "range": {
+        "end": {
+          "character": 17,
+          "line": 1
+        },
+        "start": {
+          "character": 8,
+          "line": 1
+        }
+      }
+    }
+  },
+  {
+    "detail": "contains(value:any)",
+    "documentation": "Builtin: contains",
+    "filterText": "req.body.contains",
+    "insertTextFormat": 2,
+    "kind": 2,
+    "label": "contains",
+    "textEdit": {
+      "newText": "req.body.contains($1)",
+      "range": {
+        "end": {
+          "character": 17,
+          "line": 1
+        },
+        "start": {
+          "character": 8,
+          "line": 1
+        }
+      }
+    }
+  },
+  {
+    "detail": "flatten()",
+    "documentation": "Builtin: flatten",
+    "filterText": "req.body.flatten",
+    "insertTextFormat": 2,
+    "kind": 2,
+    "label": "flatten",
+    "textEdit": {
+      "newText": "req.body.flatten($1)",
+      "range": {
+        "end": {
+          "character": 17,
+          "line": 1
+        },
+        "start": {
+          "character": 8,
+          "line": 1
+        }
+      }
+    }
+  },
+  {
+    "detail": "get(default:any key:any)",
+    "documentation": "Builtin: get",
+    "filterText": "req.body.get",
+    "insertTextFormat": 2,
+    "kind": 2,
+    "label": "get",
+    "textEdit": {
+      "newText": "req.body.get($1)",
+      "range": {
+        "end": {
+          "character": 17,
+          "line": 1
+        },
+        "start": {
+          "character": 8,
+          "line": 1
+        }
+      }
+    }
+  },
+  {
+    "detail": "keys()",
+    "documentation": "Builtin: keys",
+    "filterText": "req.body.keys",
+    "insertTextFormat": 2,
+    "kind": 2,
+    "label": "keys",
+    "textEdit": {
+      "newText": "req.body.keys($1)",
+      "range": {
+        "end": {
+          "character": 17,
+          "line": 1
+        },
+        "start": {
+          "character": 8,
+          "line": 1
+        }
+      }
+    }
+  },
+  {
+    "detail": "length()",
+    "documentation": "Builtin: length",
+    "filterText": "req.body.length",
+    "insertTextFormat": 2,
+    "kind": 2,
+    "label": "length",
+    "textEdit": {
+      "newText": "req.body.length($1)",
+      "range": {
+        "end": {
+          "character": 17,
+          "line": 1
+        },
+        "start": {
+          "character": 8,
+          "line": 1
+        }
+      }
+    }
+  },
+  {
+    "detail": "remove(key:any)",
+    "documentation": "Builtin: remove",
+    "filterText": "req.body.remove",
+    "insertTextFormat": 2,
+    "kind": 2,
+    "label": "remove",
+    "textEdit": {
+      "newText": "req.body.remove($1)",
+      "range": {
+        "end": {
+          "character": 17,
+          "line": 1
+        },
+        "start": {
+          "character": 8,
+          "line": 1
+        }
+      }
+    }
+  },
+  {
+    "detail": "values()",
+    "documentation": "Builtin: values",
+    "filterText": "req.body.values",
+    "insertTextFormat": 2,
+    "kind": 2,
+    "label": "values",
+    "textEdit": {
+      "newText": "req.body.values($1)",
+      "range": {
+        "end": {
+          "character": 17,
+          "line": 1
+        },
+        "start": {
+          "character": 8,
+          "line": 1
+        }
+      }
+    }
+  }
+]

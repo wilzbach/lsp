@@ -1,4 +1,4 @@
-from sls.completion.item import CompletionItem
+from sls.completion.items.item import CompletionItem
 from sls.spec import CompletionItemKind, MarkupKind
 
 
