@@ -21,28 +21,7 @@
     }
   },
   {
-    "detail": "contains(pattern:regexp)",
-    "documentation": "Builtin: contains",
-    "filterText": "ls.contains",
-    "insertTextFormat": 2,
-    "kind": 2,
-    "label": "contains",
-    "textEdit": {
-      "newText": "ls.contains($1)",
-      "range": {
-        "end": {
-          "character": 7,
-          "line": 1
-        },
-        "start": {
-          "character": 4,
-          "line": 1
-        }
-      }
-    }
-  },
-  {
-    "detail": "contains(item:string)",
+    "detail": "contains(pattern:regexp)\ncontains(item:string)",
     "documentation": "Builtin: contains",
     "filterText": "ls.contains",
     "insertTextFormat": 2,
@@ -126,28 +105,7 @@
     }
   },
   {
-    "detail": "replace(by:string item:string)",
-    "documentation": "Builtin: replace",
-    "filterText": "ls.replace",
-    "insertTextFormat": 2,
-    "kind": 2,
-    "label": "replace",
-    "textEdit": {
-      "newText": "ls.replace($1)",
-      "range": {
-        "end": {
-          "character": 7,
-          "line": 1
-        },
-        "start": {
-          "character": 4,
-          "line": 1
-        }
-      }
-    }
-  },
-  {
-    "detail": "replace(by:string pattern:regexp)",
+    "detail": "replace(by:string item:string)\nreplace(by:string pattern:regexp)",
     "documentation": "Builtin: replace",
     "filterText": "ls.replace",
     "insertTextFormat": 2,
@@ -210,49 +168,7 @@
     }
   },
   {
-    "detail": "substring(start:int)",
-    "documentation": "Builtin: substring",
-    "filterText": "ls.substring",
-    "insertTextFormat": 2,
-    "kind": 2,
-    "label": "substring",
-    "textEdit": {
-      "newText": "ls.substring($1)",
-      "range": {
-        "end": {
-          "character": 7,
-          "line": 1
-        },
-        "start": {
-          "character": 4,
-          "line": 1
-        }
-      }
-    }
-  },
-  {
-    "detail": "substring(end:int start:int)",
-    "documentation": "Builtin: substring",
-    "filterText": "ls.substring",
-    "insertTextFormat": 2,
-    "kind": 2,
-    "label": "substring",
-    "textEdit": {
-      "newText": "ls.substring($1)",
-      "range": {
-        "end": {
-          "character": 7,
-          "line": 1
-        },
-        "start": {
-          "character": 4,
-          "line": 1
-        }
-      }
-    }
-  },
-  {
-    "detail": "substring(end:int)",
+    "detail": "substring(start:int)\nsubstring(end:int start:int)\nsubstring(end:int)",
     "documentation": "Builtin: substring",
     "filterText": "ls.substring",
     "insertTextFormat": 2,

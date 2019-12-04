@@ -2,7 +2,7 @@ from collections import namedtuple
 
 from cachetools import LRUCache
 
-from sls.completion.scope.items import CompletionFunction
+from sls.completion.items.function import CompletionFunction
 from sls.logging import logger
 
 from storyscript import loads

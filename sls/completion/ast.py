@@ -306,7 +306,7 @@ class ASTAnalyzer:
         Yields the arguments of the respective function if it exists.
         """
         log.debug("mut_args completion: %s", expr)
-        muts = self.dot.mut_complete(expr, mut_name)
+        muts = self.dot.mut_arg_complete(expr, mut_name)
         for mut in muts:
             for arg_name, arg_type in mut.args().items():
                 yield MutationArgument(arg_name, arg_type)

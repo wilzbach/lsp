@@ -1,27 +1,6 @@
 [
   {
-    "detail": "contains(key:any)",
-    "documentation": "Builtin: contains",
-    "filterText": "req.body.contains",
-    "insertTextFormat": 2,
-    "kind": 2,
-    "label": "contains",
-    "textEdit": {
-      "newText": "req.body.contains($1)",
-      "range": {
-        "end": {
-          "character": 17,
-          "line": 2
-        },
-        "start": {
-          "character": 8,
-          "line": 2
-        }
-      }
-    }
-  },
-  {
-    "detail": "contains(value:any)",
+    "detail": "contains(key:any)\ncontains(value:any)",
     "documentation": "Builtin: contains",
     "filterText": "req.body.contains",
     "insertTextFormat": 2,
