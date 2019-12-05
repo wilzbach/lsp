@@ -1,7 +1,10 @@
 [
   {
     "detail": "increment()",
-    "documentation": "Builtin: increment",
+    "documentation": {
+      "kind": "markdown",
+      "value": "returns the number + 1"
+    },
     "filterText": "ls.increment",
     "insertTextFormat": 2,
     "kind": 2,
@@ -22,7 +25,10 @@
   },
   {
     "detail": "isEven()",
-    "documentation": "Builtin: isEven",
+    "documentation": {
+      "kind": "markdown",
+      "value": "returns true if the number is even, false otherwise"
+    },
     "filterText": "ls.isEven",
     "insertTextFormat": 2,
     "kind": 2,
@@ -43,7 +49,10 @@
   },
   {
     "detail": "isOdd()",
-    "documentation": "Builtin: isOdd",
+    "documentation": {
+      "kind": "markdown",
+      "value": "returns true if the number is odd, false otherwise"
+    },
     "filterText": "ls.isOdd",
     "insertTextFormat": 2,
     "kind": 2,

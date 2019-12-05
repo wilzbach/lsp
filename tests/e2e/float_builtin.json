@@ -1,7 +1,10 @@
 [
   {
     "detail": "abs()",
-    "documentation": "Builtin: abs",
+    "documentation": {
+      "kind": "markdown",
+      "value": "returns the absolute value of the number"
+    },
     "filterText": "ls.abs",
     "insertTextFormat": 2,
     "kind": 2,
@@ -22,7 +25,10 @@
   },
   {
     "detail": "acos()",
-    "documentation": "Builtin: acos",
+    "documentation": {
+      "kind": "markdown",
+      "value": "returns the arccosine of the number"
+    },
     "filterText": "ls.acos",
     "insertTextFormat": 2,
     "kind": 2,
@@ -43,7 +49,10 @@
   },
   {
     "detail": "approxEqual(value:float)\napproxEqual(maxRelDiff:float value:float)\napproxEqual(maxAbsDiff:float value:float)\napproxEqual(maxAbsDiff:float maxRelDiff:float value:float)",
-    "documentation": "Builtin: approxEqual",
+    "documentation": {
+      "kind": "markdown",
+      "value": "### approxEqual(value:float)\nreturns true if the number is approximately equal to `value`\n\n### approxEqual(maxRelDiff:float value:float)\nreturns true if the number is approximately equal to `value`, within a relative tolerance\n\n### approxEqual(maxAbsDiff:float value:float)\nreturns true if the number is approximately equal to `value`, within a absolute tolerance (abs(num - value) <= maxAbsDiff)\n\n### approxEqual(maxAbsDiff:float maxRelDiff:float value:float)\nreturns true if the number is approximately equal to `value` (within a relative and absolute threshold)"
+    },
     "filterText": "ls.approxEqual",
     "insertTextFormat": 2,
     "kind": 2,
@@ -64,7 +73,10 @@
   },
   {
     "detail": "asin()",
-    "documentation": "Builtin: asin",
+    "documentation": {
+      "kind": "markdown",
+      "value": "returns the arcsine of the number"
+    },
     "filterText": "ls.asin",
     "insertTextFormat": 2,
     "kind": 2,
@@ -85,7 +97,10 @@
   },
   {
     "detail": "atan()",
-    "documentation": "Builtin: atan",
+    "documentation": {
+      "kind": "markdown",
+      "value": "returns the arctangent of the number"
+    },
     "filterText": "ls.atan",
     "insertTextFormat": 2,
     "kind": 2,
@@ -106,7 +121,10 @@
   },
   {
     "detail": "ceil()",
-    "documentation": "Builtin: ceil",
+    "documentation": {
+      "kind": "markdown",
+      "value": "returns the smallest integer not less than x"
+    },
     "filterText": "ls.ceil",
     "insertTextFormat": 2,
     "kind": 2,
@@ -127,7 +145,10 @@
   },
   {
     "detail": "cos()",
-    "documentation": "Builtin: cos",
+    "documentation": {
+      "kind": "markdown",
+      "value": "returns the cosine of the number"
+    },
     "filterText": "ls.cos",
     "insertTextFormat": 2,
     "kind": 2,
@@ -148,7 +169,10 @@
   },
   {
     "detail": "exp()",
-    "documentation": "Builtin: exp",
+    "documentation": {
+      "kind": "markdown",
+      "value": ""
+    },
     "filterText": "ls.exp",
     "insertTextFormat": 2,
     "kind": 2,
@@ -169,7 +193,10 @@
   },
   {
     "detail": "floor()",
-    "documentation": "Builtin: floor",
+    "documentation": {
+      "kind": "markdown",
+      "value": "returns the largest integer not greater than x"
+    },
     "filterText": "ls.floor",
     "insertTextFormat": 2,
     "kind": 2,
@@ -190,7 +217,10 @@
   },
   {
     "detail": "isInfinity()",
-    "documentation": "Builtin: isInfinity",
+    "documentation": {
+      "kind": "markdown",
+      "value": "returns true if the number represents infinity, false otherwise"
+    },
     "filterText": "ls.isInfinity",
     "insertTextFormat": 2,
     "kind": 2,
@@ -211,7 +241,10 @@
   },
   {
     "detail": "isNaN()",
-    "documentation": "Builtin: isNaN",
+    "documentation": {
+      "kind": "markdown",
+      "value": "returns the absolute value of the number"
+    },
     "filterText": "ls.isNaN",
     "insertTextFormat": 2,
     "kind": 2,
@@ -232,7 +265,10 @@
   },
   {
     "detail": "log()",
-    "documentation": "Builtin: log",
+    "documentation": {
+      "kind": "markdown",
+      "value": "returns the logarithmic of the number"
+    },
     "filterText": "ls.log",
     "insertTextFormat": 2,
     "kind": 2,
@@ -253,7 +289,10 @@
   },
   {
     "detail": "log10()",
-    "documentation": "Builtin: log10",
+    "documentation": {
+      "kind": "markdown",
+      "value": "returns the base 10 logarithm of the number"
+    },
     "filterText": "ls.log10",
     "insertTextFormat": 2,
     "kind": 2,
@@ -274,7 +313,10 @@
   },
   {
     "detail": "log2()",
-    "documentation": "Builtin: log2",
+    "documentation": {
+      "kind": "markdown",
+      "value": "returns the base 2 logarithm of the number"
+    },
     "filterText": "ls.log2",
     "insertTextFormat": 2,
     "kind": 2,
@@ -295,7 +337,10 @@
   },
   {
     "detail": "round()",
-    "documentation": "Builtin: round",
+    "documentation": {
+      "kind": "markdown",
+      "value": "returns the nearest integer to the given number"
+    },
     "filterText": "ls.round",
     "insertTextFormat": 2,
     "kind": 2,
@@ -316,7 +361,10 @@
   },
   {
     "detail": "sin()",
-    "documentation": "Builtin: sin",
+    "documentation": {
+      "kind": "markdown",
+      "value": "returns the sine of the number"
+    },
     "filterText": "ls.sin",
     "insertTextFormat": 2,
     "kind": 2,
@@ -337,7 +385,10 @@
   },
   {
     "detail": "sqrt()",
-    "documentation": "Builtin: sqrt",
+    "documentation": {
+      "kind": "markdown",
+      "value": "returns the square root of the number"
+    },
     "filterText": "ls.sqrt",
     "insertTextFormat": 2,
     "kind": 2,
@@ -358,7 +409,10 @@
   },
   {
     "detail": "tan()",
-    "documentation": "Builtin: tan",
+    "documentation": {
+      "kind": "markdown",
+      "value": "returns the tangent of the number"
+    },
     "filterText": "ls.tan",
     "insertTextFormat": 2,
     "kind": 2,

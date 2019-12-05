@@ -1,7 +1,10 @@
 [
   {
     "detail": "contains(key:any)\ncontains(value:any)",
-    "documentation": "Builtin: contains",
+    "documentation": {
+      "kind": "markdown",
+      "value": "### contains(key:any)\nreturns true if `key` exists in the map, false otherwise\n\n### contains(value:any)\nreturns true if the `value` exists in the map, false otherwise"
+    },
     "filterText": "req.body.contains",
     "insertTextFormat": 2,
     "kind": 2,
@@ -22,7 +25,10 @@
   },
   {
     "detail": "flatten()",
-    "documentation": "Builtin: flatten",
+    "documentation": {
+      "kind": "markdown",
+      "value": "returns a list of key/value pairs"
+    },
     "filterText": "req.body.flatten",
     "insertTextFormat": 2,
     "kind": 2,
@@ -43,7 +49,10 @@
   },
   {
     "detail": "get(default:any key:any)",
-    "documentation": "Builtin: get",
+    "documentation": {
+      "kind": "markdown",
+      "value": "returns the value for the `key`, or a `default` value if it doesn't exist"
+    },
     "filterText": "req.body.get",
     "insertTextFormat": 2,
     "kind": 2,
@@ -64,7 +73,10 @@
   },
   {
     "detail": "keys()",
-    "documentation": "Builtin: keys",
+    "documentation": {
+      "kind": "markdown",
+      "value": "returns a list of all keys"
+    },
     "filterText": "req.body.keys",
     "insertTextFormat": 2,
     "kind": 2,
@@ -85,7 +97,10 @@
   },
   {
     "detail": "length()",
-    "documentation": "Builtin: length",
+    "documentation": {
+      "kind": "markdown",
+      "value": "returns the number of elements in the map"
+    },
     "filterText": "req.body.length",
     "insertTextFormat": 2,
     "kind": 2,
@@ -106,7 +121,10 @@
   },
   {
     "detail": "remove(key:any)",
-    "documentation": "Builtin: remove",
+    "documentation": {
+      "kind": "markdown",
+      "value": "returns a map without `key` in it"
+    },
     "filterText": "req.body.remove",
     "insertTextFormat": 2,
     "kind": 2,
@@ -127,7 +145,10 @@
   },
   {
     "detail": "values()",
-    "documentation": "Builtin: values",
+    "documentation": {
+      "kind": "markdown",
+      "value": "returns a list of all values"
+    },
     "filterText": "req.body.values",
     "insertTextFormat": 2,
     "kind": 2,

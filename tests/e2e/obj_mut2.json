@@ -1,7 +1,10 @@
 [
   {
     "detail": "startswith(prefix:string)",
-    "documentation": "Builtin: startswith",
+    "documentation": {
+      "kind": "markdown",
+      "value": "returns true if the string starts with `prefix`"
+    },
     "filterText": "req.path.startswith",
     "insertTextFormat": 2,
     "kind": 2,
