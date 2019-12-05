@@ -40,8 +40,8 @@
     }
   },
   {
-    "detail": "Arg. string",
-    "documentation": "Arg. string",
+    "detail": "[string] Prefix to check the string for",
+    "documentation": "",
     "insertTextFormat": 1,
     "kind": 11,
     "label": "prefix",

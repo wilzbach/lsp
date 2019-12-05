@@ -1,7 +1,10 @@
 [
   {
     "detail": "append(item:int)",
-    "documentation": "Builtin: append",
+    "documentation": {
+      "kind": "markdown",
+      "value": "returns a new list with `item` added to the end of it"
+    },
     "filterText": "ls.append",
     "insertTextFormat": 2,
     "kind": 2,
@@ -22,7 +25,10 @@
   },
   {
     "detail": "contains(item:int)",
-    "documentation": "Builtin: contains",
+    "documentation": {
+      "kind": "markdown",
+      "value": "returns true if `item` is present, false otherwise"
+    },
     "filterText": "ls.contains",
     "insertTextFormat": 2,
     "kind": 2,
@@ -43,7 +49,10 @@
   },
   {
     "detail": "index(of:int)",
-    "documentation": "Builtin: index",
+    "documentation": {
+      "kind": "markdown",
+      "value": "returns the index of an item or -1 if the list doesn't contain the item"
+    },
     "filterText": "ls.index",
     "insertTextFormat": 2,
     "kind": 2,
@@ -64,7 +73,10 @@
   },
   {
     "detail": "join(sep:string)",
-    "documentation": "Builtin: join",
+    "documentation": {
+      "kind": "markdown",
+      "value": "returns a string with all elements in list concatenated (joined) by the separator `sep`"
+    },
     "filterText": "ls.join",
     "insertTextFormat": 2,
     "kind": 2,
@@ -85,7 +97,10 @@
   },
   {
     "detail": "length()",
-    "documentation": "Builtin: length",
+    "documentation": {
+      "kind": "markdown",
+      "value": "returns the length of the list"
+    },
     "filterText": "ls.length",
     "insertTextFormat": 2,
     "kind": 2,
@@ -106,7 +121,10 @@
   },
   {
     "detail": "max()",
-    "documentation": "Builtin: max",
+    "documentation": {
+      "kind": "markdown",
+      "value": "returns the largest of the items in this list (if it contains numbers)"
+    },
     "filterText": "ls.max",
     "insertTextFormat": 2,
     "kind": 2,
@@ -127,7 +145,10 @@
   },
   {
     "detail": "min()",
-    "documentation": "Builtin: min",
+    "documentation": {
+      "kind": "markdown",
+      "value": "returns the lowest of the items in this list (if it contains numbers)"
+    },
     "filterText": "ls.min",
     "insertTextFormat": 2,
     "kind": 2,
@@ -148,7 +169,10 @@
   },
   {
     "detail": "prepend(item:int)",
-    "documentation": "Builtin: prepend",
+    "documentation": {
+      "kind": "markdown",
+      "value": "returns a new list with `item` added to the start of it"
+    },
     "filterText": "ls.prepend",
     "insertTextFormat": 2,
     "kind": 2,
@@ -169,7 +193,10 @@
   },
   {
     "detail": "random()",
-    "documentation": "Builtin: random",
+    "documentation": {
+      "kind": "markdown",
+      "value": "returns a random element from this list"
+    },
     "filterText": "ls.random",
     "insertTextFormat": 2,
     "kind": 2,
@@ -190,7 +217,10 @@
   },
   {
     "detail": "remove(item:int)",
-    "documentation": "Builtin: remove",
+    "documentation": {
+      "kind": "markdown",
+      "value": "returns a new list, with `item` removed from the list"
+    },
     "filterText": "ls.remove",
     "insertTextFormat": 2,
     "kind": 2,
@@ -211,7 +241,10 @@
   },
   {
     "detail": "replace(by:int item:int)",
-    "documentation": "Builtin: replace",
+    "documentation": {
+      "kind": "markdown",
+      "value": "returns a new list, where all occurrences of `item` replaced with `by`"
+    },
     "filterText": "ls.replace",
     "insertTextFormat": 2,
     "kind": 2,
@@ -232,7 +265,10 @@
   },
   {
     "detail": "reverse()",
-    "documentation": "Builtin: reverse",
+    "documentation": {
+      "kind": "markdown",
+      "value": "returns a new list, in reverse order"
+    },
     "filterText": "ls.reverse",
     "insertTextFormat": 2,
     "kind": 2,
@@ -253,7 +289,10 @@
   },
   {
     "detail": "slice(start:int)\nslice(end:int start:int)\nslice(end:int)",
-    "documentation": "Builtin: slice",
+    "documentation": {
+      "kind": "markdown",
+      "value": "### slice(start:int)\nreturns a new list, with items starting from the index `start` (inclusive)\n\n### slice(end:int start:int)\nreturns a new list, with items starting from the index `start` (inclusive), to the index `end` (exclusive)\n\n### slice(end:int)\nreturns a new list, with all items until the index `end` (exclusive)"
+    },
     "filterText": "ls.slice",
     "insertTextFormat": 2,
     "kind": 2,
@@ -274,7 +313,10 @@
   },
   {
     "detail": "sort()",
-    "documentation": "Builtin: sort",
+    "documentation": {
+      "kind": "markdown",
+      "value": "returns a new list, sorted in an ascending fashion"
+    },
     "filterText": "ls.sort",
     "insertTextFormat": 2,
     "kind": 2,
@@ -295,7 +337,10 @@
   },
   {
     "detail": "sum()",
-    "documentation": "Builtin: sum",
+    "documentation": {
+      "kind": "markdown",
+      "value": "returns the sum of all the items in this list (if it contains numbers)"
+    },
     "filterText": "ls.sum",
     "insertTextFormat": 2,
     "kind": 2,
@@ -316,7 +361,10 @@
   },
   {
     "detail": "unique()",
-    "documentation": "Builtin: unique",
+    "documentation": {
+      "kind": "markdown",
+      "value": "returns a new list, which will contain only unique items"
+    },
     "filterText": "ls.unique",
     "insertTextFormat": 2,
     "kind": 2,

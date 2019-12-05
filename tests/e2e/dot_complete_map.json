@@ -1,7 +1,10 @@
 [
   {
     "detail": "capitalize()",
-    "documentation": "Builtin: capitalize",
+    "documentation": {
+      "kind": "markdown",
+      "value": "returns a string where the first letter of each word is capitalized"
+    },
     "filterText": "m[\"f\"].capitalize",
     "insertTextFormat": 2,
     "kind": 2,
@@ -22,7 +25,10 @@
   },
   {
     "detail": "contains(pattern:regexp)\ncontains(item:string)",
-    "documentation": "Builtin: contains",
+    "documentation": {
+      "kind": "markdown",
+      "value": "### contains(pattern:regexp)\nreturns true if the string matches the `pattern`, false otherwise\n\n### contains(item:string)\nreturns true if the string contains the sequence `item`, false otherwise"
+    },
     "filterText": "m[\"f\"].contains",
     "insertTextFormat": 2,
     "kind": 2,
@@ -43,7 +49,10 @@
   },
   {
     "detail": "endswith(suffix:string)",
-    "documentation": "Builtin: endswith",
+    "documentation": {
+      "kind": "markdown",
+      "value": "returns true if the string ends with the `suffix`"
+    },
     "filterText": "m[\"f\"].endswith",
     "insertTextFormat": 2,
     "kind": 2,
@@ -64,7 +73,10 @@
   },
   {
     "detail": "length()",
-    "documentation": "Builtin: length",
+    "documentation": {
+      "kind": "markdown",
+      "value": "returns the number of UTF-8 characters"
+    },
     "filterText": "m[\"f\"].length",
     "insertTextFormat": 2,
     "kind": 2,
@@ -85,7 +97,10 @@
   },
   {
     "detail": "lowercase()",
-    "documentation": "Builtin: lowercase",
+    "documentation": {
+      "kind": "markdown",
+      "value": "returns a string where all characters are lower-cased"
+    },
     "filterText": "m[\"f\"].lowercase",
     "insertTextFormat": 2,
     "kind": 2,
@@ -106,7 +121,10 @@
   },
   {
     "detail": "replace(by:string item:string)\nreplace(by:string pattern:regexp)",
-    "documentation": "Builtin: replace",
+    "documentation": {
+      "kind": "markdown",
+      "value": "### replace(by:string item:string)\nreturns a string by replacing `item` with `by`\n\n### replace(by:string pattern:regexp)\nreplace all occurrences of the `pattern` RegExp /ab/ with `by`"
+    },
     "filterText": "m[\"f\"].replace",
     "insertTextFormat": 2,
     "kind": 2,
@@ -127,7 +145,10 @@
   },
   {
     "detail": "split(by:string)",
-    "documentation": "Builtin: split",
+    "documentation": {
+      "kind": "markdown",
+      "value": "returns a list by splitting the string with the delimiter"
+    },
     "filterText": "m[\"f\"].split",
     "insertTextFormat": 2,
     "kind": 2,
@@ -148,7 +169,10 @@
   },
   {
     "detail": "startswith(prefix:string)",
-    "documentation": "Builtin: startswith",
+    "documentation": {
+      "kind": "markdown",
+      "value": "returns true if the string starts with `prefix`"
+    },
     "filterText": "m[\"f\"].startswith",
     "insertTextFormat": 2,
     "kind": 2,
@@ -169,7 +193,10 @@
   },
   {
     "detail": "substring(start:int)\nsubstring(end:int start:int)\nsubstring(end:int)",
-    "documentation": "Builtin: substring",
+    "documentation": {
+      "kind": "markdown",
+      "value": "### substring(start:int)\nreturns characters after the specified index\n\n### substring(end:int start:int)\nreturns characters after the start index and until the end index\n\n### substring(end:int)\nreturns characters until the specified index"
+    },
     "filterText": "m[\"f\"].substring",
     "insertTextFormat": 2,
     "kind": 2,
@@ -190,7 +217,10 @@
   },
   {
     "detail": "trim()",
-    "documentation": "Builtin: trim",
+    "documentation": {
+      "kind": "markdown",
+      "value": "returns a string with any leading and trailing whitespace (including tabs) removed"
+    },
     "filterText": "m[\"f\"].trim",
     "insertTextFormat": 2,
     "kind": 2,
@@ -211,7 +241,10 @@
   },
   {
     "detail": "uppercase()",
-    "documentation": "Builtin: uppercase",
+    "documentation": {
+      "kind": "markdown",
+      "value": "returns a string where all characters are upper-cased"
+    },
     "filterText": "m[\"f\"].uppercase",
     "insertTextFormat": 2,
     "kind": 2,

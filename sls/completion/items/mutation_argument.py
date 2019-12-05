@@ -6,20 +6,21 @@ class MutationArgument(CompletionItem):
     A mutation argument completion item.
     """
 
-    def __init__(self, name, ty):
+    def __init__(self, name, sym):
         self.name = name
-        self.ty = ty
+        self.sym = sym
 
     def to_completion(self, context):
         """
         Returns a LSP representation.
         """
-        ty = str(self.ty.type())
+        ty = str(self.sym.type())
+        desc = f"[{ty}] {self.sym.desc()}"
         return self.completion_build(
             label=self.name,
             text_edit=f"{self.name}:",
-            detail=f"Arg. {ty}",
-            documentation=f"Arg. {ty}",
+            detail=desc,
+            documentation="",
             completion_kind=CompletionItemKind.Unit,
             context=context,
         )

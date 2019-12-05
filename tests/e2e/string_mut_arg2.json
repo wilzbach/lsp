@@ -20,8 +20,8 @@
     }
   },
   {
-    "detail": "Arg. int",
-    "documentation": "Arg. int",
+    "detail": "[int] Ending index (exclusive)",
+    "documentation": "",
     "insertTextFormat": 1,
     "kind": 11,
     "label": "end",

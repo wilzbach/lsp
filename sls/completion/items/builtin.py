@@ -1,5 +1,5 @@
 from sls.completion.items.item import CompletionItem
-from sls.spec import CompletionItemKind, InsertTextFormat
+from sls.spec import CompletionItemKind, InsertTextFormat, MarkupKind
 
 
 class CompletionBuiltin(CompletionItem):
@@ -13,10 +13,22 @@ class CompletionBuiltin(CompletionItem):
         self.name = name
 
         # aggregate multiple builtins for the same name
-        self.desc = []
+        self.doc = []
+        self.detail = []
         for b in builtins:
-            self.desc.append(b.pretty().replace("`", ""))
-        self.desc = "\n".join(self.desc)
+            desc = b.pretty().replace("`", "")
+            self.detail.append(desc)
+            if len(builtins) == 1:
+                # no duplication for mutations without overloads
+                desc = ""
+            else:
+                desc = f"### {desc}"
+                desc += "\n"
+
+            desc += b.desc()
+            self.doc.append(desc)
+        self.doc = "\n\n".join(self.doc)
+        self.detail = "\n".join(self.detail)
 
     def to_completion(self, context):
         """
@@ -26,8 +38,9 @@ class CompletionBuiltin(CompletionItem):
         return self.completion_build(
             label=self.name,
             text_edit=f"{full_text}($1)",
-            detail=self.desc,
-            documentation=f"Builtin: {self.name}",
+            detail=self.detail,
+            documentation=self.doc,
+            documentation_kind=MarkupKind.Markdown,
             completion_kind=CompletionItemKind.Method,
             insert_text_format=InsertTextFormat.Snippet,
             context=context,
