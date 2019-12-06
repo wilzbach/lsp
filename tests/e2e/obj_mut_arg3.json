@@ -5,6 +5,19 @@
     "insertTextFormat": 1,
     "kind": 11,
     "label": "prefix",
-    "sortText": "20-prefix"
+    "sortText": "20-prefix",
+    "textEdit": {
+      "newText": "prefix:",
+      "range": {
+        "end": {
+          "character": 28,
+          "line": 2
+        },
+        "start": {
+          "character": 28,
+          "line": 2
+        }
+      }
+    }
   }
 ]

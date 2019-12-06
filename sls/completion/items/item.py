@@ -67,10 +67,8 @@ class CompletionItem:
             "insertTextFormat": insert_text_format,
         }
         if text_edit:
-            # only insert text edit if we're at the end of the document
-            if len(context.line) == len(context.doc.line(context.pos.line)):
-                edit = self.text_edit(context, text_edit).dump()
-                response["textEdit"] = edit
+            edit = self.text_edit(context, text_edit).dump()
+            response["textEdit"] = edit
 
         response["sortText"] = f"{sort_group}-{label}"
 
