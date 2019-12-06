@@ -7,10 +7,9 @@ from sls.parser.parso import Parser
 from sls.parser.stack import Stack
 from sls.parser.token import StoryTokenSpace
 
-from .dot import DotCompletion
+from .builtin import BuiltinCompletion
+from .function import FunctionCompletion
 from .service import ServiceCompletion
-from .items.function_argument import FunctionArgument
-from .items.mutation_argument import MutationArgument
 
 
 log = logger(__name__)
@@ -21,7 +20,8 @@ class ASTAnalyzer:
         self.parser = Parser()
         self.service = ServiceCompletion(service_registry)
         self.context_cache = context_cache
-        self.dot = DotCompletion(context_cache)
+        self.builtin = BuiltinCompletion(context_cache)
+        self.function = FunctionCompletion(context_cache)
 
     def complete(self, context):
         try:
@@ -145,14 +145,13 @@ class ASTAnalyzer:
         )
         if next_rule == "service_suffix":
             assert from_rule == "value"
-            service_name = Stack.extract(stack, "value")[0].value
-            yield from self.service.get_service_commands(service_name)
+            yield from self.service.process_name(stack)
         elif next_rule == "arglist":
             if from_rule == "service_suffix":
-                yield from self.process_service(stack)
+                yield from self.service.process_command(stack)
             else:
                 assert from_rule == "fn_suffix"
-                yield from self.process_fn(stack)
+                yield from self.function.process_name(stack)
         elif next_rule == "arg_name":
             yield from self.process_args(stack)
         elif next_rule == "block":
@@ -167,40 +166,12 @@ class ASTAnalyzer:
             # no name completion for function args in function declaration
             return
         elif next_rule == "dot_name":
-            yield from self.process_mut(stack)
+            yield from self.builtin.process_name(stack)
         elif next_rule == "mut_arg_name":
-            yield from self.process_mut_args(stack)
+            yield from self.builtin.process_args(stack)
         else:
             assert next_rule == "expression", next_rule
             yield from self.get_name("")
-
-    def process_service(self, stack):
-        """
-        Extract previous tokens for service argument completion.
-        """
-        service_name = Stack.extract(stack, "value")[0].value
-        service_command = Stack.extract(stack, "service_op")[0].value
-        yield from self.service.get_service_arguments(
-            service_name, service_command
-        )
-
-    def process_fn(self, stack):
-        """
-        Extract previous token for function completion.
-        """
-        fn_name = Stack.extract(stack, "value")[0].value
-        yield from self.get_fn_args(fn_name)
-
-    def process_mut(self, stack):
-        """
-        Extract previous token for mutation completion.
-        """
-        dot_op = self.get_mut_toks(stack)
-        toks = [t.value for t in Stack.flatten(dot_op)]
-        # always remove the final dot
-        assert toks[-1] == "."
-        expr = "".join(toks[:-1])
-        yield from self.dot.complete(expr)
 
     def process_args(self, stack):
         """
@@ -220,96 +191,10 @@ class ASTAnalyzer:
         ]
 
         if last_rule == "service_suffix":
-            yield from self.process_service_args(stack, prev_args)
+            yield from self.service.process_args(stack, prev_args)
         else:
             assert last_rule == "fn_suffix"
-            yield from self.process_fn_args(stack, prev_args)
-
-    def process_fn_args(self, stack, prev_args):
-        """
-        Looks for the function name token in the stack and filter seen arguments.
-        """
-        fn_name = Stack.extract(stack, "value", "fn_suffix")[0].value
-        args = self.get_fn_args(fn_name)
-        for arg in args:
-            arg_name = arg.name.lower()
-            # ignore previously used args
-            if arg_name not in prev_args:
-                yield arg
-
-    def process_service_args(self, stack, prev_args):
-        """
-        Looks for the service name and command token in the stack and filter seen arguments.
-        """
-        service_name = Stack.extract(stack, "value", "service_suffix")[0].value
-        service_command = Stack.extract(stack, "service_suffix")[0].value
-        args = self.service.get_service_arguments(
-            service_name, service_command
-        )
-        for arg in args:
-            arg_name = arg.argument.name().lower()
-            # ignore previously used args
-            if arg_name not in prev_args:
-                yield arg
-
-    def get_mut_toks(self, stack, before=None):
-        """
-        Returns all tokens from the stack belonging to the current mutation.
-        """
-        return [
-            *Stack.extract(stack, "dot_op", before),
-            *Stack.extract(stack, "dot_expr", before),
-        ]
-
-    def process_mut_args(self, stack):
-        """
-        Looks for the mutation name token in the stack and filter seen arguments.
-        """
-        dot_op = self.get_mut_toks(stack, before="mut_arguments")
-        toks = [t.value for t in Stack.flatten(dot_op)]
-        mut_name = toks.pop()
-        # remove '.' from mut_name (.<mut_name>)
-        expr = "".join(toks[:-1])
-
-        args = self.get_mut_args(expr, mut_name)
-
-        # second or further arguments -> filter used arguments
-        prev_args = Stack.find_all_until(
-            stack, "mut_arguments", ["dot_expr"], start=1, offset=3
-        )
-        # '(' (<name> ':' <expr>)*
-        prev_args = [*prev_args]
-
-        seen = {}
-        for arg in args:
-            arg_name = arg.name.lower()
-            if arg_name in seen:
-                continue
-            seen[arg_name] = True
-            # # ignore previously used args
-            if arg_name not in prev_args:
-                yield arg
-
-    def get_fn_args(self, fn_name):
-        """
-        Yields the arguments of the respective function if it exists.
-        """
-        log.debug("fn_args completion: %s", fn_name)
-        fn = self.context_cache.function(fn_name)
-        if fn is None:
-            return
-        for arg_name, arg_type in fn.args().items():
-            yield FunctionArgument(arg_name, arg_type)
-
-    def get_mut_args(self, expr, mut_name):
-        """
-        Yields the arguments of the respective function if it exists.
-        """
-        log.debug("mut_args completion: %s", expr)
-        muts = self.dot.mut_arg_complete(expr, mut_name)
-        for mut in muts:
-            for arg_name, arg_type in mut.args().items():
-                yield MutationArgument(arg_name, arg_type)
+            yield from self.function.process_args(stack, prev_args)
 
     def get_name(self, word):
         """
@@ -317,4 +202,4 @@ class ASTAnalyzer:
         """
         log.debug("get_name: %s", word)
         yield from self.context_cache.complete(word)
-        yield from self.service.service_registry.find_services(word)
+        yield from self.service.services(word)
