@@ -11,7 +11,7 @@
     "label": "abs",
     "sortText": "20-abs",
     "textEdit": {
-      "newText": "ls.abs($1)",
+      "newText": "ls.abs()",
       "range": {
         "end": {
           "character": 7,
@@ -36,7 +36,7 @@
     "label": "acos",
     "sortText": "20-acos",
     "textEdit": {
-      "newText": "ls.acos($1)",
+      "newText": "ls.acos()",
       "range": {
         "end": {
           "character": 7,
@@ -61,7 +61,7 @@
     "label": "approxEqual",
     "sortText": "20-approxEqual",
     "textEdit": {
-      "newText": "ls.approxEqual($1)",
+      "newText": "ls.approxEqual(value:${1:<float>})",
       "range": {
         "end": {
           "character": 7,
@@ -86,7 +86,7 @@
     "label": "asin",
     "sortText": "20-asin",
     "textEdit": {
-      "newText": "ls.asin($1)",
+      "newText": "ls.asin()",
       "range": {
         "end": {
           "character": 7,
@@ -111,7 +111,7 @@
     "label": "atan",
     "sortText": "20-atan",
     "textEdit": {
-      "newText": "ls.atan($1)",
+      "newText": "ls.atan()",
       "range": {
         "end": {
           "character": 7,
@@ -136,7 +136,7 @@
     "label": "ceil",
     "sortText": "20-ceil",
     "textEdit": {
-      "newText": "ls.ceil($1)",
+      "newText": "ls.ceil()",
       "range": {
         "end": {
           "character": 7,
@@ -161,7 +161,7 @@
     "label": "cos",
     "sortText": "20-cos",
     "textEdit": {
-      "newText": "ls.cos($1)",
+      "newText": "ls.cos()",
       "range": {
         "end": {
           "character": 7,
@@ -186,7 +186,7 @@
     "label": "exp",
     "sortText": "20-exp",
     "textEdit": {
-      "newText": "ls.exp($1)",
+      "newText": "ls.exp()",
       "range": {
         "end": {
           "character": 7,
@@ -211,7 +211,7 @@
     "label": "floor",
     "sortText": "20-floor",
     "textEdit": {
-      "newText": "ls.floor($1)",
+      "newText": "ls.floor()",
       "range": {
         "end": {
           "character": 7,
@@ -236,7 +236,7 @@
     "label": "isInfinity",
     "sortText": "20-isInfinity",
     "textEdit": {
-      "newText": "ls.isInfinity($1)",
+      "newText": "ls.isInfinity()",
       "range": {
         "end": {
           "character": 7,
@@ -261,7 +261,7 @@
     "label": "isNaN",
     "sortText": "20-isNaN",
     "textEdit": {
-      "newText": "ls.isNaN($1)",
+      "newText": "ls.isNaN()",
       "range": {
         "end": {
           "character": 7,
@@ -286,7 +286,7 @@
     "label": "log",
     "sortText": "20-log",
     "textEdit": {
-      "newText": "ls.log($1)",
+      "newText": "ls.log()",
       "range": {
         "end": {
           "character": 7,
@@ -311,7 +311,7 @@
     "label": "log10",
     "sortText": "20-log10",
     "textEdit": {
-      "newText": "ls.log10($1)",
+      "newText": "ls.log10()",
       "range": {
         "end": {
           "character": 7,
@@ -336,7 +336,7 @@
     "label": "log2",
     "sortText": "20-log2",
     "textEdit": {
-      "newText": "ls.log2($1)",
+      "newText": "ls.log2()",
       "range": {
         "end": {
           "character": 7,
@@ -361,7 +361,7 @@
     "label": "round",
     "sortText": "20-round",
     "textEdit": {
-      "newText": "ls.round($1)",
+      "newText": "ls.round()",
       "range": {
         "end": {
           "character": 7,
@@ -386,7 +386,7 @@
     "label": "sin",
     "sortText": "20-sin",
     "textEdit": {
-      "newText": "ls.sin($1)",
+      "newText": "ls.sin()",
       "range": {
         "end": {
           "character": 7,
@@ -411,7 +411,7 @@
     "label": "sqrt",
     "sortText": "20-sqrt",
     "textEdit": {
-      "newText": "ls.sqrt($1)",
+      "newText": "ls.sqrt()",
       "range": {
         "end": {
           "character": 7,
@@ -436,7 +436,7 @@
     "label": "tan",
     "sortText": "20-tan",
     "textEdit": {
-      "newText": "ls.tan($1)",
+      "newText": "ls.tan()",
       "range": {
         "end": {
           "character": 7,

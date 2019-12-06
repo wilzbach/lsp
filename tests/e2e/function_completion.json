@@ -7,7 +7,7 @@
     "label": "bar",
     "sortText": "20-bar",
     "textEdit": {
-      "newText": "bar($1)",
+      "newText": "bar()",
       "range": {
         "end": {
           "character": 2,

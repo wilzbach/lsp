@@ -23,12 +23,12 @@
   {
     "detail": "Action: List records in a table.",
     "documentation": "List records in a table.",
-    "insertTextFormat": 1,
+    "insertTextFormat": 2,
     "kind": 11,
     "label": "list",
     "sortText": "20-list",
     "textEdit": {
-      "newText": "list ",
+      "newText": "list baseId:${1:<string>} tableName:${2:<string>}",
       "range": {
         "end": {
           "character": 27,

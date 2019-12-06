@@ -23,7 +23,7 @@
   {
     "detail": "Action: Generate a UUID v4 like 38788d28-6526-45c5-acf9-bb179160c7d7",
     "documentation": "Generate a UUID v4 like 38788d28-6526-45c5-acf9-bb179160c7d7\n",
-    "insertTextFormat": 1,
+    "insertTextFormat": 2,
     "kind": 11,
     "label": "generate",
     "sortText": "20-generate",

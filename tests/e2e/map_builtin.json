@@ -11,7 +11,7 @@
     "label": "contains",
     "sortText": "20-contains",
     "textEdit": {
-      "newText": "ls.contains($1)",
+      "newText": "ls.contains(key:${1:<string>})",
       "range": {
         "end": {
           "character": 7,
@@ -36,7 +36,7 @@
     "label": "flatten",
     "sortText": "20-flatten",
     "textEdit": {
-      "newText": "ls.flatten($1)",
+      "newText": "ls.flatten()",
       "range": {
         "end": {
           "character": 7,
@@ -61,7 +61,7 @@
     "label": "get",
     "sortText": "20-get",
     "textEdit": {
-      "newText": "ls.get($1)",
+      "newText": "ls.get(key:${1:<string>} default:${2:<string>})",
       "range": {
         "end": {
           "character": 7,
@@ -86,7 +86,7 @@
     "label": "keys",
     "sortText": "20-keys",
     "textEdit": {
-      "newText": "ls.keys($1)",
+      "newText": "ls.keys()",
       "range": {
         "end": {
           "character": 7,
@@ -111,7 +111,7 @@
     "label": "length",
     "sortText": "20-length",
     "textEdit": {
-      "newText": "ls.length($1)",
+      "newText": "ls.length()",
       "range": {
         "end": {
           "character": 7,
@@ -136,7 +136,7 @@
     "label": "remove",
     "sortText": "20-remove",
     "textEdit": {
-      "newText": "ls.remove($1)",
+      "newText": "ls.remove(key:${1:<string>})",
       "range": {
         "end": {
           "character": 7,
@@ -161,7 +161,7 @@
     "label": "values",
     "sortText": "20-values",
     "textEdit": {
-      "newText": "ls.values($1)",
+      "newText": "ls.values()",
       "range": {
         "end": {
           "character": 7,

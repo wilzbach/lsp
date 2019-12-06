@@ -11,7 +11,7 @@
     "label": "increment",
     "sortText": "20-increment",
     "textEdit": {
-      "newText": "ls.increment($1)",
+      "newText": "ls.increment()",
       "range": {
         "end": {
           "character": 8,
@@ -36,7 +36,7 @@
     "label": "isEven",
     "sortText": "20-isEven",
     "textEdit": {
-      "newText": "ls.isEven($1)",
+      "newText": "ls.isEven()",
       "range": {
         "end": {
           "character": 8,
@@ -61,7 +61,7 @@
     "label": "isOdd",
     "sortText": "20-isOdd",
     "textEdit": {
-      "newText": "ls.isOdd($1)",
+      "newText": "ls.isOdd()",
       "range": {
         "end": {
           "character": 8,

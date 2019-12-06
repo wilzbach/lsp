@@ -206,8 +206,8 @@ def test_cli_complete_hub(patch, runner, echo, app):
     """
     Ensures CLI completion with a custom hub works.
     """
-    patch.object(json, "dumps")
     with runner.isolated_filesystem():
+        patch.object(json, "dumps")
         text = "foobar"
         with open("my.story", "w") as f:
             f.write(text)
@@ -238,8 +238,8 @@ def test_cli_complete_line_column(patch, runner, echo, app, options, expected):
     """
     Ensures CLI completion with custom line and column works.
     """
-    patch.object(json, "dumps")
     with runner.isolated_filesystem():
+        patch.object(json, "dumps")
         text = "foobar"
         with open("my.story", "w") as f:
             f.write(text)

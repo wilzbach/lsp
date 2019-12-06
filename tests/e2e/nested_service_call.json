@@ -2,12 +2,12 @@
   {
     "detail": "Action: Returns the value of 'key'.",
     "documentation": "Returns the value of 'key'.",
-    "insertTextFormat": 1,
+    "insertTextFormat": 2,
     "kind": 11,
     "label": "get",
     "sortText": "20-get",
     "textEdit": {
-      "newText": "get ",
+      "newText": "get key:${1:<string>}",
       "range": {
         "end": {
           "character": 24,
@@ -23,12 +23,12 @@
   {
     "detail": "Action: Returns the current value of 'key' and overwrites it with 'value'.",
     "documentation": "Returns the current value of 'key' and overwrites it with 'value'.",
-    "insertTextFormat": 1,
+    "insertTextFormat": 2,
     "kind": 11,
     "label": "getSet",
     "sortText": "20-getSet",
     "textEdit": {
-      "newText": "getSet ",
+      "newText": "getSet key:${1:<string>} value:${2:<any>}",
       "range": {
         "end": {
           "character": 24,

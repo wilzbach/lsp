@@ -11,7 +11,7 @@
     "label": "absolute",
     "sortText": "20-absolute",
     "textEdit": {
-      "newText": "ls[0].absolute($1)",
+      "newText": "ls[0].absolute()",
       "range": {
         "end": {
           "character": 10,
@@ -36,7 +36,7 @@
     "label": "decrement",
     "sortText": "20-decrement",
     "textEdit": {
-      "newText": "ls[0].decrement($1)",
+      "newText": "ls[0].decrement()",
       "range": {
         "end": {
           "character": 10,
@@ -61,7 +61,7 @@
     "label": "increment",
     "sortText": "20-increment",
     "textEdit": {
-      "newText": "ls[0].increment($1)",
+      "newText": "ls[0].increment()",
       "range": {
         "end": {
           "character": 10,
@@ -86,7 +86,7 @@
     "label": "isEven",
     "sortText": "20-isEven",
     "textEdit": {
-      "newText": "ls[0].isEven($1)",
+      "newText": "ls[0].isEven()",
       "range": {
         "end": {
           "character": 10,
@@ -111,7 +111,7 @@
     "label": "isOdd",
     "sortText": "20-isOdd",
     "textEdit": {
-      "newText": "ls[0].isOdd($1)",
+      "newText": "ls[0].isOdd()",
       "range": {
         "end": {
           "character": 10,

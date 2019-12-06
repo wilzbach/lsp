@@ -23,12 +23,12 @@
   {
     "detail": "Action: Make a HTTP request to the outside world.",
     "documentation": "Make a HTTP request to the outside world.\nThis command is native to the platform for performance reasons.\n",
-    "insertTextFormat": 1,
+    "insertTextFormat": 2,
     "kind": 11,
     "label": "fetch",
     "sortText": "20-fetch",
     "textEdit": {
-      "newText": "fetch ",
+      "newText": "fetch url:${1:<string>}",
       "range": {
         "end": {
           "character": 9,
@@ -65,7 +65,7 @@
   {
     "detail": "Action: No help available.",
     "documentation": "No help available.",
-    "insertTextFormat": 1,
+    "insertTextFormat": 2,
     "kind": 11,
     "label": "server",
     "sortText": "20-server",

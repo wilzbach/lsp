@@ -2,12 +2,12 @@
   {
     "detail": "Action: No help available.",
     "documentation": "No help available.",
-    "insertTextFormat": 1,
+    "insertTextFormat": 2,
     "kind": 11,
     "label": "find",
     "sortText": "20-find",
     "textEdit": {
-      "newText": "find ",
+      "newText": "find coll:${1:<string>} db:${2:<string>} query:${3:<Map[any,any]>}",
       "range": {
         "end": {
           "character": 29,
@@ -23,12 +23,12 @@
   {
     "detail": "Action: No help available.",
     "documentation": "No help available.",
-    "insertTextFormat": 1,
+    "insertTextFormat": 2,
     "kind": 11,
     "label": "findOne",
     "sortText": "20-findOne",
     "textEdit": {
-      "newText": "findOne ",
+      "newText": "findOne coll:${1:<string>} db:${2:<string>} query:${3:<Map[any,any]>}",
       "range": {
         "end": {
           "character": 29,
