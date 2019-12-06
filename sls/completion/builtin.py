@@ -43,8 +43,6 @@ class BuiltinCompletion:
         # remove '.' from mut_name (.<mut_name>)
         expr = "".join(toks[:-1])
 
-        args = self.args(expr, mut_name)
-
         # second or further arguments -> filter used arguments
         prev_args = Stack.find_all_until(
             stack, "mut_arguments", ["dot_expr"], start=1, offset=3
@@ -52,22 +50,55 @@ class BuiltinCompletion:
         # '(' (<name> ':' <expr>)*
         prev_args = [*prev_args]
 
+        args = self.args(expr, mut_name, prev_args)
+
         seen = {}
         for arg in args:
             arg_name = arg.name.lower()
             if arg_name in seen:
                 continue
             seen[arg_name] = True
-            # # ignore previously used args
+            # ignore previously used args
             if arg_name not in prev_args:
                 yield arg
 
-    def args(self, expr, mut_name):
+    def args(self, expr, mut_name, prev_args):
         """
         Yields the arguments of the respective mutation if it exists.
         """
         log.debug("mut_args completion: %s", expr)
-        muts = self.dot.mut_arg_complete(expr, mut_name)
+        muts = [*self.dot.mut_arg_complete(expr, mut_name)]
+
+        # some prev arguments might be invalid, filter them out
+        valid_prev_args = [
+            arg for arg in prev_args if self.is_valid_arg(muts, arg)
+        ]
+
         for mut in muts:
+            # Only consider a mutation if all observed, valid arguments occur in it
+            if not self.is_reachable_mut(mut, valid_prev_args):
+                continue
+
+            # Yield all arguments of a mutation
             for arg_name, arg_type in mut.args().items():
                 yield MutationArgument(arg_name, arg_type)
+
+    def is_valid_arg(self, muts, arg):
+        """
+        Returns `True` if at least one mutation contains `arg`.
+        """
+        for mut in muts:
+            if arg in mut.args():
+                return True
+
+        return False
+
+    def is_reachable_mut(self, mut, prev_args):
+        """
+        Returns `True` if this mutation contains all already observed , valid arguments.
+        """
+        mut_args = mut.args()
+        for arg in prev_args:
+            if arg not in mut_args:
+                return False
+        return True
