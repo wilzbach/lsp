@@ -9,6 +9,7 @@
     "insertTextFormat": 2,
     "kind": 2,
     "label": "increment",
+    "sortText": "20-increment",
     "textEdit": {
       "newText": "ls.increment($1)",
       "range": {
@@ -33,6 +34,7 @@
     "insertTextFormat": 2,
     "kind": 2,
     "label": "isEven",
+    "sortText": "20-isEven",
     "textEdit": {
       "newText": "ls.isEven($1)",
       "range": {
@@ -57,6 +59,7 @@
     "insertTextFormat": 2,
     "kind": 2,
     "label": "isOdd",
+    "sortText": "20-isOdd",
     "textEdit": {
       "newText": "ls.isOdd($1)",
       "range": {

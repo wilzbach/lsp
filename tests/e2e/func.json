@@ -5,6 +5,7 @@
     "insertTextFormat": 1,
     "kind": 14,
     "label": "function",
+    "sortText": "70-function",
     "textEdit": {
       "newText": "function ",
       "range": {

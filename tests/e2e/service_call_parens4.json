@@ -5,6 +5,7 @@
     "insertTextFormat": 1,
     "kind": 11,
     "label": "find",
+    "sortText": "20-find",
     "textEdit": {
       "newText": "find ",
       "range": {
@@ -25,6 +26,7 @@
     "insertTextFormat": 1,
     "kind": 11,
     "label": "findOne",
+    "sortText": "20-findOne",
     "textEdit": {
       "newText": "findOne ",
       "range": {

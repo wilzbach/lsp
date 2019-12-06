@@ -9,6 +9,7 @@
     "insertTextFormat": 2,
     "kind": 2,
     "label": "startswith",
+    "sortText": "20-startswith",
     "textEdit": {
       "newText": "req.path.startswith($1)",
       "range": {

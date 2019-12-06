@@ -1,6 +1,7 @@
 from sls.completion.items.item import (
     CompletionItem,
     CompletionItemKind,
+    SortGroup,
 )
 from sls.logging import logger
 
@@ -36,4 +37,5 @@ class PropertyCompletionSymbol(CompletionItem):
             completion_kind=CompletionItemKind.Method,
             context=context,
             filter_text=full_text,
+            sort_group=SortGroup.Property,
         )

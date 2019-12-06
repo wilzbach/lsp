@@ -1,4 +1,8 @@
-from sls.completion.items.item import CompletionItem, CompletionItemKind
+from sls.completion.items.item import (
+    CompletionItem,
+    CompletionItemKind,
+    SortGroup,
+)
 
 
 class Action(CompletionItem):
@@ -18,4 +22,5 @@ class Action(CompletionItem):
             documentation=self.action.help(),
             completion_kind=CompletionItemKind.Unit,
             context=context,
+            sort_group=SortGroup.Action,
         )

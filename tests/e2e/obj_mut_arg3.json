@@ -4,6 +4,7 @@
     "documentation": "",
     "insertTextFormat": 1,
     "kind": 11,
-    "label": "prefix"
+    "label": "prefix",
+    "sortText": "20-prefix"
   }
 ]

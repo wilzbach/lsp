@@ -5,6 +5,7 @@
     "insertTextFormat": 2,
     "kind": 3,
     "label": "foo",
+    "sortText": "20-foo",
     "textEdit": {
       "newText": "foo($1)",
       "range": {
@@ -25,6 +26,7 @@
     "insertTextFormat": 1,
     "kind": 14,
     "label": "foreach",
+    "sortText": "70-foreach",
     "textEdit": {
       "newText": "foreach ",
       "range": {

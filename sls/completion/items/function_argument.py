@@ -1,4 +1,8 @@
-from sls.completion.items.item import CompletionItem, CompletionItemKind
+from sls.completion.items.item import (
+    CompletionItem,
+    CompletionItemKind,
+    SortGroup,
+)
 
 
 class FunctionArgument(CompletionItem):
@@ -22,4 +26,5 @@ class FunctionArgument(CompletionItem):
             documentation=f"Arg. {ty}",
             completion_kind=CompletionItemKind.Unit,
             context=context,
+            sort_group=SortGroup.Argument,
         )

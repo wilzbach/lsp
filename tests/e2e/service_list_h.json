@@ -8,6 +8,7 @@
     "insertTextFormat": 1,
     "kind": 2,
     "label": "http",
+    "sortText": "40-http",
     "textEdit": {
       "newText": "http ",
       "range": {

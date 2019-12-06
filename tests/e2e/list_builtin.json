@@ -9,6 +9,7 @@
     "insertTextFormat": 2,
     "kind": 2,
     "label": "append",
+    "sortText": "20-append",
     "textEdit": {
       "newText": "ls.append($1)",
       "range": {
@@ -33,6 +34,7 @@
     "insertTextFormat": 2,
     "kind": 2,
     "label": "contains",
+    "sortText": "20-contains",
     "textEdit": {
       "newText": "ls.contains($1)",
       "range": {
@@ -57,6 +59,7 @@
     "insertTextFormat": 2,
     "kind": 2,
     "label": "index",
+    "sortText": "20-index",
     "textEdit": {
       "newText": "ls.index($1)",
       "range": {
@@ -81,6 +84,7 @@
     "insertTextFormat": 2,
     "kind": 2,
     "label": "join",
+    "sortText": "20-join",
     "textEdit": {
       "newText": "ls.join($1)",
       "range": {
@@ -105,6 +109,7 @@
     "insertTextFormat": 2,
     "kind": 2,
     "label": "length",
+    "sortText": "20-length",
     "textEdit": {
       "newText": "ls.length($1)",
       "range": {
@@ -129,6 +134,7 @@
     "insertTextFormat": 2,
     "kind": 2,
     "label": "max",
+    "sortText": "20-max",
     "textEdit": {
       "newText": "ls.max($1)",
       "range": {
@@ -153,6 +159,7 @@
     "insertTextFormat": 2,
     "kind": 2,
     "label": "min",
+    "sortText": "20-min",
     "textEdit": {
       "newText": "ls.min($1)",
       "range": {
@@ -177,6 +184,7 @@
     "insertTextFormat": 2,
     "kind": 2,
     "label": "prepend",
+    "sortText": "20-prepend",
     "textEdit": {
       "newText": "ls.prepend($1)",
       "range": {
@@ -201,6 +209,7 @@
     "insertTextFormat": 2,
     "kind": 2,
     "label": "random",
+    "sortText": "20-random",
     "textEdit": {
       "newText": "ls.random($1)",
       "range": {
@@ -225,6 +234,7 @@
     "insertTextFormat": 2,
     "kind": 2,
     "label": "remove",
+    "sortText": "20-remove",
     "textEdit": {
       "newText": "ls.remove($1)",
       "range": {
@@ -249,6 +259,7 @@
     "insertTextFormat": 2,
     "kind": 2,
     "label": "replace",
+    "sortText": "20-replace",
     "textEdit": {
       "newText": "ls.replace($1)",
       "range": {
@@ -273,6 +284,7 @@
     "insertTextFormat": 2,
     "kind": 2,
     "label": "reverse",
+    "sortText": "20-reverse",
     "textEdit": {
       "newText": "ls.reverse($1)",
       "range": {
@@ -297,6 +309,7 @@
     "insertTextFormat": 2,
     "kind": 2,
     "label": "slice",
+    "sortText": "20-slice",
     "textEdit": {
       "newText": "ls.slice($1)",
       "range": {
@@ -321,6 +334,7 @@
     "insertTextFormat": 2,
     "kind": 2,
     "label": "sort",
+    "sortText": "20-sort",
     "textEdit": {
       "newText": "ls.sort($1)",
       "range": {
@@ -345,6 +359,7 @@
     "insertTextFormat": 2,
     "kind": 2,
     "label": "sum",
+    "sortText": "20-sum",
     "textEdit": {
       "newText": "ls.sum($1)",
       "range": {
@@ -369,6 +384,7 @@
     "insertTextFormat": 2,
     "kind": 2,
     "label": "unique",
+    "sortText": "20-unique",
     "textEdit": {
       "newText": "ls.unique($1)",
       "range": {

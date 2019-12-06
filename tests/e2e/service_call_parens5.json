@@ -5,6 +5,7 @@
     "insertTextFormat": 1,
     "kind": 12,
     "label": "coll",
+    "sortText": "20-coll",
     "textEdit": {
       "newText": "coll:",
       "range": {
@@ -25,6 +26,7 @@
     "insertTextFormat": 1,
     "kind": 12,
     "label": "db",
+    "sortText": "20-db",
     "textEdit": {
       "newText": "db:",
       "range": {
@@ -45,6 +47,7 @@
     "insertTextFormat": 1,
     "kind": 12,
     "label": "fields",
+    "sortText": "20-fields",
     "textEdit": {
       "newText": "fields:",
       "range": {
@@ -65,6 +68,7 @@
     "insertTextFormat": 1,
     "kind": 12,
     "label": "query",
+    "sortText": "20-query",
     "textEdit": {
       "newText": "query:",
       "range": {
@@ -85,6 +89,7 @@
     "insertTextFormat": 1,
     "kind": 12,
     "label": "sort",
+    "sortText": "20-sort",
     "textEdit": {
       "newText": "sort:",
       "range": {

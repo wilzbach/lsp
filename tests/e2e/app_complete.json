@@ -6,6 +6,7 @@
     "insertTextFormat": 1,
     "kind": 2,
     "label": "hostname",
+    "sortText": "20-hostname",
     "textEdit": {
       "newText": "app.hostname",
       "range": {
@@ -27,6 +28,7 @@
     "insertTextFormat": 1,
     "kind": 2,
     "label": "secrets",
+    "sortText": "20-secrets",
     "textEdit": {
       "newText": "app.secrets",
       "range": {
@@ -48,6 +50,7 @@
     "insertTextFormat": 1,
     "kind": 2,
     "label": "version",
+    "sortText": "20-version",
     "textEdit": {
       "newText": "app.version",
       "range": {

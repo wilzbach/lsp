@@ -1,4 +1,8 @@
-from sls.completion.items.item import CompletionItem, CompletionItemKind
+from sls.completion.items.item import (
+    CompletionItem,
+    CompletionItemKind,
+    SortGroup,
+)
 from sls.logging import logger
 
 log = logger(__name__)
@@ -59,4 +63,5 @@ class KeywordCompletionSymbol(CompletionItem):
             documentation=documentation,
             completion_kind=CompletionItemKind.Keyword,
             context=context,
+            sort_group=SortGroup.Keyword,
         )

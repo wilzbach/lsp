@@ -8,6 +8,7 @@
     "insertTextFormat": 1,
     "kind": 2,
     "label": "slack",
+    "sortText": "40-slack",
     "textEdit": {
       "newText": "slack ",
       "range": {

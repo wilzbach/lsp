@@ -5,6 +5,7 @@
     "insertTextFormat": 1,
     "kind": 14,
     "label": "Map",
+    "sortText": "70-Map",
     "textEdit": {
       "newText": "Map[",
       "range": {

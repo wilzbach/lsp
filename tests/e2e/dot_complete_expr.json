@@ -9,6 +9,7 @@
     "insertTextFormat": 2,
     "kind": 2,
     "label": "absolute",
+    "sortText": "20-absolute",
     "textEdit": {
       "newText": "ls[0].absolute($1)",
       "range": {
@@ -33,6 +34,7 @@
     "insertTextFormat": 2,
     "kind": 2,
     "label": "decrement",
+    "sortText": "20-decrement",
     "textEdit": {
       "newText": "ls[0].decrement($1)",
       "range": {
@@ -57,6 +59,7 @@
     "insertTextFormat": 2,
     "kind": 2,
     "label": "increment",
+    "sortText": "20-increment",
     "textEdit": {
       "newText": "ls[0].increment($1)",
       "range": {
@@ -81,6 +84,7 @@
     "insertTextFormat": 2,
     "kind": 2,
     "label": "isEven",
+    "sortText": "20-isEven",
     "textEdit": {
       "newText": "ls[0].isEven($1)",
       "range": {
@@ -105,6 +109,7 @@
     "insertTextFormat": 2,
     "kind": 2,
     "label": "isOdd",
+    "sortText": "20-isOdd",
     "textEdit": {
       "newText": "ls[0].isOdd($1)",
       "range": {

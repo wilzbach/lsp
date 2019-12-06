@@ -37,4 +37,5 @@ def test_args(magic):
     action = Action.from_dict(data=action_dict)
     action_completion = ActionCompletionItem(action)
     result = action_completion.to_completion(context)
+    del result["sortText"]
     assert result == expected_completion_dict

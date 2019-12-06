@@ -5,6 +5,7 @@
     "insertTextFormat": 1,
     "kind": 14,
     "label": "foreach",
+    "sortText": "70-foreach",
     "textEdit": {
       "newText": "foreach ",
       "range": {
