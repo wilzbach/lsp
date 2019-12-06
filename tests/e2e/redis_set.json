@@ -2,12 +2,12 @@
   {
     "detail": "Action: Sets 'key' to hold 'value'.",
     "documentation": "Sets 'key' to hold 'value'.",
-    "insertTextFormat": 1,
+    "insertTextFormat": 2,
     "kind": 11,
     "label": "set",
     "sortText": "20-set",
     "textEdit": {
-      "newText": "set ",
+      "newText": "set key:${1:<string>} value:${2:<any>}",
       "range": {
         "end": {
           "character": 9,
@@ -23,12 +23,12 @@
   {
     "detail": "Action: Set a 'key' to 'value' only if the key does not exist yet.",
     "documentation": "Set a 'key' to 'value' only if the key does not exist yet.",
-    "insertTextFormat": 1,
+    "insertTextFormat": 2,
     "kind": 11,
     "label": "setnx",
     "sortText": "20-setnx",
     "textEdit": {
-      "newText": "setnx ",
+      "newText": "setnx key:${1:<string>} value:${2:<any>}",
       "range": {
         "end": {
           "character": 9,

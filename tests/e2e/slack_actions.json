@@ -23,7 +23,7 @@
   {
     "detail": "Action: Start a Slack bot",
     "documentation": "Start a Slack bot",
-    "insertTextFormat": 1,
+    "insertTextFormat": 2,
     "kind": 11,
     "label": "bot",
     "sortText": "20-bot",
@@ -44,7 +44,7 @@
   {
     "detail": "Action: Get a list of channels",
     "documentation": "Get a list of channels",
-    "insertTextFormat": 1,
+    "insertTextFormat": 2,
     "kind": 11,
     "label": "channels",
     "sortText": "20-channels",
@@ -65,7 +65,7 @@
   {
     "detail": "Action: Lists direct message channels for the calling user.",
     "documentation": "Lists direct message channels for the calling user.",
-    "insertTextFormat": 1,
+    "insertTextFormat": 2,
     "kind": 11,
     "label": "directChannels",
     "sortText": "20-directChannels",
@@ -107,12 +107,12 @@
   {
     "detail": "Action: Sends a message to a channel.",
     "documentation": "Sends a message to a channel.\nhttps://api.slack.com/methods/chat.postMessage\n",
-    "insertTextFormat": 1,
+    "insertTextFormat": 2,
     "kind": 11,
     "label": "send",
     "sortText": "20-send",
     "textEdit": {
-      "newText": "send ",
+      "newText": "send channel:${1:<string>} text:${2:<string>}",
       "range": {
         "end": {
           "character": 6,
@@ -149,7 +149,7 @@
   {
     "detail": "Action: No help available.",
     "documentation": "No help available.",
-    "insertTextFormat": 1,
+    "insertTextFormat": 2,
     "kind": 11,
     "label": "users",
     "sortText": "20-users",

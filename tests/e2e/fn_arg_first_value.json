@@ -73,7 +73,7 @@
     "label": "foo",
     "sortText": "20-foo",
     "textEdit": {
-      "newText": "foo($1)",
+      "newText": "foo(i1:${1:<int>} i2:${2:<int>})",
       "range": {
         "end": {
           "character": 6,

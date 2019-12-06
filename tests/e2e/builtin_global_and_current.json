@@ -11,7 +11,7 @@
     "label": "absolute",
     "sortText": "20-absolute",
     "textEdit": {
-      "newText": "b.absolute($1)",
+      "newText": "b.absolute()",
       "range": {
         "end": {
           "character": 6,
@@ -36,7 +36,7 @@
     "label": "decrement",
     "sortText": "20-decrement",
     "textEdit": {
-      "newText": "b.decrement($1)",
+      "newText": "b.decrement()",
       "range": {
         "end": {
           "character": 6,
@@ -61,7 +61,7 @@
     "label": "increment",
     "sortText": "20-increment",
     "textEdit": {
-      "newText": "b.increment($1)",
+      "newText": "b.increment()",
       "range": {
         "end": {
           "character": 6,
@@ -86,7 +86,7 @@
     "label": "isEven",
     "sortText": "20-isEven",
     "textEdit": {
-      "newText": "b.isEven($1)",
+      "newText": "b.isEven()",
       "range": {
         "end": {
           "character": 6,
@@ -111,7 +111,7 @@
     "label": "isOdd",
     "sortText": "20-isOdd",
     "textEdit": {
-      "newText": "b.isOdd($1)",
+      "newText": "b.isOdd()",
       "range": {
         "end": {
           "character": 6,

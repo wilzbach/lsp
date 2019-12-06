@@ -1,0 +1,23 @@
+[
+  {
+    "detail": "max(a:int b:int)",
+    "documentation": "Function: max(a:`int` b:`int`)",
+    "insertTextFormat": 2,
+    "kind": 3,
+    "label": "max",
+    "sortText": "20-max",
+    "textEdit": {
+      "newText": "max(a:${1:<int>} b:${2:<int>})",
+      "range": {
+        "end": {
+          "character": 3,
+          "line": 3
+        },
+        "start": {
+          "character": 0,
+          "line": 3
+        }
+      }
+    }
+  }
+]

@@ -11,7 +11,7 @@
     "label": "append",
     "sortText": "20-append",
     "textEdit": {
-      "newText": "ls.append($1)",
+      "newText": "ls.append(item:${1:<int>})",
       "range": {
         "end": {
           "character": 7,
@@ -36,7 +36,7 @@
     "label": "contains",
     "sortText": "20-contains",
     "textEdit": {
-      "newText": "ls.contains($1)",
+      "newText": "ls.contains(item:${1:<int>})",
       "range": {
         "end": {
           "character": 7,
@@ -61,7 +61,7 @@
     "label": "index",
     "sortText": "20-index",
     "textEdit": {
-      "newText": "ls.index($1)",
+      "newText": "ls.index(of:${1:<int>})",
       "range": {
         "end": {
           "character": 7,
@@ -86,7 +86,7 @@
     "label": "join",
     "sortText": "20-join",
     "textEdit": {
-      "newText": "ls.join($1)",
+      "newText": "ls.join(sep:${1:<string>})",
       "range": {
         "end": {
           "character": 7,
@@ -111,7 +111,7 @@
     "label": "length",
     "sortText": "20-length",
     "textEdit": {
-      "newText": "ls.length($1)",
+      "newText": "ls.length()",
       "range": {
         "end": {
           "character": 7,
@@ -136,7 +136,7 @@
     "label": "max",
     "sortText": "20-max",
     "textEdit": {
-      "newText": "ls.max($1)",
+      "newText": "ls.max()",
       "range": {
         "end": {
           "character": 7,
@@ -161,7 +161,7 @@
     "label": "min",
     "sortText": "20-min",
     "textEdit": {
-      "newText": "ls.min($1)",
+      "newText": "ls.min()",
       "range": {
         "end": {
           "character": 7,
@@ -186,7 +186,7 @@
     "label": "prepend",
     "sortText": "20-prepend",
     "textEdit": {
-      "newText": "ls.prepend($1)",
+      "newText": "ls.prepend(item:${1:<int>})",
       "range": {
         "end": {
           "character": 7,
@@ -211,7 +211,7 @@
     "label": "random",
     "sortText": "20-random",
     "textEdit": {
-      "newText": "ls.random($1)",
+      "newText": "ls.random()",
       "range": {
         "end": {
           "character": 7,
@@ -236,7 +236,7 @@
     "label": "remove",
     "sortText": "20-remove",
     "textEdit": {
-      "newText": "ls.remove($1)",
+      "newText": "ls.remove(item:${1:<int>})",
       "range": {
         "end": {
           "character": 7,
@@ -261,7 +261,7 @@
     "label": "replace",
     "sortText": "20-replace",
     "textEdit": {
-      "newText": "ls.replace($1)",
+      "newText": "ls.replace(item:${1:<int>} by:${2:<int>})",
       "range": {
         "end": {
           "character": 7,
@@ -286,7 +286,7 @@
     "label": "reverse",
     "sortText": "20-reverse",
     "textEdit": {
-      "newText": "ls.reverse($1)",
+      "newText": "ls.reverse()",
       "range": {
         "end": {
           "character": 7,
@@ -311,7 +311,7 @@
     "label": "slice",
     "sortText": "20-slice",
     "textEdit": {
-      "newText": "ls.slice($1)",
+      "newText": "ls.slice(start:${1:<int>})",
       "range": {
         "end": {
           "character": 7,
@@ -336,7 +336,7 @@
     "label": "sort",
     "sortText": "20-sort",
     "textEdit": {
-      "newText": "ls.sort($1)",
+      "newText": "ls.sort()",
       "range": {
         "end": {
           "character": 7,
@@ -361,7 +361,7 @@
     "label": "sum",
     "sortText": "20-sum",
     "textEdit": {
-      "newText": "ls.sum($1)",
+      "newText": "ls.sum()",
       "range": {
         "end": {
           "character": 7,
@@ -386,7 +386,7 @@
     "label": "unique",
     "sortText": "20-unique",
     "textEdit": {
-      "newText": "ls.unique($1)",
+      "newText": "ls.unique()",
       "range": {
         "end": {
           "character": 7,

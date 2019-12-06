@@ -23,12 +23,12 @@
   {
     "detail": "Action: Appends 'value' to a 'key'.",
     "documentation": "Appends 'value' to a 'key'.",
-    "insertTextFormat": 1,
+    "insertTextFormat": 2,
     "kind": 11,
     "label": "append",
     "sortText": "20-append",
     "textEdit": {
-      "newText": "append ",
+      "newText": "append key:${1:<string>} value:${2:<any>}",
       "range": {
         "end": {
           "character": 6,
@@ -44,12 +44,12 @@
   {
     "detail": "Action: Removes and returns the first element of the list stored at 'key'.",
     "documentation": "Removes and returns the first element of the list stored at 'key'.\nWhen there are no element in the list, the command will not return\nuntil an element got added.\n",
-    "insertTextFormat": 1,
+    "insertTextFormat": 2,
     "kind": 11,
     "label": "blpop",
     "sortText": "20-blpop",
     "textEdit": {
-      "newText": "blpop ",
+      "newText": "blpop key:${1:<string>}",
       "range": {
         "end": {
           "character": 6,
@@ -65,12 +65,12 @@
   {
     "detail": "Action: Removes and returns the last element of the list stored at 'key'.",
     "documentation": "Removes and returns the last element of the list stored at 'key'.\nWhen there are no element in the list, the command will not return\nuntil an elements got added.\n",
-    "insertTextFormat": 1,
+    "insertTextFormat": 2,
     "kind": 11,
     "label": "brpop",
     "sortText": "20-brpop",
     "textEdit": {
-      "newText": "brpop ",
+      "newText": "brpop key:${1:<string>}",
       "range": {
         "end": {
           "character": 6,
@@ -86,12 +86,12 @@
   {
     "detail": "Action: Decrements a number stored at 'key'.",
     "documentation": "Decrements a number stored at 'key'.",
-    "insertTextFormat": 1,
+    "insertTextFormat": 2,
     "kind": 11,
     "label": "decrement",
     "sortText": "20-decrement",
     "textEdit": {
-      "newText": "decrement ",
+      "newText": "decrement key:${1:<string>}",
       "range": {
         "end": {
           "character": 6,
@@ -107,12 +107,12 @@
   {
     "detail": "Action: Removes 'key'.",
     "documentation": "Removes 'key'.",
-    "insertTextFormat": 1,
+    "insertTextFormat": 2,
     "kind": 11,
     "label": "delete",
     "sortText": "20-delete",
     "textEdit": {
-      "newText": "delete ",
+      "newText": "delete key:${1:<string>}",
       "range": {
         "end": {
           "character": 6,
@@ -128,12 +128,12 @@
   {
     "detail": "Action: Set a timeout on a 'key'.",
     "documentation": "Set a timeout on a 'key'.",
-    "insertTextFormat": 1,
+    "insertTextFormat": 2,
     "kind": 11,
     "label": "expire",
     "sortText": "20-expire",
     "textEdit": {
-      "newText": "expire ",
+      "newText": "expire key:${1:<string>} seconds:${2:<int>}",
       "range": {
         "end": {
           "character": 6,
@@ -149,12 +149,12 @@
   {
     "detail": "Action: Returns the value of 'key'.",
     "documentation": "Returns the value of 'key'.",
-    "insertTextFormat": 1,
+    "insertTextFormat": 2,
     "kind": 11,
     "label": "get",
     "sortText": "20-get",
     "textEdit": {
-      "newText": "get ",
+      "newText": "get key:${1:<string>}",
       "range": {
         "end": {
           "character": 6,
@@ -170,12 +170,12 @@
   {
     "detail": "Action: Returns the current value of 'key' and overwrites it with 'value'.",
     "documentation": "Returns the current value of 'key' and overwrites it with 'value'.",
-    "insertTextFormat": 1,
+    "insertTextFormat": 2,
     "kind": 11,
     "label": "getSet",
     "sortText": "20-getSet",
     "textEdit": {
-      "newText": "getSet ",
+      "newText": "getSet key:${1:<string>} value:${2:<any>}",
       "range": {
         "end": {
           "character": 6,
@@ -191,12 +191,12 @@
   {
     "detail": "Action: Increments a number stored at 'key'.",
     "documentation": "Increments a number stored at 'key'.",
-    "insertTextFormat": 1,
+    "insertTextFormat": 2,
     "kind": 11,
     "label": "increment",
     "sortText": "20-increment",
     "textEdit": {
-      "newText": "increment ",
+      "newText": "increment key:${1:<string>}",
       "range": {
         "end": {
           "character": 6,
@@ -212,7 +212,7 @@
   {
     "detail": "Action: No help available.",
     "documentation": "No help available.",
-    "insertTextFormat": 1,
+    "insertTextFormat": 2,
     "kind": 11,
     "label": "listener",
     "sortText": "20-listener",
@@ -233,12 +233,12 @@
   {
     "detail": "Action: Removes and returns the first element of the list stored at 'key'.",
     "documentation": "Removes and returns the first element of the list stored at 'key'.",
-    "insertTextFormat": 1,
+    "insertTextFormat": 2,
     "kind": 11,
     "label": "lpop",
     "sortText": "20-lpop",
     "textEdit": {
-      "newText": "lpop ",
+      "newText": "lpop key:${1:<string>}",
       "range": {
         "end": {
           "character": 6,
@@ -254,12 +254,12 @@
   {
     "detail": "Action: Insert 'value' at the head of list stored at 'key'.",
     "documentation": "Insert 'value' at the head of list stored at 'key'.",
-    "insertTextFormat": 1,
+    "insertTextFormat": 2,
     "kind": 11,
     "label": "lpush",
     "sortText": "20-lpush",
     "textEdit": {
-      "newText": "lpush ",
+      "newText": "lpush key:${1:<string>} value:${2:<any>}",
       "range": {
         "end": {
           "character": 6,
@@ -275,7 +275,7 @@
   {
     "detail": "Action: Returns the values of multiple 'keys'.",
     "documentation": "Returns the values of multiple 'keys'.",
-    "insertTextFormat": 1,
+    "insertTextFormat": 2,
     "kind": 11,
     "label": "mget",
     "sortText": "20-mget",
@@ -296,7 +296,7 @@
   {
     "detail": "Action: Sets multiple 'key'/'value' pairs simultaneously.",
     "documentation": "Sets multiple 'key'/'value' pairs simultaneously.",
-    "insertTextFormat": 1,
+    "insertTextFormat": 2,
     "kind": 11,
     "label": "mset",
     "sortText": "20-mset",
@@ -317,7 +317,7 @@
   {
     "detail": "Action: Sets multiple 'key'/'value' pairs simultaneously.",
     "documentation": "Sets multiple 'key'/'value' pairs simultaneously.\nOnly non-existing keys will be set.\n",
-    "insertTextFormat": 1,
+    "insertTextFormat": 2,
     "kind": 11,
     "label": "msetnx",
     "sortText": "20-msetnx",
@@ -359,12 +359,12 @@
   {
     "detail": "Action: Removes and returns the last element of the list stored at 'key'.",
     "documentation": "Removes and returns the last element of the list stored at 'key'.",
-    "insertTextFormat": 1,
+    "insertTextFormat": 2,
     "kind": 11,
     "label": "rpop",
     "sortText": "20-rpop",
     "textEdit": {
-      "newText": "rpop ",
+      "newText": "rpop key:${1:<string>}",
       "range": {
         "end": {
           "character": 6,
@@ -380,12 +380,12 @@
   {
     "detail": "Action: Insert 'value' at the end of list stored at 'key'.",
     "documentation": "Insert 'value' at the end of list stored at 'key'.",
-    "insertTextFormat": 1,
+    "insertTextFormat": 2,
     "kind": 11,
     "label": "rpush",
     "sortText": "20-rpush",
     "textEdit": {
-      "newText": "rpush ",
+      "newText": "rpush key:${1:<string>} value:${2:<any>}",
       "range": {
         "end": {
           "character": 6,
@@ -401,12 +401,12 @@
   {
     "detail": "Action: Sets 'key' to hold 'value'.",
     "documentation": "Sets 'key' to hold 'value'.",
-    "insertTextFormat": 1,
+    "insertTextFormat": 2,
     "kind": 11,
     "label": "set",
     "sortText": "20-set",
     "textEdit": {
-      "newText": "set ",
+      "newText": "set key:${1:<string>} value:${2:<any>}",
       "range": {
         "end": {
           "character": 6,
@@ -422,12 +422,12 @@
   {
     "detail": "Action: Set a 'key' to 'value' only if the key does not exist yet.",
     "documentation": "Set a 'key' to 'value' only if the key does not exist yet.",
-    "insertTextFormat": 1,
+    "insertTextFormat": 2,
     "kind": 11,
     "label": "setnx",
     "sortText": "20-setnx",
     "textEdit": {
-      "newText": "setnx ",
+      "newText": "setnx key:${1:<string>} value:${2:<any>}",
       "range": {
         "end": {
           "character": 6,

@@ -11,7 +11,7 @@
     "label": "capitalize",
     "sortText": "20-capitalize",
     "textEdit": {
-      "newText": "ls.capitalize($1)",
+      "newText": "ls.capitalize()",
       "range": {
         "end": {
           "character": 7,
@@ -36,7 +36,7 @@
     "label": "contains",
     "sortText": "20-contains",
     "textEdit": {
-      "newText": "ls.contains($1)",
+      "newText": "ls.contains(pattern:${1:<regexp>})",
       "range": {
         "end": {
           "character": 7,
@@ -61,7 +61,7 @@
     "label": "endswith",
     "sortText": "20-endswith",
     "textEdit": {
-      "newText": "ls.endswith($1)",
+      "newText": "ls.endswith(suffix:${1:<string>})",
       "range": {
         "end": {
           "character": 7,
@@ -86,7 +86,7 @@
     "label": "length",
     "sortText": "20-length",
     "textEdit": {
-      "newText": "ls.length($1)",
+      "newText": "ls.length()",
       "range": {
         "end": {
           "character": 7,
@@ -111,7 +111,7 @@
     "label": "lowercase",
     "sortText": "20-lowercase",
     "textEdit": {
-      "newText": "ls.lowercase($1)",
+      "newText": "ls.lowercase()",
       "range": {
         "end": {
           "character": 7,
@@ -136,7 +136,7 @@
     "label": "replace",
     "sortText": "20-replace",
     "textEdit": {
-      "newText": "ls.replace($1)",
+      "newText": "ls.replace(item:${1:<string>} by:${2:<string>})",
       "range": {
         "end": {
           "character": 7,
@@ -161,7 +161,7 @@
     "label": "split",
     "sortText": "20-split",
     "textEdit": {
-      "newText": "ls.split($1)",
+      "newText": "ls.split(by:${1:<string>})",
       "range": {
         "end": {
           "character": 7,
@@ -186,7 +186,7 @@
     "label": "startswith",
     "sortText": "20-startswith",
     "textEdit": {
-      "newText": "ls.startswith($1)",
+      "newText": "ls.startswith(prefix:${1:<string>})",
       "range": {
         "end": {
           "character": 7,
@@ -211,7 +211,7 @@
     "label": "substring",
     "sortText": "20-substring",
     "textEdit": {
-      "newText": "ls.substring($1)",
+      "newText": "ls.substring(start:${1:<int>})",
       "range": {
         "end": {
           "character": 7,
@@ -236,7 +236,7 @@
     "label": "trim",
     "sortText": "20-trim",
     "textEdit": {
-      "newText": "ls.trim($1)",
+      "newText": "ls.trim()",
       "range": {
         "end": {
           "character": 7,
@@ -261,7 +261,7 @@
     "label": "uppercase",
     "sortText": "20-uppercase",
     "textEdit": {
-      "newText": "ls.uppercase($1)",
+      "newText": "ls.uppercase()",
       "range": {
         "end": {
           "character": 7,

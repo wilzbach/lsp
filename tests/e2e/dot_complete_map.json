@@ -11,7 +11,7 @@
     "label": "capitalize",
     "sortText": "20-capitalize",
     "textEdit": {
-      "newText": "m[\"f\"].capitalize($1)",
+      "newText": "m[\"f\"].capitalize()",
       "range": {
         "end": {
           "character": 7,
@@ -36,7 +36,7 @@
     "label": "contains",
     "sortText": "20-contains",
     "textEdit": {
-      "newText": "m[\"f\"].contains($1)",
+      "newText": "m[\"f\"].contains(pattern:${1:<regexp>})",
       "range": {
         "end": {
           "character": 7,
@@ -61,7 +61,7 @@
     "label": "endswith",
     "sortText": "20-endswith",
     "textEdit": {
-      "newText": "m[\"f\"].endswith($1)",
+      "newText": "m[\"f\"].endswith(suffix:${1:<string>})",
       "range": {
         "end": {
           "character": 7,
@@ -86,7 +86,7 @@
     "label": "length",
     "sortText": "20-length",
     "textEdit": {
-      "newText": "m[\"f\"].length($1)",
+      "newText": "m[\"f\"].length()",
       "range": {
         "end": {
           "character": 7,
@@ -111,7 +111,7 @@
     "label": "lowercase",
     "sortText": "20-lowercase",
     "textEdit": {
-      "newText": "m[\"f\"].lowercase($1)",
+      "newText": "m[\"f\"].lowercase()",
       "range": {
         "end": {
           "character": 7,
@@ -136,7 +136,7 @@
     "label": "replace",
     "sortText": "20-replace",
     "textEdit": {
-      "newText": "m[\"f\"].replace($1)",
+      "newText": "m[\"f\"].replace(item:${1:<string>} by:${2:<string>})",
       "range": {
         "end": {
           "character": 7,
@@ -161,7 +161,7 @@
     "label": "split",
     "sortText": "20-split",
     "textEdit": {
-      "newText": "m[\"f\"].split($1)",
+      "newText": "m[\"f\"].split(by:${1:<string>})",
       "range": {
         "end": {
           "character": 7,
@@ -186,7 +186,7 @@
     "label": "startswith",
     "sortText": "20-startswith",
     "textEdit": {
-      "newText": "m[\"f\"].startswith($1)",
+      "newText": "m[\"f\"].startswith(prefix:${1:<string>})",
       "range": {
         "end": {
           "character": 7,
@@ -211,7 +211,7 @@
     "label": "substring",
     "sortText": "20-substring",
     "textEdit": {
-      "newText": "m[\"f\"].substring($1)",
+      "newText": "m[\"f\"].substring(start:${1:<int>})",
       "range": {
         "end": {
           "character": 7,
@@ -236,7 +236,7 @@
     "label": "trim",
     "sortText": "20-trim",
     "textEdit": {
-      "newText": "m[\"f\"].trim($1)",
+      "newText": "m[\"f\"].trim()",
       "range": {
         "end": {
           "character": 7,
@@ -261,7 +261,7 @@
     "label": "uppercase",
     "sortText": "20-uppercase",
     "textEdit": {
-      "newText": "m[\"f\"].uppercase($1)",
+      "newText": "m[\"f\"].uppercase()",
       "range": {
         "end": {
           "character": 7,

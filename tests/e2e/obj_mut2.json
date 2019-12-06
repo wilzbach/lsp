@@ -11,7 +11,7 @@
     "label": "startswith",
     "sortText": "20-startswith",
     "textEdit": {
-      "newText": "req.path.startswith($1)",
+      "newText": "req.path.startswith(prefix:${1:<string>})",
       "range": {
         "end": {
           "character": 25,
