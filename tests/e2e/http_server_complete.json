@@ -8,6 +8,7 @@
     "insertTextFormat": 1,
     "kind": 2,
     "label": "redis",
+    "sortText": "40-redis",
     "textEdit": {
       "newText": "redis ",
       "range": {
@@ -28,6 +29,7 @@
     "insertTextFormat": 1,
     "kind": 6,
     "label": "req",
+    "sortText": "20-req",
     "textEdit": {
       "newText": "req",
       "range": {

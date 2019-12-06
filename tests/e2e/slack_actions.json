@@ -5,6 +5,7 @@
     "insertTextFormat": 1,
     "kind": 14,
     "label": "and",
+    "sortText": "70-and",
     "textEdit": {
       "newText": "and ",
       "range": {
@@ -25,6 +26,7 @@
     "insertTextFormat": 1,
     "kind": 11,
     "label": "bot",
+    "sortText": "20-bot",
     "textEdit": {
       "newText": "bot ",
       "range": {
@@ -45,6 +47,7 @@
     "insertTextFormat": 1,
     "kind": 11,
     "label": "channels",
+    "sortText": "20-channels",
     "textEdit": {
       "newText": "channels ",
       "range": {
@@ -65,6 +68,7 @@
     "insertTextFormat": 1,
     "kind": 11,
     "label": "directChannels",
+    "sortText": "20-directChannels",
     "textEdit": {
       "newText": "directChannels ",
       "range": {
@@ -85,6 +89,7 @@
     "insertTextFormat": 1,
     "kind": 14,
     "label": "or",
+    "sortText": "70-or",
     "textEdit": {
       "newText": "or ",
       "range": {
@@ -105,6 +110,7 @@
     "insertTextFormat": 1,
     "kind": 11,
     "label": "send",
+    "sortText": "20-send",
     "textEdit": {
       "newText": "send ",
       "range": {
@@ -125,6 +131,7 @@
     "insertTextFormat": 1,
     "kind": 14,
     "label": "to",
+    "sortText": "70-to",
     "textEdit": {
       "newText": "to ",
       "range": {
@@ -145,6 +152,7 @@
     "insertTextFormat": 1,
     "kind": 11,
     "label": "users",
+    "sortText": "20-users",
     "textEdit": {
       "newText": "users ",
       "range": {

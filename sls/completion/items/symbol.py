@@ -1,4 +1,4 @@
-from sls.completion.items.item import CompletionItem
+from sls.completion.items.item import CompletionItem, SortGroup
 from sls.spec import CompletionItemKind
 
 
@@ -21,4 +21,5 @@ class CompletionSymbol(CompletionItem):
             documentation="TBD",
             completion_kind=CompletionItemKind.Variable,
             context=context,
+            sort_group=SortGroup.Symbol,
         )

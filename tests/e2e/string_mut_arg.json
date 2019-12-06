@@ -5,6 +5,7 @@
     "insertTextFormat": 1,
     "kind": 11,
     "label": "end",
+    "sortText": "20-end",
     "textEdit": {
       "newText": "end:",
       "range": {
@@ -25,6 +26,7 @@
     "insertTextFormat": 1,
     "kind": 11,
     "label": "start",
+    "sortText": "20-start",
     "textEdit": {
       "newText": "start:",
       "range": {

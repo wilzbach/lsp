@@ -5,6 +5,7 @@
     "insertTextFormat": 1,
     "kind": 11,
     "label": "i1",
+    "sortText": "20-i1",
     "textEdit": {
       "newText": "i1:",
       "range": {
@@ -25,6 +26,7 @@
     "insertTextFormat": 1,
     "kind": 11,
     "label": "i2",
+    "sortText": "20-i2",
     "textEdit": {
       "newText": "i2:",
       "range": {

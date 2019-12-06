@@ -9,6 +9,7 @@
     "insertTextFormat": 2,
     "kind": 2,
     "label": "abs",
+    "sortText": "20-abs",
     "textEdit": {
       "newText": "ls.abs($1)",
       "range": {
@@ -33,6 +34,7 @@
     "insertTextFormat": 2,
     "kind": 2,
     "label": "acos",
+    "sortText": "20-acos",
     "textEdit": {
       "newText": "ls.acos($1)",
       "range": {
@@ -57,6 +59,7 @@
     "insertTextFormat": 2,
     "kind": 2,
     "label": "approxEqual",
+    "sortText": "20-approxEqual",
     "textEdit": {
       "newText": "ls.approxEqual($1)",
       "range": {
@@ -81,6 +84,7 @@
     "insertTextFormat": 2,
     "kind": 2,
     "label": "asin",
+    "sortText": "20-asin",
     "textEdit": {
       "newText": "ls.asin($1)",
       "range": {
@@ -105,6 +109,7 @@
     "insertTextFormat": 2,
     "kind": 2,
     "label": "atan",
+    "sortText": "20-atan",
     "textEdit": {
       "newText": "ls.atan($1)",
       "range": {
@@ -129,6 +134,7 @@
     "insertTextFormat": 2,
     "kind": 2,
     "label": "ceil",
+    "sortText": "20-ceil",
     "textEdit": {
       "newText": "ls.ceil($1)",
       "range": {
@@ -153,6 +159,7 @@
     "insertTextFormat": 2,
     "kind": 2,
     "label": "cos",
+    "sortText": "20-cos",
     "textEdit": {
       "newText": "ls.cos($1)",
       "range": {
@@ -177,6 +184,7 @@
     "insertTextFormat": 2,
     "kind": 2,
     "label": "exp",
+    "sortText": "20-exp",
     "textEdit": {
       "newText": "ls.exp($1)",
       "range": {
@@ -201,6 +209,7 @@
     "insertTextFormat": 2,
     "kind": 2,
     "label": "floor",
+    "sortText": "20-floor",
     "textEdit": {
       "newText": "ls.floor($1)",
       "range": {
@@ -225,6 +234,7 @@
     "insertTextFormat": 2,
     "kind": 2,
     "label": "isInfinity",
+    "sortText": "20-isInfinity",
     "textEdit": {
       "newText": "ls.isInfinity($1)",
       "range": {
@@ -249,6 +259,7 @@
     "insertTextFormat": 2,
     "kind": 2,
     "label": "isNaN",
+    "sortText": "20-isNaN",
     "textEdit": {
       "newText": "ls.isNaN($1)",
       "range": {
@@ -273,6 +284,7 @@
     "insertTextFormat": 2,
     "kind": 2,
     "label": "log",
+    "sortText": "20-log",
     "textEdit": {
       "newText": "ls.log($1)",
       "range": {
@@ -297,6 +309,7 @@
     "insertTextFormat": 2,
     "kind": 2,
     "label": "log10",
+    "sortText": "20-log10",
     "textEdit": {
       "newText": "ls.log10($1)",
       "range": {
@@ -321,6 +334,7 @@
     "insertTextFormat": 2,
     "kind": 2,
     "label": "log2",
+    "sortText": "20-log2",
     "textEdit": {
       "newText": "ls.log2($1)",
       "range": {
@@ -345,6 +359,7 @@
     "insertTextFormat": 2,
     "kind": 2,
     "label": "round",
+    "sortText": "20-round",
     "textEdit": {
       "newText": "ls.round($1)",
       "range": {
@@ -369,6 +384,7 @@
     "insertTextFormat": 2,
     "kind": 2,
     "label": "sin",
+    "sortText": "20-sin",
     "textEdit": {
       "newText": "ls.sin($1)",
       "range": {
@@ -393,6 +409,7 @@
     "insertTextFormat": 2,
     "kind": 2,
     "label": "sqrt",
+    "sortText": "20-sqrt",
     "textEdit": {
       "newText": "ls.sqrt($1)",
       "range": {
@@ -417,6 +434,7 @@
     "insertTextFormat": 2,
     "kind": 2,
     "label": "tan",
+    "sortText": "20-tan",
     "textEdit": {
       "newText": "ls.tan($1)",
       "range": {

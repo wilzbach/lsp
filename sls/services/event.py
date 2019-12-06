@@ -1,4 +1,8 @@
-from sls.completion.items.item import CompletionItem, CompletionItemKind
+from sls.completion.items.item import (
+    CompletionItem,
+    CompletionItemKind,
+    SortGroup,
+)
 
 
 class Event(CompletionItem):
@@ -16,4 +20,5 @@ class Event(CompletionItem):
             documentation=f"Event doc: {self.event.help()}",
             completion_kind=CompletionItemKind.Unit,
             context=context,
+            sort_group=SortGroup.Event,
         )

@@ -6,6 +6,7 @@
     "insertTextFormat": 1,
     "kind": 2,
     "label": "body",
+    "sortText": "20-body",
     "textEdit": {
       "newText": "req.body",
       "range": {
@@ -27,6 +28,7 @@
     "insertTextFormat": 1,
     "kind": 2,
     "label": "files",
+    "sortText": "20-files",
     "textEdit": {
       "newText": "req.files",
       "range": {
@@ -48,6 +50,7 @@
     "insertTextFormat": 1,
     "kind": 2,
     "label": "formFields",
+    "sortText": "20-formFields",
     "textEdit": {
       "newText": "req.formFields",
       "range": {
@@ -69,6 +72,7 @@
     "insertTextFormat": 1,
     "kind": 2,
     "label": "headers",
+    "sortText": "20-headers",
     "textEdit": {
       "newText": "req.headers",
       "range": {
@@ -90,6 +94,7 @@
     "insertTextFormat": 1,
     "kind": 2,
     "label": "path",
+    "sortText": "20-path",
     "textEdit": {
       "newText": "req.path",
       "range": {
@@ -111,6 +116,7 @@
     "insertTextFormat": 1,
     "kind": 2,
     "label": "queryParams",
+    "sortText": "20-queryParams",
     "textEdit": {
       "newText": "req.queryParams",
       "range": {
@@ -132,6 +138,7 @@
     "insertTextFormat": 1,
     "kind": 2,
     "label": "query_params",
+    "sortText": "20-query_params",
     "textEdit": {
       "newText": "req.query_params",
       "range": {
@@ -153,6 +160,7 @@
     "insertTextFormat": 1,
     "kind": 2,
     "label": "uri",
+    "sortText": "20-uri",
     "textEdit": {
       "newText": "req.uri",
       "range": {

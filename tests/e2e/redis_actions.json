@@ -5,6 +5,7 @@
     "insertTextFormat": 1,
     "kind": 14,
     "label": "and",
+    "sortText": "70-and",
     "textEdit": {
       "newText": "and ",
       "range": {
@@ -25,6 +26,7 @@
     "insertTextFormat": 1,
     "kind": 11,
     "label": "append",
+    "sortText": "20-append",
     "textEdit": {
       "newText": "append ",
       "range": {
@@ -45,6 +47,7 @@
     "insertTextFormat": 1,
     "kind": 11,
     "label": "blpop",
+    "sortText": "20-blpop",
     "textEdit": {
       "newText": "blpop ",
       "range": {
@@ -65,6 +68,7 @@
     "insertTextFormat": 1,
     "kind": 11,
     "label": "brpop",
+    "sortText": "20-brpop",
     "textEdit": {
       "newText": "brpop ",
       "range": {
@@ -85,6 +89,7 @@
     "insertTextFormat": 1,
     "kind": 11,
     "label": "decrement",
+    "sortText": "20-decrement",
     "textEdit": {
       "newText": "decrement ",
       "range": {
@@ -105,6 +110,7 @@
     "insertTextFormat": 1,
     "kind": 11,
     "label": "delete",
+    "sortText": "20-delete",
     "textEdit": {
       "newText": "delete ",
       "range": {
@@ -125,6 +131,7 @@
     "insertTextFormat": 1,
     "kind": 11,
     "label": "expire",
+    "sortText": "20-expire",
     "textEdit": {
       "newText": "expire ",
       "range": {
@@ -145,6 +152,7 @@
     "insertTextFormat": 1,
     "kind": 11,
     "label": "get",
+    "sortText": "20-get",
     "textEdit": {
       "newText": "get ",
       "range": {
@@ -165,6 +173,7 @@
     "insertTextFormat": 1,
     "kind": 11,
     "label": "getSet",
+    "sortText": "20-getSet",
     "textEdit": {
       "newText": "getSet ",
       "range": {
@@ -185,6 +194,7 @@
     "insertTextFormat": 1,
     "kind": 11,
     "label": "increment",
+    "sortText": "20-increment",
     "textEdit": {
       "newText": "increment ",
       "range": {
@@ -205,6 +215,7 @@
     "insertTextFormat": 1,
     "kind": 11,
     "label": "listener",
+    "sortText": "20-listener",
     "textEdit": {
       "newText": "listener ",
       "range": {
@@ -225,6 +236,7 @@
     "insertTextFormat": 1,
     "kind": 11,
     "label": "lpop",
+    "sortText": "20-lpop",
     "textEdit": {
       "newText": "lpop ",
       "range": {
@@ -245,6 +257,7 @@
     "insertTextFormat": 1,
     "kind": 11,
     "label": "lpush",
+    "sortText": "20-lpush",
     "textEdit": {
       "newText": "lpush ",
       "range": {
@@ -265,6 +278,7 @@
     "insertTextFormat": 1,
     "kind": 11,
     "label": "mget",
+    "sortText": "20-mget",
     "textEdit": {
       "newText": "mget ",
       "range": {
@@ -285,6 +299,7 @@
     "insertTextFormat": 1,
     "kind": 11,
     "label": "mset",
+    "sortText": "20-mset",
     "textEdit": {
       "newText": "mset ",
       "range": {
@@ -305,6 +320,7 @@
     "insertTextFormat": 1,
     "kind": 11,
     "label": "msetnx",
+    "sortText": "20-msetnx",
     "textEdit": {
       "newText": "msetnx ",
       "range": {
@@ -325,6 +341,7 @@
     "insertTextFormat": 1,
     "kind": 14,
     "label": "or",
+    "sortText": "70-or",
     "textEdit": {
       "newText": "or ",
       "range": {
@@ -345,6 +362,7 @@
     "insertTextFormat": 1,
     "kind": 11,
     "label": "rpop",
+    "sortText": "20-rpop",
     "textEdit": {
       "newText": "rpop ",
       "range": {
@@ -365,6 +383,7 @@
     "insertTextFormat": 1,
     "kind": 11,
     "label": "rpush",
+    "sortText": "20-rpush",
     "textEdit": {
       "newText": "rpush ",
       "range": {
@@ -385,6 +404,7 @@
     "insertTextFormat": 1,
     "kind": 11,
     "label": "set",
+    "sortText": "20-set",
     "textEdit": {
       "newText": "set ",
       "range": {
@@ -405,6 +425,7 @@
     "insertTextFormat": 1,
     "kind": 11,
     "label": "setnx",
+    "sortText": "20-setnx",
     "textEdit": {
       "newText": "setnx ",
       "range": {
@@ -425,6 +446,7 @@
     "insertTextFormat": 1,
     "kind": 14,
     "label": "to",
+    "sortText": "70-to",
     "textEdit": {
       "newText": "to ",
       "range": {

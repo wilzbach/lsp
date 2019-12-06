@@ -5,6 +5,7 @@
     "insertTextFormat": 1,
     "kind": 11,
     "label": "set",
+    "sortText": "20-set",
     "textEdit": {
       "newText": "set ",
       "range": {
@@ -25,6 +26,7 @@
     "insertTextFormat": 1,
     "kind": 11,
     "label": "setnx",
+    "sortText": "20-setnx",
     "textEdit": {
       "newText": "setnx ",
       "range": {

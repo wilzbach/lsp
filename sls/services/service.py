@@ -1,4 +1,4 @@
-from sls.completion.items.item import CompletionItem
+from sls.completion.items.item import CompletionItem, SortGroup
 from sls.spec import CompletionItemKind, MarkupKind
 
 
@@ -20,6 +20,7 @@ class Service(CompletionItem):
             documentation_kind=MarkupKind.Markdown,
             completion_kind=CompletionItemKind.Method,
             context=context,
+            sort_group=SortGroup.Service,
         )
 
     def name(self):

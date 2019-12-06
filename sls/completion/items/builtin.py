@@ -1,4 +1,4 @@
-from sls.completion.items.item import CompletionItem
+from sls.completion.items.item import CompletionItem, SortGroup
 from sls.spec import CompletionItemKind, InsertTextFormat, MarkupKind
 
 
@@ -45,4 +45,5 @@ class CompletionBuiltin(CompletionItem):
             insert_text_format=InsertTextFormat.Snippet,
             context=context,
             filter_text=full_text,
+            sort_group=SortGroup.Builtin,
         )

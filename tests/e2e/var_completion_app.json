@@ -5,6 +5,7 @@
     "insertTextFormat": 1,
     "kind": 6,
     "label": "app",
+    "sortText": "20-app",
     "textEdit": {
       "newText": "app",
       "range": {

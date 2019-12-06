@@ -9,6 +9,7 @@
     "insertTextFormat": 2,
     "kind": 2,
     "label": "contains",
+    "sortText": "20-contains",
     "textEdit": {
       "newText": "ls.contains($1)",
       "range": {
@@ -33,6 +34,7 @@
     "insertTextFormat": 2,
     "kind": 2,
     "label": "flatten",
+    "sortText": "20-flatten",
     "textEdit": {
       "newText": "ls.flatten($1)",
       "range": {
@@ -57,6 +59,7 @@
     "insertTextFormat": 2,
     "kind": 2,
     "label": "get",
+    "sortText": "20-get",
     "textEdit": {
       "newText": "ls.get($1)",
       "range": {
@@ -81,6 +84,7 @@
     "insertTextFormat": 2,
     "kind": 2,
     "label": "keys",
+    "sortText": "20-keys",
     "textEdit": {
       "newText": "ls.keys($1)",
       "range": {
@@ -105,6 +109,7 @@
     "insertTextFormat": 2,
     "kind": 2,
     "label": "length",
+    "sortText": "20-length",
     "textEdit": {
       "newText": "ls.length($1)",
       "range": {
@@ -129,6 +134,7 @@
     "insertTextFormat": 2,
     "kind": 2,
     "label": "remove",
+    "sortText": "20-remove",
     "textEdit": {
       "newText": "ls.remove($1)",
       "range": {
@@ -153,6 +159,7 @@
     "insertTextFormat": 2,
     "kind": 2,
     "label": "values",
+    "sortText": "20-values",
     "textEdit": {
       "newText": "ls.values($1)",
       "range": {

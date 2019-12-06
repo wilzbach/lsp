@@ -24,4 +24,5 @@ def test_args(magic):
     event = Event.from_dict(data=event_dict)
     event_completion = EventCompletionItem(event)
     result = event_completion.to_completion(context)
+    del result["sortText"]
     assert result == expected_completion_dict

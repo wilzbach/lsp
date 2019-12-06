@@ -1,4 +1,8 @@
-from sls.completion.items.item import CompletionItem, CompletionItemKind
+from sls.completion.items.item import (
+    CompletionItem,
+    CompletionItemKind,
+    SortGroup,
+)
 
 from .types import TypeMappings
 
@@ -23,4 +27,5 @@ class Argument(CompletionItem):
             documentation=self.argument.help(),
             completion_kind=CompletionItemKind.Value,
             context=context,
+            sort_group=SortGroup.Argument,
         )

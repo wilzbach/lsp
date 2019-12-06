@@ -17,12 +17,14 @@ def test_completion_build():
         documentation="doc",
         completion_kind=2,
         context=None,
+        sort_group=10,
     )
     assert result == {
         "label": "label",
         "kind": 2,
         "detail": "detail",
         "documentation": "doc",
+        "sortText": "10-label",
         "insertTextFormat": 1,
     }
 
@@ -35,7 +37,7 @@ def test_completion_build_sort_text():
         documentation="doc",
         completion_kind=2,
         context=None,
-        sort_text=".sort.",
+        sort_group=20,
         filter_text=".filter.",
     )
     assert result == {
@@ -44,6 +46,6 @@ def test_completion_build_sort_text():
         "detail": "detail",
         "documentation": "doc",
         "insertTextFormat": 1,
-        "sortText": ".sort.",
+        "sortText": "20-label",
         "filterText": ".filter.",
     }

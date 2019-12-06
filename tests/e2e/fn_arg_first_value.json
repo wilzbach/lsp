@@ -5,6 +5,7 @@
     "insertTextFormat": 1,
     "kind": 6,
     "label": "app",
+    "sortText": "20-app",
     "textEdit": {
       "newText": "app",
       "range": {
@@ -28,6 +29,7 @@
     "insertTextFormat": 1,
     "kind": 2,
     "label": "crontab",
+    "sortText": "40-crontab",
     "textEdit": {
       "newText": "crontab ",
       "range": {
@@ -48,6 +50,7 @@
     "insertTextFormat": 1,
     "kind": 14,
     "label": "false",
+    "sortText": "70-false",
     "textEdit": {
       "newText": "false ",
       "range": {
@@ -68,6 +71,7 @@
     "insertTextFormat": 2,
     "kind": 3,
     "label": "foo",
+    "sortText": "20-foo",
     "textEdit": {
       "newText": "foo($1)",
       "range": {
@@ -91,6 +95,7 @@
     "insertTextFormat": 1,
     "kind": 2,
     "label": "http",
+    "sortText": "40-http",
     "textEdit": {
       "newText": "http ",
       "range": {
@@ -114,6 +119,7 @@
     "insertTextFormat": 1,
     "kind": 2,
     "label": "matthewhudson/oms-airtable",
+    "sortText": "40-matthewhudson/oms-airtable",
     "textEdit": {
       "newText": "matthewhudson/oms-airtable ",
       "range": {
@@ -137,6 +143,7 @@
     "insertTextFormat": 1,
     "kind": 2,
     "label": "mongodb",
+    "sortText": "40-mongodb",
     "textEdit": {
       "newText": "mongodb ",
       "range": {
@@ -157,6 +164,7 @@
     "insertTextFormat": 1,
     "kind": 14,
     "label": "not",
+    "sortText": "70-not",
     "textEdit": {
       "newText": "not ",
       "range": {
@@ -177,6 +185,7 @@
     "insertTextFormat": 1,
     "kind": 14,
     "label": "null",
+    "sortText": "70-null",
     "textEdit": {
       "newText": "null ",
       "range": {
@@ -200,6 +209,7 @@
     "insertTextFormat": 1,
     "kind": 2,
     "label": "oms-services/mongodb",
+    "sortText": "40-oms-services/mongodb",
     "textEdit": {
       "newText": "oms-services/mongodb ",
       "range": {
@@ -223,6 +233,7 @@
     "insertTextFormat": 1,
     "kind": 2,
     "label": "oms-services/redis",
+    "sortText": "40-oms-services/redis",
     "textEdit": {
       "newText": "oms-services/redis ",
       "range": {
@@ -246,6 +257,7 @@
     "insertTextFormat": 1,
     "kind": 2,
     "label": "oms-services/slack",
+    "sortText": "40-oms-services/slack",
     "textEdit": {
       "newText": "oms-services/slack ",
       "range": {
@@ -269,6 +281,7 @@
     "insertTextFormat": 1,
     "kind": 2,
     "label": "oms-services/uuid",
+    "sortText": "40-oms-services/uuid",
     "textEdit": {
       "newText": "oms-services/uuid ",
       "range": {
@@ -292,6 +305,7 @@
     "insertTextFormat": 1,
     "kind": 2,
     "label": "redis",
+    "sortText": "40-redis",
     "textEdit": {
       "newText": "redis ",
       "range": {
@@ -315,6 +329,7 @@
     "insertTextFormat": 1,
     "kind": 2,
     "label": "slack",
+    "sortText": "40-slack",
     "textEdit": {
       "newText": "slack ",
       "range": {
@@ -338,6 +353,7 @@
     "insertTextFormat": 1,
     "kind": 2,
     "label": "storyscript/crontab",
+    "sortText": "40-storyscript/crontab",
     "textEdit": {
       "newText": "storyscript/crontab ",
       "range": {
@@ -361,6 +377,7 @@
     "insertTextFormat": 1,
     "kind": 2,
     "label": "storyscript/http",
+    "sortText": "40-storyscript/http",
     "textEdit": {
       "newText": "storyscript/http ",
       "range": {
@@ -381,6 +398,7 @@
     "insertTextFormat": 1,
     "kind": 14,
     "label": "true",
+    "sortText": "70-true",
     "textEdit": {
       "newText": "true ",
       "range": {
@@ -404,6 +422,7 @@
     "insertTextFormat": 1,
     "kind": 2,
     "label": "uuid",
+    "sortText": "40-uuid",
     "textEdit": {
       "newText": "uuid ",
       "range": {

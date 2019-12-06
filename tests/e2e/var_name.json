@@ -5,6 +5,7 @@
     "insertTextFormat": 1,
     "kind": 6,
     "label": "banana",
+    "sortText": "20-banana",
     "textEdit": {
       "newText": "banana",
       "range": {

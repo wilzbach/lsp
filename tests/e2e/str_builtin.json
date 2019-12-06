@@ -9,6 +9,7 @@
     "insertTextFormat": 2,
     "kind": 2,
     "label": "capitalize",
+    "sortText": "20-capitalize",
     "textEdit": {
       "newText": "ls.capitalize($1)",
       "range": {
@@ -33,6 +34,7 @@
     "insertTextFormat": 2,
     "kind": 2,
     "label": "contains",
+    "sortText": "20-contains",
     "textEdit": {
       "newText": "ls.contains($1)",
       "range": {
@@ -57,6 +59,7 @@
     "insertTextFormat": 2,
     "kind": 2,
     "label": "endswith",
+    "sortText": "20-endswith",
     "textEdit": {
       "newText": "ls.endswith($1)",
       "range": {
@@ -81,6 +84,7 @@
     "insertTextFormat": 2,
     "kind": 2,
     "label": "length",
+    "sortText": "20-length",
     "textEdit": {
       "newText": "ls.length($1)",
       "range": {
@@ -105,6 +109,7 @@
     "insertTextFormat": 2,
     "kind": 2,
     "label": "lowercase",
+    "sortText": "20-lowercase",
     "textEdit": {
       "newText": "ls.lowercase($1)",
       "range": {
@@ -129,6 +134,7 @@
     "insertTextFormat": 2,
     "kind": 2,
     "label": "replace",
+    "sortText": "20-replace",
     "textEdit": {
       "newText": "ls.replace($1)",
       "range": {
@@ -153,6 +159,7 @@
     "insertTextFormat": 2,
     "kind": 2,
     "label": "split",
+    "sortText": "20-split",
     "textEdit": {
       "newText": "ls.split($1)",
       "range": {
@@ -177,6 +184,7 @@
     "insertTextFormat": 2,
     "kind": 2,
     "label": "startswith",
+    "sortText": "20-startswith",
     "textEdit": {
       "newText": "ls.startswith($1)",
       "range": {
@@ -201,6 +209,7 @@
     "insertTextFormat": 2,
     "kind": 2,
     "label": "substring",
+    "sortText": "20-substring",
     "textEdit": {
       "newText": "ls.substring($1)",
       "range": {
@@ -225,6 +234,7 @@
     "insertTextFormat": 2,
     "kind": 2,
     "label": "trim",
+    "sortText": "20-trim",
     "textEdit": {
       "newText": "ls.trim($1)",
       "range": {
@@ -249,6 +259,7 @@
     "insertTextFormat": 2,
     "kind": 2,
     "label": "uppercase",
+    "sortText": "20-uppercase",
     "textEdit": {
       "newText": "ls.uppercase($1)",
       "range": {

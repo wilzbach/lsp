@@ -5,6 +5,7 @@
     "insertTextFormat": 2,
     "kind": 3,
     "label": "bar",
+    "sortText": "20-bar",
     "textEdit": {
       "newText": "bar($1)",
       "range": {
