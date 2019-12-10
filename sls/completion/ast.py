@@ -10,6 +10,7 @@ from sls.parser.token import StoryTokenSpace
 from .builtin import BuiltinCompletion
 from .function import FunctionCompletion
 from .service import ServiceCompletion
+from .service_data import ServiceHandler
 
 
 log = logger(__name__)
@@ -18,10 +19,11 @@ log = logger(__name__)
 class ASTAnalyzer:
     def __init__(self, service_registry, context_cache):
         self.parser = Parser()
-        self.service = ServiceCompletion(service_registry)
         self.context_cache = context_cache
         self.builtin = BuiltinCompletion(context_cache)
         self.function = FunctionCompletion(context_cache)
+        self.service_handler = ServiceHandler(service_registry, context_cache)
+        self.service = ServiceCompletion(self.service_handler)
 
     def complete(self, context):
         try:
@@ -58,7 +60,7 @@ class ASTAnalyzer:
         # iterate all non-terminals in the transitions and
         # processes upcoming next_rules
         for tok, dfa in transitions:
-            completion = self.process_nonterminal(tok, dfa, stack)
+            completion = self.process_nonterminal(tok, dfa, stack, tokens)
             for c in completion:
                 c = c.to_completion(context)
                 if c["label"].lower().startswith(like_word):
@@ -110,13 +112,13 @@ class ASTAnalyzer:
 
         return not only_special_rules
 
-    def process_nonterminal(self, tok, dfa, stack):
+    def process_nonterminal(self, tok, dfa, stack, tokens):
         """
         Forwards processing of the non-terminal to its respective processor.
         """
         log.debug("process non-terminal: %s", tok)
         if tok == StoryTokenSpace.NAME:
-            yield from self.process_name(dfa, stack)
+            yield from self.process_name(dfa, stack, tokens)
         elif tok == StoryTokenSpace.NULL:
             yield KeywordCompletionSymbol("null")
         elif tok == StoryTokenSpace.STRING:
@@ -128,11 +130,13 @@ class ASTAnalyzer:
             pass
         elif tok == StoryTokenSpace.NL:
             pass
+        elif tok == StoryTokenSpace.COLON:
+            pass
         else:
             # no completion for numbers
             assert tok == StoryTokenSpace.NUMBER, tok
 
-    def process_name(self, dfa, stack):
+    def process_name(self, dfa, stack, tokens):
         """
         Completion for a NAME token can be in different contexts.
         This looks at the current stack and distinguishes.
@@ -141,19 +145,17 @@ class ASTAnalyzer:
         assert len(dfa.dfa_pushes) > 0
         next_rule = dfa.dfa_pushes[0].from_rule
         log.debug(
-            "process_name, from_rule:%s, next_rule:%s", from_rule, next_rule
+            "process_name, from_rule:%s, next_rule:%s", from_rule, next_rule,
         )
         if next_rule == "service_suffix":
-            assert from_rule == "value"
-            yield from self.service.process_name(stack)
+            assert from_rule == "value", from_rule
+            yield from self.service.process_suffix(
+                stack, tokens, value_stack_name="value"
+            )
         elif next_rule == "arglist":
-            if from_rule == "service_suffix":
-                yield from self.service.process_command(stack)
-            else:
-                assert from_rule == "fn_suffix"
-                yield from self.function.process_name(stack)
+            yield from self.process_arglist(stack, from_rule)
         elif next_rule == "arg_name":
-            yield from self.process_args(stack)
+            yield from self.process_arg_name(stack, from_rule)
         elif next_rule == "block":
             yield from self.get_name("")
         elif next_rule == "fn_arg_name":
@@ -169,6 +171,16 @@ class ASTAnalyzer:
             yield from self.builtin.process_name(stack)
         elif next_rule == "mut_arg_name":
             yield from self.builtin.process_args(stack)
+        elif next_rule == "when_expression":
+            yield from self.get_name("")
+        elif next_rule == "when_action":
+            yield from self.service.process_when_name(stack, tokens)
+        elif next_rule == "when_action_name":
+            yield from self.service.process_when_command(stack)
+        elif next_rule == "when_arglist":
+            yield from self.process_arglist(stack, from_rule)
+        elif next_rule == "when_action_suffix":
+            yield from self.process_when(stack)
         else:
             assert next_rule == "expression", next_rule
             yield from self.get_name("")
@@ -196,10 +208,67 @@ class ASTAnalyzer:
             assert last_rule == "fn_suffix"
             yield from self.function.process_args(stack, prev_args)
 
+    def process_arg_name(self, stack, from_rule):
+        if from_rule == "when_arglist":
+            yield from self.process_when_args(stack)
+        else:
+            yield from self.process_args(stack)
+
+    def process_arglist(self, stack, from_rule):
+        if from_rule == "service_suffix":
+            yield from self.service.process_command(
+                stack, value_stack_name="value", command_name="service_op",
+            )
+        elif from_rule == "fn_suffix":
+            yield from self.function.process_name(stack)
+        else:
+            assert from_rule == "when_action_suffix", from_rule
+            yield from self.process_when(stack)
+
+    def process_when(self, stack):
+        """
+        Process a when statement without args.
+        """
+        name = Stack.extract(stack, "when_expression")[0].value
+        when_action = Stack.extract(stack, "when_action")
+        action = when_action[0].value
+        prev_args = []
+        try:
+            event = Stack.extract(stack, "when_action_name")[0].value
+        except Exception:
+            # COLON (only two names provided, add the third name as argument)
+            event = None
+            prev_args.append(when_action[1].value)
+
+        yield from self.service.when(name, action, event, prev_args)
+
+    def process_when_args(self, stack):
+        """
+        Process a when statement with args.
+        """
+        name = Stack.extract(stack, "when_expression")[0].value
+        actions = Stack.extract(stack, "when_action")
+        suffix = Stack.extract(stack, "when_action_suffix")
+        prev_args = [
+            *Stack.find_all_until(
+                stack, "when_arglist", ["when_expression"], start=0, offset=3
+            )
+        ]
+        event = None
+        assert len(actions) == 2
+        action = actions[0].value
+        # it might have been the event name or an argument
+        if len(suffix) > 0 and suffix[0].value == ":":
+            prev_args.append(actions[1].value)
+        else:
+            event = actions[1].value
+
+        yield from self.service.when(name, action, event, prev_args)
+
     def get_name(self, word):
         """
         Yields all symbols and services starting with 'word'.
         """
         log.debug("get_name: %s", word)
         yield from self.context_cache.complete(word)
-        yield from self.service.services(word)
+        yield from self.service_handler.services(word)

@@ -17,12 +17,13 @@ def test_args(magic):
         "label": "foobar",
         "kind": 11,
         "detail": "Event: Test event",
-        "documentation": "Event doc: Test event",
-        "insertTextFormat": 1,
+        "documentation": "Test event",
+        "insertTextFormat": 2,
     }
 
     event = Event.from_dict(data=event_dict)
     event_completion = EventCompletionItem(event)
     result = event_completion.to_completion(context)
     del result["sortText"]
+    del result["textEdit"]
     assert result == expected_completion_dict

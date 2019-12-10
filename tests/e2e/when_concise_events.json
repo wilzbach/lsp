@@ -1,0 +1,23 @@
+[
+  {
+    "detail": "Action: No help available.",
+    "documentation": "No help available.",
+    "insertTextFormat": 2,
+    "kind": 11,
+    "label": "server",
+    "sortText": "20-server",
+    "textEdit": {
+      "newText": "server ",
+      "range": {
+        "end": {
+          "character": 16,
+          "line": 0
+        },
+        "start": {
+          "character": 10,
+          "line": 0
+        }
+      }
+    }
+  }
+]

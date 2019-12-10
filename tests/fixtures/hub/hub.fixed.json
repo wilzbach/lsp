@@ -1249,76 +1249,6 @@
     },
     {
         "configuration": {
-            "commands": {
-                "entrypoint": {
-                    "arguments": {
-                        "tab": {
-                            "help": "* * * * * *\n| | | | | |\n| | | | | +-- Year              (range: 1900-3000)\n| | | | +---- Day of the Week   (range: 1-7, 1 standing for Monday)\n| | | +------ Month of the Year (range: 1-12)\n| | +-------- Day of the Month  (range: 1-31)\n| +---------- Hour              (range: 0-23)\n+------------ Minute            (range: 0-59)\n",
-                            "type": "string"
-                        }
-                    },
-                    "output": {
-                        "type": null
-                    }
-                }
-            }
-        },
-        "readme": "",
-        "service": {
-            "alias": "crontab",
-            "description": "Crontab in Asyncy",
-            "isCertified": false,
-            "name": "crontab",
-            "owner": {
-                "username": "storyscript"
-            },
-            "public": true,
-            "topics": [
-                "cron",
-                "microservice",
-                "crontab"
-            ]
-        },
-        "serviceUuid": "fa8ae7bb-05c9-432d-aa4f-433c314fa3cf",
-        "state": "BETA"
-    },
-    {
-        "configuration": {
-            "commands": {
-                "entrypoint": {
-                    "arguments": {
-                        "tab": {
-                            "help": "* * * * * *\n| | | | | |\n| | | | | +-- Year              (range: 1900-3000)\n| | | | +---- Day of the Week   (range: 1-7, 1 standing for Monday)\n| | | +------ Month of the Year (range: 1-12)\n| | +-------- Day of the Month  (range: 1-31)\n| +---------- Hour              (range: 0-23)\n+------------ Minute            (range: 0-59)\n",
-                            "type": "string"
-                        }
-                    },
-                    "output": {
-                        "type": null
-                    }
-                }
-            }
-        },
-        "readme": "",
-        "service": {
-            "alias": "crontab",
-            "description": "Crontab in Asyncy",
-            "isCertified": false,
-            "name": "crontab",
-            "owner": {
-                "username": "storyscript"
-            },
-            "public": true,
-            "topics": [
-                "cron",
-                "microservice",
-                "crontab"
-            ]
-        },
-        "serviceUuid": "fa8ae7bb-05c9-432d-aa4f-433c314fa3cf",
-        "state": "BETA"
-    },
-    {
-        "configuration": {
             "actions": {
                 "generate": {
                     "help": "Generate a UUID v4 like 38788d28-6526-45c5-acf9-bb179160c7d7\n",
@@ -2841,6 +2771,124 @@
             ]
         },
         "serviceUuid": "bcf32476-20b9-4895-b3d2-4c27fef8b685",
+        "state": "BETA"
+    },
+    {
+        "configuration": {
+            "actions": {
+                "digest": {
+                    "arguments": {
+                        "data": {
+                            "in": "requestBody",
+                            "required": true,
+                            "type": "string"
+                        },
+                        "method": {
+                            "in": "requestBody",
+                            "required": true,
+                            "type": "string"
+                        }
+                    },
+                    "http": {
+                        "method": "post",
+                        "path": "/digest",
+                        "port": 8080
+                    },
+                    "output": {
+                        "contentType": "application/json",
+                        "properties": {
+                            "digest": {
+                                "type": "string"
+                            },
+                            "method": {
+                                "type": "string"
+                            }
+                        },
+                        "type": "object"
+                    }
+                },
+                "hmac": {
+                    "arguments": {
+                        "data": {
+                            "in": "requestBody",
+                            "required": true,
+                            "type": "string"
+                        },
+                        "method": {
+                            "in": "requestBody",
+                            "required": true,
+                            "type": "string"
+                        },
+                        "secret": {
+                            "in": "requestBody",
+                            "required": true,
+                            "type": "string"
+                        }
+                    },
+                    "http": {
+                        "method": "post",
+                        "path": "/hmac",
+                        "port": 8080
+                    },
+                    "output": {
+                        "contentType": "application/json",
+                        "properties": {
+                            "digest": {
+                                "type": "string"
+                            },
+                            "method": {
+                                "type": "string"
+                            }
+                        },
+                        "type": "object"
+                    }
+                }
+            },
+            "health": {
+                "http": {
+                    "path": "/health",
+                    "port": 8080
+                }
+            },
+            "info": {
+                "contact": {
+                    "email": "core@openmicroservices.org",
+                    "name": "Open Microservices",
+                    "url": "https://openmicroservices.org"
+                },
+                "description": "Digest and hashing capabilities",
+                "license": {
+                    "name": "MIT",
+                    "url": "https://opensource.org/licenses/MIT"
+                },
+                "title": "Hashes",
+                "version": "0.1.0"
+            },
+            "lifecycle": {
+                "startup": {
+                    "command": []
+                }
+            },
+            "oms": 1
+        },
+        "readme": "# _Hashes_ Open Microservice\n\n> Digest and hashing capabilities\n\n[![Open Microservice Specification Version](https://img.shields.io/badge/Open%20Microservice-1.0-477bf3.svg)](https://openmicroservices.org) [![Open Microservices Spectrum Chat](https://withspectrum.github.io/badge/badge.svg)](https://spectrum.chat/open-microservices) [![Open Microservices Code of Conduct](https://img.shields.io/badge/Contributor%20Covenant-v1.4%20adopted-ff69b4.svg)](https://github.com/oms-services/.github/blob/master/CODE_OF_CONDUCT.md) [![Open Microservices Commitzen](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](http://makeapullrequest.com)\n[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)\n\n## Introduction\n\nThis project is an example implementation of the [Open Microservice Specification](https://openmicroservices.org), a standard originally created at [Storyscript](https://storyscript.io) for building highly-portable \"microservices\" that expose the events, actions, and APIs inside containerized software.\n\n## Getting Started\n\nThe `oms` command-line interface allows you to interact with Open Microservices. If you're interested in creating an Open Microservice the CLI also helps validate, test, and debug your `oms.yml` implementation!\n\nSee the [oms-cli](https://github.com/microservices/oms) project to learn more!\n\n### Installation\n\n```\nnpm install -g @microservices/oms\n```\n\n## Usage\n\n### Open Microservices CLI Usage\n\nOnce you have the [oms-cli](https://github.com/microservices/oms) installed, you can run any of the following commands from within this project's root directory:\n\n#### Actions\n\n##### digest\n\n>\n\n##### Action Arguments\n\n| Argument Name | Type     | Required | Default | Description              |\n| :------------ | :------- | :------- | :------ | :----------------------- |\n| method        | `string` | `true`   | None    | No description provided. |\n| data          | `string` | `true`   | None    | No description provided. |\n\n```shell\noms run digest \\\n    -a method='*****' \\\n    -a data='*****'\n```\n\n##### hmac\n\n>\n\n##### Action Arguments\n\n| Argument Name | Type     | Required | Default | Description              |\n| :------------ | :------- | :------- | :------ | :----------------------- |\n| method        | `string` | `true`   | None    | No description provided. |\n| data          | `string` | `true`   | None    | No description provided. |\n| secret        | `string` | `true`   | None    | No description provided. |\n\n```shell\noms run hmac \\\n    -a method='*****' \\\n    -a data='*****' \\\n    -a secret='*****'\n```\n\n## Contributing\n\nAll suggestions in how to improve the specification and this guide are very welcome. Feel free share your thoughts in the Issue tracker, or even better, fork the repository to implement your own ideas and submit a pull request.\n\n[![Edit hashes on CodeSandbox](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/oms-services/hashes)\n\nThis project is guided by [Contributor Covenant](https://github.com/oms-services/.github/blob/master/CODE_OF_CONDUCT.md). Please read out full [Contribution Guidelines](https://github.com/oms-services/.github/blob/master/CONTRIBUTING.md).\n\n## Additional Resources\n\n- [Install the CLI](https://github.com/microservices/oms) - The OMS CLI helps developers create, test, validate, and build microservices.\n- [Example OMS Services](https://github.com/oms-services) - Examples of OMS-compliant services written in a variety of languages.\n- [Example Language Implementations](https://github.com/microservices) - Find tooling & language implementations in Node, Python, Scala, Java, Clojure.\n- [Storyscript Hub](https://hub.storyscript.io) - A public registry of OMS services.\n- [Community Chat](https://spectrum.chat/open-microservices) - Have ideas? Questions? Join us on Spectrum.\n",
+        "service": {
+            "alias": null,
+            "description": "An OMG service which provides various hashing capabilities",
+            "isCertified": false,
+            "name": "hashes",
+            "owner": {
+                "username": "oms-services"
+            },
+            "public": true,
+            "topics": [
+                "hashing",
+                "microservice",
+                "oms",
+                "open-microservice"
+            ]
+        },
+        "serviceUuid": "0ceab9e4-b353-467d-8c77-e1538ab80ec1",
         "state": "BETA"
     }
 ]

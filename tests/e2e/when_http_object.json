@@ -1,0 +1,23 @@
+[
+  {
+    "detail": "Event: Listen and respond to http connections by",
+    "documentation": "Listen and respond to http connections by\nregistering with the Storyscript Gateway resulting in a serverless function.\n",
+    "insertTextFormat": 2,
+    "kind": 11,
+    "label": "listen",
+    "sortText": "20-listen",
+    "textEdit": {
+      "newText": "listen path:${1:<string>}",
+      "range": {
+        "end": {
+          "character": 13,
+          "line": 1
+        },
+        "start": {
+          "character": 13,
+          "line": 1
+        }
+      }
+    }
+  }
+]

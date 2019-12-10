@@ -11,11 +11,11 @@ from storyhub.sdk.ServiceWrapper import ServiceWrapper
 subset = [
     "slack",
     "http",
-    "storyscript/crontab",
     "oms-services/uuid",
     "redis",
     "mongodb",
     "matthewhudson/oms-airtable",
+    "oms-services/hashes",
 ]
 
 

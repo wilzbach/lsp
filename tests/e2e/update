@@ -81,7 +81,11 @@ class StoryRunner:
 
 
 def run(story_path):
-    result = StoryRunner(story_path).run()
+    try:
+        result = StoryRunner(story_path).run()
+    except BaseException as e:
+        print("ERROR for: ", story_path)
+        raise e
     return story_path, result
 
 

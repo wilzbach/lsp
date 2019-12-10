@@ -20,7 +20,7 @@ block: if_block | foreach_block | while_block | when_block | try_block | fn_bloc
 if_block: 'if' expression NL indented_blocks ('else if' NL indented_blocks)* ['else' NL indented_blocks]
 foreach_block: 'foreach' expression 'as' NAME NL blocks
 while_block: 'while' expression NL blocks
-when_block: 'when' expression NL blocks
+when_block: 'when' when_expression NL blocks
 try_block: 'try' expression NL indented_blocks ['catch' NL indented_blocks]
 fn_block: 'function' fn_name [fn_arguments] ['returns' type]
 
@@ -68,6 +68,12 @@ type: 'boolean' | 'int' | 'float' | 'string' | 'regex' | 'time' | 'any' | map_ty
 map_type: 'Map' '[' type ',' type ']'
 list_type: 'List' '[' type ']'
 
+when_expression: when_service_name when_action
+when_action: NAME when_action_name when_action_suffix
+when_action_suffix: COLON expression when_arglist | when_arglist
+when_action_name: NAME
+when_service_name: NAME
+when_arglist: (arg_name COLON expression)*
 
 to_tok: 'to'
 # for simplicity assignments are treated as binary operations
