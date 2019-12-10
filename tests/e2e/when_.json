@@ -1,26 +1,5 @@
 [
   {
-    "detail": "Symbol. Object",
-    "documentation": "TBD",
-    "insertTextFormat": 1,
-    "kind": 6,
-    "label": "app",
-    "sortText": "20-app",
-    "textEdit": {
-      "newText": "app",
-      "range": {
-        "end": {
-          "character": 5,
-          "line": 0
-        },
-        "start": {
-          "character": 5,
-          "line": 0
-        }
-      }
-    }
-  },
-  {
     "detail": "The Asyncy API gateway server for executing Stories via HTTP.",
     "documentation": {
       "kind": "markdown",

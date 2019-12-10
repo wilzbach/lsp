@@ -7,6 +7,8 @@ from storyscript import loads
 from storyscript.compiler.semantics.symbols.Scope import Scope
 from storyscript.parser import Tree
 
+from ..types import Types
+
 
 log = logger(__name__)
 
@@ -95,4 +97,13 @@ class CurrentScopeCache:
         """
         for symbol in self.current_scope.symbols():
             if symbol.name().startswith(word):
+                yield CompletionSymbol(symbol)
+
+    def service_objects(self):
+        """
+        Yield all service object variables.
+        """
+        for symbol in self.current_scope.symbols():
+            ty = symbol.type()
+            if Types.is_service_output(ty):
                 yield CompletionSymbol(symbol)

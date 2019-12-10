@@ -157,7 +157,7 @@ class ASTAnalyzer:
         elif next_rule == "arg_name":
             yield from self.process_arg_name(stack, from_rule)
         elif next_rule == "block":
-            yield from self.get_name("")
+            yield from self.get_names()
         elif next_rule == "fn_arg_name":
             # no name completion for function args in function declaration
             return
@@ -172,7 +172,7 @@ class ASTAnalyzer:
         elif next_rule == "mut_arg_name":
             yield from self.builtin.process_args(stack)
         elif next_rule == "when_expression":
-            yield from self.get_name("")
+            yield from self.get_service_names()
         elif next_rule == "when_action":
             yield from self.service.process_when_name(stack, tokens)
         elif next_rule == "when_action_name":
@@ -183,7 +183,7 @@ class ASTAnalyzer:
             yield from self.process_when(stack)
         else:
             assert next_rule == "expression", next_rule
-            yield from self.get_name("")
+            yield from self.get_names()
 
     def process_args(self, stack):
         """
@@ -265,10 +265,18 @@ class ASTAnalyzer:
 
         yield from self.service.when(name, action, event, prev_args)
 
-    def get_name(self, word):
+    def get_names(self):
         """
-        Yields all symbols and services starting with 'word'.
+        Yields all symbols and services.
         """
-        log.debug("get_name: %s", word)
-        yield from self.context_cache.complete(word)
-        yield from self.service_handler.services(word)
+        log.debug("get_names")
+        yield from self.context_cache.complete("")
+        yield from self.service_handler.services("")
+
+    def get_service_names(self):
+        """
+        Yields all available service object symbols and services.
+        """
+        log.debug("get_service_names")
+        yield from self.context_cache.service_objects()
+        yield from self.service_handler.services("")

@@ -1,0 +1,23 @@
+[
+  {
+    "detail": "Symbol. Object",
+    "documentation": "TBD",
+    "insertTextFormat": 1,
+    "kind": 6,
+    "label": "srv",
+    "sortText": "20-srv",
+    "textEdit": {
+      "newText": "srv",
+      "range": {
+        "end": {
+          "character": 10,
+          "line": 3
+        },
+        "start": {
+          "character": 7,
+          "line": 3
+        }
+      }
+    }
+  }
+]
