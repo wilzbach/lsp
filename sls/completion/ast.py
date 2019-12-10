@@ -58,7 +58,7 @@ class ASTAnalyzer:
         # iterate all non-terminals in the transitions and
         # processes upcoming next_rules
         for tok, dfa in transitions:
-            completion = self.process_nonterminal(tok, dfa, stack)
+            completion = self.process_nonterminal(tok, dfa, stack, tokens)
             for c in completion:
                 c = c.to_completion(context)
                 if c["label"].lower().startswith(like_word):
@@ -110,13 +110,13 @@ class ASTAnalyzer:
 
         return not only_special_rules
 
-    def process_nonterminal(self, tok, dfa, stack):
+    def process_nonterminal(self, tok, dfa, stack, tokens):
         """
         Forwards processing of the non-terminal to its respective processor.
         """
         log.debug("process non-terminal: %s", tok)
         if tok == StoryTokenSpace.NAME:
-            yield from self.process_name(dfa, stack)
+            yield from self.process_name(dfa, stack, tokens)
         elif tok == StoryTokenSpace.NULL:
             yield KeywordCompletionSymbol("null")
         elif tok == StoryTokenSpace.STRING:
@@ -132,7 +132,7 @@ class ASTAnalyzer:
             # no completion for numbers
             assert tok == StoryTokenSpace.NUMBER, tok
 
-    def process_name(self, dfa, stack):
+    def process_name(self, dfa, stack, tokens):
         """
         Completion for a NAME token can be in different contexts.
         This looks at the current stack and distinguishes.
@@ -145,7 +145,7 @@ class ASTAnalyzer:
         )
         if next_rule == "service_suffix":
             assert from_rule == "value"
-            yield from self.service.process_name(stack)
+            yield from self.process_service_suffix(stack, tokens)
         elif next_rule == "arglist":
             if from_rule == "service_suffix":
                 yield from self.service.process_command(stack)
@@ -195,6 +195,17 @@ class ASTAnalyzer:
         else:
             assert last_rule == "fn_suffix"
             yield from self.function.process_args(stack, prev_args)
+
+    def process_service_suffix(self, stack, tokens):
+        commands = self.service.process_name(stack)
+        in_assignment = any(tok.text() == "=" for tok in tokens)
+        if in_assignment:
+            # a = <..> -> don't show service commands with events
+            for command in commands:
+                if len(command.action.events()) == 0:
+                    yield command
+        else:
+            yield from commands
 
     def get_name(self, word):
         """
