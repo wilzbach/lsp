@@ -4,7 +4,6 @@ from sls.completion.complete import Completion
 from sls.diagnostics import Diagnostics
 from sls.document import Document
 from sls.format import Formatter
-from sls.hover import Hover
 from sls.services.hub import ServiceHub
 from sls.workspace import Workspace
 
@@ -68,14 +67,6 @@ def test_complete(ws, doc, patch):
     Completion.complete.assert_called_with(
         ws, Workspace.get_document(), ".pos."
     )
-
-
-def test_hover(ws, doc, patch):
-    patch.object(Hover, "hover")
-    patch.object(Workspace, "get_document")
-    ws.hover(".uri.", ".pos.")
-    Workspace.get_document.assert_called_with(".uri.")
-    Hover.hover.assert_called_with(ws, Workspace.get_document(), ".pos.")
 
 
 def test_format(ws, doc, patch):

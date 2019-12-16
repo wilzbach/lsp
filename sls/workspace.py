@@ -2,7 +2,6 @@ from .completion.complete import Completion
 from .diagnostics import Diagnostics
 from .document import Document
 from .format import Formatter
-from .hover import Hover
 from .logging import logger
 from .services.hub import ServiceHub
 
@@ -20,7 +19,6 @@ class Workspace:
         self._endpoint = endpoint
         self._documents = {}
         self._diagnostics = Diagnostics(endpoint)
-        self._hovering = Hover()
         self._formatter = Formatter()
         self._service_registry = ServiceHub(hub=hub)
         self._completion = Completion.full(self._service_registry)
@@ -58,11 +56,6 @@ class Workspace:
         log.debug(f"ws.complete: {uri} pos={position}")
         doc = self.get_document(uri)
         return self._completion.complete(self, doc, position)
-
-    def hover(self, uri, position):
-        log.debug(f"ws.hover: {uri} pos={position}")
-        doc = self.get_document(uri)
-        return self._hovering.hover(self, doc, position)
 
     def format(self, uri):
         log.debug(f"ws.format: {uri}")

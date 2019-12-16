@@ -46,13 +46,6 @@ def test_dispatching(server, method, expected):
     server[method] == expected
 
 
-def test_hovering(server):
-    doc = {"uri": ".magic."}
-    open_file(server, doc["uri"], "a dummy document")
-    pos = {"line": 0, "character": 2}
-    server.rpc_text_document__hover(text_document=doc, position=pos) == {}
-
-
 def test_document_updates(server):
     doc = {"uri": ".magic."}
     server.rpc_text_document__did_open(
