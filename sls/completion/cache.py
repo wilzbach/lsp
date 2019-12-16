@@ -33,3 +33,9 @@ class ContextCache:
         Returns a matching function or None.
         """
         return self.global_.function(fn_name)
+
+    def service_objects(self):
+        """
+        Yield all service object variables.
+        """
+        yield from self.current.service_objects()

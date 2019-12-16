@@ -1,6 +1,6 @@
-from storyhub.sdk.service.Action import Action
-
 from storyscript.compiler.semantics.types.Types import ObjectType
+
+from storyhub.sdk.service.Action import Action
 from storyhub.sdk.service.ServiceOutput import ServiceOutput
 
 
@@ -23,3 +23,14 @@ class Types:
             else:
                 assert isinstance(action, ServiceOutput)
                 return action
+
+    @staticmethod
+    def is_service_output(ty):
+        """
+        Returns `True` if the type is an service output object (e.g. `http server`)
+        If the type is no service output object, `False` will be returned.
+        """
+        if isinstance(ty, ObjectType):
+            if isinstance(ty.action(), Action):
+                return True
+        return False
