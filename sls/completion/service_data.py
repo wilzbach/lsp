@@ -49,7 +49,7 @@ class ServiceHandler:
 
     def action(self, service_name, action_name):
         """
-        Yield the specific `action_name` from a `service_name` or `None`.
+        Yields the specific `action_name` from a `service_name` or `None`.
         """
         log.debug("service: %s, action: %s", service_name, action_name)
         service = self.service_registry.get_service_data(service_name)
