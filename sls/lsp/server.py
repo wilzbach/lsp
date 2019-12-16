@@ -48,7 +48,6 @@ class LanguageServer(LSPDispatcher):
             # Characters that trigger completion automatically.
             "triggerCharacters": [".", "(", " "],
         }
-        obj["hoverProvider"] = True
         obj["documentFormattingProvider"] = True
         obj["textDocumentSync"] = {
             # Open and close notifications are sent to the server
@@ -83,13 +82,6 @@ class LanguageServer(LSPDispatcher):
         self, text_document=None, position=None, **_kwargs
     ):
         return self.workspace.complete(
-            text_document["uri"], Position.from_object(position)
-        )
-
-    def rpc_text_document__hover(
-        self, text_document=None, position=None, **_kwargs
-    ):
-        return self.workspace.hover(
             text_document["uri"], Position.from_object(position)
         )
 
