@@ -19,7 +19,7 @@ class Stack:
             if not seen:
                 if from_rule == before:
                     seen = True
-            elif node.dfa.from_rule == value:
+            elif from_rule == value:
                 return node.nodes
 
         assert 0, stack

@@ -1,0 +1,23 @@
+[
+  {
+    "detail": "Arg. int",
+    "documentation": "No help available.",
+    "insertTextFormat": 1,
+    "kind": 12,
+    "label": "code",
+    "sortText": "20-code",
+    "textEdit": {
+      "newText": "code:",
+      "range": {
+        "end": {
+          "character": 18,
+          "line": 1
+        },
+        "start": {
+          "character": 18,
+          "line": 1
+        }
+      }
+    }
+  }
+]

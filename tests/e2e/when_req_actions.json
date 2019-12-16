@@ -1,0 +1,254 @@
+[
+  {
+    "detail": "Action: Add an HTTP header.",
+    "documentation": "Add an HTTP header.",
+    "insertTextFormat": 2,
+    "kind": 11,
+    "label": "addHeader",
+    "sortText": "20-addHeader",
+    "textEdit": {
+      "newText": "addHeader name:${1:<string>} value:${2:<string>}",
+      "range": {
+        "end": {
+          "character": 8,
+          "line": 1
+        },
+        "start": {
+          "character": 8,
+          "line": 1
+        }
+      }
+    }
+  },
+  {
+    "detail": "Logical conjunction",
+    "documentation": "Logical conjunction",
+    "insertTextFormat": 1,
+    "kind": 14,
+    "label": "and",
+    "sortText": "70-and",
+    "textEdit": {
+      "newText": "and ",
+      "range": {
+        "end": {
+          "character": 8,
+          "line": 1
+        },
+        "start": {
+          "character": 8,
+          "line": 1
+        }
+      }
+    }
+  },
+  {
+    "detail": "Action: Finish a response and send it to the client.",
+    "documentation": "Finish a response and send it to the client.",
+    "insertTextFormat": 2,
+    "kind": 11,
+    "label": "finish",
+    "sortText": "20-finish",
+    "textEdit": {
+      "newText": "finish ",
+      "range": {
+        "end": {
+          "character": 8,
+          "line": 1
+        },
+        "start": {
+          "character": 8,
+          "line": 1
+        }
+      }
+    }
+  },
+  {
+    "detail": "Action: Flushes the current output buffer to the network.",
+    "documentation": "Flushes the current output buffer to the network.",
+    "insertTextFormat": 2,
+    "kind": 11,
+    "label": "flush",
+    "sortText": "20-flush",
+    "textEdit": {
+      "newText": "flush ",
+      "range": {
+        "end": {
+          "character": 8,
+          "line": 1
+        },
+        "start": {
+          "character": 8,
+          "line": 1
+        }
+      }
+    }
+  },
+  {
+    "detail": "Logical disjunction",
+    "documentation": "Logical disjunction",
+    "insertTextFormat": 1,
+    "kind": 14,
+    "label": "or",
+    "sortText": "70-or",
+    "textEdit": {
+      "newText": "or ",
+      "range": {
+        "end": {
+          "character": 8,
+          "line": 1
+        },
+        "start": {
+          "character": 8,
+          "line": 1
+        }
+      }
+    }
+  },
+  {
+    "detail": "Action: Redirect the incoming URL. No additional actions may be used after executing this command.",
+    "documentation": "Redirect the incoming URL. No additional actions may be used after executing this command.",
+    "insertTextFormat": 2,
+    "kind": 11,
+    "label": "redirect",
+    "sortText": "20-redirect",
+    "textEdit": {
+      "newText": "redirect url:${1:<string>}",
+      "range": {
+        "end": {
+          "character": 8,
+          "line": 1
+        },
+        "start": {
+          "character": 8,
+          "line": 1
+        }
+      }
+    }
+  },
+  {
+    "detail": "Action: Set an HTTP status code.",
+    "documentation": "Set an HTTP status code.",
+    "insertTextFormat": 2,
+    "kind": 11,
+    "label": "setStatus",
+    "sortText": "20-setStatus",
+    "textEdit": {
+      "newText": "setStatus code:${1:<int>}",
+      "range": {
+        "end": {
+          "character": 8,
+          "line": 1
+        },
+        "start": {
+          "character": 8,
+          "line": 1
+        }
+      }
+    }
+  },
+  {
+    "detail": "Action: DEPRECATED. Use 'header'.",
+    "documentation": "DEPRECATED. Use 'header'.",
+    "insertTextFormat": 2,
+    "kind": 11,
+    "label": "set_header",
+    "sortText": "20-set_header",
+    "textEdit": {
+      "newText": "set_header key:${1:<string>} value:${2:<string>}",
+      "range": {
+        "end": {
+          "character": 8,
+          "line": 1
+        },
+        "start": {
+          "character": 8,
+          "line": 1
+        }
+      }
+    }
+  },
+  {
+    "detail": "Action: DEPRECATED. Use 'status'.",
+    "documentation": "DEPRECATED. Use 'status'.",
+    "insertTextFormat": 2,
+    "kind": 11,
+    "label": "set_status",
+    "sortText": "20-set_status",
+    "textEdit": {
+      "newText": "set_status code:${1:<int>}",
+      "range": {
+        "end": {
+          "character": 8,
+          "line": 1
+        },
+        "start": {
+          "character": 8,
+          "line": 1
+        }
+      }
+    }
+  },
+  {
+    "detail": "Type conversion",
+    "documentation": "Type conversion",
+    "insertTextFormat": 1,
+    "kind": 14,
+    "label": "to",
+    "sortText": "70-to",
+    "textEdit": {
+      "newText": "to ",
+      "range": {
+        "end": {
+          "character": 8,
+          "line": 1
+        },
+        "start": {
+          "character": 8,
+          "line": 1
+        }
+      }
+    }
+  },
+  {
+    "detail": "Action: No help available.",
+    "documentation": "No help available.",
+    "insertTextFormat": 2,
+    "kind": 11,
+    "label": "write",
+    "sortText": "20-write",
+    "textEdit": {
+      "newText": "write content:${1:<string>}",
+      "range": {
+        "end": {
+          "character": 8,
+          "line": 1
+        },
+        "start": {
+          "character": 8,
+          "line": 1
+        }
+      }
+    }
+  },
+  {
+    "detail": "Action: Write a JSON response body.",
+    "documentation": "Write a JSON response body.",
+    "insertTextFormat": 2,
+    "kind": 11,
+    "label": "writeJSON",
+    "sortText": "20-writeJSON",
+    "textEdit": {
+      "newText": "writeJSON content:${1:<any>}",
+      "range": {
+        "end": {
+          "character": 8,
+          "line": 1
+        },
+        "start": {
+          "character": 8,
+          "line": 1
+        }
+      }
+    }
+  }
+]

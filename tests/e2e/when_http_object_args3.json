@@ -1,0 +1,86 @@
+[
+  {
+    "detail": "Logical conjunction",
+    "documentation": "Logical conjunction",
+    "insertTextFormat": 1,
+    "kind": 14,
+    "label": "and",
+    "sortText": "70-and",
+    "textEdit": {
+      "newText": "and ",
+      "range": {
+        "end": {
+          "character": 40,
+          "line": 1
+        },
+        "start": {
+          "character": 40,
+          "line": 1
+        }
+      }
+    }
+  },
+  {
+    "detail": "Logical disjunction",
+    "documentation": "Logical disjunction",
+    "insertTextFormat": 1,
+    "kind": 14,
+    "label": "or",
+    "sortText": "70-or",
+    "textEdit": {
+      "newText": "or ",
+      "range": {
+        "end": {
+          "character": 40,
+          "line": 1
+        },
+        "start": {
+          "character": 40,
+          "line": 1
+        }
+      }
+    }
+  },
+  {
+    "detail": "Arg. string",
+    "documentation": "No help available.",
+    "insertTextFormat": 1,
+    "kind": 12,
+    "label": "path",
+    "sortText": "20-path",
+    "textEdit": {
+      "newText": "path:",
+      "range": {
+        "end": {
+          "character": 40,
+          "line": 1
+        },
+        "start": {
+          "character": 40,
+          "line": 1
+        }
+      }
+    }
+  },
+  {
+    "detail": "Type conversion",
+    "documentation": "Type conversion",
+    "insertTextFormat": 1,
+    "kind": 14,
+    "label": "to",
+    "sortText": "70-to",
+    "textEdit": {
+      "newText": "to ",
+      "range": {
+        "end": {
+          "character": 40,
+          "line": 1
+        },
+        "start": {
+          "character": 40,
+          "line": 1
+        }
+      }
+    }
+  }
+]

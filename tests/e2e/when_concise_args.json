@@ -1,0 +1,44 @@
+[
+  {
+    "detail": "Arg. enum",
+    "documentation": "No help available.",
+    "insertTextFormat": 1,
+    "kind": 12,
+    "label": "method",
+    "sortText": "20-method",
+    "textEdit": {
+      "newText": "method:",
+      "range": {
+        "end": {
+          "character": 24,
+          "line": 0
+        },
+        "start": {
+          "character": 24,
+          "line": 0
+        }
+      }
+    }
+  },
+  {
+    "detail": "Arg. string",
+    "documentation": "No help available.",
+    "insertTextFormat": 1,
+    "kind": 12,
+    "label": "path",
+    "sortText": "20-path",
+    "textEdit": {
+      "newText": "path:",
+      "range": {
+        "end": {
+          "character": 24,
+          "line": 0
+        },
+        "start": {
+          "character": 24,
+          "line": 0
+        }
+      }
+    }
+  }
+]

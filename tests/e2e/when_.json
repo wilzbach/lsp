@@ -21,51 +21,6 @@
     }
   },
   {
-    "detail": "Crontab in Asyncy",
-    "documentation": {
-      "kind": "markdown",
-      "value": ""
-    },
-    "insertTextFormat": 1,
-    "kind": 2,
-    "label": "crontab",
-    "sortText": "40-crontab",
-    "textEdit": {
-      "newText": "crontab ",
-      "range": {
-        "end": {
-          "character": 5,
-          "line": 0
-        },
-        "start": {
-          "character": 5,
-          "line": 0
-        }
-      }
-    }
-  },
-  {
-    "detail": "Boolean value representing falsehood",
-    "documentation": "Boolean value representing falsehood",
-    "insertTextFormat": 1,
-    "kind": 14,
-    "label": "false",
-    "sortText": "70-false",
-    "textEdit": {
-      "newText": "false ",
-      "range": {
-        "end": {
-          "character": 5,
-          "line": 0
-        },
-        "start": {
-          "character": 5,
-          "line": 0
-        }
-      }
-    }
-  },
-  {
     "detail": "The Asyncy API gateway server for executing Stories via HTTP.",
     "documentation": {
       "kind": "markdown",
@@ -138,35 +93,17 @@
     }
   },
   {
-    "detail": "Logical negation",
-    "documentation": "Logical negation",
+    "detail": "An OMG service which provides various hashing capabilities",
+    "documentation": {
+      "kind": "markdown",
+      "value": "# _Hashes_ Open Microservice\n\n> Digest and hashing capabilities\n\n[![Open Microservice Specification Version](https://img.shields.io/badge/Open%20Microservice-1.0-477bf3.svg)](https://openmicroservices.org) [![Open Microservices Spectrum Chat](https://withspectrum.github.io/badge/badge.svg)](https://spectrum.chat/open-microservices) [![Open Microservices Code of Conduct](https://img.shields.io/badge/Contributor%20Covenant-v1.4%20adopted-ff69b4.svg)](https://github.com/oms-services/.github/blob/master/CODE_OF_CONDUCT.md) [![Open Microservices Commitzen](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](http://makeapullrequest.com)\n[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)\n\n## Introduction\n\nThis project is an example implementation of the [Open Microservice Specification](https://openmicroservices.org), a standard originally created at [Storyscript](https://storyscript.io) for building highly-portable \"microservices\" that expose the events, actions, and APIs inside containerized software.\n\n## Getting Started\n\nThe `oms` command-line interface allows you to interact with Open Microservices. If you're interested in creating an Open Microservice the CLI also helps validate, test, and debug your `oms.yml` implementation!\n\nSee the [oms-cli](https://github.com/microservices/oms) project to learn more!\n\n### Installation\n\n```\nnpm install -g @microservices/oms\n```\n\n## Usage\n\n### Open Microservices CLI Usage\n\nOnce you have the [oms-cli](https://github.com/microservices/oms) installed, you can run any of the following commands from within this project's root directory:\n\n#### Actions\n\n##### digest\n\n>\n\n##### Action Arguments\n\n| Argument Name | Type     | Required | Default | Description              |\n| :------------ | :------- | :------- | :------ | :----------------------- |\n| method        | `string` | `true`   | None    | No description provided. |\n| data          | `string` | `true`   | None    | No description provided. |\n\n```shell\noms run digest \\\n    -a method='*****' \\\n    -a data='*****'\n```\n\n##### hmac\n\n>\n\n##### Action Arguments\n\n| Argument Name | Type     | Required | Default | Description              |\n| :------------ | :------- | :------- | :------ | :----------------------- |\n| method        | `string` | `true`   | None    | No description provided. |\n| data          | `string` | `true`   | None    | No description provided. |\n| secret        | `string` | `true`   | None    | No description provided. |\n\n```shell\noms run hmac \\\n    -a method='*****' \\\n    -a data='*****' \\\n    -a secret='*****'\n```\n\n## Contributing\n\nAll suggestions in how to improve the specification and this guide are very welcome. Feel free share your thoughts in the Issue tracker, or even better, fork the repository to implement your own ideas and submit a pull request.\n\n[![Edit hashes on CodeSandbox](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/oms-services/hashes)\n\nThis project is guided by [Contributor Covenant](https://github.com/oms-services/.github/blob/master/CODE_OF_CONDUCT.md). Please read out full [Contribution Guidelines](https://github.com/oms-services/.github/blob/master/CONTRIBUTING.md).\n\n## Additional Resources\n\n- [Install the CLI](https://github.com/microservices/oms) - The OMS CLI helps developers create, test, validate, and build microservices.\n- [Example OMS Services](https://github.com/oms-services) - Examples of OMS-compliant services written in a variety of languages.\n- [Example Language Implementations](https://github.com/microservices) - Find tooling & language implementations in Node, Python, Scala, Java, Clojure.\n- [Storyscript Hub](https://hub.storyscript.io) - A public registry of OMS services.\n- [Community Chat](https://spectrum.chat/open-microservices) - Have ideas? Questions? Join us on Spectrum.\n"
+    },
     "insertTextFormat": 1,
-    "kind": 14,
-    "label": "not",
-    "sortText": "70-not",
+    "kind": 2,
+    "label": "oms-services/hashes",
+    "sortText": "40-oms-services/hashes",
     "textEdit": {
-      "newText": "not ",
-      "range": {
-        "end": {
-          "character": 5,
-          "line": 0
-        },
-        "start": {
-          "character": 5,
-          "line": 0
-        }
-      }
-    }
-  },
-  {
-    "detail": "Intentional absence of any value",
-    "documentation": "Intentional absence of any value",
-    "insertTextFormat": 1,
-    "kind": 14,
-    "label": "null",
-    "sortText": "70-null",
-    "textEdit": {
-      "newText": "null ",
+      "newText": "oms-services/hashes ",
       "range": {
         "end": {
           "character": 5,
@@ -324,30 +261,6 @@
     }
   },
   {
-    "detail": "Crontab in Asyncy",
-    "documentation": {
-      "kind": "markdown",
-      "value": ""
-    },
-    "insertTextFormat": 1,
-    "kind": 2,
-    "label": "storyscript/crontab",
-    "sortText": "40-storyscript/crontab",
-    "textEdit": {
-      "newText": "storyscript/crontab ",
-      "range": {
-        "end": {
-          "character": 5,
-          "line": 0
-        },
-        "start": {
-          "character": 5,
-          "line": 0
-        }
-      }
-    }
-  },
-  {
     "detail": "The Asyncy API gateway server for executing Stories via HTTP.",
     "documentation": {
       "kind": "markdown",
@@ -359,27 +272,6 @@
     "sortText": "40-storyscript/http",
     "textEdit": {
       "newText": "storyscript/http ",
-      "range": {
-        "end": {
-          "character": 5,
-          "line": 0
-        },
-        "start": {
-          "character": 5,
-          "line": 0
-        }
-      }
-    }
-  },
-  {
-    "detail": "Boolean value representing truth",
-    "documentation": "Boolean value representing truth",
-    "insertTextFormat": 1,
-    "kind": 14,
-    "label": "true",
-    "sortText": "70-true",
-    "textEdit": {
-      "newText": "true ",
       "range": {
         "end": {
           "character": 5,
