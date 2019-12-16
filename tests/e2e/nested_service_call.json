@@ -7,7 +7,7 @@
     "label": "get",
     "sortText": "20-get",
     "textEdit": {
-      "newText": "get key:${1:<string>}",
+      "newText": "get key:\"${1:<string>}\"",
       "range": {
         "end": {
           "character": 24,
@@ -28,7 +28,7 @@
     "label": "getSet",
     "sortText": "20-getSet",
     "textEdit": {
-      "newText": "getSet key:${1:<string>} value:${2:<any>}",
+      "newText": "getSet key:\"${1:<string>}\" value:${2:<any>}",
       "range": {
         "end": {
           "character": 24,

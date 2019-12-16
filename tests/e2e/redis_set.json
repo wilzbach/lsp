@@ -7,7 +7,7 @@
     "label": "set",
     "sortText": "20-set",
     "textEdit": {
-      "newText": "set key:${1:<string>} value:${2:<any>}",
+      "newText": "set key:\"${1:<string>}\" value:${2:<any>}",
       "range": {
         "end": {
           "character": 9,
@@ -28,7 +28,7 @@
     "label": "setnx",
     "sortText": "20-setnx",
     "textEdit": {
-      "newText": "setnx key:${1:<string>} value:${2:<any>}",
+      "newText": "setnx key:\"${1:<string>}\" value:${2:<any>}",
       "range": {
         "end": {
           "character": 9,

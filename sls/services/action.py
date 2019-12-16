@@ -4,6 +4,7 @@ from sls.completion.items.item import (
     InsertTextFormat,
     SortGroup,
 )
+from sls.completion.types import Types
 
 from .types import TypeMappings
 
@@ -25,7 +26,8 @@ class Action(CompletionItem):
         for arg in self.action.args():
             if arg.required():
                 ty = TypeMappings.get_type_string(arg.type())
-                text_edit += f" {arg.name()}:${{{pos}:<{ty}>}}"
+                arg_value = Types.type_insertion(ty, f"${{{pos}:<{ty}>}}")
+                text_edit += f" {arg.name()}:{arg_value}"
                 pos += 1
 
         # include a space even when there are no required args

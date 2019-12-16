@@ -61,7 +61,7 @@
     "label": "endswith",
     "sortText": "20-endswith",
     "textEdit": {
-      "newText": "m[\"f\"].endswith(suffix:${1:<string>})",
+      "newText": "m[\"f\"].endswith(suffix:\"${1:<string>}\")",
       "range": {
         "end": {
           "character": 7,
@@ -136,7 +136,7 @@
     "label": "replace",
     "sortText": "20-replace",
     "textEdit": {
-      "newText": "m[\"f\"].replace(item:${1:<string>} by:${2:<string>})",
+      "newText": "m[\"f\"].replace(item:\"${1:<string>}\" by:\"${2:<string>}\")",
       "range": {
         "end": {
           "character": 7,
@@ -161,7 +161,7 @@
     "label": "split",
     "sortText": "20-split",
     "textEdit": {
-      "newText": "m[\"f\"].split(by:${1:<string>})",
+      "newText": "m[\"f\"].split(by:\"${1:<string>}\")",
       "range": {
         "end": {
           "character": 7,
@@ -186,7 +186,7 @@
     "label": "startswith",
     "sortText": "20-startswith",
     "textEdit": {
-      "newText": "m[\"f\"].startswith(prefix:${1:<string>})",
+      "newText": "m[\"f\"].startswith(prefix:\"${1:<string>}\")",
       "range": {
         "end": {
           "character": 7,

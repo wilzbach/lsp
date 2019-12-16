@@ -11,7 +11,7 @@
     "label": "contains",
     "sortText": "20-contains",
     "textEdit": {
-      "newText": "ls.contains(key:${1:<string>})",
+      "newText": "ls.contains(key:\"${1:<string>}\")",
       "range": {
         "end": {
           "character": 7,
@@ -61,7 +61,7 @@
     "label": "get",
     "sortText": "20-get",
     "textEdit": {
-      "newText": "ls.get(key:${1:<string>} default:${2:<string>})",
+      "newText": "ls.get(key:\"${1:<string>}\" default:\"${2:<string>}\")",
       "range": {
         "end": {
           "character": 7,
@@ -136,7 +136,7 @@
     "label": "remove",
     "sortText": "20-remove",
     "textEdit": {
-      "newText": "ls.remove(key:${1:<string>})",
+      "newText": "ls.remove(key:\"${1:<string>}\")",
       "range": {
         "end": {
           "character": 7,

@@ -1,8 +1,9 @@
-from sls.completion.items.item import CompletionItem, SortGroup
+from sls.completion.items.base_function import BaseFunctionCompletionItem
+from sls.completion.items.item import SortGroup
 from sls.spec import CompletionItemKind, InsertTextFormat, MarkupKind
 
 
-class CompletionBuiltin(CompletionItem):
+class CompletionBuiltin(BaseFunctionCompletionItem):
     """
     A builtin completion item.
     """
@@ -30,25 +31,10 @@ class CompletionBuiltin(CompletionItem):
         self.doc = "\n\n".join(self.doc)
         self.detail = "\n".join(self.detail)
         self.full_text = f"{self.word}.{self.name}"
+        self.insert_name = self.full_text
 
-    def _text_edit(self):
-        """
-        Include required arguments in the builtin snippet.
-        """
-        text_edit = f"{self.full_text}("
-
-        builtin = self.builtins[0]
-
-        pos = 1
-        for arg, sym in builtin.args().items():
-            if pos > 1:
-                text_edit += " "
-            ty = str(sym.type())
-            text_edit += f"{arg}:${{{pos}:<{ty}>}}"
-            pos += 1
-
-        text_edit += ")"
-        return text_edit
+    def args(self):
+        return self.builtins[0].args()
 
     def to_completion(self, context):
         """
