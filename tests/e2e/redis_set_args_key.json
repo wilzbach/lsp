@@ -26,7 +26,7 @@
     "insertTextFormat": 1,
     "kind": 14,
     "label": "false",
-    "sortText": "70-false",
+    "sortText": "90-false",
     "textEdit": {
       "newText": "false ",
       "range": {
@@ -119,7 +119,7 @@
     "insertTextFormat": 1,
     "kind": 14,
     "label": "not",
-    "sortText": "70-not",
+    "sortText": "90-not",
     "textEdit": {
       "newText": "not ",
       "range": {
@@ -140,7 +140,7 @@
     "insertTextFormat": 1,
     "kind": 14,
     "label": "null",
-    "sortText": "70-null",
+    "sortText": "90-null",
     "textEdit": {
       "newText": "null ",
       "range": {
@@ -353,7 +353,7 @@
     "insertTextFormat": 1,
     "kind": 14,
     "label": "true",
-    "sortText": "70-true",
+    "sortText": "90-true",
     "textEdit": {
       "newText": "true ",
       "range": {

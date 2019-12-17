@@ -5,7 +5,7 @@
     "insertTextFormat": 1,
     "kind": 14,
     "label": "when",
-    "sortText": "70-when",
+    "sortText": "90-when",
     "textEdit": {
       "newText": "when ",
       "range": {

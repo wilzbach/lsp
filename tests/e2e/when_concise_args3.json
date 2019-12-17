@@ -5,7 +5,7 @@
     "insertTextFormat": 1,
     "kind": 14,
     "label": "and",
-    "sortText": "70-and",
+    "sortText": "90-and",
     "textEdit": {
       "newText": "and ",
       "range": {
@@ -23,12 +23,12 @@
   {
     "detail": "Aliasing",
     "documentation": "Aliasing",
-    "insertTextFormat": 1,
-    "kind": 14,
+    "insertTextFormat": 2,
+    "kind": 15,
     "label": "as",
     "sortText": "70-as",
     "textEdit": {
-      "newText": "as ",
+      "newText": "as ${1:<name>}",
       "range": {
         "end": {
           "character": 47,
@@ -47,7 +47,7 @@
     "insertTextFormat": 1,
     "kind": 14,
     "label": "or",
-    "sortText": "70-or",
+    "sortText": "90-or",
     "textEdit": {
       "newText": "or ",
       "range": {
@@ -68,7 +68,7 @@
     "insertTextFormat": 1,
     "kind": 14,
     "label": "to",
-    "sortText": "70-to",
+    "sortText": "90-to",
     "textEdit": {
       "newText": "to ",
       "range": {

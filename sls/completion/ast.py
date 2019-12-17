@@ -1,3 +1,4 @@
+from sls.completion.items.item import SortGroup
 from sls.completion.items.keyword import KeywordCompletionSymbol
 
 from sls.logging import logger
@@ -308,6 +309,9 @@ class ASTAnalyzer:
             # use of 'as' inside parenthesis is definitely invalid
             return
 
+        as_keyword = KeywordCompletionSymbol(
+            "as", sort_group=SortGroup.ContextKeyword
+        )
         suffixes = ["service_op", "service_suffix"]
 
         try:
@@ -319,7 +323,7 @@ class ASTAnalyzer:
         except Exception:
             # attempt to parse service_block failed - must be a when_block or
             # similar
-            yield KeywordCompletionSymbol("as")
+            yield as_keyword
             return
 
         action = self.service_handler.action(service_name, service_command)
@@ -329,7 +333,7 @@ class ASTAnalyzer:
         # only yield 'as' iff the service can start an event block (=it has
         # events)
         if len(action.events()) > 0:
-            yield KeywordCompletionSymbol("as")
+            yield as_keyword
 
     def get_names(self):
         """

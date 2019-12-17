@@ -5,7 +5,7 @@
     "insertTextFormat": 1,
     "kind": 14,
     "label": "break",
-    "sortText": "70-break",
+    "sortText": "90-break",
     "textEdit": {
       "newText": "break ",
       "range": {
@@ -26,7 +26,7 @@
     "insertTextFormat": 1,
     "kind": 14,
     "label": "continue",
-    "sortText": "70-continue",
+    "sortText": "90-continue",
     "textEdit": {
       "newText": "continue ",
       "range": {
@@ -47,7 +47,7 @@
     "insertTextFormat": 1,
     "kind": 14,
     "label": "false",
-    "sortText": "70-false",
+    "sortText": "90-false",
     "textEdit": {
       "newText": "false ",
       "range": {
@@ -68,7 +68,7 @@
     "insertTextFormat": 1,
     "kind": 14,
     "label": "foreach",
-    "sortText": "70-foreach",
+    "sortText": "90-foreach",
     "textEdit": {
       "newText": "foreach ",
       "range": {
@@ -89,7 +89,7 @@
     "insertTextFormat": 1,
     "kind": 14,
     "label": "function",
-    "sortText": "70-function",
+    "sortText": "90-function",
     "textEdit": {
       "newText": "function ",
       "range": {
@@ -134,7 +134,7 @@
     "insertTextFormat": 1,
     "kind": 14,
     "label": "if",
-    "sortText": "70-if",
+    "sortText": "90-if",
     "textEdit": {
       "newText": "if ",
       "range": {
@@ -203,7 +203,7 @@
     "insertTextFormat": 1,
     "kind": 14,
     "label": "not",
-    "sortText": "70-not",
+    "sortText": "90-not",
     "textEdit": {
       "newText": "not ",
       "range": {
@@ -224,7 +224,7 @@
     "insertTextFormat": 1,
     "kind": 14,
     "label": "null",
-    "sortText": "70-null",
+    "sortText": "90-null",
     "textEdit": {
       "newText": "null ",
       "range": {
@@ -389,7 +389,7 @@
     "insertTextFormat": 1,
     "kind": 14,
     "label": "return",
-    "sortText": "70-return",
+    "sortText": "90-return",
     "textEdit": {
       "newText": "return ",
       "range": {
@@ -458,7 +458,7 @@
     "insertTextFormat": 1,
     "kind": 14,
     "label": "throw",
-    "sortText": "70-throw",
+    "sortText": "90-throw",
     "textEdit": {
       "newText": "throw ",
       "range": {
@@ -479,7 +479,7 @@
     "insertTextFormat": 1,
     "kind": 14,
     "label": "true",
-    "sortText": "70-true",
+    "sortText": "90-true",
     "textEdit": {
       "newText": "true ",
       "range": {
@@ -500,7 +500,7 @@
     "insertTextFormat": 1,
     "kind": 14,
     "label": "try",
-    "sortText": "70-try",
+    "sortText": "90-try",
     "textEdit": {
       "newText": "try ",
       "range": {
@@ -545,7 +545,7 @@
     "insertTextFormat": 1,
     "kind": 14,
     "label": "when",
-    "sortText": "70-when",
+    "sortText": "90-when",
     "textEdit": {
       "newText": "when ",
       "range": {
@@ -566,7 +566,7 @@
     "insertTextFormat": 1,
     "kind": 14,
     "label": "while",
-    "sortText": "70-while",
+    "sortText": "90-while",
     "textEdit": {
       "newText": "while ",
       "range": {

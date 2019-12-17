@@ -15,7 +15,8 @@ class SortGroup:
     Action = 20
     Event = 20
     Service = 40
-    Keyword = 70
+    ContextKeyword = 70
+    Keyword = 90
 
 
 class CompletionItem:

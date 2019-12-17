@@ -4,6 +4,7 @@ from sls.completion.items.item import (
     SortGroup,
 )
 from sls.logging import logger
+from sls.spec import InsertTextFormat
 
 log = logger(__name__)
 
@@ -39,13 +40,18 @@ keywords = {
     "null": {"detail": "Intentional absence of any value"},
 }
 
+snippets = {"as": "as ${1:<name>}"}
+
 
 class KeywordCompletionSymbol(CompletionItem):
     """
     A symbol completion item.
     """
 
-    def __init__(self, keyword):
+    def __init__(self, keyword, sort_group=None):
+        if sort_group is None:
+            sort_group = SortGroup.Keyword
+        self.sort_group = sort_group
         self.keyword = keyword
 
     def to_completion(self, context):
@@ -53,7 +59,15 @@ class KeywordCompletionSymbol(CompletionItem):
         Returns a LSP representation.
         """
         options = keywords.get(self.keyword, {})
-        text_edit = options.get("text_edit", f"{self.keyword} ")
+        if self.keyword in snippets:
+            insert_text = snippets[self.keyword]
+            insert_text_format = InsertTextFormat.Snippet
+            completion_kind = CompletionItemKind.Snippet
+        else:
+            insert_text = f"{self.keyword} "
+            insert_text_format = InsertTextFormat.PlainText
+            completion_kind = CompletionItemKind.Keyword
+        text_edit = options.get("text_edit", insert_text)
         detail = options.get("detail", self.keyword)
         documentation = options.get("doc", detail)
         return self.completion_build(
@@ -61,7 +75,8 @@ class KeywordCompletionSymbol(CompletionItem):
             text_edit=text_edit,
             detail=detail,
             documentation=documentation,
-            completion_kind=CompletionItemKind.Keyword,
+            completion_kind=completion_kind,
+            insert_text_format=insert_text_format,
             context=context,
-            sort_group=SortGroup.Keyword,
+            sort_group=self.sort_group,
         )

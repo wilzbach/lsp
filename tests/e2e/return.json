@@ -5,7 +5,7 @@
     "insertTextFormat": 1,
     "kind": 14,
     "label": "return",
-    "sortText": "70-return",
+    "sortText": "90-return",
     "textEdit": {
       "newText": "return ",
       "range": {

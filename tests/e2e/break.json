@@ -5,7 +5,7 @@
     "insertTextFormat": 1,
     "kind": 14,
     "label": "break",
-    "sortText": "70-break",
+    "sortText": "90-break",
     "textEdit": {
       "newText": "break ",
       "range": {

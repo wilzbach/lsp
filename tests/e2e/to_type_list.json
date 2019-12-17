@@ -5,7 +5,7 @@
     "insertTextFormat": 1,
     "kind": 14,
     "label": "List",
-    "sortText": "70-List",
+    "sortText": "90-List",
     "textEdit": {
       "newText": "List[",
       "range": {

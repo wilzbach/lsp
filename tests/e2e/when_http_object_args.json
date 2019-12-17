@@ -2,12 +2,12 @@
   {
     "detail": "Aliasing",
     "documentation": "Aliasing",
-    "insertTextFormat": 1,
-    "kind": 14,
+    "insertTextFormat": 2,
+    "kind": 15,
     "label": "as",
     "sortText": "70-as",
     "textEdit": {
-      "newText": "as ",
+      "newText": "as ${1:<name>}",
       "range": {
         "end": {
           "character": 20,

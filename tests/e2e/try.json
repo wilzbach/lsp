@@ -5,7 +5,7 @@
     "insertTextFormat": 1,
     "kind": 14,
     "label": "true",
-    "sortText": "70-true",
+    "sortText": "90-true",
     "textEdit": {
       "newText": "true ",
       "range": {
@@ -26,7 +26,7 @@
     "insertTextFormat": 1,
     "kind": 14,
     "label": "try",
-    "sortText": "70-try",
+    "sortText": "90-try",
     "textEdit": {
       "newText": "try ",
       "range": {
