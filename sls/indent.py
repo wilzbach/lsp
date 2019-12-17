@@ -78,15 +78,28 @@ class Indentation:
         try:
             tokens = [*self.parser.tokenize(context.line)]
         except LexerException:
+            log.warning(f"Lexing error for line: {context.line}")
             return
 
         if len(tokens) == 0:
             return
 
-        tok = tokens[0]
+        first_tok = tokens[0].text()
 
         # special case for partially invalid blocks
-        if tok.text() == "catch" or tok.text() == "else":
+        if first_tok == "catch" or first_tok == "else":
+            indentor.add()
+            return
+
+        # shortcut for start of new blocks
+        if (
+            first_tok == "try"
+            or first_tok == "while"
+            or first_tok == "if"
+            or first_tok == "foreach"
+            or first_tok == "when"
+            or first_tok == "function"
+        ):
             indentor.add()
             return
 
@@ -111,16 +124,6 @@ class Indentation:
                 if self._service_has_events(stack):
                     indentor.add()
                     return
-                return
-            if (
-                from_rule == "try_block"
-                or from_rule == "while_block"
-                or from_rule == "if_block"
-                or from_rule == "foreach_block"
-                or from_rule == "when_block"
-                or from_rule == "fn_block"
-            ):
-                indentor.add()
                 return
 
     def _service_has_events(self, stack):
