@@ -1,5 +1,26 @@
 [
   {
+    "detail": "Aliasing",
+    "documentation": "Aliasing",
+    "insertTextFormat": 2,
+    "kind": 15,
+    "label": "as",
+    "sortText": "70-as",
+    "textEdit": {
+      "newText": "as ${1:<name>}",
+      "range": {
+        "end": {
+          "character": 17,
+          "line": 0
+        },
+        "start": {
+          "character": 17,
+          "line": 0
+        }
+      }
+    }
+  },
+  {
     "detail": "Event: Listen and respond to http connections by",
     "documentation": "Listen and respond to http connections by\nregistering with the Storyscript Gateway resulting in a serverless function.\n",
     "insertTextFormat": 2,

@@ -10,33 +10,33 @@
       "newText": "and ",
       "range": {
         "end": {
-          "character": 26,
-          "line": 1
+          "character": 22,
+          "line": 0
         },
         "start": {
-          "character": 26,
-          "line": 1
+          "character": 22,
+          "line": 0
         }
       }
     }
   },
   {
-    "detail": "[int] Ending index (exclusive)",
-    "documentation": "",
-    "insertTextFormat": 1,
-    "kind": 11,
-    "label": "end",
-    "sortText": "20-end",
+    "detail": "Aliasing",
+    "documentation": "Aliasing",
+    "insertTextFormat": 2,
+    "kind": 15,
+    "label": "as",
+    "sortText": "70-as",
     "textEdit": {
-      "newText": "end:",
+      "newText": "as ${1:<name>}",
       "range": {
         "end": {
-          "character": 26,
-          "line": 1
+          "character": 22,
+          "line": 0
         },
         "start": {
-          "character": 26,
-          "line": 1
+          "character": 22,
+          "line": 0
         }
       }
     }
@@ -52,33 +52,12 @@
       "newText": "or ",
       "range": {
         "end": {
-          "character": 26,
-          "line": 1
+          "character": 22,
+          "line": 0
         },
         "start": {
-          "character": 26,
-          "line": 1
-        }
-      }
-    }
-  },
-  {
-    "detail": "[int] Starting index (inclusive)",
-    "documentation": "",
-    "insertTextFormat": 1,
-    "kind": 11,
-    "label": "start",
-    "sortText": "20-start",
-    "textEdit": {
-      "newText": "start:",
-      "range": {
-        "end": {
-          "character": 26,
-          "line": 1
-        },
-        "start": {
-          "character": 26,
-          "line": 1
+          "character": 22,
+          "line": 0
         }
       }
     }
@@ -94,12 +73,12 @@
       "newText": "to ",
       "range": {
         "end": {
-          "character": 26,
-          "line": 1
+          "character": 22,
+          "line": 0
         },
         "start": {
-          "character": 26,
-          "line": 1
+          "character": 22,
+          "line": 0
         }
       }
     }

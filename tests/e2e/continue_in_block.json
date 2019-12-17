@@ -5,7 +5,7 @@
     "insertTextFormat": 1,
     "kind": 14,
     "label": "continue",
-    "sortText": "70-continue",
+    "sortText": "90-continue",
     "textEdit": {
       "newText": "continue ",
       "range": {

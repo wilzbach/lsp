@@ -10,11 +10,11 @@
       "newText": "as ${1:<name>}",
       "range": {
         "end": {
-          "character": 18,
+          "character": 12,
           "line": 0
         },
         "start": {
-          "character": 18,
+          "character": 12,
           "line": 0
         }
       }

@@ -5,7 +5,7 @@
     "insertTextFormat": 1,
     "kind": 14,
     "label": "while",
-    "sortText": "70-while",
+    "sortText": "90-while",
     "textEdit": {
       "newText": "while ",
       "range": {

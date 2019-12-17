@@ -5,7 +5,7 @@
     "insertTextFormat": 1,
     "kind": 14,
     "label": "if",
-    "sortText": "70-if",
+    "sortText": "90-if",
     "textEdit": {
       "newText": "if ",
       "range": {

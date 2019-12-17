@@ -25,6 +25,7 @@ class StoryTokenSpace:
     RPARENS = TokenType("RPARENS")
     COLON = TokenType("COLON")
     DOT = TokenType("DOT")
+    AS = TokenType("AS")
 
     OTHER = TokenType("OTHER", True)
 
@@ -81,6 +82,8 @@ class Token:
             ty = StoryTokenSpace.COLON
         elif id_ == "dot":
             ty = StoryTokenSpace.DOT
+        elif id_ == "as_operator":
+            ty = StoryTokenSpace.AS
         else:
             ty = StoryTokenSpace.OTHER
             # assert 0, id_

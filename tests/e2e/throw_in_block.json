@@ -5,7 +5,7 @@
     "insertTextFormat": 1,
     "kind": 14,
     "label": "throw",
-    "sortText": "70-throw",
+    "sortText": "90-throw",
     "textEdit": {
       "newText": "throw ",
       "range": {

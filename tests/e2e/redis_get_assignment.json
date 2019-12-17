@@ -10,32 +10,11 @@
       "newText": "and ",
       "range": {
         "end": {
-          "character": 33,
+          "character": 25,
           "line": 0
         },
         "start": {
-          "character": 33,
-          "line": 0
-        }
-      }
-    }
-  },
-  {
-    "detail": "Arg. string",
-    "documentation": "No help available.",
-    "insertTextFormat": 1,
-    "kind": 12,
-    "label": "key",
-    "sortText": "20-key",
-    "textEdit": {
-      "newText": "key:",
-      "range": {
-        "end": {
-          "character": 33,
-          "line": 0
-        },
-        "start": {
-          "character": 33,
+          "character": 25,
           "line": 0
         }
       }
@@ -52,11 +31,11 @@
       "newText": "or ",
       "range": {
         "end": {
-          "character": 33,
+          "character": 25,
           "line": 0
         },
         "start": {
-          "character": 33,
+          "character": 25,
           "line": 0
         }
       }
@@ -73,32 +52,11 @@
       "newText": "to ",
       "range": {
         "end": {
-          "character": 33,
+          "character": 25,
           "line": 0
         },
         "start": {
-          "character": 33,
-          "line": 0
-        }
-      }
-    }
-  },
-  {
-    "detail": "Arg. any",
-    "documentation": "No help available.",
-    "insertTextFormat": 1,
-    "kind": 12,
-    "label": "value",
-    "sortText": "20-value",
-    "textEdit": {
-      "newText": "value:",
-      "range": {
-        "end": {
-          "character": 33,
-          "line": 0
-        },
-        "start": {
-          "character": 33,
+          "character": 25,
           "line": 0
         }
       }
