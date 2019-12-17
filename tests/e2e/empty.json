@@ -65,12 +65,12 @@
   {
     "detail": "Execute block for each element",
     "documentation": "Execute block for each element",
-    "insertTextFormat": 1,
-    "kind": 14,
+    "insertTextFormat": 2,
+    "kind": 15,
     "label": "foreach",
     "sortText": "90-foreach",
     "textEdit": {
-      "newText": "foreach ",
+      "newText": "foreach ${1:<collection>} as ${2:<name>}",
       "range": {
         "end": {
           "character": 0,
@@ -131,12 +131,12 @@
   {
     "detail": "Conditional block",
     "documentation": "Conditional block",
-    "insertTextFormat": 1,
-    "kind": 14,
+    "insertTextFormat": 2,
+    "kind": 15,
     "label": "if",
     "sortText": "90-if",
     "textEdit": {
-      "newText": "if ",
+      "newText": "if ${1:<condition>}",
       "range": {
         "end": {
           "character": 0,
@@ -563,12 +563,12 @@
   {
     "detail": "Repeated block until 'boolean' is 'false'",
     "documentation": "Repeated block until 'boolean' is 'false'",
-    "insertTextFormat": 1,
-    "kind": 14,
+    "insertTextFormat": 2,
+    "kind": 15,
     "label": "while",
     "sortText": "90-while",
     "textEdit": {
-      "newText": "while ",
+      "newText": "while ${1:<condition>}",
       "range": {
         "end": {
           "character": 0,

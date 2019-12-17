@@ -9,8 +9,8 @@ from sls.spec import InsertTextFormat
 log = logger(__name__)
 
 keywords = {
-    "Map": {"detail": "Key-value collection type", "text_edit": "Map["},
-    "List": {"detail": "Typed list", "text_edit": "List["},
+    "Map": {"detail": "Key-value collection type"},
+    "List": {"detail": "Typed list"},
     "boolean": {"detail": "Binary state type of 'true' and 'false'"},
     "int": {"detail": "Integer number type"},
     "float": {"detail": "Floating-point number type"},
@@ -40,7 +40,14 @@ keywords = {
     "null": {"detail": "Intentional absence of any value"},
 }
 
-snippets = {"as": "as ${1:<name>}"}
+snippets = {
+    "as": "as ${1:<name>}",
+    "foreach": "foreach ${1:<collection>} as ${2:<name>}",
+    "if": "if ${1:<condition>}",
+    "while": "while ${1:<condition>}",
+    "Map": "Map[${1:<key_type},${2:<value_type}]",
+    "List": "List[${1:<element_type}]",
+}
 
 
 class KeywordCompletionSymbol(CompletionItem):
@@ -67,12 +74,11 @@ class KeywordCompletionSymbol(CompletionItem):
             insert_text = f"{self.keyword} "
             insert_text_format = InsertTextFormat.PlainText
             completion_kind = CompletionItemKind.Keyword
-        text_edit = options.get("text_edit", insert_text)
         detail = options.get("detail", self.keyword)
         documentation = options.get("doc", detail)
         return self.completion_build(
             label=self.keyword,
-            text_edit=text_edit,
+            text_edit=insert_text,
             detail=detail,
             documentation=documentation,
             completion_kind=completion_kind,

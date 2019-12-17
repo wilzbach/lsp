@@ -54,7 +54,7 @@ class ASTAnalyzer:
         try:
             yield from self._complete(context)
         except LexerException:
-            log.warning(f"Invalid line: {context.line}")
+            log.warning(f"Invalid line (lexer): {context.line}")
             return
 
     def _complete(self, context):
@@ -163,6 +163,8 @@ class ASTAnalyzer:
             pass
         elif tok == StoryTokenSpace.AS:
             yield from self.process_as(stack, parse_state)
+        elif tok == StoryTokenSpace.FOREACH:
+            yield KeywordCompletionSymbol("foreach")
         else:
             # no completion for numbers
             assert tok == StoryTokenSpace.NUMBER, tok

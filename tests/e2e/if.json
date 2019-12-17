@@ -2,12 +2,12 @@
   {
     "detail": "Conditional block",
     "documentation": "Conditional block",
-    "insertTextFormat": 1,
-    "kind": 14,
+    "insertTextFormat": 2,
+    "kind": 15,
     "label": "if",
     "sortText": "90-if",
     "textEdit": {
-      "newText": "if ",
+      "newText": "if ${1:<condition>}",
       "range": {
         "end": {
           "character": 2,

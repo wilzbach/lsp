@@ -2,12 +2,12 @@
   {
     "detail": "Execute block for each element",
     "documentation": "Execute block for each element",
-    "insertTextFormat": 1,
-    "kind": 14,
+    "insertTextFormat": 2,
+    "kind": 15,
     "label": "foreach",
     "sortText": "90-foreach",
     "textEdit": {
-      "newText": "foreach ",
+      "newText": "foreach ${1:<collection>} as ${2:<name>}",
       "range": {
         "end": {
           "character": 4,

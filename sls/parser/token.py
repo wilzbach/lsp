@@ -26,6 +26,7 @@ class StoryTokenSpace:
     COLON = TokenType("COLON")
     DOT = TokenType("DOT")
     AS = TokenType("AS")
+    FOREACH = TokenType("FOREACH")
 
     OTHER = TokenType("OTHER", True)
 
@@ -84,6 +85,8 @@ class Token:
             ty = StoryTokenSpace.DOT
         elif id_ == "as_operator":
             ty = StoryTokenSpace.AS
+        elif id_ == "foreach":
+            ty = StoryTokenSpace.FOREACH
         else:
             ty = StoryTokenSpace.OTHER
             # assert 0, id_

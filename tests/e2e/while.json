@@ -2,12 +2,12 @@
   {
     "detail": "Repeated block until 'boolean' is 'false'",
     "documentation": "Repeated block until 'boolean' is 'false'",
-    "insertTextFormat": 1,
-    "kind": 14,
+    "insertTextFormat": 2,
+    "kind": 15,
     "label": "while",
     "sortText": "90-while",
     "textEdit": {
-      "newText": "while ",
+      "newText": "while ${1:<condition>}",
       "range": {
         "end": {
           "character": 3,

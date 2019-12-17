@@ -18,7 +18,7 @@ block: if_block | foreach_block | while_block | when_block | try_block | fn_bloc
 
 
 if_block: 'if' expression NL indented_blocks ('else if' NL indented_blocks)* ['else' NL indented_blocks]
-foreach_block: 'foreach' expression as_suffix NL blocks
+foreach_block: FOREACH expression as_suffix NL blocks
 while_block: 'while' expression NL blocks
 when_block: 'when' when_expression NL blocks
 try_block: 'try' expression NL indented_blocks ['catch' NL indented_blocks]
