@@ -453,6 +453,26 @@ b = foo()
                 "dedent",
             ],
         ),
+        (
+            "[1,2,3]",
+            ["lbracket", "int", "comma", "int", "comma", "int", "rbracket"],
+        ),
+        (
+            "[1,2,3].length()",
+            [
+                "lbracket",
+                "int",
+                "comma",
+                "int",
+                "comma",
+                "int",
+                "rbracket",
+                "dot",
+                "name",
+                "lparens",
+                "rparens",
+            ],
+        ),
     ],
 )
 def test_stories(story, ids):

@@ -63,7 +63,21 @@ operators = {
     "List": "list_type",
 }
 
-operator_start = ["+", "-", "*", "/", "%", "<", ">", "!", "=", ")", "]", "}"]
+operator_start = [
+    "+",
+    "-",
+    "*",
+    "/",
+    "%",
+    "<",
+    ">",
+    "!",
+    "=",
+    ",",
+    ")",
+    "]",
+    "}",
+]
 
 # TODO: fix line/column information
 # TODO: peek during loop
