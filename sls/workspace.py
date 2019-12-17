@@ -2,6 +2,7 @@ from .completion.complete import Completion
 from .diagnostics import Diagnostics
 from .document import Document
 from .format import Formatter
+from .indent import Indentation
 from .logging import logger
 from .services.hub import ServiceHub
 
@@ -22,6 +23,7 @@ class Workspace:
         self._formatter = Formatter()
         self._service_registry = ServiceHub(hub=hub)
         self._completion = Completion.full(self._service_registry)
+        self._indenter = Indentation(self._service_registry)
 
     def add_document(self, doc):
         log.debug(f"ws.doc.add: {doc.uri}")
@@ -61,3 +63,8 @@ class Workspace:
         log.debug(f"ws.format: {uri}")
         doc = self.get_document(uri)
         return self._formatter.format(self, doc)
+
+    def indent(self, uri, position, options):
+        log.debug(f"ws.indent: {uri} pos={position}")
+        doc = self.get_document(uri)
+        return self._indenter.indent(self, doc, position, options)

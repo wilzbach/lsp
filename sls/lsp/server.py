@@ -116,6 +116,13 @@ class LanguageServer(LSPDispatcher):
         # TODO
         pass
 
+    def rpc_storyscript__indent(self, text_document, position, options=None):
+        if options is None:
+            options = {}
+        return self.workspace.indent(
+            text_document["uri"], Position.from_object(position), options
+        )
+
     def rpc_shutdown(self, **_kwargs):
         self._shutdown = True
 

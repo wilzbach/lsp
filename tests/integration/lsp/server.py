@@ -68,3 +68,24 @@ def test_completion(server):
         "isIncomplete": True,
         "items": items,
     }
+
+
+def test_indent(server):
+    doc = {"uri": ".magic."}
+    open_file(server, doc["uri"], "when foo bar")
+    pos = {"line": 0, "character": 2}
+    server.rpc_storyscript__indent(text_document=doc, position=pos) == {
+        "indent": "  ",
+    }
+
+
+def test_indent_options(server):
+    doc = {"uri": ".magic."}
+    open_file(server, doc["uri"], "when foo bar")
+    pos = {"line": 0, "character": 2}
+    options = {"indent_unit": "    "}
+    server.rpc_storyscript__indent(
+        text_document=doc, position=pos, options=options
+    ) == {
+        "indent": "    ",
+    }

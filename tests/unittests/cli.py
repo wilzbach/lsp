@@ -218,7 +218,7 @@ def test_cli_complete_hub(patch, runner, echo, app):
         app.complete.assert_called_with(
             "|completion|", text, line=None, column=None
         )
-        json.dumps.assert_called_with(app.complete(), indent=2, sort_keys=True)
+        json.dumps.assert_called_with(App.complete(), indent=2, sort_keys=True)
         click.echo.assert_called_with(json.dumps())
         assert e.exit_code == 0
 
@@ -245,7 +245,7 @@ def test_cli_complete_line_column(patch, runner, echo, app, options, expected):
             f.write(text)
         e = runner.invoke(Cli.main, ["complete", "my.story", *options])
         app.complete.assert_called_with("|completion|", text, **expected)
-        json.dumps.assert_called_with(app.complete(), indent=2, sort_keys=True)
+        json.dumps.assert_called_with(App.complete(), indent=2, sort_keys=True)
         click.echo.assert_called_with(json.dumps())
         assert e.exit_code == 0
 
