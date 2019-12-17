@@ -28,7 +28,7 @@
     "label": "fetch",
     "sortText": "20-fetch",
     "textEdit": {
-      "newText": "fetch url:${1:<string>}",
+      "newText": "fetch url:\"${1:<string>}\"",
       "range": {
         "end": {
           "character": 9,

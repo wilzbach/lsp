@@ -28,7 +28,7 @@
     "label": "list",
     "sortText": "20-list",
     "textEdit": {
-      "newText": "list baseId:${1:<string>} tableName:${2:<string>}",
+      "newText": "list baseId:\"${1:<string>}\" tableName:\"${2:<string>}\"",
       "range": {
         "end": {
           "character": 27,

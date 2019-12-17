@@ -86,7 +86,7 @@
     "label": "join",
     "sortText": "20-join",
     "textEdit": {
-      "newText": "ls.join(sep:${1:<string>})",
+      "newText": "ls.join(sep:\"${1:<string>}\")",
       "range": {
         "end": {
           "character": 7,

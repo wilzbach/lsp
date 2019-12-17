@@ -28,9 +28,17 @@ class Types:
     def is_service_output(ty):
         """
         Returns `True` if the type is an service output object (e.g. `http server`)
-        If the type is no service output object, `False` will be returned.
         """
         if isinstance(ty, ObjectType):
             if isinstance(ty.action(), Action):
                 return True
         return False
+
+    @staticmethod
+    def type_insertion(ty, text):
+        """
+        Compute the to-be-inserted argument snippet text for a type.
+        """
+        if ty == "string":
+            return f'"{text}"'
+        return text

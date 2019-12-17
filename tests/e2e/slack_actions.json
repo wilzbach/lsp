@@ -112,7 +112,7 @@
     "label": "send",
     "sortText": "20-send",
     "textEdit": {
-      "newText": "send channel:${1:<string>} text:${2:<string>}",
+      "newText": "send channel:\"${1:<string>}\" text:\"${2:<string>}\"",
       "range": {
         "end": {
           "character": 6,

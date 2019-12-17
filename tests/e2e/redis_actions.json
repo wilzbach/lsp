@@ -28,7 +28,7 @@
     "label": "append",
     "sortText": "20-append",
     "textEdit": {
-      "newText": "append key:${1:<string>} value:${2:<any>}",
+      "newText": "append key:\"${1:<string>}\" value:${2:<any>}",
       "range": {
         "end": {
           "character": 6,
@@ -49,7 +49,7 @@
     "label": "blpop",
     "sortText": "20-blpop",
     "textEdit": {
-      "newText": "blpop key:${1:<string>}",
+      "newText": "blpop key:\"${1:<string>}\"",
       "range": {
         "end": {
           "character": 6,
@@ -70,7 +70,7 @@
     "label": "brpop",
     "sortText": "20-brpop",
     "textEdit": {
-      "newText": "brpop key:${1:<string>}",
+      "newText": "brpop key:\"${1:<string>}\"",
       "range": {
         "end": {
           "character": 6,
@@ -91,7 +91,7 @@
     "label": "decrement",
     "sortText": "20-decrement",
     "textEdit": {
-      "newText": "decrement key:${1:<string>}",
+      "newText": "decrement key:\"${1:<string>}\"",
       "range": {
         "end": {
           "character": 6,
@@ -112,7 +112,7 @@
     "label": "delete",
     "sortText": "20-delete",
     "textEdit": {
-      "newText": "delete key:${1:<string>}",
+      "newText": "delete key:\"${1:<string>}\"",
       "range": {
         "end": {
           "character": 6,
@@ -133,7 +133,7 @@
     "label": "expire",
     "sortText": "20-expire",
     "textEdit": {
-      "newText": "expire key:${1:<string>} seconds:${2:<int>}",
+      "newText": "expire key:\"${1:<string>}\" seconds:${2:<int>}",
       "range": {
         "end": {
           "character": 6,
@@ -154,7 +154,7 @@
     "label": "get",
     "sortText": "20-get",
     "textEdit": {
-      "newText": "get key:${1:<string>}",
+      "newText": "get key:\"${1:<string>}\"",
       "range": {
         "end": {
           "character": 6,
@@ -175,7 +175,7 @@
     "label": "getSet",
     "sortText": "20-getSet",
     "textEdit": {
-      "newText": "getSet key:${1:<string>} value:${2:<any>}",
+      "newText": "getSet key:\"${1:<string>}\" value:${2:<any>}",
       "range": {
         "end": {
           "character": 6,
@@ -196,7 +196,7 @@
     "label": "increment",
     "sortText": "20-increment",
     "textEdit": {
-      "newText": "increment key:${1:<string>}",
+      "newText": "increment key:\"${1:<string>}\"",
       "range": {
         "end": {
           "character": 6,
@@ -238,7 +238,7 @@
     "label": "lpop",
     "sortText": "20-lpop",
     "textEdit": {
-      "newText": "lpop key:${1:<string>}",
+      "newText": "lpop key:\"${1:<string>}\"",
       "range": {
         "end": {
           "character": 6,
@@ -259,7 +259,7 @@
     "label": "lpush",
     "sortText": "20-lpush",
     "textEdit": {
-      "newText": "lpush key:${1:<string>} value:${2:<any>}",
+      "newText": "lpush key:\"${1:<string>}\" value:${2:<any>}",
       "range": {
         "end": {
           "character": 6,
@@ -364,7 +364,7 @@
     "label": "rpop",
     "sortText": "20-rpop",
     "textEdit": {
-      "newText": "rpop key:${1:<string>}",
+      "newText": "rpop key:\"${1:<string>}\"",
       "range": {
         "end": {
           "character": 6,
@@ -385,7 +385,7 @@
     "label": "rpush",
     "sortText": "20-rpush",
     "textEdit": {
-      "newText": "rpush key:${1:<string>} value:${2:<any>}",
+      "newText": "rpush key:\"${1:<string>}\" value:${2:<any>}",
       "range": {
         "end": {
           "character": 6,
@@ -406,7 +406,7 @@
     "label": "set",
     "sortText": "20-set",
     "textEdit": {
-      "newText": "set key:${1:<string>} value:${2:<any>}",
+      "newText": "set key:\"${1:<string>}\" value:${2:<any>}",
       "range": {
         "end": {
           "character": 6,
@@ -427,7 +427,7 @@
     "label": "setnx",
     "sortText": "20-setnx",
     "textEdit": {
-      "newText": "setnx key:${1:<string>} value:${2:<any>}",
+      "newText": "setnx key:\"${1:<string>}\" value:${2:<any>}",
       "range": {
         "end": {
           "character": 6,

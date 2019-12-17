@@ -7,7 +7,7 @@
     "label": "find",
     "sortText": "20-find",
     "textEdit": {
-      "newText": "find coll:${1:<string>} db:${2:<string>} query:${3:<Map[any,any]>}",
+      "newText": "find coll:\"${1:<string>}\" db:\"${2:<string>}\" query:${3:<Map[any,any]>}",
       "range": {
         "end": {
           "character": 29,
@@ -28,7 +28,7 @@
     "label": "findOne",
     "sortText": "20-findOne",
     "textEdit": {
-      "newText": "findOne coll:${1:<string>} db:${2:<string>} query:${3:<Map[any,any]>}",
+      "newText": "findOne coll:\"${1:<string>}\" db:\"${2:<string>}\" query:${3:<Map[any,any]>}",
       "range": {
         "end": {
           "character": 29,

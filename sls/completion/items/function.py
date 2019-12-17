@@ -1,8 +1,9 @@
-from sls.completion.items.item import CompletionItem, SortGroup
+from sls.completion.items.base_function import BaseFunctionCompletionItem
+from sls.completion.items.item import SortGroup
 from sls.spec import CompletionItemKind, InsertTextFormat
 
 
-class CompletionFunction(CompletionItem):
+class CompletionFunction(BaseFunctionCompletionItem):
     """
     A function completion item.
     """
@@ -10,24 +11,10 @@ class CompletionFunction(CompletionItem):
     def __init__(self, function):
         self.function = function
         self.desc = function.pretty().replace("`", "")
+        self.insert_name = self.function.name()
 
-    def _text_edit(self):
-        """
-        Include required arguments in the function snippet.
-        """
-        name = self.function.name()
-        text_edit = f"{name}("
-
-        pos = 1
-        for arg, sym in self.function.args().items():
-            if pos > 1:
-                text_edit += " "
-            ty = str(sym.type())
-            text_edit += f"{arg}:${{{pos}:<{ty}>}}"
-            pos += 1
-
-        text_edit += ")"
-        return text_edit
+    def args(self):
+        return self.function.args()
 
     def to_completion(self, context):
         """
