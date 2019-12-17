@@ -1,0 +1,23 @@
+[
+  {
+    "detail": "Symbol. int",
+    "documentation": "TBD",
+    "insertTextFormat": 1,
+    "kind": 6,
+    "label": "avar",
+    "sortText": "20-avar",
+    "textEdit": {
+      "newText": "avar",
+      "range": {
+        "end": {
+          "character": 18,
+          "line": 1
+        },
+        "start": {
+          "character": 15,
+          "line": 1
+        }
+      }
+    }
+  }
+]
