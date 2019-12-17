@@ -3,9 +3,12 @@ import io
 import json
 from os import path
 
-from pytest import mark
+from pytest import fixture, mark
 
 from sls import App
+
+import storyscript.hub.Hub as StoryHub
+from storyhub.sdk.AutoUpdateThread import AutoUpdateThread
 
 
 from tests.e2e.utils.features import parse_options
@@ -13,6 +16,12 @@ from tests.e2e.utils.fixtures import find_test_files, hub, test_dir
 
 
 test_files = find_test_files(relative=True)
+
+
+@fixture
+def patched_storyhub(mocker, scope="module"):
+    mocker.patch.object(StoryHub, "StoryscriptHub", return_value=hub)
+    mocker.patch.object(AutoUpdateThread, "dispatch_update")
 
 
 # compile a story and compare its completion with the expected tree
@@ -45,6 +54,7 @@ def run_test(story_path, patch):
     )
 
 
+@mark.usefixtures("patched_storyhub")
 @mark.parametrize("test_file", test_files)
 def test_story(test_file, patch):
     test_file = path.join(test_dir, test_file)
