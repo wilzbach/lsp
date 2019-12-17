@@ -21,19 +21,20 @@ class ServiceCompletion:
     def __init__(self, service_handler):
         self.service_handler = service_handler
 
-    def process_suffix(self, stack, tokens, value_stack_name):
+    def process_suffix(self, stack, value_stack_name, in_assignment):
         """
         Extract a service_suffix (=service_name) and yield its actions.
         """
         name = Stack.extract(stack, value_stack_name)[0].value
-        in_assignment = any(tok.text() == "=" for tok in tokens)
         yield from self._service_actions(name, in_assignment=in_assignment)
 
-    def process_when_name(self, stack, tokens):
+    def process_when_name(self, stack):
         """
         Extract a service_suffix (=service_name) after WHEN and yield its actions.
         """
-        commands = self.process_suffix(stack, tokens, "when_service_name")
+        commands = self.process_suffix(
+            stack, "when_service_name", in_assignment=False
+        )
         for command in commands:
             if isinstance(command, Action):
                 # only show commands with events inside when
@@ -79,7 +80,9 @@ class ServiceCompletion:
         """
         Extract previous tokens for service argument completion.
         """
-        actions = self.process_suffix(stack, [], value_stack_name)
+        actions = self.process_suffix(
+            stack, value_stack_name, in_assignment=False
+        )
         service_command = Stack.extract(stack, command_name)[0].value
         yield from Utils.action_args(actions, service_command)
 

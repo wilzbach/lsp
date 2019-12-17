@@ -1,0 +1,23 @@
+[
+  {
+    "detail": "Arg. string",
+    "documentation": "No help available.",
+    "insertTextFormat": 1,
+    "kind": 12,
+    "label": "key",
+    "sortText": "20-key",
+    "textEdit": {
+      "newText": "key:",
+      "range": {
+        "end": {
+          "character": 10,
+          "line": 0
+        },
+        "start": {
+          "character": 10,
+          "line": 0
+        }
+      }
+    }
+  }
+]

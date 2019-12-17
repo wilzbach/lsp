@@ -21,6 +21,27 @@
     }
   },
   {
+    "detail": "Aliasing",
+    "documentation": "Aliasing",
+    "insertTextFormat": 1,
+    "kind": 14,
+    "label": "as",
+    "sortText": "70-as",
+    "textEdit": {
+      "newText": "as ",
+      "range": {
+        "end": {
+          "character": 44,
+          "line": 1
+        },
+        "start": {
+          "character": 44,
+          "line": 1
+        }
+      }
+    }
+  },
+  {
     "detail": "Logical disjunction",
     "documentation": "Logical disjunction",
     "insertTextFormat": 1,

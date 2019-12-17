@@ -1,1 +1,23 @@
-[]
+[
+  {
+    "detail": "Aliasing",
+    "documentation": "Aliasing",
+    "insertTextFormat": 1,
+    "kind": 14,
+    "label": "as",
+    "sortText": "70-as",
+    "textEdit": {
+      "newText": "as ",
+      "range": {
+        "end": {
+          "character": 14,
+          "line": 0
+        },
+        "start": {
+          "character": 14,
+          "line": 0
+        }
+      }
+    }
+  }
+]

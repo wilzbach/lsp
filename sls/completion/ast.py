@@ -16,6 +16,30 @@ from .service_data import ServiceHandler
 log = logger(__name__)
 
 
+class ParseState:
+    """
+    Detect and keep information about the current parse state.
+    """
+
+    def detect(self, tokens):
+        self.in_assignment = any(tok.text() == "=" for tok in tokens)
+        self.nestedness = self.detect_nestedness(tokens)
+
+    def detect_nestedness(self, tokens):
+        """
+        Returns the number of open (positive) or unopened (negative) parenthesis.
+        A nestedness of `0` means there are either nor parenthesis or all
+        opening parenthesis have been followed by a closing one.
+        """
+        level = 0
+        for tok in tokens:
+            if tok.type == StoryTokenSpace.LPARENS:
+                level += 1
+            elif tok.type == StoryTokenSpace.RPARENS:
+                level -= 1
+        return level
+
+
 class ASTAnalyzer:
     def __init__(self, service_registry, context_cache):
         self.parser = Parser()
@@ -56,11 +80,13 @@ class ASTAnalyzer:
             return
 
         transitions = [*self.parser.transitions(stack)]
+        parse_state = ParseState()
+        parse_state.detect(tokens)
 
         # iterate all non-terminals in the transitions and
         # processes upcoming next_rules
         for tok, dfa in transitions:
-            completion = self.process_nonterminal(tok, dfa, stack, tokens)
+            completion = self.process_nonterminal(tok, dfa, stack, parse_state)
             for c in completion:
                 c = c.to_completion(context)
                 if c["label"].lower().startswith(like_word):
@@ -102,6 +128,8 @@ class ASTAnalyzer:
                 continue
             if tok == StoryTokenSpace.NL:
                 continue
+            if tok == StoryTokenSpace.AS:
+                continue
             from_rule = dfa.next_dfa.from_rule
             only_special_rules &= from_rule == "service_suffix"
             count += 1
@@ -112,13 +140,13 @@ class ASTAnalyzer:
 
         return not only_special_rules
 
-    def process_nonterminal(self, tok, dfa, stack, tokens):
+    def process_nonterminal(self, tok, dfa, stack, parse_state):
         """
         Forwards processing of the non-terminal to its respective processor.
         """
         log.debug("process non-terminal: %s", tok)
         if tok == StoryTokenSpace.NAME:
-            yield from self.process_name(dfa, stack, tokens)
+            yield from self.process_name(dfa, stack, parse_state)
         elif tok == StoryTokenSpace.NULL:
             yield KeywordCompletionSymbol("null")
         elif tok == StoryTokenSpace.STRING:
@@ -132,11 +160,13 @@ class ASTAnalyzer:
             pass
         elif tok == StoryTokenSpace.COLON:
             pass
+        elif tok == StoryTokenSpace.AS:
+            yield from self.process_as(stack, parse_state)
         else:
             # no completion for numbers
             assert tok == StoryTokenSpace.NUMBER, tok
 
-    def process_name(self, dfa, stack, tokens):
+    def process_name(self, dfa, stack, parse_state):
         """
         Completion for a NAME token can be in different contexts.
         This looks at the current stack and distinguishes.
@@ -150,7 +180,9 @@ class ASTAnalyzer:
         if next_rule == "service_suffix":
             assert from_rule == "value", from_rule
             yield from self.service.process_suffix(
-                stack, tokens, value_stack_name="value"
+                stack,
+                value_stack_name="value",
+                in_assignment=parse_state.in_assignment,
             )
         elif next_rule == "arglist":
             yield from self.process_arglist(stack, from_rule)
@@ -174,7 +206,7 @@ class ASTAnalyzer:
         elif next_rule == "when_expression":
             yield from self.get_service_names()
         elif next_rule == "when_action":
-            yield from self.service.process_when_name(stack, tokens)
+            yield from self.service.process_when_name(stack)
         elif next_rule == "when_action_name":
             yield from self.service.process_when_command(stack)
         elif next_rule == "when_arglist":
@@ -264,6 +296,40 @@ class ASTAnalyzer:
             event = actions[1].value
 
         yield from self.service.when(name, action, event, prev_args)
+
+    def process_as(self, stack, parse_state):
+        """
+        Process an upcoming 'as' rule and decide whether it can occur.
+        """
+        if parse_state.in_assignment:
+            # use of 'as' in an assignment is definitely invalid
+            return
+        if parse_state.nestedness != 0:
+            # use of 'as' inside parenthesis is definitely invalid
+            return
+
+        suffixes = ["service_op", "service_suffix"]
+
+        try:
+            last_rule = Stack.find_closest_rule(stack, suffixes)
+            service_name = Stack.extract(stack, "value", "service_suffix")[
+                0
+            ].value
+            service_command = Stack.extract(stack, last_rule)[0].value
+        except Exception:
+            # attempt to parse service_block failed - must be a when_block or
+            # similar
+            yield KeywordCompletionSymbol("as")
+            return
+
+        action = self.service_handler.action(service_name, service_command)
+        if action is None:
+            return
+
+        # only yield 'as' iff the service can start an event block (=it has
+        # events)
+        if len(action.events()) > 0:
+            yield KeywordCompletionSymbol("as")
 
     def get_names(self):
         """

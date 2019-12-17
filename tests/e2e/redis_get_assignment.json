@@ -10,32 +10,11 @@
       "newText": "and ",
       "range": {
         "end": {
-          "character": 38,
+          "character": 25,
           "line": 0
         },
         "start": {
-          "character": 38,
-          "line": 0
-        }
-      }
-    }
-  },
-  {
-    "detail": "Aliasing",
-    "documentation": "Aliasing",
-    "insertTextFormat": 1,
-    "kind": 14,
-    "label": "as",
-    "sortText": "70-as",
-    "textEdit": {
-      "newText": "as ",
-      "range": {
-        "end": {
-          "character": 38,
-          "line": 0
-        },
-        "start": {
-          "character": 38,
+          "character": 25,
           "line": 0
         }
       }
@@ -52,32 +31,11 @@
       "newText": "or ",
       "range": {
         "end": {
-          "character": 38,
+          "character": 25,
           "line": 0
         },
         "start": {
-          "character": 38,
-          "line": 0
-        }
-      }
-    }
-  },
-  {
-    "detail": "Arg. string",
-    "documentation": "No help available.",
-    "insertTextFormat": 1,
-    "kind": 12,
-    "label": "path",
-    "sortText": "20-path",
-    "textEdit": {
-      "newText": "path:",
-      "range": {
-        "end": {
-          "character": 38,
-          "line": 0
-        },
-        "start": {
-          "character": 38,
+          "character": 25,
           "line": 0
         }
       }
@@ -94,11 +52,11 @@
       "newText": "to ",
       "range": {
         "end": {
-          "character": 38,
+          "character": 25,
           "line": 0
         },
         "start": {
-          "character": 38,
+          "character": 25,
           "line": 0
         }
       }

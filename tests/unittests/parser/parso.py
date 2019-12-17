@@ -101,7 +101,7 @@ def test_parser_service():
 
 def test_parser_service_args():
     s = parse("foo bar")
-    compare(s, op() + [StoryTokenSpace.NAME])
+    compare(s, op() + [StoryTokenSpace.NAME, StoryTokenSpace.AS])
 
 
 def test_parser_service_value():
@@ -111,7 +111,7 @@ def test_parser_service_value():
 
 def test_parser_service_end():
     s = parse("foo bar a:1")
-    compare(s, op() + [StoryTokenSpace.NAME])
+    compare(s, op() + [StoryTokenSpace.NAME, StoryTokenSpace.AS])
 
 
 def test_parser_if_expr():
@@ -122,3 +122,8 @@ def test_parser_if_expr():
 def test_parser_if_block():
     s = parse("if a\n")
     compare(s, [StoryTokenSpace.INDENT])
+
+
+def test_parser_foreach_as():
+    s = parse("foreach foo as ")
+    compare(s, [StoryTokenSpace.NAME])

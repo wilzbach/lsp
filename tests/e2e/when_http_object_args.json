@@ -1,5 +1,26 @@
 [
   {
+    "detail": "Aliasing",
+    "documentation": "Aliasing",
+    "insertTextFormat": 1,
+    "kind": 14,
+    "label": "as",
+    "sortText": "70-as",
+    "textEdit": {
+      "newText": "as ",
+      "range": {
+        "end": {
+          "character": 20,
+          "line": 1
+        },
+        "start": {
+          "character": 20,
+          "line": 1
+        }
+      }
+    }
+  },
+  {
     "detail": "Arg. enum",
     "documentation": "No help available.",
     "insertTextFormat": 1,
