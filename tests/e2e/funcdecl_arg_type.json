@@ -2,12 +2,12 @@
   {
     "detail": "Typed list",
     "documentation": "Typed list",
-    "insertTextFormat": 1,
-    "kind": 14,
+    "insertTextFormat": 2,
+    "kind": 15,
     "label": "List",
     "sortText": "90-List",
     "textEdit": {
-      "newText": "List[",
+      "newText": "List[${1:<element_type}]",
       "range": {
         "end": {
           "character": 16,
@@ -23,12 +23,12 @@
   {
     "detail": "Key-value collection type",
     "documentation": "Key-value collection type",
-    "insertTextFormat": 1,
-    "kind": 14,
+    "insertTextFormat": 2,
+    "kind": 15,
     "label": "Map",
     "sortText": "90-Map",
     "textEdit": {
-      "newText": "Map[",
+      "newText": "Map[${1:<key_type},${2:<value_type}]",
       "range": {
         "end": {
           "character": 16,
