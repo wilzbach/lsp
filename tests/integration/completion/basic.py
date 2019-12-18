@@ -4,6 +4,9 @@ from sls.completion.complete import Completion
 from sls.document import Document, Position
 from sls.services.hub import ServiceHub
 
+from tests.e2e.utils.fixtures import hub
+
+
 int_mutations = [
     "absolute",
     "decrement",
@@ -20,7 +23,7 @@ def document(text):
 
 class CompletionTest:
     def __init__(self):
-        self.c = Completion.full(ServiceHub())
+        self.c = Completion.full(ServiceHub(hub))
 
     def set(self, text):
         self.doc = document(text)
@@ -36,7 +39,7 @@ class CompletionTest:
 
 
 @fixture
-def completion(hub):
+def completion():
     return CompletionTest()
 
 

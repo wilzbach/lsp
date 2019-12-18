@@ -42,10 +42,11 @@ class CurrentScopeCache:
     Cache for the current scope
     """
 
-    def __init__(self, global_):
+    def __init__(self, global_, hub):
         self.global_ = global_
         self.scope_cache = LRUCache(100)
         self.current_scope = None
+        self.hub = hub
 
     def update(self, context):
         self.current_scope = self.build_current_scope(context)
@@ -84,7 +85,7 @@ class CurrentScopeCache:
         ws = " " * (len(block[-1]) - len(block[-1].lstrip()))
         text += f"\n{ws}{CACHE_DUMMY_VAR} = 0"
         scope = self.global_.global_scope.copy()
-        output = loads(text, backend="semantic", scope=scope)
+        output = loads(text, backend="semantic", scope=scope, hub=self.hub)
         if output.success():
             tree = output.result().output()
             return scope_finder(tree, CACHE_DUMMY_VAR)

@@ -18,11 +18,11 @@ log = logger(__name__)
 CacheOutput = namedtuple("CacheOutput", ["function_table", "root_scope"])
 
 
-def cache_compile(text):
+def cache_compile(text, story_hub):
     """
     Compile text and return CacheOutput on success.
     """
-    output = loads(text, backend="semantic")
+    output = loads(text, backend="semantic", hub=story_hub)
     if output.success():
         module = output.result().module()
         return CacheOutput(
@@ -37,11 +37,12 @@ class GlobalScopeCache:
         - SymbolTable
     """
 
-    def __init__(self):
+    def __init__(self, story_hub):
         self.function_table = None
         self.mutation_table = hub.mutations()
         self.global_scope = None
         self.block_cache = LRUCache(1000)
+        self.story_hub = story_hub
 
     def update(self, context):
         self.global_scope = self.aggregate_scope_blocks(context)
@@ -58,7 +59,7 @@ class GlobalScopeCache:
             if story_text in self.block_cache:
                 result = self.block_cache[story_text]
             else:
-                result = cache_compile(story_text)
+                result = cache_compile(story_text, self.story_hub)
                 self.block_cache[story_text] = result
 
             if result is not None:
