@@ -26,7 +26,7 @@ def test_complete(hub):
     """
     Tests that an SLS App can perform completion.
     """
-    app = App()
+    app = App(hub=hub)
     result = app.complete(".uri.", "h")
     del result[0]["documentation"]
     del result[0]["detail"]
@@ -49,7 +49,7 @@ def test_complete_with_line(hub):
     """
     Tests that an SLS App can perform completion.
     """
-    app = App()
+    app = App(hub=hub)
     result = app.complete(".uri.", "foobar\nh", line=1)
     del result[0]["documentation"]
     del result[0]["detail"]
@@ -72,7 +72,7 @@ def test_complete_with_line_column(hub):
     """
     Tests that an SLS App can perform completion.
     """
-    app = App()
+    app = App(hub=hub)
     result = app.complete(".uri.", "foobar\nhttp foo", line=1, column=1)
     del result[0]["documentation"]
     del result[0]["detail"]

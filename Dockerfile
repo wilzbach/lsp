@@ -1,6 +1,7 @@
 FROM            python:3.7-alpine
 
 ENV             SENTRY_DSN https://bcd976c210e8458ab717fdea741c6a5a@sentry.io/1822749
+ENV             STORYSCRIPT_HUB_API https://api.storyscript.io/graphql
 
 RUN             mkdir /app
 WORKDIR         /app

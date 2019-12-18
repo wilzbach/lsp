@@ -58,7 +58,7 @@ class Completion:
 
     @classmethod
     def full(cls, service_registry):
-        context_cache = ContextCache()
+        context_cache = ContextCache(service_registry.hub)
         return cls(
             context_cache=context_cache,
             plugins=[ASTAnalyzer(service_registry, context_cache),],

@@ -4,12 +4,14 @@ from sls.completion.cache import ContextCache
 from sls.completion.context import CompletionContext
 from sls.document import Document, Position
 
+from tests.e2e.utils.fixtures import hub
+
 
 def build_cache(text, line):
     doc = Document(uri=".text.", text=text)
     pos = Position(line, 0)
     context = CompletionContext(ws=None, doc=doc, pos=pos)
-    cache = ContextCache()
+    cache = ContextCache(hub=hub)
     cache.update(context)
     return cache
 
