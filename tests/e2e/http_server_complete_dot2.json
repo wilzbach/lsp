@@ -1,6 +1,6 @@
 [
   {
-    "detail": "returns Map[string,string]",
+    "detail": "[Map[string,string]] The parsed query parameters of the HTTP request",
     "documentation": "queryParams",
     "filterText": "req.queryParams",
     "insertTextFormat": 1,

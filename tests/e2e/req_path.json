@@ -1,0 +1,24 @@
+[
+  {
+    "detail": "[string] The path portion of the URI of the incoming HTTP request",
+    "documentation": "path",
+    "filterText": "req.path",
+    "insertTextFormat": 1,
+    "kind": 2,
+    "label": "path",
+    "sortText": "20-path",
+    "textEdit": {
+      "newText": "req.path",
+      "range": {
+        "end": {
+          "character": 15,
+          "line": 1
+        },
+        "start": {
+          "character": 8,
+          "line": 1
+        }
+      }
+    }
+  }
+]
