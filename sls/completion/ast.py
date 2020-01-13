@@ -167,8 +167,8 @@ class ASTAnalyzer:
         elif tok == StoryTokenSpace.AS:
             yield from self.process_as(stack, parse_state)
         elif tok == StoryTokenSpace.FOREACH:
-            line = parse_state.context.line
-            indent = " " * (len(line) - len(line.lstrip()))
+            indent_state = parse_state.context.detect_indentation()
+            indent = indent_state.add().indentation()
             yield KeywordCompletionSymbol("foreach", indent=indent)
         else:
             # no completion for numbers

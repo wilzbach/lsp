@@ -61,7 +61,6 @@ class KeywordCompletionSymbol(CompletionItem):
         self.sort_group = sort_group
         self.keyword = keyword
         self.indent = indent
-        self.indent_unit = "  "
 
     def to_completion(self, context):
         """
@@ -73,11 +72,12 @@ class KeywordCompletionSymbol(CompletionItem):
             if isinstance(snippet, list):
                 insert_text = snippet[0]
             else:
+                assert isinstance(snippet, str)
                 insert_text = snippet
             insert_text_format = InsertTextFormat.Snippet
             completion_kind = CompletionItemKind.Snippet
             if self.indent is not None:
-                insert_text += f"\n{self.indent}{self.indent_unit}{snippet[1]}"
+                insert_text += f"\n{self.indent}{snippet[1]}"
         else:
             insert_text = f"{self.keyword} "
             insert_text_format = InsertTextFormat.PlainText

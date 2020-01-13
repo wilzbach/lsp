@@ -1,5 +1,6 @@
 from collections import namedtuple
 
+from sls.indent.indentstate import IndentState
 from sls.logging import logger
 
 log = logger(__name__)
@@ -88,3 +89,10 @@ class CompletionContext:
         for block in self.blocks:
             if not self._is_current_block(block):
                 yield block
+
+    def detect_indentation(self):
+        """
+        Detect the indentation of the current line and return an
+        indentor instance of it.
+        """
+        return IndentState.detect(self.line, self.ws.settings.indent_unit)

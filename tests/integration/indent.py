@@ -1,7 +1,7 @@
 from pytest import fixture, mark
 
 from sls.document import Document, Position
-from sls.indent import Indentation
+from sls.indent.indent import Indentation
 from sls.services.hub import ServiceHub
 
 from tests.e2e.utils.fixtures import hub
@@ -74,24 +74,23 @@ def test_indent(indentor, ws, story, expected):
     lines = story.split("\n")
     # select the last pos in the provided story
     pos = Position(line=len(lines) - 1, character=len(lines[-1]))
-    assert indentor.indent(ws, doc, pos, options={})["indent"] == expected
+    assert (
+        indentor.indent(ws, doc, pos, indent_unit="  ")["indent"] == expected
+    )
 
 
 def test_indent_options(indentor, ws):
     doc = Document(uri=".my.uri.", text="  try")
     pos = Position(line=0, character=8)
     assert (
-        indentor.indent(ws, doc, pos, options={"indent_unit": "    "})[
-            "indent"
-        ]
-        == "      "
+        indentor.indent(ws, doc, pos, indent_unit="    ")["indent"] == "      "
     )
 
 
 def test_indent_edits(indentor, ws):
     doc = Document(uri=".my.uri.", text="a = 1")
     pos = Position(line=0, character=5)
-    assert indentor.indent(ws, doc, pos, options={}) == {
+    assert indentor.indent(ws, doc, pos, indent_unit="  ") == {
         "indent": "",
         "edits": [
             {
@@ -108,7 +107,7 @@ def test_indent_edits(indentor, ws):
 def test_indent_edits2(indentor, ws):
     doc = Document(uri=".my.uri.", text="\ntry")
     pos = Position(line=1, character=3)
-    assert indentor.indent(ws, doc, pos, options={}) == {
+    assert indentor.indent(ws, doc, pos, indent_unit="  ") == {
         "indent": indent_unit,
         "edits": [
             {
