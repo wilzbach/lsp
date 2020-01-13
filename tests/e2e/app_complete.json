@@ -1,6 +1,6 @@
 [
   {
-    "detail": "returns string",
+    "detail": "[string] Server hostname of this application",
     "documentation": "hostname",
     "filterText": "app.hostname",
     "insertTextFormat": 1,
@@ -22,7 +22,7 @@
     }
   },
   {
-    "detail": "returns Object",
+    "detail": "[Object] Secret variables of this application",
     "documentation": "secrets",
     "filterText": "app.secrets",
     "insertTextFormat": 1,
@@ -44,7 +44,7 @@
     }
   },
   {
-    "detail": "returns string",
+    "detail": "[string] Version of this application",
     "documentation": "version",
     "filterText": "app.version",
     "insertTextFormat": 1,

@@ -1,6 +1,6 @@
 [
   {
-    "detail": "returns Map[any,any]",
+    "detail": "[Map[any,any]] The JSON body of the incoming HTTP request",
     "documentation": "body",
     "filterText": "req.body",
     "insertTextFormat": 1,
@@ -22,7 +22,7 @@
     }
   },
   {
-    "detail": "returns Map[string,Object]",
+    "detail": "[Map[string,Object]] No help available",
     "documentation": "files",
     "filterText": "req.files",
     "insertTextFormat": 1,
@@ -44,7 +44,7 @@
     }
   },
   {
-    "detail": "returns Map[string,string]",
+    "detail": "[Map[string,string]] The form fields of the incoming HTTP request",
     "documentation": "formFields",
     "filterText": "req.formFields",
     "insertTextFormat": 1,
@@ -66,7 +66,7 @@
     }
   },
   {
-    "detail": "returns Map[any,any]",
+    "detail": "[Map[any,any]] The HTTP headers of the incoming HTTP request",
     "documentation": "headers",
     "filterText": "req.headers",
     "insertTextFormat": 1,
@@ -88,7 +88,7 @@
     }
   },
   {
-    "detail": "returns string",
+    "detail": "[string] The path portion of the URI of the incoming HTTP request",
     "documentation": "path",
     "filterText": "req.path",
     "insertTextFormat": 1,
@@ -110,7 +110,7 @@
     }
   },
   {
-    "detail": "returns Map[string,string]",
+    "detail": "[Map[string,string]] The parsed query parameters of the HTTP request",
     "documentation": "queryParams",
     "filterText": "req.queryParams",
     "insertTextFormat": 1,
@@ -132,7 +132,7 @@
     }
   },
   {
-    "detail": "returns Map[string,string]",
+    "detail": "[Map[string,string]] DEPRECATED. Use 'queryParams'.\n",
     "documentation": "query_params",
     "filterText": "req.query_params",
     "insertTextFormat": 1,
@@ -154,7 +154,7 @@
     }
   },
   {
-    "detail": "returns string",
+    "detail": "[string] The URI of the incoming HTTP request",
     "documentation": "uri",
     "filterText": "req.uri",
     "insertTextFormat": 1,

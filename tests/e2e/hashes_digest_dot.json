@@ -1,0 +1,46 @@
+[
+  {
+    "detail": "[string] No help available",
+    "documentation": "digest",
+    "filterText": "s.digest",
+    "insertTextFormat": 1,
+    "kind": 2,
+    "label": "digest",
+    "sortText": "20-digest",
+    "textEdit": {
+      "newText": "s.digest",
+      "range": {
+        "end": {
+          "character": 2,
+          "line": 1
+        },
+        "start": {
+          "character": 0,
+          "line": 1
+        }
+      }
+    }
+  },
+  {
+    "detail": "[string] No help available",
+    "documentation": "method",
+    "filterText": "s.method",
+    "insertTextFormat": 1,
+    "kind": 2,
+    "label": "method",
+    "sortText": "20-method",
+    "textEdit": {
+      "newText": "s.method",
+      "range": {
+        "end": {
+          "character": 2,
+          "line": 1
+        },
+        "start": {
+          "character": 0,
+          "line": 1
+        }
+      }
+    }
+  }
+]
