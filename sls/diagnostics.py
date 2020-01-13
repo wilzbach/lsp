@@ -45,10 +45,14 @@ class Diagnostics:
         """
         # convert from 1-based to 0-based
         line = max(0, int(e.int_line()) - 1)
-        start = max(0, int(e.error.column) - 1)
-        end = start + 1
-        if hasattr(e.error, "end_column"):
-            end = max(0, int(e.error.end_column) - 1)
+        if e.error.column != "None":
+            start = max(0, int(e.error.column) - 1)
+            end = start + 1
+            if hasattr(e.error, "end_column"):
+                end = max(0, int(e.error.end_column) - 1)
+        else:
+            start = 0
+            end = len(e.get_line()) - 1
         return {
             # The range at which the message applies.
             "range": {

@@ -108,3 +108,27 @@ def test_run_no_error(magic):
     endpoint.notify.assert_called_with(
         "textDocument/publishDiagnostics", {"uri": doc.uri, "diagnostics": [],}
     )
+
+
+def test_run_error_correct_no_column(magic):
+    endpoint = magic()
+    d = Diagnostics(endpoint=endpoint)
+    ws = magic()
+    doc = Document(uri=".my.uri.", text='function foo\n  a = 1\nb="{foo()}"')
+    d.run(ws, doc)
+    endpoint.notify.assert_called_with(
+        "textDocument/publishDiagnostics",
+        {
+            "uri": doc.uri,
+            "diagnostics": [
+                {
+                    "range": {
+                        "start": {"line": 2, "character": 0},
+                        "end": {"line": 2, "character": 10},
+                    },
+                    "message": "E0126: Type casting not supported from `none` to `string`.",
+                    "severity": DiagnosticSeverity.Error,
+                }
+            ],
+        },
+    )
