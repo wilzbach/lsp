@@ -1,3 +1,4 @@
+from contextlib import contextmanager
 from os import environ
 
 import sentry_sdk
@@ -28,3 +29,15 @@ def handle_exception(e):
         sentry_sdk.capture_exception(e)
     else:
         raise e
+
+
+@contextmanager
+def sentry_scope(doc, action, uri=None, position=None):
+    with sentry_sdk.configure_scope() as scope:
+        scope.set_extra("doc", doc.text())
+        scope.set_tag("sls_action", action)
+        if uri is not None:
+            scope.set_extra("uri", uri)
+        if position is not None:
+            scope.set_extra("position", str(position))
+        yield
