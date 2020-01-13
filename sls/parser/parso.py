@@ -1,3 +1,5 @@
+from functools import lru_cache
+
 from parso.grammar import Grammar
 from parso.parser import BaseParser
 from parso.pgen2.generator import ReservedString
@@ -99,13 +101,21 @@ class StoryGrammar(Grammar):
             yield t.to_parso()
 
 
+@lru_cache(maxsize=1)
+def story_grammar_instance():
+    """
+    Return an instance of a StoryGrammar.
+    """
+    return StoryGrammar(story_grammar)
+
+
 class Parser:
     """
     Minimalist grammar parsed using parso.
     """
 
     def __init__(self):
-        self._grammar = StoryGrammar(story_grammar)
+        self._grammar = story_grammar_instance()
 
     def tokenize(self, text):
         """
