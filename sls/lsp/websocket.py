@@ -29,6 +29,7 @@ def sls_websocket(sls_app):
 
         def on_close(self):
             log.warning("WebSocket closed")
+            self._ls.rpc_exit()
 
     return SLSWebSocketHandler
 
