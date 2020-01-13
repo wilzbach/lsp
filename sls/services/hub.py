@@ -55,7 +55,7 @@ class ServiceHub:
                     yield service
                 except BaseException:
                     # ignore all invalid services
-                    log.warn(
+                    log.warning(
                         "Service '%s' has an invalid config", service_name
                     )
 

@@ -25,6 +25,8 @@ class LanguageServer(LSPDispatcher):
 
     def __init__(self, hub):
         self.hub = hub
+        self._jsonrpc_stream_reader = None
+        self._jsonrpc_stream_writer = None
 
     def set_endpoint(self, write_command):
         self.endpoint = endpoint.Endpoint(
@@ -128,5 +130,7 @@ class LanguageServer(LSPDispatcher):
 
     def rpc_exit(self, **_kwargs):
         self.endpoint.shutdown()
-        self._jsonrpc_stream_reader.close()
-        self._jsonrpc_stream_writer.close()
+        if self._jsonrpc_stream_reader is not None:
+            self._jsonrpc_stream_reader.close()
+        if self._jsonrpc_stream_writer is not None:
+            self._jsonrpc_stream_writer.close()

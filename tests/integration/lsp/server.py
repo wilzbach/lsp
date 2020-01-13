@@ -89,3 +89,13 @@ def test_indent_options(server):
     ) == {
         "indent": "    ",
     }
+
+
+def test_rpc_exit(server, patch):
+    patch.object(Endpoint, "shutdown")
+    patch.object(streams.JsonRpcStreamReader, "close")
+    patch.object(streams.JsonRpcStreamWriter, "close")
+    server.rpc_exit()
+    server.endpoint.shutdown.assert_called()
+    server._jsonrpc_stream_reader.close.assert_called()
+    server._jsonrpc_stream_writer.close.assert_called()
