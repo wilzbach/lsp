@@ -5,6 +5,7 @@ from .format import Formatter
 from sls.indent.indent import Indentation
 from .logging import logger
 from .services.hub import ServiceHub
+from .sentry import sentry_scope
 
 
 log = logger(__name__)
@@ -61,20 +62,24 @@ class Workspace:
 
     def diagnostics(self, doc):
         if self._endpoint is not None:
-            self._diagnostics.run(self, doc)
+            with sentry_scope(doc, action="diagnostics"):
+                self._diagnostics.run(self, doc)
 
     def complete(self, uri, position):
         log.debug(f"ws.complete: {uri} pos={position}")
         doc = self.get_document(uri)
-        return self._completion.complete(self, doc, position)
+        with sentry_scope(doc, action="complete", uri=uri, position=position):
+            return self._completion.complete(self, doc, position)
 
     def format(self, uri):
         log.debug(f"ws.format: {uri}")
         doc = self.get_document(uri)
-        return self._formatter.format(self, doc)
+        with sentry_scope(doc, action="format", uri=uri):
+            return self._formatter.format(self, doc)
 
     def indent(self, uri, position, options):
         log.debug(f"ws.indent: {uri} pos={position}")
         doc = self.get_document(uri)
         indent_unit = options.get("indent_unit", self.settings.indent_unit)
-        return self._indenter.indent(self, doc, position, indent_unit)
+        with sentry_scope(doc, action="indent", uri=uri, position=position):
+            return self._indenter.indent(self, doc, position, indent_unit)
