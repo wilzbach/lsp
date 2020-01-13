@@ -42,7 +42,7 @@ keywords = {
 
 snippets = {
     "as": "as ${1:<name>}",
-    "foreach": "foreach ${1:<collection>} as ${2:<name>}",
+    "foreach": ["foreach ${1:<collection>} as ${2:<name>}", "${3:<block>}"],
     "if": "if ${1:<condition>}",
     "while": "while ${1:<condition>}",
     "Map": "Map[${1:<key_type},${2:<value_type}]",
@@ -55,11 +55,12 @@ class KeywordCompletionSymbol(CompletionItem):
     A symbol completion item.
     """
 
-    def __init__(self, keyword, sort_group=None):
+    def __init__(self, keyword, sort_group=None, indent=None):
         if sort_group is None:
             sort_group = SortGroup.Keyword
         self.sort_group = sort_group
         self.keyword = keyword
+        self.indent = indent
 
     def to_completion(self, context):
         """
@@ -67,9 +68,16 @@ class KeywordCompletionSymbol(CompletionItem):
         """
         options = keywords.get(self.keyword, {})
         if self.keyword in snippets:
-            insert_text = snippets[self.keyword]
+            snippet = snippets[self.keyword]
+            if isinstance(snippet, list):
+                insert_text = snippet[0]
+            else:
+                assert isinstance(snippet, str)
+                insert_text = snippet
             insert_text_format = InsertTextFormat.Snippet
             completion_kind = CompletionItemKind.Snippet
+            if self.indent is not None:
+                insert_text += f"\n{self.indent}{snippet[1]}"
         else:
             insert_text = f"{self.keyword} "
             insert_text_format = InsertTextFormat.PlainText

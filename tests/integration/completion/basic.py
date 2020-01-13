@@ -3,6 +3,7 @@ from pytest import fixture, mark
 from sls.completion.complete import Completion
 from sls.document import Document, Position
 from sls.services.hub import ServiceHub
+from sls.workspace import Workspace
 
 from tests.e2e.utils.fixtures import hub
 
@@ -24,13 +25,14 @@ def document(text):
 class CompletionTest:
     def __init__(self):
         self.c = Completion.full(ServiceHub(hub))
+        self.ws = Workspace(".root_uri.")
 
     def set(self, text):
         self.doc = document(text)
         return self
 
     def get_completion_for(self, pos):
-        return self.c.complete(ws=None, doc=self.doc, pos=pos)
+        return self.c.complete(ws=self.ws, doc=self.doc, pos=pos)
 
     def test(self, pos):
         result = self.get_completion_for(Position(*pos))

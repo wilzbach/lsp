@@ -1,41 +1,14 @@
 from sls.document import Range, TextEdit
+from sls.indent.indentstate import IndentState
 from sls.logging import logger
 from sls.parser.lexer import LexerException
 from sls.parser.parso import Parser
 from sls.parser.stack import Stack
 
-from .completion.context import CompletionContext
-from .completion.service_data import ServiceHandler
+from sls.completion.context import CompletionContext
+from sls.completion.service_data import ServiceHandler
 
 log = logger(__name__)
-
-
-class Indentor:
-    """
-    Keeps track of the current indentation and allows to add more levels.
-    """
-
-    def __init__(self, indent_unit):
-        self.indent_unit = indent_unit
-        self.indent = ""
-
-    def set_indent(self, indent):
-        """
-        Set the base level of indentation.
-        """
-        self.indent = indent
-
-    def add(self):
-        """
-        Add a level of indentation.
-        """
-        self.indent += self.indent_unit
-
-    def indentation(self):
-        """
-        Return the current indentation
-        """
-        return self.indent
 
 
 class Indentation:
@@ -47,22 +20,18 @@ class Indentation:
         self.parser = Parser()
         self.service = ServiceHandler(service_registry, None)
 
-    def indent(self, ws, doc, pos, options):
+    def indent(self, ws, doc, pos, indent_unit):
         """
         Returns the indentation for the next line based for the given document
         and position.
         """
         context = CompletionContext(ws=ws, doc=doc, pos=pos)
-        line = context.line
-        log.info("Line on cursor: %s", line)
-        indent = " " * (len(line) - len(line.lstrip()))
+        log.info("Line on cursor: %s", context.line)
+        indent_state = IndentState.detect(context.line, indent_unit)
 
-        indentor = Indentor(options.get("indent_unit", "  "))
-        indentor.set_indent(indent)
+        self._indent(context, indent_state)
 
-        self._indent(context, indentor)
-
-        indentation = indentor.indentation()
+        indentation = indent_state.indentation()
         insert_pos = pos
         return {
             "indent": indentation,
@@ -74,7 +43,7 @@ class Indentation:
             ],
         }
 
-    def _indent(self, context, indentor):
+    def _indent(self, context, indent_state):
         try:
             tokens = [*self.parser.tokenize(context.line)]
         except LexerException:
@@ -88,7 +57,7 @@ class Indentation:
 
         # special case for partially invalid blocks
         if first_tok == "catch" or first_tok == "else":
-            indentor.add()
+            indent_state.add()
             return
 
         # shortcut for start of new blocks
@@ -100,7 +69,7 @@ class Indentation:
             or first_tok == "when"
             or first_tok == "function"
         ):
-            indentor.add()
+            indent_state.add()
             return
 
         # only look at most at the first two tokens
@@ -122,7 +91,7 @@ class Indentation:
             if from_rule == "service_suffix" and next_rule == "arglist":
                 # service blocks should trigger an indent iff they have events
                 if self._service_has_events(stack):
-                    indentor.add()
+                    indent_state.add()
                     return
                 return
 

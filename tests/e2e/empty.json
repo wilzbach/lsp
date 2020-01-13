@@ -70,7 +70,7 @@
     "label": "foreach",
     "sortText": "90-foreach",
     "textEdit": {
-      "newText": "foreach ${1:<collection>} as ${2:<name>}",
+      "newText": "foreach ${1:<collection>} as ${2:<name>}\n  ${3:<block>}",
       "range": {
         "end": {
           "character": 0,

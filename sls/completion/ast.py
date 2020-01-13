@@ -22,6 +22,9 @@ class ParseState:
     Detect and keep information about the current parse state.
     """
 
+    def __init__(self, context):
+        self.context = context
+
     def detect(self, tokens):
         self.in_assignment = any(tok.text() == "=" for tok in tokens)
         self.nestedness = self.detect_nestedness(tokens)
@@ -81,7 +84,7 @@ class ASTAnalyzer:
             return
 
         transitions = [*self.parser.transitions(stack)]
-        parse_state = ParseState()
+        parse_state = ParseState(context)
         parse_state.detect(tokens)
 
         # iterate all non-terminals in the transitions and
@@ -164,7 +167,9 @@ class ASTAnalyzer:
         elif tok == StoryTokenSpace.AS:
             yield from self.process_as(stack, parse_state)
         elif tok == StoryTokenSpace.FOREACH:
-            yield KeywordCompletionSymbol("foreach")
+            indent_state = parse_state.context.detect_indentation()
+            indent = indent_state.add().indentation()
+            yield KeywordCompletionSymbol("foreach", indent=indent)
         else:
             # no completion for numbers
             assert tok == StoryTokenSpace.NUMBER, tok

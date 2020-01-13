@@ -2,12 +2,20 @@ from .completion.complete import Completion
 from .diagnostics import Diagnostics
 from .document import Document
 from .format import Formatter
-from .indent import Indentation
+from sls.indent.indent import Indentation
 from .logging import logger
 from .services.hub import ServiceHub
 
 
 log = logger(__name__)
+
+
+class WorkspaceSettings:
+    """
+    Instance settings for a workspace instance.
+    """
+
+    indent_unit = "  "  # indent to add for a new indentation level
 
 
 class Workspace:
@@ -24,6 +32,7 @@ class Workspace:
         self._service_registry = ServiceHub(hub=hub)
         self._completion = Completion.full(self._service_registry)
         self._indenter = Indentation(self._service_registry)
+        self.settings = WorkspaceSettings()
 
     def add_document(self, doc):
         log.debug(f"ws.doc.add: {doc.uri}")
@@ -67,4 +76,5 @@ class Workspace:
     def indent(self, uri, position, options):
         log.debug(f"ws.indent: {uri} pos={position}")
         doc = self.get_document(uri)
-        return self._indenter.indent(self, doc, position, options)
+        indent_unit = options.get("indent_unit", self.settings.indent_unit)
+        return self._indenter.indent(self, doc, position, indent_unit)
