@@ -4,7 +4,7 @@ from os import environ
 import sentry_sdk
 from sentry_sdk.integrations.tornado import TornadoIntegration
 
-from .version import version_ as app_version
+from .version import version as app_version
 
 
 _sentry_dsn = environ.get("SENTRY_DSN", None)

@@ -5,6 +5,7 @@ import tornado.web
 import tornado.websocket
 
 from ..logging import logger
+from ..version import version as app_version
 
 log = logger(__name__)
 
@@ -34,7 +35,16 @@ def sls_websocket(sls_app):
     return SLSWebSocketHandler
 
 
+class VersionHandler(tornado.web.RequestHandler):
+    def get(self):
+        self.set_header("Content-Type", "text/plain")
+        self.finish(app_version)
+
+
 class SLSApplication(tornado.web.Application):
     def __init__(self, sls_app, **kwargs):
-        handlers = [(r"/", sls_websocket(sls_app))]
+        handlers = [
+            (r"/", sls_websocket(sls_app)),
+            (r"/version", VersionHandler),
+        ]
         super(SLSApplication, self).__init__(handlers, **kwargs)
