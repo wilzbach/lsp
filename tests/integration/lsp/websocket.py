@@ -3,10 +3,13 @@ import json
 from pytest import fixture
 
 from sls import App
-from sls.lsp.websocket import sls_websocket
+from sls.lsp.websocket import SLSApplication, sls_websocket
 from sls.workspace import Workspace
+from sls.version import version as app_version
 
 from storyhub.sdk.ServiceWrapper import ServiceWrapper
+
+from tornado.testing import AsyncHTTPTestCase
 
 
 @fixture
@@ -65,3 +68,13 @@ def test_check_origin(ws):
 def test_on_close(ws):
     ws.open()
     ws.on_close()
+
+
+class TestVersionApp(AsyncHTTPTestCase):
+    def get_app(self):
+        return SLSApplication(sls_app=None)
+
+    def test_homepage(self):
+        response = self.fetch("/version")
+        self.assertEqual(response.code, 200)
+        self.assertEqual(response.body.decode(), app_version)

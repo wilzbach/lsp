@@ -8,7 +8,7 @@ from click_aliases import ClickAliasedGroup
 from .app import App
 from .logging import configure_logging
 from .sentry import init as sentry_init
-from .version import version_ as app_version
+from .version import version as app_version
 
 
 sentry_init()

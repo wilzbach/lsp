@@ -6,6 +6,14 @@ workflows:
           filters:
             tags:
               only: /.*/
+      - master:
+          requires:
+            - build
+          filters:
+            tags:
+              only: /[0-9]+(\.[0-9]+)*/
+            branches:
+              only: master
       - deploy:
           requires:
             - build
@@ -67,6 +75,18 @@ jobs:
             - store_artifacts:
                 path: test-reports
                 destination: test-reports
+    master:
+        docker:
+            - image: circleci/python
+        steps:
+            - checkout
+            - run:
+                name: sentry integration
+                command: |
+                    curl -sL https://sentry.io/get-cli/ | bash
+                    sentry-cli releases new ${CIRCLE_SHA1}
+                    sentry-cli releases set-commits --auto ${CIRCLE_SHA1}
+                    sentry-cli releases finalize ${CIRCLE_SHA1}
     deploy:
         docker:
             - image: circleci/python:3.6.8
