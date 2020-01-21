@@ -7,7 +7,7 @@ from click.testing import CliRunner
 from pytest import fixture, mark
 
 from sls import App, Cli
-from sls.version import version_
+from sls.version import version
 
 
 @fixture
@@ -42,7 +42,7 @@ def test_cli_version_flag(runner, echo, option):
     Ensures --version outputs the version
     """
     e = runner.invoke(Cli.main, option)
-    click.echo.assert_called_with(version_)
+    click.echo.assert_called_with(version)
     assert e.exit_code == 0
 
 

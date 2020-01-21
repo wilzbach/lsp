@@ -6,6 +6,7 @@ import sys
 from os import path
 from shutil import rmtree
 
+from pkg_resources import DistributionNotFound, get_distribution
 from setuptools import Command, find_packages, setup
 
 root_dir = path.dirname(__file__)
@@ -17,7 +18,6 @@ def read(file_name):
 
 
 name = "sls"
-version = read(path.join("sls", "version.py")).split('"')[1].strip()
 description = read("README.md")
 short_description = (
     "SLS is the Storyscript Language Server. It provides "
@@ -93,27 +93,32 @@ class UploadCommand(Command):
         sys.exit()
 
 
+try:
+    __version__ = get_distribution(name).version
+except DistributionNotFound:
+    __version__ = "0.0.0"
+
 setup(
     name=name,
-    version=version,
     description=short_description,
     long_description=description,
     long_description_content_type="text/markdown",
     classifiers=classifiers,
     download_url=(
-        "https://github.com/storyscript/sls/archive/" f"{version}.zip"
+        "https://github.com/storyscript/sls/archive/" f"{__version__}.zip"
     ),
     keywords="storyscript language server vscode asyncy",
     author="Storyscript",
     author_email="support@storyscript.io",
     url="https://storyscript.io",
     license="Apache 2.0",
-    packages=find_packages(),
+    packages=find_packages(exclude=("build.*", "client", "tests", "tests.*")),
     include_package_data=True,
     zip_safe=True,
     install_requires=requirements,
     python_requires=">=3.7",
     entry_points={"console_scripts": ["sls=sls.cli:Cli.main"]},
+    setup_requires=["setuptools_scm~=3.3",],
     extras_require={
         "stylecheck": ["black==19.10b0"],
         "pytest": [
@@ -123,5 +128,6 @@ setup(
             "pytest-parallel==0.0.9",
         ],
     },
+    use_scm_version=True,
     cmdclass={"upload": UploadCommand},
 )
