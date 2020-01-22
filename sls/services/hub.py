@@ -1,3 +1,4 @@
+from json import JSONDecodeError
 from os import makedirs, path
 
 from storyhub.sdk.AutoUpdateThread import AutoUpdateThread
@@ -26,7 +27,13 @@ class ServiceHub:
             cache_dir = get_cache_dir()
             self.hub_path = path.join(cache_dir, "hub.json")
             if path.exists(self.hub_path):
-                self.hub = ServiceWrapper.from_json_file(self.hub_path)
+                try:
+                    self.hub = ServiceWrapper.from_json_file(self.hub_path)
+                except JSONDecodeError:
+                    # local JSON blob might be invalid
+                    # see e.g. https://github.com/storyscript/sls/issues/191
+                    self.hub = ServiceWrapper()
+                    self.update_service_wrapper()
             else:
                 makedirs(cache_dir, exist_ok=True)
                 self.hub = ServiceWrapper()

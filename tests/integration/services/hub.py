@@ -46,6 +46,16 @@ def test_hub_get_existing_json(patch, cache_dir, no_updates):
     AutoUpdateThread.__init__.assert_called()
 
 
+def test_hub_get_invalid_json(patch, cache_dir, no_updates):
+    patch.object(ServiceWrapper, "fetch_services", return_value=[])
+    hub_path = cache_dir.join("hub.json")
+    hub_path.write(f"[$invalidJson$]")
+    ServiceHub()
+    ServiceWrapper.fetch_services.assert_called()
+    AutoUpdateThread.__init__.assert_called()
+    assert hub_path.read() == "[]"
+
+
 def test_hub_create_dir(patch, tmpdir, no_updates):
     """
     Ensures that ServiceHub creates missing directories.
