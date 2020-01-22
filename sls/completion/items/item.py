@@ -54,7 +54,7 @@ class CompletionItem:
         front_word = context.word[
             : len(context.word) - len(context.token_word)
         ]
-        if len(front_word) > 0 and front_word.endswith((":", "[", ".")):
+        if len(front_word) > 0 and front_word.endswith((":", "[", "{", ".")):
             return front_word
         return ""
 
