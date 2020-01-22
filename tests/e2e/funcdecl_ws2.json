@@ -2,21 +2,21 @@
   {
     "detail": "Typed list",
     "documentation": "Typed list",
-    "filterText": "List[List",
+    "filterText": "abc:List",
     "insertTextFormat": 2,
     "kind": 15,
     "label": "List",
     "sortText": "90-List",
     "textEdit": {
-      "newText": "List[List[${1:<element_type}]",
+      "newText": "abc:List[${1:<element_type}]",
       "range": {
         "end": {
-          "character": 14,
-          "line": 0
+          "character": 17,
+          "line": 1
         },
         "start": {
-          "character": 9,
-          "line": 0
+          "character": 13,
+          "line": 1
         }
       }
     }
@@ -24,21 +24,21 @@
   {
     "detail": "Key-value collection type",
     "documentation": "Key-value collection type",
-    "filterText": "List[Map",
+    "filterText": "abc:Map",
     "insertTextFormat": 2,
     "kind": 15,
     "label": "Map",
     "sortText": "90-Map",
     "textEdit": {
-      "newText": "List[Map[${1:<key_type},${2:<value_type}]",
+      "newText": "abc:Map[${1:<key_type},${2:<value_type}]",
       "range": {
         "end": {
-          "character": 14,
-          "line": 0
+          "character": 17,
+          "line": 1
         },
         "start": {
-          "character": 9,
-          "line": 0
+          "character": 13,
+          "line": 1
         }
       }
     }
@@ -46,21 +46,21 @@
   {
     "detail": "Arbitrary type",
     "documentation": "Arbitrary type",
-    "filterText": "List[any",
+    "filterText": "abc:any",
     "insertTextFormat": 1,
     "kind": 14,
     "label": "any",
     "sortText": "90-any",
     "textEdit": {
-      "newText": "List[any ",
+      "newText": "abc:any",
       "range": {
         "end": {
-          "character": 14,
-          "line": 0
+          "character": 17,
+          "line": 1
         },
         "start": {
-          "character": 9,
-          "line": 0
+          "character": 13,
+          "line": 1
         }
       }
     }
@@ -68,21 +68,21 @@
   {
     "detail": "Binary state type of 'true' and 'false'",
     "documentation": "Binary state type of 'true' and 'false'",
-    "filterText": "List[boolean",
+    "filterText": "abc:boolean",
     "insertTextFormat": 1,
     "kind": 14,
     "label": "boolean",
     "sortText": "90-boolean",
     "textEdit": {
-      "newText": "List[boolean ",
+      "newText": "abc:boolean",
       "range": {
         "end": {
-          "character": 14,
-          "line": 0
+          "character": 17,
+          "line": 1
         },
         "start": {
-          "character": 9,
-          "line": 0
+          "character": 13,
+          "line": 1
         }
       }
     }
@@ -90,21 +90,21 @@
   {
     "detail": "Floating-point number type",
     "documentation": "Floating-point number type",
-    "filterText": "List[float",
+    "filterText": "abc:float",
     "insertTextFormat": 1,
     "kind": 14,
     "label": "float",
     "sortText": "90-float",
     "textEdit": {
-      "newText": "List[float ",
+      "newText": "abc:float",
       "range": {
         "end": {
-          "character": 14,
-          "line": 0
+          "character": 17,
+          "line": 1
         },
         "start": {
-          "character": 9,
-          "line": 0
+          "character": 13,
+          "line": 1
         }
       }
     }
@@ -112,21 +112,21 @@
   {
     "detail": "Integer number type",
     "documentation": "Integer number type",
-    "filterText": "List[int",
+    "filterText": "abc:int",
     "insertTextFormat": 1,
     "kind": 14,
     "label": "int",
     "sortText": "90-int",
     "textEdit": {
-      "newText": "List[int ",
+      "newText": "abc:int",
       "range": {
         "end": {
-          "character": 14,
-          "line": 0
+          "character": 17,
+          "line": 1
         },
         "start": {
-          "character": 9,
-          "line": 0
+          "character": 13,
+          "line": 1
         }
       }
     }
@@ -134,21 +134,21 @@
   {
     "detail": "Regular Expression type",
     "documentation": "Regular Expression type",
-    "filterText": "List[regex",
+    "filterText": "abc:regex",
     "insertTextFormat": 1,
     "kind": 14,
     "label": "regex",
     "sortText": "90-regex",
     "textEdit": {
-      "newText": "List[regex ",
+      "newText": "abc:regex",
       "range": {
         "end": {
-          "character": 14,
-          "line": 0
+          "character": 17,
+          "line": 1
         },
         "start": {
-          "character": 9,
-          "line": 0
+          "character": 13,
+          "line": 1
         }
       }
     }
@@ -156,21 +156,21 @@
   {
     "detail": "Text representation type",
     "documentation": "Text representation type",
-    "filterText": "List[string",
+    "filterText": "abc:string",
     "insertTextFormat": 1,
     "kind": 14,
     "label": "string",
     "sortText": "90-string",
     "textEdit": {
-      "newText": "List[string ",
+      "newText": "abc:string",
       "range": {
         "end": {
-          "character": 14,
-          "line": 0
+          "character": 17,
+          "line": 1
         },
         "start": {
-          "character": 9,
-          "line": 0
+          "character": 13,
+          "line": 1
         }
       }
     }
@@ -178,21 +178,21 @@
   {
     "detail": "Time representation type",
     "documentation": "Time representation type",
-    "filterText": "List[time",
+    "filterText": "abc:time",
     "insertTextFormat": 1,
     "kind": 14,
     "label": "time",
     "sortText": "90-time",
     "textEdit": {
-      "newText": "List[time ",
+      "newText": "abc:time",
       "range": {
         "end": {
-          "character": 14,
-          "line": 0
+          "character": 17,
+          "line": 1
         },
         "start": {
-          "character": 9,
-          "line": 0
+          "character": 13,
+          "line": 1
         }
       }
     }

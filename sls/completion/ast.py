@@ -70,10 +70,14 @@ class ASTAnalyzer:
         like_word = ""
         is_word = len(tokens) > 0 and tokens[-1].text().isalnum()
         if not is_space and is_word:
+            # current token under the cursor
+            context.token_word = tokens[-1].text()
             # remove word from token stream -> save for completion filter
             like_word = tokens.pop().text()
             # case-insensitive searches
             like_word = like_word.lower()
+        else:
+            context.token_word = ""
 
         log.debug("tokens: %s", tokens)
 

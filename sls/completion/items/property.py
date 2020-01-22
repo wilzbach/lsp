@@ -23,7 +23,6 @@ class PropertyCompletionSymbol(CompletionItem):
         """
         Returns a LSP representation.
         """
-        full_text = f"{self.word}.{self.name}"
         ty = self.prop.type()
         desc = f"[{ty}]"
         prop_desc = self.prop.desc()
@@ -31,11 +30,10 @@ class PropertyCompletionSymbol(CompletionItem):
         desc += f" {prop_desc}"
         return self.completion_build(
             label=self.name,
-            text_edit=full_text,
+            text_edit=self.name,
             detail=desc,
             documentation=f"{self.name}",
             completion_kind=CompletionItemKind.Method,
             context=context,
-            filter_text=full_text,
             sort_group=SortGroup.Property,
         )

@@ -2,12 +2,13 @@
   {
     "detail": "Typed list",
     "documentation": "Typed list",
+    "filterText": "Map[List",
     "insertTextFormat": 2,
     "kind": 15,
     "label": "List",
     "sortText": "90-List",
     "textEdit": {
-      "newText": "List[${1:<element_type}]",
+      "newText": "Map[List[${1:<element_type}]",
       "range": {
         "end": {
           "character": 13,
@@ -23,12 +24,13 @@
   {
     "detail": "Key-value collection type",
     "documentation": "Key-value collection type",
+    "filterText": "Map[Map",
     "insertTextFormat": 2,
     "kind": 15,
     "label": "Map",
     "sortText": "90-Map",
     "textEdit": {
-      "newText": "Map[${1:<key_type},${2:<value_type}]",
+      "newText": "Map[Map[${1:<key_type},${2:<value_type}]",
       "range": {
         "end": {
           "character": 13,
@@ -44,12 +46,13 @@
   {
     "detail": "Arbitrary type",
     "documentation": "Arbitrary type",
+    "filterText": "Map[any",
     "insertTextFormat": 1,
     "kind": 14,
     "label": "any",
     "sortText": "90-any",
     "textEdit": {
-      "newText": "any ",
+      "newText": "Map[any ",
       "range": {
         "end": {
           "character": 13,
@@ -65,12 +68,13 @@
   {
     "detail": "Binary state type of 'true' and 'false'",
     "documentation": "Binary state type of 'true' and 'false'",
+    "filterText": "Map[boolean",
     "insertTextFormat": 1,
     "kind": 14,
     "label": "boolean",
     "sortText": "90-boolean",
     "textEdit": {
-      "newText": "boolean ",
+      "newText": "Map[boolean ",
       "range": {
         "end": {
           "character": 13,
@@ -86,12 +90,13 @@
   {
     "detail": "Floating-point number type",
     "documentation": "Floating-point number type",
+    "filterText": "Map[float",
     "insertTextFormat": 1,
     "kind": 14,
     "label": "float",
     "sortText": "90-float",
     "textEdit": {
-      "newText": "float ",
+      "newText": "Map[float ",
       "range": {
         "end": {
           "character": 13,
@@ -107,12 +112,13 @@
   {
     "detail": "Integer number type",
     "documentation": "Integer number type",
+    "filterText": "Map[int",
     "insertTextFormat": 1,
     "kind": 14,
     "label": "int",
     "sortText": "90-int",
     "textEdit": {
-      "newText": "int ",
+      "newText": "Map[int ",
       "range": {
         "end": {
           "character": 13,
@@ -128,12 +134,13 @@
   {
     "detail": "Regular Expression type",
     "documentation": "Regular Expression type",
+    "filterText": "Map[regex",
     "insertTextFormat": 1,
     "kind": 14,
     "label": "regex",
     "sortText": "90-regex",
     "textEdit": {
-      "newText": "regex ",
+      "newText": "Map[regex ",
       "range": {
         "end": {
           "character": 13,
@@ -149,12 +156,13 @@
   {
     "detail": "Text representation type",
     "documentation": "Text representation type",
+    "filterText": "Map[string",
     "insertTextFormat": 1,
     "kind": 14,
     "label": "string",
     "sortText": "90-string",
     "textEdit": {
-      "newText": "string ",
+      "newText": "Map[string ",
       "range": {
         "end": {
           "character": 13,
@@ -170,12 +178,13 @@
   {
     "detail": "Time representation type",
     "documentation": "Time representation type",
+    "filterText": "Map[time",
     "insertTextFormat": 1,
     "kind": 14,
     "label": "time",
     "sortText": "90-time",
     "textEdit": {
-      "newText": "time ",
+      "newText": "Map[time ",
       "range": {
         "end": {
           "character": 13,
