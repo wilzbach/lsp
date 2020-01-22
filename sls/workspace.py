@@ -1,3 +1,4 @@
+from .compile import SLSJSONCompiler
 from .completion.complete import Completion
 from .diagnostics import Diagnostics
 from .document import Document
@@ -33,6 +34,7 @@ class Workspace:
         self._service_registry = ServiceHub(hub=hub)
         self._completion = Completion.full(self._service_registry)
         self._indenter = Indentation(self._service_registry)
+        self._compiler = SLSJSONCompiler()
         self.settings = WorkspaceSettings()
 
     def add_document(self, doc):
@@ -83,3 +85,10 @@ class Workspace:
         indent_unit = options.get("indent_unit", self.settings.indent_unit)
         with sentry_scope(doc, action="indent", uri=uri, position=position):
             return self._indenter.indent(self, doc, position, indent_unit)
+
+    def compile(self, uri, options):
+        log.debug(f"ws.compile: {uri}")
+        doc = self.get_document(uri)
+        features = options.get("features", {})
+        with sentry_scope(doc, action="compile", uri=uri):
+            return self._compiler.compile(doc, features)

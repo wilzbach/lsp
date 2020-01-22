@@ -61,32 +61,49 @@ def test_document_updates(server):
 
 def test_completion(server):
     doc = {"uri": ".magic."}
-    open_file(server, doc["uri"], "my_dummy service")
-    pos = {"line": 0, "character": 2}
+    open_file(server, doc["uri"], "my_dummy service ")
+    pos = {"line": 0, "character": 16}
     items = []
-    server.rpc_text_document__completion(text_document=doc, position=pos) == {
-        "isIncomplete": True,
-        "items": items,
-    }
+    assert server.rpc_text_document__completion(
+        text_document=doc, position=pos
+    ) == {"isIncomplete": False, "items": items}
 
 
 def test_indent(server):
     doc = {"uri": ".magic."}
-    open_file(server, doc["uri"], "when foo bar")
-    pos = {"line": 0, "character": 2}
-    server.rpc_storyscript__indent(text_document=doc, position=pos) == {
+    open_file(server, doc["uri"], "while true")
+    pos = {"line": 0, "character": 10}
+    assert server.rpc_storyscript__indent(text_document=doc, position=pos) == {
+        "edits": [
+            {
+                "newText": "\n  ",
+                "range": {
+                    "end": {"character": 10, "line": 0},
+                    "start": {"character": 10, "line": 0},
+                },
+            }
+        ],
         "indent": "  ",
     }
 
 
 def test_indent_options(server):
     doc = {"uri": ".magic."}
-    open_file(server, doc["uri"], "when foo bar")
-    pos = {"line": 0, "character": 2}
+    open_file(server, doc["uri"], 'when http server listen path:"/"')
+    pos = {"line": 0, "character": 32}
     options = {"indent_unit": "    "}
-    server.rpc_storyscript__indent(
+    assert server.rpc_storyscript__indent(
         text_document=doc, position=pos, options=options
     ) == {
+        "edits": [
+            {
+                "newText": "\n    ",
+                "range": {
+                    "end": {"character": 32, "line": 0},
+                    "start": {"character": 32, "line": 0},
+                },
+            }
+        ],
         "indent": "    ",
     }
 
@@ -99,3 +116,90 @@ def test_rpc_exit(server, patch):
     server.endpoint.shutdown.assert_called()
     server._jsonrpc_stream_reader.close.assert_called()
     server._jsonrpc_stream_writer.close.assert_called()
+
+
+def test_compile(server):
+    doc = {"uri": ".magic."}
+    open_file(server, doc["uri"], "a = 1")
+    output = server.rpc_storyscript__compile(text_document=doc)
+    del output["result"]["version"]
+    assert output == {
+        "errors": [],
+        "deprecations": [],
+        "success": True,
+        "result": {
+            "functions": {},
+            "services": [],
+            "tree": {
+                "1": {
+                    "method": "expression",
+                    "ln": "1",
+                    "col_start": "1",
+                    "col_end": "6",
+                    "output": None,
+                    "name": ["a"],
+                    "service": None,
+                    "command": None,
+                    "function": None,
+                    "args": [{"$OBJECT": "int", "int": 1}],
+                    "enter": None,
+                    "exit": None,
+                    "parent": None,
+                    "src": "a = 1",
+                }
+            },
+            "entrypoint": "1",
+        },
+    }
+
+
+def test_compile_error(server):
+    doc = {"uri": ".magic."}
+    open_file(server, doc["uri"], "a = $")
+    output = server.rpc_storyscript__compile(text_document=doc)
+    assert output == {
+        "errors": [
+            {
+                "code": "E0041",
+                "hint": "`$` is not allowed here",
+                "position": {"column": 5, "end_column": 6, "line": 1},
+            },
+        ],
+        "deprecations": [],
+        "success": False,
+        "result": None,
+    }
+
+
+def test_compile_error_features(server):
+    doc = {"uri": ".magic."}
+    # allow global variables to be writable
+    options = {"features": {"globals": True}}
+    open_file(server, doc["uri"], "a = 1\na = 2")
+    output = server.rpc_storyscript__compile(
+        text_document=doc, options=options
+    )
+    del output["result"]
+    assert output == {
+        "errors": [],
+        "deprecations": [],
+        "success": True,
+    }
+
+
+def test_compile_deprecation(server):
+    doc = {"uri": ".magic."}
+    open_file(server, doc["uri"], "a = [1,2]\nb = a[0:2]")
+    output = server.rpc_storyscript__compile(text_document=doc)
+    del output["result"]
+    assert output == {
+        "errors": [],
+        "deprecations": [
+            {
+                "code": "D0002",
+                "hint": "Ranges are deprecated.",
+                "position": {"column": 7, "end_column": 10, "line": 2},
+            },
+        ],
+        "success": True,
+    }
