@@ -56,6 +56,9 @@ class ASTAnalyzer:
     def complete(self, context):
         try:
             yield from self._complete(context)
+        except IndexError:
+            log.warning(f"Invalid line (lexer): {context.line}")
+            return
         except LexerException:
             log.warning(f"Invalid line (lexer): {context.line}")
             return
