@@ -1,4 +1,5 @@
 import json
+from os import path
 
 from pytest import fixture
 
@@ -50,6 +51,17 @@ def test_hub_get_invalid_json(patch, cache_dir, no_updates):
     patch.object(ServiceWrapper, "fetch_services", return_value=[])
     hub_path = cache_dir.join("hub.json")
     hub_path.write(f"[$invalidJson$]")
+    ServiceHub()
+    ServiceWrapper.fetch_services.assert_called()
+    AutoUpdateThread.__init__.assert_called()
+    assert hub_path.read() == "[]"
+
+
+def test_hub_get_read_error(patch, cache_dir, no_updates):
+    patch.object(ServiceWrapper, "fetch_services", return_value=[])
+    patch.object(ServiceWrapper, "from_json_file", side_effect=OSError)
+    patch.object(path, "exists", return_value=True)
+    hub_path = cache_dir.join("hub.json")
     ServiceHub()
     ServiceWrapper.fetch_services.assert_called()
     AutoUpdateThread.__init__.assert_called()
