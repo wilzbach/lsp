@@ -225,6 +225,8 @@ class ASTAnalyzer:
             yield from self.process_arglist(stack, from_rule)
         elif next_rule == "when_action_suffix":
             yield from self.process_when(stack)
+        elif next_rule == "value":
+            yield from self.process_value(stack)
         else:
             assert next_rule == "expression", next_rule
             yield from self.get_names()
@@ -345,6 +347,9 @@ class ASTAnalyzer:
         # events)
         if len(action.events()) > 0:
             yield as_keyword
+
+    def process_value(self, stack):
+        yield from self.context_cache.complete("")
 
     def get_names(self):
         """

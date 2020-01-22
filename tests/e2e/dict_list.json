@@ -1,0 +1,90 @@
+[
+  {
+    "detail": "Symbol. Object",
+    "documentation": "TBD",
+    "filterText": "{app",
+    "insertTextFormat": 1,
+    "kind": 6,
+    "label": "app",
+    "sortText": "20-app",
+    "textEdit": {
+      "newText": "{app",
+      "range": {
+        "end": {
+          "character": 5,
+          "line": 0
+        },
+        "start": {
+          "character": 4,
+          "line": 0
+        }
+      }
+    }
+  },
+  {
+    "detail": "Boolean value representing falsehood",
+    "documentation": "Boolean value representing falsehood",
+    "filterText": "{false",
+    "insertTextFormat": 1,
+    "kind": 14,
+    "label": "false",
+    "sortText": "90-false",
+    "textEdit": {
+      "newText": "{false ",
+      "range": {
+        "end": {
+          "character": 5,
+          "line": 0
+        },
+        "start": {
+          "character": 4,
+          "line": 0
+        }
+      }
+    }
+  },
+  {
+    "detail": "Intentional absence of any value",
+    "documentation": "Intentional absence of any value",
+    "filterText": "{null",
+    "insertTextFormat": 1,
+    "kind": 14,
+    "label": "null",
+    "sortText": "90-null",
+    "textEdit": {
+      "newText": "{null ",
+      "range": {
+        "end": {
+          "character": 5,
+          "line": 0
+        },
+        "start": {
+          "character": 4,
+          "line": 0
+        }
+      }
+    }
+  },
+  {
+    "detail": "Boolean value representing truth",
+    "documentation": "Boolean value representing truth",
+    "filterText": "{true",
+    "insertTextFormat": 1,
+    "kind": 14,
+    "label": "true",
+    "sortText": "90-true",
+    "textEdit": {
+      "newText": "{true ",
+      "range": {
+        "end": {
+          "character": 5,
+          "line": 0
+        },
+        "start": {
+          "character": 4,
+          "line": 0
+        }
+      }
+    }
+  }
+]
