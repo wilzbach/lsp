@@ -125,6 +125,14 @@ class LanguageServer(LSPDispatcher):
             text_document["uri"], Position.from_object(position), options
         )
 
+    def rpc_storyscript__compile(self, text_document, options=None):
+        """
+        Compile a Storyscript story and return its JSON payload.
+        """
+        if options is None:
+            options = {}
+        return self.workspace.compile(text_document["uri"], options)
+
     def rpc_shutdown(self, **_kwargs):
         self._shutdown = True
 
