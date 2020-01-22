@@ -23,26 +23,41 @@ class ServiceHub:
     """
 
     def __init__(self, hub=None):
-        if hub is None:
-            cache_dir = get_cache_dir()
-            self.hub_path = path.join(cache_dir, "hub.json")
-            if path.exists(self.hub_path):
-                try:
-                    self.hub = ServiceWrapper.from_json_file(self.hub_path)
-                except JSONDecodeError:
-                    # local JSON blob might be invalid
-                    # see e.g. https://github.com/storyscript/sls/issues/191
-                    self.hub = ServiceWrapper()
-                    self.update_service_wrapper()
-            else:
-                makedirs(cache_dir, exist_ok=True)
-                self.hub = ServiceWrapper()
-                self.update_service_wrapper()
-            self.update_thread = AutoUpdateThread(
-                self.update_service_wrapper, initial_update=False
-            )
-        else:
+        if hub is not None:
             self.hub = hub
+            return
+
+        cache_dir = get_cache_dir()
+        self.hub_path = path.join(cache_dir, "hub.json")
+        if path.exists(self.hub_path):
+            hub = self.read_hub_from_json()
+
+        # local JSON storage doesn't exist or reading it failed
+        if hub is None:
+            makedirs(cache_dir, exist_ok=True)
+            self.hub = ServiceWrapper()
+            self.update_service_wrapper()
+
+        self.hub = hub
+        self.update_thread = AutoUpdateThread(
+            self.update_service_wrapper, initial_update=False
+        )
+
+    def read_hub_from_json(self):
+        """
+        Try loading an existing service JSON blob from storage.
+        Returns an initialized ServiceWrapper if successful, None otherwise.
+        """
+        try:
+            return ServiceWrapper.from_json_file(self.hub_path)
+        except JSONDecodeError:
+            # local JSON blob might be invalid
+            # see e.g. https://github.com/storyscript/sls/issues/191
+            return None
+        except OSError:
+            # reading local JSON blob might fail
+            # see e.g. https://github.com/storyscript/sls/issues/195
+            return None
 
     def update_service_wrapper(self):
         """
