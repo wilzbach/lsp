@@ -21,6 +21,12 @@ class CompletionContext:
         self.line = doc.line_to_cursor(pos)
         self.blocks = [*self._blocks()]
 
+    def full_line(self):
+        """
+        Return the full line at the current cursor position.
+        """
+        return self.doc.line(self.pos.line)
+
     def _blocks(self):
         """
         Splits Story lines into individual blocks.
@@ -96,3 +102,9 @@ class CompletionContext:
         indentor instance of it.
         """
         return IndentState.detect(self.line, self.ws.settings.indent_unit)
+
+    def is_cursor_at_end(self):
+        """
+        Returns True if the cursor is at the end of the current line.
+        """
+        return len(self.full_line()) <= self.pos.char

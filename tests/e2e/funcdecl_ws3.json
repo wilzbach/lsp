@@ -1,0 +1,24 @@
+[
+  {
+    "detail": "Binary state type of 'true' and 'false'",
+    "documentation": "Binary state type of 'true' and 'false'",
+    "filterText": "abc:boolean",
+    "insertTextFormat": 1,
+    "kind": 14,
+    "label": "boolean",
+    "sortText": "90-boolean",
+    "textEdit": {
+      "newText": "abc:boolean",
+      "range": {
+        "end": {
+          "character": 19,
+          "line": 1
+        },
+        "start": {
+          "character": 13,
+          "line": 1
+        }
+      }
+    }
+  }
+]

@@ -48,7 +48,7 @@ class LanguageServer(LSPDispatcher):
             # for a completion item.
             "resolveProvider": False,
             # Characters that trigger completion automatically.
-            "triggerCharacters": [".", "(", " "],
+            "triggerCharacters": [".", "(", " ", ":"],
         }
         obj["documentFormattingProvider"] = True
         obj["textDocumentSync"] = {

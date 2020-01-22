@@ -1,0 +1,68 @@
+[
+  {
+    "detail": "[string] Server hostname of this application",
+    "documentation": "hostname",
+    "filterText": "body:app.hostname",
+    "insertTextFormat": 1,
+    "kind": 2,
+    "label": "hostname",
+    "sortText": "20-hostname",
+    "textEdit": {
+      "newText": "body:app.hostname",
+      "range": {
+        "end": {
+          "character": 34,
+          "line": 0
+        },
+        "start": {
+          "character": 25,
+          "line": 0
+        }
+      }
+    }
+  },
+  {
+    "detail": "[Object] Secret variables of this application",
+    "documentation": "secrets",
+    "filterText": "body:app.secrets",
+    "insertTextFormat": 1,
+    "kind": 2,
+    "label": "secrets",
+    "sortText": "20-secrets",
+    "textEdit": {
+      "newText": "body:app.secrets",
+      "range": {
+        "end": {
+          "character": 34,
+          "line": 0
+        },
+        "start": {
+          "character": 25,
+          "line": 0
+        }
+      }
+    }
+  },
+  {
+    "detail": "[string] Version of this application",
+    "documentation": "version",
+    "filterText": "body:app.version",
+    "insertTextFormat": 1,
+    "kind": 2,
+    "label": "version",
+    "sortText": "20-version",
+    "textEdit": {
+      "newText": "body:app.version",
+      "range": {
+        "end": {
+          "character": 34,
+          "line": 0
+        },
+        "start": {
+          "character": 25,
+          "line": 0
+        }
+      }
+    }
+  }
+]

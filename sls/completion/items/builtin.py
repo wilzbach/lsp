@@ -30,8 +30,7 @@ class CompletionBuiltin(BaseFunctionCompletionItem):
             self.doc.append(desc)
         self.doc = "\n\n".join(self.doc)
         self.detail = "\n".join(self.detail)
-        self.full_text = f"{self.word}.{self.name}"
-        self.insert_name = self.full_text
+        self.insert_name = self.name
 
     def args(self):
         return self.builtins[0].args()
@@ -49,6 +48,5 @@ class CompletionBuiltin(BaseFunctionCompletionItem):
             completion_kind=CompletionItemKind.Method,
             insert_text_format=InsertTextFormat.Snippet,
             context=context,
-            filter_text=self.full_text,
             sort_group=SortGroup.Builtin,
         )

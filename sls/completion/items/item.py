@@ -29,12 +29,34 @@ class CompletionItem:
 
     @staticmethod
     def text_edit(context, text):
+        # in existing line: do not insert whitespace
+        if not context.is_cursor_at_end() and text.endswith(" "):
+            text = text[:-1]
+
         start = Position(
             line=context.pos.line,
             character=context.pos.char - len(context.word),
         )
-        end = Position(line=context.pos.line, character=context.pos.char,)
+        end = Position(line=context.pos.line, character=context.pos.char)
         return TextEdit(Range(start, end), text)
+
+    def word_before_cursor(self, context, label):
+        """
+        Returns the word before the cursor.
+        Takes ':' and '.' into account too.
+        Examples:
+            'function foo:<completion>' -> 'foo:'
+            'List[<completion>' -> 'List['
+        """
+        # other part of the completion word
+        # e.g. 'app.ho' (token_word: 'ho' -> front_word: 'app.'
+        # e.g. 'app.' (token_word: '' -> front_word: 'app.'
+        front_word = context.word[
+            : len(context.word) - len(context.token_word)
+        ]
+        if len(front_word) > 0 and front_word.endswith((":", "[", ".")):
+            return front_word
+        return ""
 
     def completion_build(
         self,
@@ -46,7 +68,6 @@ class CompletionItem:
         sort_group,
         documentation_kind=None,
         text_edit=None,
-        filter_text=None,
         insert_text_format=InsertTextFormat.PlainText,
     ):
         if documentation_kind is not None:
@@ -54,6 +75,7 @@ class CompletionItem:
                 "value": documentation,
                 "kind": documentation_kind,
             }
+        word_before_cursor = self.word_before_cursor(context, label)
         response = {
             # The label of this completion item. By default
             # also the text that is inserted when selecting
@@ -68,13 +90,17 @@ class CompletionItem:
             "insertTextFormat": insert_text_format,
         }
         if text_edit:
-            edit = self.text_edit(context, text_edit).dump()
+            edit = self.text_edit(
+                context, word_before_cursor + text_edit
+            ).dump()
             response["textEdit"] = edit
 
         response["sortText"] = f"{sort_group}-{label}"
 
-        if filter_text is not None:
-            # A string that should be used when filtering a set of
-            # completion items. When `falsy` the label is used.
-            response["filterText"] = filter_text
+        if len(word_before_cursor) > 0:
+            # Monaco filters words based on the full word currently under the
+            # editor cursor. For some reason, it takes ':', '.' into account
+            # when detecting the current word.
+            response["filterText"] = word_before_cursor + label
+
         return response

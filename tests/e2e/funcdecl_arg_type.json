@@ -2,12 +2,13 @@
   {
     "detail": "Typed list",
     "documentation": "Typed list",
+    "filterText": "i1:List",
     "insertTextFormat": 2,
     "kind": 15,
     "label": "List",
     "sortText": "90-List",
     "textEdit": {
-      "newText": "List[${1:<element_type}]",
+      "newText": "i1:List[${1:<element_type}]",
       "range": {
         "end": {
           "character": 16,
@@ -23,12 +24,13 @@
   {
     "detail": "Key-value collection type",
     "documentation": "Key-value collection type",
+    "filterText": "i1:Map",
     "insertTextFormat": 2,
     "kind": 15,
     "label": "Map",
     "sortText": "90-Map",
     "textEdit": {
-      "newText": "Map[${1:<key_type},${2:<value_type}]",
+      "newText": "i1:Map[${1:<key_type},${2:<value_type}]",
       "range": {
         "end": {
           "character": 16,
@@ -44,12 +46,13 @@
   {
     "detail": "Arbitrary type",
     "documentation": "Arbitrary type",
+    "filterText": "i1:any",
     "insertTextFormat": 1,
     "kind": 14,
     "label": "any",
     "sortText": "90-any",
     "textEdit": {
-      "newText": "any ",
+      "newText": "i1:any ",
       "range": {
         "end": {
           "character": 16,
@@ -65,12 +68,13 @@
   {
     "detail": "Binary state type of 'true' and 'false'",
     "documentation": "Binary state type of 'true' and 'false'",
+    "filterText": "i1:boolean",
     "insertTextFormat": 1,
     "kind": 14,
     "label": "boolean",
     "sortText": "90-boolean",
     "textEdit": {
-      "newText": "boolean ",
+      "newText": "i1:boolean ",
       "range": {
         "end": {
           "character": 16,
@@ -86,12 +90,13 @@
   {
     "detail": "Floating-point number type",
     "documentation": "Floating-point number type",
+    "filterText": "i1:float",
     "insertTextFormat": 1,
     "kind": 14,
     "label": "float",
     "sortText": "90-float",
     "textEdit": {
-      "newText": "float ",
+      "newText": "i1:float ",
       "range": {
         "end": {
           "character": 16,
@@ -107,12 +112,13 @@
   {
     "detail": "Integer number type",
     "documentation": "Integer number type",
+    "filterText": "i1:int",
     "insertTextFormat": 1,
     "kind": 14,
     "label": "int",
     "sortText": "90-int",
     "textEdit": {
-      "newText": "int ",
+      "newText": "i1:int ",
       "range": {
         "end": {
           "character": 16,
@@ -128,12 +134,13 @@
   {
     "detail": "Regular Expression type",
     "documentation": "Regular Expression type",
+    "filterText": "i1:regex",
     "insertTextFormat": 1,
     "kind": 14,
     "label": "regex",
     "sortText": "90-regex",
     "textEdit": {
-      "newText": "regex ",
+      "newText": "i1:regex ",
       "range": {
         "end": {
           "character": 16,
@@ -149,12 +156,13 @@
   {
     "detail": "Text representation type",
     "documentation": "Text representation type",
+    "filterText": "i1:string",
     "insertTextFormat": 1,
     "kind": 14,
     "label": "string",
     "sortText": "90-string",
     "textEdit": {
-      "newText": "string ",
+      "newText": "i1:string ",
       "range": {
         "end": {
           "character": 16,
@@ -170,12 +178,13 @@
   {
     "detail": "Time representation type",
     "documentation": "Time representation type",
+    "filterText": "i1:time",
     "insertTextFormat": 1,
     "kind": 14,
     "label": "time",
     "sortText": "90-time",
     "textEdit": {
-      "newText": "time ",
+      "newText": "i1:time ",
       "range": {
         "end": {
           "character": 16,
