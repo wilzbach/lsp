@@ -132,3 +132,30 @@ def test_run_error_correct_no_column(magic):
             ],
         },
     )
+
+
+def test_run_error_issue_192(magic):
+    endpoint = magic()
+    d = Diagnostics(endpoint=endpoint)
+    ws = magic()
+    doc = Document(
+        uri=".my.uri.",
+        text='when zoom events RecordingCompleted as recording\n  transcript=""',
+    )
+    d.run(ws, doc)
+    endpoint.notify.assert_called_with(
+        "textDocument/publishDiagnostics",
+        {
+            "uri": doc.uri,
+            "diagnostics": [
+                {
+                    "range": {
+                        "start": {"line": 0, "character": 0},
+                        "end": {"line": 0, "character": 47},
+                    },
+                    "message": "E0139: Service `zoom` does not exist on the hub.",
+                    "severity": DiagnosticSeverity.Error,
+                }
+            ],
+        },
+    )
