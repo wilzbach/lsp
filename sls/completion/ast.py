@@ -187,7 +187,9 @@ class ASTAnalyzer:
         This looks at the current stack and distinguishes.
         """
         from_rule = dfa.next_dfa.from_rule
-        assert len(dfa.dfa_pushes) > 0
+        if len(dfa.dfa_pushes) == 0:
+            assert from_rule == "as_suffix", from_rule
+            return
         next_rule = dfa.dfa_pushes[0].from_rule
         log.debug(
             "process_name, from_rule:%s, next_rule:%s", from_rule, next_rule,
