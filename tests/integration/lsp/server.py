@@ -73,8 +73,10 @@ def test_indent(server):
     doc = {"uri": ".magic."}
     open_file(server, doc["uri"], "while true")
     pos = {"line": 0, "character": 10}
-    assert server.rpc_storyscript__indent(text_document=doc, position=pos) == {
-        "edits": [
+    assert server.rpc_text_document__indent(
+        text_document=doc, position=pos
+    ) == {
+        "textEdits": [
             {
                 "newText": "\n  ",
                 "range": {
@@ -92,10 +94,10 @@ def test_indent_options(server):
     open_file(server, doc["uri"], 'when http server listen path:"/"')
     pos = {"line": 0, "character": 32}
     options = {"indent_unit": "    "}
-    assert server.rpc_storyscript__indent(
+    assert server.rpc_text_document__indent(
         text_document=doc, position=pos, options=options
     ) == {
-        "edits": [
+        "textEdits": [
             {
                 "newText": "\n    ",
                 "range": {

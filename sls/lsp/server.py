@@ -51,6 +51,7 @@ class LanguageServer(LSPDispatcher):
             "triggerCharacters": [".", "(", " ", ":"],
         }
         obj["documentFormattingProvider"] = True
+        obj["indentProvider"] = True
         obj["textDocumentSync"] = {
             # Open and close notifications are sent to the server
             "openClose": True,
@@ -118,7 +119,8 @@ class LanguageServer(LSPDispatcher):
         # TODO
         pass
 
-    def rpc_storyscript__indent(self, text_document, position, options=None):
+    # Custom LSP extension
+    def rpc_text_document__indent(self, text_document, position, options=None):
         if options is None:
             options = {}
         return self.workspace.indent(
