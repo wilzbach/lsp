@@ -49,6 +49,7 @@ def test_message(ws):
         '"result": {"capabilities": {"completionProvider": '
         '{"resolveProvider": false, "triggerCharacters": [".", "(", " ", ":"]}, '
         '"documentFormattingProvider": true, '
+        '"indentProvider": true, '
         '"textDocumentSync": {"openClose": true, "change": 1}}}}'
     )
 

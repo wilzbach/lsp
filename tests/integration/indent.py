@@ -92,7 +92,7 @@ def test_indent_edits(indentor, ws):
     pos = Position(line=0, character=5)
     assert indentor.indent(ws, doc, pos, indent_unit="  ") == {
         "indent": "",
-        "edits": [
+        "textEdits": [
             {
                 "newText": "\n",
                 "range": {
@@ -109,7 +109,7 @@ def test_indent_edits2(indentor, ws):
     pos = Position(line=1, character=3)
     assert indentor.indent(ws, doc, pos, indent_unit="  ") == {
         "indent": indent_unit,
-        "edits": [
+        "textEdits": [
             {
                 "newText": "\n" + indent_unit,
                 "range": {

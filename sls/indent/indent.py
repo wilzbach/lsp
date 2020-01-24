@@ -35,7 +35,7 @@ class Indentation:
         insert_pos = pos
         return {
             "indent": indentation,
-            "edits": [
+            "textEdits": [
                 TextEdit(
                     Range(start=insert_pos, end=insert_pos),
                     new_text=f"\n{indentation}",
