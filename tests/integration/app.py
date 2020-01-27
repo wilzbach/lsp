@@ -30,10 +30,12 @@ def test_complete(hub):
     result = app.complete(".uri.", "h")
     del result[0]["documentation"]
     del result[0]["detail"]
-    result = [
+    assert result == [
         {
+            "insertTextFormat": 1,
             "label": "http",
-            "kind": 3,
+            "kind": 2,
+            "sortText": "40-http",
             "textEdit": {
                 "range": {
                     "start": {"line": 0, "character": 0},
@@ -53,14 +55,16 @@ def test_complete_with_line(hub):
     result = app.complete(".uri.", "foobar\nh", line=1)
     del result[0]["documentation"]
     del result[0]["detail"]
-    result = [
+    assert result == [
         {
+            "insertTextFormat": 1,
             "label": "http",
-            "kind": 3,
+            "kind": 2,
+            "sortText": "40-http",
             "textEdit": {
                 "range": {
-                    "start": {"line": 0, "character": 0},
-                    "end": {"line": 0, "character": 1},
+                    "start": {"line": 1, "character": 0},
+                    "end": {"line": 1, "character": 1},
                 },
                 "newText": "http ",
             },
@@ -76,16 +80,27 @@ def test_complete_with_line_column(hub):
     result = app.complete(".uri.", "foobar\nhttp foo", line=1, column=1)
     del result[0]["documentation"]
     del result[0]["detail"]
-    result = [
+    assert result == [
         {
+            "insertTextFormat": 1,
             "label": "http",
-            "kind": 3,
+            "kind": 2,
+            "sortText": "40-http",
             "textEdit": {
                 "range": {
-                    "start": {"line": 0, "character": 0},
-                    "end": {"line": 0, "character": 1},
+                    "start": {"line": 1, "character": 0},
+                    "end": {"line": 1, "character": 1},
                 },
-                "newText": "http ",
+                "newText": "http",
             },
         }
     ]
+
+
+def test_click(hub):
+    """
+    Tests that an SLS App can perform click.
+    """
+    app = App(hub=hub)
+    result = app.click(".uri.", "app")
+    assert result == {"detail": "Symbol. Object", "kind": 6, "label": "app"}

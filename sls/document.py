@@ -6,6 +6,9 @@ from .logging import logger
 
 log = logger(__name__)
 
+# documentWordChars = (" ", "(", ")", "[", "]", ".")
+documentWordChars = (" ", "(", ")")
+
 
 class Document:
     """
@@ -62,14 +65,41 @@ class Document:
             cursor = len(line)
         return line[:cursor]
 
-    def word_on_cursor(self, pos):
+    def word_to_cursor(self, pos):
+        """
+        Return the current word until the cursor
+        """
         buf = ""
         for c in reversed(self.line_to_cursor(pos)):
-            if c == " " or c == "(" or c == ")":
+            if c in documentWordChars:
                 break
             buf += c
 
         return buf[::-1]
+
+    def word_on_cursor(self, pos):
+        """
+        Return the current word at the cursor.
+        This might include characters after it.
+        """
+        line = self.line(pos.line)
+        buf = ""
+        if pos.char > len(line):
+            return buf
+
+        for c in reversed(line[: pos.char]):
+            if c in documentWordChars:
+                break
+            buf += c
+
+        buf = buf[::-1]
+
+        for c in line[pos.char :]:
+            if c in documentWordChars:
+                break
+            buf += c
+
+        return buf
 
 
 class Range:

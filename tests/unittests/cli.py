@@ -27,6 +27,7 @@ def app(patch):
     patch.many(
         App,
         [
+            "click",
             "complete",
             "start_tcp_server",
             "start_stdio_server",
@@ -263,6 +264,52 @@ def test_cli_complete_short(patch, runner, echo, app):
         app.complete.assert_called_with(
             "|completion|", text, line=None, column=None
         )
+        assert echo.call_args_list == [
+            call(),
+            call("foo"),
+            call("bar"),
+        ]
+        assert e.exit_code == 0
+
+
+@mark.parametrize(
+    "options,expected",
+    [
+        ([], {"line": None, "column": None}),
+        (["--line", "2"], {"line": 2, "column": None}),
+        (["-l", "2"], {"line": 2, "column": None}),
+        (["--column", "3"], {"line": None, "column": 3}),
+        (["-c", "3"], {"line": None, "column": 3}),
+        (["-l", "2", "-c", "3"], {"line": 2, "column": 3}),
+    ],
+)
+def test_cli_click_line_column(patch, runner, echo, app, options, expected):
+    """
+    Ensures CLI click with custom line and column works.
+    """
+    with runner.isolated_filesystem():
+        patch.object(json, "dumps")
+        text = "foobar"
+        with open("my.story", "w") as f:
+            f.write(text)
+        e = runner.invoke(Cli.main, ["click", "my.story", *options])
+        app.click.assert_called_with("|click|", text, **expected)
+        json.dumps.assert_called_with(App.click(), indent=2, sort_keys=True)
+        click.echo.assert_called_with(json.dumps())
+        assert e.exit_code == 0
+
+
+def test_cli_click_short(patch, runner, echo, app):
+    """
+    Ensures CLI click with shortened output.
+    """
+    app.click.return_value = [{"label": "foo"}, {"label": "bar"}]
+    with runner.isolated_filesystem():
+        text = "foobar"
+        with open("my.story", "w") as f:
+            f.write(text)
+        e = runner.invoke(Cli.main, ["click", "--short", "my.story"])
+        app.click.assert_called_with("|click|", text, line=None, column=None)
         assert echo.call_args_list == [
             call(),
             call("foo"),

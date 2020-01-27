@@ -5,6 +5,7 @@ from .document import Document
 from .format import Formatter
 from sls.indent.indent import Indentation
 from .logging import logger
+from .click import Click
 from .services.hub import ServiceHub
 from .sentry import sentry_scope
 
@@ -34,6 +35,7 @@ class Workspace:
         self._service_registry = ServiceHub(hub=hub)
         self._completion = Completion.full(self._service_registry)
         self._indenter = Indentation(self._service_registry)
+        self._click = Click(self._completion)
         self._compiler = SLSJSONCompiler()
         self.settings = WorkspaceSettings()
 
@@ -72,6 +74,12 @@ class Workspace:
         doc = self.get_document(uri)
         with sentry_scope(doc, action="complete", uri=uri, position=position):
             return self._completion.complete(self, doc, position)
+
+    def click(self, uri, position):
+        log.debug(f"ws.click: {uri} pos={position}")
+        doc = self.get_document(uri)
+        with sentry_scope(doc, action="click", uri=uri, position=position):
+            return self._click.click(self, doc, position)
 
     def format(self, uri):
         log.debug(f"ws.format: {uri}")
