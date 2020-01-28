@@ -35,7 +35,7 @@ class Workspace:
         self._service_registry = ServiceHub(hub=hub)
         self._completion = Completion.full(self._service_registry)
         self._indenter = Indentation(self._service_registry)
-        self._click = Click(self._completion)
+        self._click = Click(self._service_registry)
         self._compiler = SLSJSONCompiler()
         self.settings = WorkspaceSettings()
 

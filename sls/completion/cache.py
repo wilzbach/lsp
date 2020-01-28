@@ -13,9 +13,11 @@ class ContextCache:
         - SymbolTable (global)
     """
 
-    def __init__(self, hub):
+    def __init__(self, hub, until_cursor_line=True):
         self.global_ = GlobalScopeCache(story_hub=hub)
-        self.current = CurrentScopeCache(self.global_, hub=hub)
+        self.current = CurrentScopeCache(
+            self.global_, hub=hub, until_cursor_line=until_cursor_line
+        )
 
     def update(self, context):
         self.global_.update(context)

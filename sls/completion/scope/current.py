@@ -42,11 +42,12 @@ class CurrentScopeCache:
     Cache for the current scope
     """
 
-    def __init__(self, global_, hub):
+    def __init__(self, global_, hub, until_cursor_line):
         self.global_ = global_
         self.scope_cache = LRUCache(100)
         self.current_scope = None
         self.hub = hub
+        self.until_cursor_line = until_cursor_line
 
     def update(self, context):
         self.current_scope = self.build_current_scope(context)
@@ -55,7 +56,9 @@ class CurrentScopeCache:
         """
         Tries to build the current scope and extract its symbol table.
         """
-        current_block = context.current_block(until_cursor_line=True)
+        current_block = context.current_block(
+            until_cursor_line=self.until_cursor_line
+        )
         if len(current_block) == 0:
             return Scope()
 
@@ -63,7 +66,11 @@ class CurrentScopeCache:
         for block in context.lines_until_current_block():
             text += "\n".join(block)
 
-        current_block_text = "\n".join(current_block[:-1])
+        if self.until_cursor_line:
+            current_block_text = "\n".join(current_block[:-1])
+        else:
+            current_block_text = "\n".join(current_block)
+
         key = text + current_block_text
 
         if key in self.scope_cache:

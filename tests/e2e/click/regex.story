@@ -1,0 +1,2 @@
+# action: click
+/foo/
