@@ -26,7 +26,13 @@ def patched_storyhub(mocker, scope="module"):
 
 # compile a story and compare its completion with the expected tree
 def run_test_completion(uri, source, expected, patch, options):
-    assert App(hub=hub).complete(uri=uri, text=source, **options) == expected
+    action = options.pop("action", "complete")
+    if action == "complete":
+        result = App(hub=hub).complete(uri=uri, text=source, **options)
+    else:
+        assert action == "click"
+        result = App(hub=hub).click(uri=uri, text=source, **options)
+    assert result == expected
 
 
 # load a story from the file system and load its expected result file (.json)

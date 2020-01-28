@@ -1,7 +1,7 @@
 import json
 from os import environ
 
-import click
+import click as clickpkg
 
 from click_aliases import ClickAliasedGroup
 
@@ -15,12 +15,12 @@ sentry_init()
 
 
 class Cli:
-    @click.group(invoke_without_command=True, cls=ClickAliasedGroup)
-    @click.pass_context
-    @click.option(
+    @clickpkg.group(invoke_without_command=True, cls=ClickAliasedGroup)
+    @clickpkg.pass_context
+    @clickpkg.option(
         "--hub",
         default=None,
-        type=click.Path(exists=True),
+        type=clickpkg.Path(exists=True),
         help="Fix the hub service to a JSON file",
     )
     def main(context, hub):  # noqa N805
@@ -32,13 +32,13 @@ class Cli:
             hub = context.obj
         context.obj = App(hub_path=hub)
         if context.invoked_subcommand is None:
-            click.echo(context.get_help())
+            clickpkg.echo(context.get_help())
 
     @staticmethod
     @main.command()
-    @click.option("--host", default="127.0.0.1", help="Address to bind to")
-    @click.option("--port", default=2042, help="Port to bind to")
-    @click.pass_obj
+    @clickpkg.option("--host", default="127.0.0.1", help="Address to bind to")
+    @clickpkg.option("--port", default=2042, help="Port to bind to")
+    @clickpkg.pass_obj
     def tcp(app, host, port):
         """
         Start SLS via TCP
@@ -48,11 +48,11 @@ class Cli:
 
     @staticmethod
     @main.command()
-    @click.option("--host", default="0.0.0.0", help="Address to bind to")
-    @click.option(
+    @clickpkg.option("--host", default="0.0.0.0", help="Address to bind to")
+    @clickpkg.option(
         "--port", default=environ.get("PORT", 2042), help="Port to bind to"
     )
-    @click.pass_obj
+    @clickpkg.pass_obj
     def websocket(app, host, port):
         """
         Start SLS via websocket
@@ -62,7 +62,7 @@ class Cli:
 
     @staticmethod
     @main.command()
-    @click.pass_obj
+    @clickpkg.pass_obj
     def stdio(app):
         """
         Use stdin and stdout for communication
@@ -72,25 +72,25 @@ class Cli:
 
     @staticmethod
     @main.command(aliases=["c"])
-    @click.argument("path", type=click.File("r"))
-    @click.option(
+    @clickpkg.argument("path", type=clickpkg.File("r"))
+    @clickpkg.option(
         "--line",
         "-l",
         default=None,
         type=int,
         help="Line number of the completion request (0-based)",
     )
-    @click.option(
+    @clickpkg.option(
         "--column",
         "-c",
         default=None,
         type=int,
         help="Column number of the completion request (0-based)",
     )
-    @click.option(
-        "--short", "-s", is_flag=True, help="Shortend output",
+    @clickpkg.option(
+        "--short", "-s", is_flag=True, help="Shortened output",
     )
-    @click.pass_obj
+    @clickpkg.pass_obj
     def complete(app, path, line, column, short):
         """
         Provide completion info for stories.
@@ -100,20 +100,54 @@ class Cli:
             "|completion|", path.read(), line=line, column=column
         )
         if short:
-            click.echo()
+            clickpkg.echo()
             for item in result:
-                click.echo(item["label"])
+                clickpkg.echo(item["label"])
         else:
-            click.echo(json.dumps(result, indent=2, sort_keys=True))
+            clickpkg.echo(json.dumps(result, indent=2, sort_keys=True))
+
+    @staticmethod
+    @main.command()
+    @clickpkg.argument("path", type=clickpkg.File("r"))
+    @clickpkg.option(
+        "--line",
+        "-l",
+        default=None,
+        type=int,
+        help="Line number of the click request (0-based)",
+    )
+    @clickpkg.option(
+        "--column",
+        "-c",
+        default=None,
+        type=int,
+        help="Column number of the click request (0-based)",
+    )
+    @clickpkg.option(
+        "--short", "-s", is_flag=True, help="Shortened output",
+    )
+    @clickpkg.pass_obj
+    def click(app, path, line, column, short):
+        """
+        Provide click info for stories.
+        """
+        configure_logging(with_stdio=True)
+        result = app.click("|click|", path.read(), line=line, column=column)
+        if short:
+            clickpkg.echo()
+            for item in result:
+                clickpkg.echo(item["label"])
+        else:
+            clickpkg.echo(json.dumps(result, indent=2, sort_keys=True))
 
     @staticmethod
     @main.command(aliases=["h"])
-    @click.pass_context
+    @clickpkg.pass_context
     def help(context):
         """
         Prints this help text
         """
-        click.echo(context.parent.get_help())
+        clickpkg.echo(context.parent.get_help())
 
     @staticmethod
     @main.command(aliases=["v"])
@@ -121,4 +155,4 @@ class Cli:
         """
         Prints the current version
         """
-        click.echo(app_version)
+        clickpkg.echo(app_version)

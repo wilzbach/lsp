@@ -17,7 +17,7 @@ class CompletionContext:
         self.ws = ws
         self.doc = doc
         self.pos = pos
-        self.word = doc.word_on_cursor(pos)
+        self.word = doc.word_to_cursor(pos)
         self.line = doc.line_to_cursor(pos)
         self.blocks = [*self._blocks()]
 
@@ -26,6 +26,13 @@ class CompletionContext:
         Return the full line at the current cursor position.
         """
         return self.doc.line(self.pos.line)
+
+    def full_word(self):
+        """
+        Return the full word under the current cursor position.
+        This can includes characters after the cursor column.
+        """
+        return self.doc.word_on_cursor(self.pos)
 
     def _blocks(self):
         """

@@ -50,6 +50,7 @@ def test_message(ws):
         '{"resolveProvider": false, "triggerCharacters": [".", "(", " ", ":"]}, '
         '"documentFormattingProvider": true, '
         '"indentProvider": true, '
+        '"clickProvider": true, '
         '"textDocumentSync": {"openClose": true, "change": 1}}}}'
     )
 

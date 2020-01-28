@@ -52,6 +52,7 @@ class LanguageServer(LSPDispatcher):
         }
         obj["documentFormattingProvider"] = True
         obj["indentProvider"] = True
+        obj["clickProvider"] = True
         obj["textDocumentSync"] = {
             # Open and close notifications are sent to the server
             "openClose": True,
@@ -92,6 +93,13 @@ class LanguageServer(LSPDispatcher):
         self, text_document=None, _options=None, **_kwargs
     ):
         return self.workspace.format(text_document["uri"])
+
+    def rpc_text_document__click(
+        self, text_document=None, position=None, **_kwargs
+    ):
+        return self.workspace.click(
+            text_document["uri"], Position.from_object(position)
+        )
 
     def rpc_text_document__did_open(self, text_document=None, **_kwargs):
         self.workspace.add_document(Document.from_object(text_document))

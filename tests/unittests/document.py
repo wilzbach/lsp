@@ -33,6 +33,33 @@ def test_document_line_split(text, expected, patch):
         ("foo bar", (0, 9), "bar"),  # test invalid requests
     ],
 )
+def test_document_word_to_cursor(text, pos, expected, patch):
+    """
+    Tests whether the word until the cursor is properly detected
+    """
+    patch.init(Document)
+    patch.object(Document, "line", return_value=text)
+    doc = Document()
+    r = doc.word_to_cursor(Position(*pos))
+    assert r == expected
+
+
+@mark.parametrize(
+    "text,pos,expected",
+    [
+        ("foo bar", (0, 0), "foo"),
+        ("foo bar", (0, 1), "foo"),
+        ("foo bar", (0, 2), "foo"),
+        ("foo bar", (0, 3), "foo"),
+        ("foo bar", (0, 4), "bar"),
+        ("foo bar", (0, 5), "bar"),
+        ("foo bar", (0, 6), "bar"),
+        ("foo bar", (0, 7), "bar"),
+        ("foo bar", (0, 8), ""),
+        ("foo bar", (0, 9), ""),
+        ("foo  bar", (0, 4), ""),
+    ],
+)
 def test_document_word_on_cursor(text, pos, expected, patch):
     """
     Tests whether the word on the cursor is properly detected

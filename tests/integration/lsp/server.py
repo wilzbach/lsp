@@ -69,6 +69,28 @@ def test_completion(server):
     ) == {"isIncomplete": False, "items": items}
 
 
+def test_click(server):
+    doc = {"uri": ".magic."}
+    open_file(server, doc["uri"], "redis increment")
+    pos = {"line": 0, "character": 8}
+    assert server.rpc_text_document__click(
+        text_document=doc, position=pos
+    ) == {
+        "detail": "Action: Increments a number stored at 'key'.",
+        "kind": 11,
+        "label": "increment",
+    }
+
+
+def test_click_unknown(server):
+    doc = {"uri": ".magic."}
+    open_file(server, doc["uri"], "redis unknown")
+    pos = {"line": 0, "character": 8}
+    assert server.rpc_text_document__click(
+        text_document=doc, position=pos
+    ) == {"detail": "UNKNOWN",}
+
+
 def test_indent(server):
     doc = {"uri": ".magic."}
     open_file(server, doc["uri"], "while true")

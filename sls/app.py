@@ -1,3 +1,4 @@
+from contextlib import contextmanager
 import socketserver
 import sys
 
@@ -65,16 +66,33 @@ class App:
 
     def complete(self, uri, text, line=None, column=None):
         uri = "complete:/" + uri
-        doc = Document(uri, text=text)
-        # jump to the end of the story if no line/colum were set
+        with self.document(uri, text) as doc:
+            position = self._position(doc, line, column)
+            return self.ws.complete(uri, position=position)["items"]
+
+    def click(self, uri, text, line=None, column=None):
+        uri = "click:/" + uri
+        with self.document(uri, text) as doc:
+            position = self._position(doc, line, column)
+            return self.ws.click(uri, position=position)
+
+    @staticmethod
+    def _position(doc, line, column):
+        """
+        Normalize position information.
+        """
+        # jump to the end of the story if no line/column were set
         if line is None:
-            # TODO
             line = max(0, doc.nr_lines() - 2)
         if column is None:
             column = max(0, len(doc.line(line)))
 
         position = Position(line=line, character=column)
+        return position
+
+    @contextmanager
+    def document(self, uri, text):
+        doc = Document(uri, text=text)
         self.ws.add_document(doc)
-        response = self.ws.complete(uri, position=position)["items"]
+        yield doc
         self.ws.remove_document(uri)
-        return response

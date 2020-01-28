@@ -8,7 +8,7 @@ import sls.sentry as sentry
 
 def test_complete(magic, patch):
     patch.init(Document)
-    patch.many(Document, ["line_to_cursor", "word_on_cursor"])
+    patch.many(Document, ["line_to_cursor", "word_to_cursor"])
     patch.many(CompletionContext, ["_blocks"])
     cache = magic()
     c = Completion(plugins=[], context_cache=cache)
@@ -25,7 +25,7 @@ def test_complete(magic, patch):
 
 def test_complete_plugin(magic, patch):
     patch.init(Document)
-    patch.many(Document, ["line_to_cursor", "word_on_cursor"])
+    patch.many(Document, ["line_to_cursor", "word_to_cursor"])
     patch.many(CompletionContext, ["_blocks"])
     my_plugin = magic()
     i1 = {"label": "i1"}
@@ -46,7 +46,7 @@ def test_complete_plugin(magic, patch):
 
 def test_complete_exec(magic, patch):
     patch.init(Document)
-    patch.many(Document, ["line_to_cursor", "word_on_cursor"])
+    patch.many(Document, ["line_to_cursor", "word_to_cursor"])
     patch.many(CompletionContext, ["_blocks"])
     patch.object(sentry, "handle_exception")
     cache = magic()

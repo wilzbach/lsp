@@ -51,15 +51,23 @@ class StoryRunner:
         self.story_path = path.join(root_dir, story_path)
         self.story_path_raw = path.splitext(story_path)[0]
         self.updated = False
+        self.app = App(hub=hub)
 
     def run(self):
         with bom_open(self.story_path, "r") as f:
             source = f.read()
         options = parse_options(source)
-        completion = App(hub=hub).complete(
-            uri=self.story_path, text=source, **options
-        )
-        self.update(completion)
+        action = options.pop("action", "complete")
+        if action == "complete":
+            result = self.app.complete(
+                uri=self.story_path, text=source, **options
+            )
+        else:
+            assert action == "click"
+            result = self.app.click(
+                uri=self.story_path, text=source, **options
+            )
+        self.update(result)
         return Result(updated=self.updated)
 
     def update(self, result):
